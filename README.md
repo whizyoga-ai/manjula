@@ -77,10 +77,12 @@ find a phone number.
 index.html                  hero, menu, the shop in five frames, find us,
                             and the slate LAST — the board may not be today's,
                             so it does not stand between anyone and the menu
-origins.html                seven dish cards
-dish.html?d=<slug>          one dish, with prev/next
-story.html                  the name: Manju, then Manjula
+origins.html                seven dish cards, then the name story
+dish.html?d=<slug>          one dish, with prev/next, and its clip
+bulk.html                   large orders — a list, not a checkout
+movies.html                 the uncut footage, behind a play button
 uttarpara.html              the town
+story.html                  a redirect to origins.html#name
 
 assets/css/site.css         the shared stylesheet
 assets/css/origins.css      cards, pager, single-dish tones
