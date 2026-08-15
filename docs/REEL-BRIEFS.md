@@ -9,7 +9,7 @@ briefs to replace them with.
 I cannot generate them here. There is an RTX 5090 on this machine and a
 bake-off harness at `Brahmando/tools/image-bakeoff`, but it runs **SDXL** and
 **Qwen-Image-Edit** — a text-to-image model and an editing model. Neither does
-identity transfer: given a photograph of Isha, neither will put *that face* in
+identity transfer: given a photograph of one of them, neither will put *that face* in
 a new scene. That needs a face-conditioned pipeline (IP-Adapter FaceID,
 InstantID, PuLID or equivalent), which is not in the harness.
 
@@ -18,10 +18,14 @@ written for it.
 
 ## The two faces
 
+Neither is named here or anywhere on the site — the family asked for the
+proprietor's name to come off, so these briefs use A and B and the reference
+photographs carry the identification.
+
 | Who | Reference | Description |
 |---|---|---|
-| **Isha Mukherjee** — proprietor on the licence | `menu idea/black.jpg` | Long dark wavy hair, black saree, bindi. Also in `black2.jpg`, `glam.jpg`, `4.jpg`. |
-| **Her sister** | `menu idea/we are the champion.jpg` — **left**, in glasses | Rectangular dark-framed glasses, hair back, rounder face. Isha is on the right in that frame. |
+| **Sister A** — the one on the licence | `menu idea/black.jpg` | Long dark wavy hair, black saree, bindi. Also in `black2.jpg`, `glam.jpg`, `4.jpg`. |
+| **Sister B** | `menu idea/we are the champion.jpg` — **left**, in glasses | Rectangular dark-framed glasses, hair back, rounder face. Sister A is on the right in that frame. |
 
 `we are the champion.jpg` is the one image with **both of them together** and is
 the reference to match a two-person scene against.
@@ -51,19 +55,19 @@ sits there.
 
 | Replaces | Scene |
 |---|---|
-| `momo-steam.jpg` | **Isha lifting the lid off the steel momo steamer**, steam rising into the fairy lights, momos visible in the tier. Her hands on the lid, face lit by the steam. |
-| `maggi.jpg` | **Isha at the pan**, maggi coming off the heat into a bowl, egg and cheese going in. Small gas ring, white table, not a restaurant range. |
-| `toast.jpg` | **Isha at the tawa**, malai toast, a knife spreading, the buttered side catching the light. |
-| `chai.jpg` | **The sister pouring tea** from the Atlantis machine into a glass, the shop's shelves behind her. |
-| `wok-fire.jpg` | Replace the flaming street wok. **The sister at the counter taking an order** — one hand on a notebook or phone, a customer's hand offering a note across the counter. |
+| `momo-steam.jpg` | **Sister A lifting the lid off the steel momo steamer**, steam rising into the fairy lights, momos visible in the tier. Her hands on the lid, face lit by the steam. |
+| `maggi.jpg` | **Sister A at the pan**, maggi coming off the heat into a bowl, egg and cheese going in. Small gas ring, white table, not a restaurant range. |
+| `toast.jpg` | **Sister A at the tawa**, malai toast, a knife spreading, the buttered side catching the light. |
+| `chai.jpg` | **Sister B pouring tea** from the Atlantis machine into a glass, the shop's shelves behind her. |
+| `wok-fire.jpg` | Replace the flaming street wok. **Sister B at the counter taking an order** — one hand on a notebook or phone, a customer's hand offering a note across the counter. |
 | `roll.jpg` | Replace the griddle. **Both sisters in the vegetable market**, early, choosing produce — onions, chillies, coriander — a jute bag between them. |
-| `puchka.jpg` | Replace the street shot. **The sister serving at the pavement stools**, handing a paper plate of momos down to someone sitting on a purple stool, the shop lit behind. |
+| `puchka.jpg` | Replace the street shot. **Sister B serving at the pavement stools**, handing a paper plate of momos down to someone sitting on a purple stool, the shop lit behind. |
 
 ## More scenes worth having
 
-- **Opening up.** Isha raising the green shutter at first light, the slate
+- **Opening up.** Sister A raising the green shutter at first light, the slate
   under her arm, street still quiet.
-- **Chalking the slate.** The sister writing the day's specials on the
+- **Chalking the slate.** Sister B writing the day's specials on the
   blackboard, chalk in hand, half the board still blank.
 - **The school rush.** Uniformed students crowding the counter after the last
   bell, both sisters working.

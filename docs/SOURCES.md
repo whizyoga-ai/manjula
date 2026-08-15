@@ -9,7 +9,7 @@ traceable to a row below, it should not be on the page.
 
 | Source | What it establishes |
 |---|---|
-| **Permanent Certificate of Enlistment**, Uttarpara Kotrung Municipality, issued 31 Jul 2026, valid to 30 Jul 2027 | Trading name "MANJULA BITE & BREW"; proprietor **Isha Mukherjee**; address **Holding 17/A, Banerjee Para Street, P.O. Uttarpara SO, P.S. Uttarpara, Dist. Hooghly, 712258**; **ward 18**; category "enterprises dealing with food items", nature "snacks cum tea, coffee centre" |
+| **Permanent Certificate of Enlistment**, Uttarpara Kotrung Municipality, issued 31 Jul 2026, valid to 30 Jul 2027 | Trading name "MANJULA BITE & BREW"; the proprietor (named on the licence, **not published** at the family's request); address **Holding 17/A, Banerjee Para Street, P.O. Uttarpara SO, P.S. Uttarpara, Dist. Hooghly, 712258**; **ward 18**; category "enterprises dealing with food items", nature "snacks cum tea, coffee centre" |
 | **The two laminated menu cards** on the shop wall, photographed 14 Aug 2026 (`menu-eng.jpeg`, `menu-bengali.jpeg`) | Every price on the site, in both languages, and the taglines "Good Food, Good Mood" / "ধন্যবাদ, আবার আসবেন" |
 | **The shop's chalk slate**, photographed from `video2.mp4` at 00:52 (`assets/img/slate.jpg`) | The opening-day specials; the free tea and coffee; and that a plate of chicken or mutton steam momo is **5 pieces** — a fact that is on the slate and *not* on the printed card |
 | **The owners** | Opening hours 9:00–21:00 daily; the order number for Bujuni; the family account of the name |

@@ -61,8 +61,8 @@ const DISHES = [
       { bn: 'সঙ্গে স্যুপ', en: 'Soup on the side' },
     ],
     kitchen: [
-      { bn: 'ঈশা চারটে রাস্তা খোলা রেখেছেন, আর সেটাই আসল সিদ্ধান্ত: চিকেন না মাটন, আর ভাপে না ভাজা। ভাপের মোমো পুরের স্বাদ সামনে আনে; ভাজা মোমো খোলসটাকে সামনে আনে। দুটো আলাদা খাবার, একই পুর — তাই দুটোই থাকে, আর দাম আলাদা।',
-        en: 'Isha kept four doors open, and that is the actual decision: chicken or mutton, steamed or fried. Steaming puts the filling in front; frying puts the skin in front. They are two different dishes made from one filling, so both stay on the card, priced apart.' },
+      { bn: 'চারটে রাস্তা খোলা রাখা হয়েছে, আর সেটাই আসল সিদ্ধান্ত: চিকেন না মাটন, আর ভাপে না ভাজা। ভাপের মোমো পুরের স্বাদ সামনে আনে; ভাজা মোমো খোলসটাকে সামনে আনে। দুটো আলাদা খাবার, একই পুর — তাই দুটোই থাকে, আর দাম আলাদা।',
+        en: 'Four doors are kept open, and that is the actual decision: chicken or mutton, steamed or fried. Steaming puts the filling in front; frying puts the skin in front. They are two different dishes made from one filling, so both stay on the card, priced apart.' },
       { bn: 'প্লেটে পাঁচটা। কথাটা ছাপানো কার্ডে নেই, আছে ফুটপাথের স্লেটে। মানে সংখ্যাটা ঠিক হয়েছে কাউন্টারে দাঁড়ানো লোকটার দিকে তাকিয়ে — ছাপাখানায় বসে নয়।',
         en: 'Five to a plate. That number is not on the printed card — it is chalked on the slate outside. Which tells you it was settled by looking at the person standing at the counter, not by a printer.' },
     ],
@@ -133,8 +133,8 @@ const DISHES = [
     kitchen: [
       { bn: 'চারটে টোস্ট, চারটে আলাদা কাজ — আর দামের সিঁড়িটাই বুঝিয়ে দেয় কোনটা কেন। <strong>মাখন পাউরুটি ২০</strong>: সবচেয়ে সাদামাটা, তাই সবচেয়ে কঠিন — লুকোনোর কিছু নেই। <strong>ডিম পাউরুটি ২৫</strong>: পাঁচ টাকায় জলখাবার হয়ে যায়। <strong>মালাই টোস্ট ৩০</strong>: মিষ্টির দিকটা, যা চায়ের সঙ্গে বিকেলে চলে।',
         en: 'Four toasts doing four different jobs, and the price ladder tells you which is which. <strong>Butter toast at 20</strong> — the plainest, and so the hardest, because there is nothing to hide behind. <strong>Egg toast at 25</strong> — five rupees turns a snack into breakfast. <strong>Malai toast at 30</strong> — the sweet end of the shelf, which is what an afternoon tea wants.' },
-      { bn: 'ঈশার হিসেবটা সরল: যে জিনিস সবচেয়ে বেশি বিক্রি হবে, সেটাই সবচেয়ে সস্তা রাখতে হবে। তাই মাখন পাউরুটি বিশ টাকাতেই থেকে গেছে।',
-        en: 'Isha’s arithmetic is plain: the thing that sells most has to be the thing that costs least. Which is why butter toast has stayed at twenty.' },
+      { bn: 'হিসেবটা সরল: যে জিনিস সবচেয়ে বেশি বিক্রি হবে, সেটাই সবচেয়ে সস্তা রাখতে হবে। তাই মাখন পাউরুটি বিশ টাকাতেই থেকে গেছে।',
+        en: 'The arithmetic is plain: the thing that sells most has to be the thing that costs least. Which is why butter toast has stayed at twenty.' },
     ],
   },
 
@@ -196,7 +196,7 @@ const DISHES = [
     kitchen: [
       { bn: 'প্যাকেটের ম্যাগি সবাই বানাতে পারে। তফাত হয় তার পরে কী পড়ল তাতে — আর মঞ্জুলার কার্ডে সেই তফাতটা একটা সিঁড়ি হয়ে সাজানো: <strong>প্লেন ৩০ → এগ ৪০ → চীজ ৪০ → এগ চীজ ৫০</strong>।',
         en: 'Anyone can make maggie out of the packet. The difference is what goes in after, and on Manjula’s card that difference is laid out as a staircase: <strong>plain 30 → egg 40 → cheese 40 → egg-and-cheese 50</strong>.' },
-      { bn: 'খেয়াল করুন, ডিম আর চীজ দুটোরই দাম চল্লিশ। ইচ্ছে করে। ঈশা একটাকে অন্যটার উপরে বসাননি — কে কী চায়, সেটা খদ্দেরের রুচির ব্যাপার, দামের নয়। দশ টাকা বাড়তি লাগে কেবল যখন দুটোই একসঙ্গে চান।',
+      { bn: 'খেয়াল করুন, ডিম আর চীজ দুটোরই দাম চল্লিশ। ইচ্ছে করে। একটাকে অন্যটার উপরে বসানো হয়নি — কে কী চায়, সেটা খদ্দেরের রুচির ব্যাপার, দামের নয়। দশ টাকা বাড়তি লাগে কেবল যখন দুটোই একসঙ্গে চান।',
         en: 'Notice that egg and cheese are the same forty. That is deliberate. Neither is ranked above the other — which you want is a matter of taste, not of price. The extra ten rupees is only charged when you want both.' },
     ],
   },

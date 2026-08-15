@@ -890,3 +890,67 @@ html[data-theme="sokal"] {
    type beside it. One rule, rather than a second PNG to keep in step. */
 html[data-theme="kagoj"] .wordmark,
 html[data-theme="sokal"] .wordmark { filter: brightness(0); opacity: .88; }
+
+/* ==========================================================================
+   BENGALI NEEDS VERTICAL ROOM
+
+   Bengali is not Latin with different shapes. It hangs from a matra — the
+   headline stroke across the top — and drops conjuncts and vowel signs well
+   below the baseline: ্র, ্য, ৃ, ু, ৌ. So its ink box is taller than Latin's
+   at the same font-size, and a line-height tuned by eye on English text
+   shears the top or the bottom off it.
+
+   Measured on the page rather than guessed: eight elements were clipping,
+   scrollHeight over clientHeight, at line-heights between 0.95 and 1.2 —
+   headings, the reel caption, the slate prices. Display type was the worst
+   because that is exactly where a designer tightens leading.
+
+   1.45 across every tight element when the page is Bengali. English keeps its
+   own leading, because it does not have this problem and looks slack at 1.45.
+   ========================================================================== */
+
+html[data-lang="bn"] h1,
+html[data-lang="bn"] h2,
+html[data-lang="bn"] h3,
+html[data-lang="bn"] h4,
+html[data-lang="bn"] .sec-head h2,
+html[data-lang="bn"] .brand__mark,
+html[data-lang="bn"] .hero__tag,
+html[data-lang="bn"] .card__head h3,
+html[data-lang="bn"] .board__price,
+html[data-lang="bn"] .board__sizes,
+html[data-lang="bn"] .board__headline,
+html[data-lang="bn"] .walk__dist,
+html[data-lang="bn"] .walk__body h3,
+html[data-lang="bn"] .hours-strip .big,
+html[data-lang="bn"] .phone__scene,
+html[data-lang="bn"] .phone__dish b,
+html[data-lang="bn"] .phone__price,
+html[data-lang="bn"] .reel__tabs button,
+html[data-lang="bn"] .chapter__no,
+html[data-lang="bn"] .chapter__sub,
+html[data-lang="bn"] .dishcard h3,
+html[data-lang="bn"] .dishcard__sub,
+html[data-lang="bn"] .pager__name,
+html[data-lang="bn"] .namecard h4,
+html[data-lang="bn"] .namecard .sans,
+html[data-lang="bn"] .epigraph blockquote,
+html[data-lang="bn"] .btn,
+html[data-lang="bn"] .lang button,
+html[data-lang="bn"] .chips li,
+html[data-lang="bn"] .price-note { line-height: 1.45; }
+
+/* The hero name is an image, so it needs the room around it rather than
+   inside it — its own line-height cannot help it. */
+html[data-lang="bn"] .hero h1 { line-height: 1.2; }
+
+/* A card clips its corners, which is fine until a Bengali descender reaches
+   the edge of a coloured header band. */
+html[data-lang="bn"] .card__head { padding-block: 1rem; }
+
+/* The section headings are the largest Bengali on the page, and at that size
+   Noto Serif Bengali's matra reaches a couple of pixels past what 1.45 gives
+   it. Measured, not guessed: four h2s were still two pixels over. */
+html[data-lang="bn"] .sec-head h2,
+html[data-lang="bn"] .origins-hero h1,
+html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
