@@ -1,12 +1,13 @@
 /* ==========================================================================
    The reel — the kitchen, as a story.
 
-   ELEVEN SCENES, AND THE FIRST FIVE ARE REAL VIDEO.
+   NINE SCENES, AND THE FIRST THREE ARE REAL VIDEO.
 
-   `vid: true` marks a clip cut from the shop's own footage — Video1.mp4 and
-   video2.mp4 in C:\Customers\Manjula. Real room, real counter, real slate,
-   real hands on a real steamer. These lead the reel, because they are the
-   only frames on this site that are unarguably this shop.
+   `vid: true` marks a clip cut from the shop's own footage. Thirty seconds is
+   the cap: long enough to be a look around rather than a loop, short enough
+   that a landing page is not shipping six megabytes of video to somebody who
+   only wanted the price of a momo. The uncut originals live on movies.html,
+   where a visitor asks for them.
 
    The rest are AI-generated stills and the faces in them are not the two
    sisters. `wok-fire` is gone for a different reason: it was a man at the
@@ -28,26 +29,18 @@
 'use strict';
 
 const REELS = [
-  { f: 'steamer',     vid: true, price: 50,
+  { f: 'shop-tour',    vid: true, secs: 30,
+    bn: 'দোকানের ভিতরটা — সাইনবোর্ড, তাক, স্লেট', en: 'Inside the shop: signs, shelves, slate',
+    tabBn: 'দোকান',                tabEn: 'The shop' },
+
+  { f: 'counter-menu', vid: true, secs: 30,
+    bn: 'কার্ড, কাউন্টার, স্টিমার',  en: 'The card, the counter, the steamer',
+    tabBn: 'কাউন্টার',              tabEn: 'Counter' },
+
+  { f: 'steamer',      vid: true, secs: 6, price: 50,
     bn: 'স্টিমার খুলছে — মোমো তৈরি',  en: 'The steamer coming off',
     dishBn: 'চিকেন স্টিম মোমো',      dishEn: 'Chicken steam momo',
     tabBn: 'স্টিমার',                tabEn: 'Steamer' },
-
-  { f: 'counter',     vid: true,
-    bn: 'কাউন্টার — স্টিমার, মেশিন, টুনি লাইট', en: 'The counter: steamer, machine, lights',
-    tabBn: 'কাউন্টার',               tabEn: 'Counter' },
-
-  { f: 'signs',       vid: true,
-    bn: 'ছাদ থেকে ঝোলানো সাইনবোর্ড',  en: 'The signs hanging from the ceiling',
-    tabBn: 'সাইনবোর্ড',              tabEn: 'Signs' },
-
-  { f: 'slate-board', vid: true,
-    bn: 'ফুটপাথের স্লেট',             en: 'The slate on the pavement',
-    tabBn: 'স্লেট',                  tabEn: 'Slate' },
-
-  { f: 'menu-card',   vid: true,
-    bn: 'দেওয়ালের মেনু কার্ড',        en: 'The card on the wall',
-    tabBn: 'মেনু',                   tabEn: 'Card' },
 
   { f: 'momo-steam',   price: 50,
     bn: 'স্টিমারে মোমো বসছে',      en: 'Momos going into the steamer',

@@ -184,7 +184,7 @@ html[data-lang="en"] .brand__mark { font-family: var(--display); font-variation-
   position: relative; overflow: hidden;
   background: var(--ink);
   color: var(--chalk);
-  padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(4rem, 9vw, 7rem);
 }
 /* chalk dust: two soft washes and a fine grain, no image files */
 .hero::before {
@@ -200,9 +200,14 @@ html[data-lang="en"] .brand__mark { font-family: var(--display); font-variation-
 }
 .hero > * { position: relative; z-index: 1; }
 
+/* The hero runs wider than the rest of the page and gives the larger share to
+   the media. There is room to the right of the text and the reel is the thing
+   worth looking at, so the text sits left and the vessel takes the space. */
+.hero .wrap { width: min(1320px, 100% - 2.4rem); }
 .hero__grid {
-  display: grid; gap: clamp(1.6rem, 4vw, 3rem);
-  grid-template-columns: 1.15fr .85fr; align-items: center;
+  display: grid; gap: clamp(1.4rem, 3vw, 2.4rem);
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  align-items: center;
 }
 @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } }
 
@@ -293,7 +298,7 @@ html[data-lang="en"] .hero h1 {
     nearly three times the picture area for the same footprint. */
 .phone {
   position: relative;
-  width: clamp(280px, 34vw, 470px);
+  width: min(100%, clamp(300px, 40vw, 560px));
   aspect-ratio: 3 / 4;
   border-radius: 24px;
   padding: 14px;
@@ -386,7 +391,7 @@ html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
   .reel__img.is-on, .reel__img:nth-child(even).is-on { animation: none; transform: scale(1.03); }
   .phone__bars i.is-on b { animation: none; width: 100%; }
 }
-@media (max-width: 900px) { .phone { width: clamp(260px, 84vw, 430px); padding: 10px; } }
+@media (max-width: 900px) { .phone { width: clamp(270px, 86vw, 460px); padding: 11px; } }
 
 /* the hero photo, hung like a picture on the board */
 .hero__shot {
@@ -978,14 +983,14 @@ html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
    is untouched — the globe just clips it to a circle and lights it.
    ========================================================================== */
 
-.stage { display: grid; justify-items: center; }
+.stage { display: grid; justify-items: center; width: 100%; min-width: 0; }
 .stage > * { grid-area: 1 / 1; }          /* both vessels stacked, one shown */
 .reel[data-view="globe"] .phone { visibility: hidden; pointer-events: none; }
 .reel[data-view="tablet"] .globe { visibility: hidden; pointer-events: none; }
 
 .globe {
   position: relative;
-  width: clamp(280px, 34vw, 470px);
+  width: min(100%, clamp(320px, 48vw, 660px));
   aspect-ratio: 1;
   display: grid; place-items: center;
 }
@@ -1052,7 +1057,7 @@ html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
 }
 
 @media (prefers-reduced-motion: reduce) { .globe__grid::before { animation: none; } }
-@media (max-width: 900px) { .globe { width: clamp(260px, 84vw, 430px); } }
+@media (max-width: 900px) { .globe { width: clamp(280px, 92vw, 560px); } }
 
 /* the view switch */
 .reel__views { display: flex; gap: .35rem; justify-content: center; }

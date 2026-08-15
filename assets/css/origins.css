@@ -289,3 +289,42 @@ html[data-lang="en"] .origins-hero h1 {
 /* back to the shop */
 .backbar { background: var(--paper-2); border-top: 1px solid var(--rule); padding: 2.4rem 0; }
 .backbar .wrap { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+
+/* ==========================================================================
+   Films — the uncut footage
+
+   Native <video controls> rather than a custom player. A visitor already
+   knows how this works, it is keyboard accessible without any help from me,
+   and preload="none" means the browser fetches nothing at all until they
+   press play. On a 5MB file over Indian mobile data that is the difference
+   between a page and an imposition.
+   ========================================================================== */
+
+.films { display: grid; gap: clamp(2rem, 5vw, 3.4rem); }
+.film {
+  margin: 0; display: grid; gap: clamp(1.2rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  align-items: start;
+}
+@media (max-width: 760px) { .film { grid-template-columns: 1fr; } }
+
+.film__frame {
+  border-radius: 14px; overflow: hidden;
+  background: var(--ink);
+  border: 1px solid rgba(var(--chalk-rgb), .16);
+  box-shadow: var(--shadow);
+}
+.film__frame video { width: 100%; height: auto; display: block; background: var(--ink); }
+
+.film figcaption h2 {
+  margin: 0 0 .2rem; font-family: var(--display-bn); font-weight: 700;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.2;
+}
+html[data-lang="en"] .film figcaption h2 {
+  font-family: var(--display); font-variation-settings: 'SOFT' 40, 'WONK' 1, 'opsz' 40;
+}
+.film__meta {
+  margin: 0 0 .8rem; font-family: var(--hand); font-size: 1.15rem; color: var(--marigold);
+}
+html[data-lang="bn"] .film__meta { font-family: var(--body-bn); font-size: .9rem; }
+.film figcaption p { max-width: 58ch; color: var(--text-dim); }

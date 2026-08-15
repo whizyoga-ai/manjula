@@ -237,8 +237,12 @@
   }
 
   function restart() {
-    clearInterval(reelTimer);
-    reelTimer = setInterval(() => show(reelAt + 1), REEL_MS);
+    clearTimeout(reelTimer);
+    // A 30-second walk round the shop should not be yanked away after five.
+    // Scenes declare their own length; stills keep the default.
+    const secs = REELS[reelAt] && REELS[reelAt].secs;
+    const ms = secs ? secs * 1000 : REEL_MS;
+    reelTimer = setTimeout(() => { show(reelAt + 1); restart(); }, ms);
   }
 
   function show(i) {
@@ -290,9 +294,14 @@
     document.querySelectorAll('.phone__bars i').forEach((bar, i) => {
       bar.classList.toggle('is-on', i === reelAt);
       bar.classList.toggle('is-done', i < reelAt);
-      if (i === reelAt) {            // retrigger the fill animation
+      if (i === reelAt) {            // retrigger the fill, at this scene's pace
         const fill = bar.firstElementChild;
-        fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = '';
+        const secs = REELS[reelAt] && REELS[reelAt].secs;
+        fill.style.animation = 'none'; void fill.offsetWidth;
+        fill.style.animation = '';
+        // The bar used to be a fixed five seconds, which on a thirty-second
+        // walk round the shop filled up and then sat there for twenty-five.
+        fill.style.animationDuration = (secs ? secs : REEL_MS / 1000) + 's';
       }
     });
 
