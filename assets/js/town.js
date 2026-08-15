@@ -189,8 +189,14 @@
 
   function renderFoodChapters() {
     const ol = document.getElementById('foodChapters');
+    const closing = document.getElementById('foodClosing');
     if (!ol || typeof FOOD_CHAPTERS === 'undefined') return;
     ol.innerHTML = '';
+    if (closing) closing.innerHTML = '';
+    /* The story runs 1704 to today at the top of the page. The last chapter
+       is about this shop, and it reads as an ending — so it renders down at
+       the close instead, where the page is already finishing. One list in the
+       data, two places on the page. */
     FOOD_CHAPTERS.forEach((c, i) => {
       const li = el('li', 'fd__ch' + (i % 2 ? ' is-flip' : '') + (c.img ? '' : ' is-textonly'));
 
@@ -244,9 +250,9 @@
       if (sr) box.append(sr);
 
       li.append(box);
-      ol.append(li);
+      (c.id === 'manjula' && closing ? closing : ol).append(li);
     });
-    arm(ol.querySelectorAll('.fd__ch'));
+    arm(document.querySelectorAll('.fd__ch'));
   }
 
   function renderFoodPeople() {

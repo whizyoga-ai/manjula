@@ -46,7 +46,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&amp;family=Hind+Siliguri:wght@300;400;500;600;700&amp;family=Tiro+Bangla:ital@0;1&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=Caveat:wght@500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20">
 <link rel="stylesheet" href="assets/css/origins.css?v=10">
-<link rel="stylesheet" href="assets/css/town.css?v=4">
+<link rel="stylesheet" href="assets/css/town.css?v=6">
 <script>
 /* Theme before paint — a stored light theme must not flash black first. */
 try { var t = localStorage.getItem('manjula-theme');
@@ -138,6 +138,111 @@ try { var t = localStorage.getItem('manjula-theme');
     </p>
   </div>
   <div class="twn-hero__fade" aria-hidden="true"></div>
+</section>
+
+<!-- =================================================== THE FOOD ======== -->
+<!--
+  The second history. The page above is the town's institutional record — the
+  school, the municipality, the library, the speech. This is the other one,
+  the history that happened three times a day and that nobody wrote down.
+
+  IT IS BUILT ON ONE DISTINCTION AND THE DISTINCTION IS THE POINT. Where
+  something is documented it is stated and cited. Where it is a reconstruction
+  it is marked as one, in both languages, in the copy itself — "a plausible
+  plate", "we can imagine", "nobody wrote it down". assets/data/food.js carries
+  a `type` on every entry and data/uttarpara-culinary-sources.json carries the
+  sources, so nothing here can quietly become a fact later.
+-->
+<section class="fd" id="food">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span class="bn-i">নদীর পথেই এ শহরের স্বাদ</span><span class="en-i">The taste of the town came up the river</span></p>
+      <h2 class="bn">যে পথে উত্তরপাড়ার খাদ্যের যাত্রা</h2>
+      <h2 class="en">Before there was a library, there was the river</h2>
+      <p class="bn">
+        এই শহরের নাম হয়েছে স্কুল, পৌরসভা আর লাইব্রেরির জন্য — সে ইতিহাস নীচে
+        আছে। কিন্তু তার সবটার আগে ছিল নদী, আর নদীর ধারে মানুষ। স্কুল খোলার
+        একশো বছরেরও বেশি আগে থেকে এখানে রোজ তিনবার হেঁশেল জ্বলেছে, আর সে
+        ইতিহাসটা কেউ লিখে রাখেনি। নদী, বাণিজ্য আর সময় বদলে দিয়েছে উপকরণ,
+        রান্নার রীতি আর স্বাদের ভাষা। বদলায়নি কেবল নদীর মাছ, আতিথেয়তা, আর
+        ভাগ করে খাওয়ার অভ্যেসটা।
+      </p>
+      <p class="en">
+        This town is known for a school, a municipality and a library, and that
+        history is further down the page. But before any of it there was the
+        river, and people living beside it. For more than a century before the
+        school opened, a fire was lit here three times a day — and nobody wrote
+        that history down. The river, the trade and the years changed the
+        ingredients, the methods and the vocabulary of taste. What did not
+        change was the fish, the hospitality, and the habit of feeding whoever
+        turned up.
+      </p>
+      <p class="fd__rule bn">
+        <b>এই অংশে দু’রকম কথা আছে, আর দুটো আলাদা করে রাখা।</b> যেটা নথিতে আছে,
+        সেটা সরাসরি বলা এবং সূত্র দেওয়া। যেটা নথিতে নেই — অর্থাৎ ওই সময়ে এখানে
+        ঠিক কী খাওয়া হত — সেটা অনুমান বলেই লেখা। বানানো কোনও সূত্র এখানে নেই।
+      </p>
+      <p class="fd__rule en">
+        <b>Two kinds of writing here, kept apart.</b> Where something is on the
+        record it is stated plainly and sourced. Where it is not — and what
+        people here actually ate is very largely not — it is written as the
+        reconstruction it is. No source has been manufactured.
+      </p>
+    </div>
+
+
+    <!--
+      WHY THIS PANEL EXISTS.
+      The first version of this section had two categories: documented, and
+      historically-informed reconstruction. That model quietly treated
+      "written down somewhere" as a synonym for "true", which is not a
+      standard a town can meet. Most of what a place knows about itself was
+      never written down — and for food, almost none of it was. A family that
+      has lived on this bank since 1704 holds knowledge no archive holds.
+      Calling that "unverified" and leaving it out is not caution; it is a
+      research method that mistakes the library catalogue for the past.
+    -->
+    <div class="fd-oral">
+      <p class="fd-oral__lbl">
+        <span class="bn-i">লেখা সূত্র যেখানে থামে</span>
+        <span class="en-i">Where the written sources stop</span>
+      </p>
+      <p class="bn">
+        এই পাতার তথ্য এসেছে নথি থেকে — পৌরসভার ইতিহাস, হেরিটেজ কমিশনের তালিকা,
+        গবেষণাপত্র। বাইরের লোক ওগুলোই যাচাই করতে পারে, তাই ওখান থেকেই শুরু।
+        <b>কিন্তু একটা শহর নিজের সম্পর্কে যা জানে, তার বেশির ভাগই কেউ কোনওদিন
+        লিখে রাখেনি</b> — আর খাবারের বেলায় প্রায় কিছুই না। কোন দোকান কবেকার,
+        কোন বাড়িতে কী রান্না হত, কোন ঘাটে কার নৌকো ভিড়ত — এসব বইয়ে নেই, লোকের
+        মুখে আছে।
+      </p>
+      <p class="en">
+        What is on this page came out of documents — the municipality’s own
+        history, the state heritage listing, published research. Those are what
+        an outsider can check, so that is where it started.
+        <b>But most of what a town knows about itself was never written down</b>
+        — and where food is concerned, almost none of it was. Which shop is
+        how old, what was cooked in whose house, whose boat tied up at which
+        ghat: none of that is in a book. It is in people.
+      </p>
+      <p class="bn">
+        তাই এখানে চতুর্থ একটা চিহ্ন আছে —
+        <span class="fd__stamp fd__stamp--local">পারিবারিক ও স্থানীয় স্মৃতি</span>।
+        ওটা দুর্বল প্রমাণ নয়, অন্য রকম প্রমাণ: যিনি বলছেন তাঁর নামে বলা, সূত্র
+        দিয়ে নয়। মৌখিক ইতিহাস এভাবেই চলে, আর উত্তরপাড়ার খাওয়ার ইতিহাসে ওটাই
+        বহু জায়গায় সবচেয়ে ভালো সূত্র।
+      </p>
+      <p class="en">
+        So there is a fourth mark here —
+        <span class="fd__stamp fd__stamp--local">Family and local memory</span>.
+        It is not weaker evidence, it is a different kind: attributed to the
+        person who carries it rather than footnoted to a page. That is how oral
+        history works, and for the food history of this town it is very often
+        the better source of the two.
+      </p>
+    </div>
+
+    <ol class="fd__chapters" id="foodChapters"></ol>
+  </div>
 </section>
 
 <!-- ================================================ 30 SECONDS ========= -->
@@ -481,107 +586,6 @@ try { var t = localStorage.getItem('manjula-theme');
   </div>
 </section>
 
-<!-- =================================================== THE FOOD ======== -->
-<!--
-  The second history. The page above is the town's institutional record — the
-  school, the municipality, the library, the speech. This is the other one,
-  the history that happened three times a day and that nobody wrote down.
-
-  IT IS BUILT ON ONE DISTINCTION AND THE DISTINCTION IS THE POINT. Where
-  something is documented it is stated and cited. Where it is a reconstruction
-  it is marked as one, in both languages, in the copy itself — "a plausible
-  plate", "we can imagine", "nobody wrote it down". assets/data/food.js carries
-  a `type` on every entry and data/uttarpara-culinary-sources.json carries the
-  sources, so nothing here can quietly become a fact later.
--->
-<section class="fd" id="food">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="kicker"><span class="bn-i">নদীর পথেই এ শহরের স্বাদ</span><span class="en-i">The taste of the town came up the river</span></p>
-      <h2 class="bn">যে পথে উত্তরপাড়ার খাদ্যের যাত্রা</h2>
-      <h2 class="en">Before there was a library, there was the river</h2>
-      <p class="bn">
-        উপরে এই শহরের স্কুল, পৌরসভা আর লাইব্রেরির ইতিহাস। এবার অন্য ইতিহাসটা —
-        যেটা রোজ তিনবার ঘটেছে, আর কেউ লিখে রাখেনি। নদী, মানুষ, বাণিজ্য আর সময়ের
-        সঙ্গে বদলেছে উপকরণ, রান্নার রীতি আর স্বাদের ভাষা। বদলায়নি কেবল নদীর মাছ,
-        আতিথেয়তা, আর ভাগ করে খাওয়ার অভ্যেসটা।
-      </p>
-      <p class="en">
-        Above is the town’s record of itself: the school, the municipality, the
-        library. This is the other history — the one that happened three times
-        a day and that nobody wrote down. The river, the people and the trade
-        changed the ingredients, the methods and the vocabulary of taste. What
-        did not change was the fish, the hospitality, and the habit of feeding
-        whoever turned up.
-      </p>
-      <p class="fd__rule bn">
-        <b>এই অংশে দু’রকম কথা আছে, আর দুটো আলাদা করে রাখা।</b> যেটা নথিতে আছে,
-        সেটা সরাসরি বলা এবং সূত্র দেওয়া। যেটা নথিতে নেই — অর্থাৎ ওই সময়ে এখানে
-        ঠিক কী খাওয়া হত — সেটা অনুমান বলেই লেখা। বানানো কোনও সূত্র এখানে নেই।
-      </p>
-      <p class="fd__rule en">
-        <b>Two kinds of writing here, kept apart.</b> Where something is on the
-        record it is stated plainly and sourced. Where it is not — and what
-        people here actually ate is very largely not — it is written as the
-        reconstruction it is. No source has been manufactured.
-      </p>
-    </div>
-
-
-    <!--
-      WHY THIS PANEL EXISTS.
-      The first version of this section had two categories: documented, and
-      historically-informed reconstruction. That model quietly treated
-      "written down somewhere" as a synonym for "true", which is not a
-      standard a town can meet. Most of what a place knows about itself was
-      never written down — and for food, almost none of it was. A family that
-      has lived on this bank since 1704 holds knowledge no archive holds.
-      Calling that "unverified" and leaving it out is not caution; it is a
-      research method that mistakes the library catalogue for the past.
-    -->
-    <div class="fd-oral">
-      <p class="fd-oral__lbl">
-        <span class="bn-i">লেখা সূত্র যেখানে থামে</span>
-        <span class="en-i">Where the written sources stop</span>
-      </p>
-      <p class="bn">
-        এই পাতার তথ্য এসেছে নথি থেকে — পৌরসভার ইতিহাস, হেরিটেজ কমিশনের তালিকা,
-        গবেষণাপত্র। বাইরের লোক ওগুলোই যাচাই করতে পারে, তাই ওখান থেকেই শুরু।
-        <b>কিন্তু একটা শহর নিজের সম্পর্কে যা জানে, তার বেশির ভাগই কেউ কোনওদিন
-        লিখে রাখেনি</b> — আর খাবারের বেলায় প্রায় কিছুই না। কোন দোকান কবেকার,
-        কোন বাড়িতে কী রান্না হত, কোন ঘাটে কার নৌকো ভিড়ত — এসব বইয়ে নেই, লোকের
-        মুখে আছে।
-      </p>
-      <p class="en">
-        What is on this page came out of documents — the municipality’s own
-        history, the state heritage listing, published research. Those are what
-        an outsider can check, so that is where it started.
-        <b>But most of what a town knows about itself was never written down</b>
-        — and where food is concerned, almost none of it was. Which shop is
-        how old, what was cooked in whose house, whose boat tied up at which
-        ghat: none of that is in a book. It is in people.
-      </p>
-      <p class="bn">
-        তাই এখানে চতুর্থ একটা চিহ্ন আছে —
-        <span class="fd__stamp fd__stamp--local">পারিবারিক ও স্থানীয় স্মৃতি</span>।
-        ওটা দুর্বল প্রমাণ নয়, অন্য রকম প্রমাণ: যিনি বলছেন তাঁর নামে বলা, সূত্র
-        দিয়ে নয়। মৌখিক ইতিহাস এভাবেই চলে, আর উত্তরপাড়ার খাওয়ার ইতিহাসে ওটাই
-        বহু জায়গায় সবচেয়ে ভালো সূত্র।
-      </p>
-      <p class="en">
-        So there is a fourth mark here —
-        <span class="fd__stamp fd__stamp--local">Family and local memory</span>.
-        It is not weaker evidence, it is a different kind: attributed to the
-        person who carries it rather than footnoted to a page. That is how oral
-        history works, and for the food history of this town it is very often
-        the better source of the two.
-      </p>
-    </div>
-
-    <ol class="fd__chapters" id="foodChapters"></ol>
-  </div>
-</section>
-
 <section class="fd-people on-ink">
   <div class="wrap">
     <div class="sec-head">
@@ -606,6 +610,7 @@ try { var t = localStorage.getItem('manjula-theme');
 
 <section class="fd-ideas">
   <div class="wrap">
+    <ol class="fd__chapters fd__chapters--closing" id="foodClosing"></ol>
     <div class="sec-head">
       <p class="kicker"><span class="bn-i">ভাবনা, রেসিপি নয়</span><span class="en-i">Ideas, not recipes</span></p>
       <h2 class="bn">স্বাদ নিয়ে চেনা যাক উত্তরপাড়াকে</h2>
@@ -734,7 +739,7 @@ try { var t = localStorage.getItem('manjula-theme');
 
 <script src="assets/data/town.js?v=5"></script>
 <script src="assets/data/food.js?v=2"></script>
-<script src="assets/js/town.js?v=6"></script>
+<script src="assets/js/town.js?v=7"></script>
 <script src="assets/js/pages.js?v=5"></script>
 <script src="assets/js/assistant.js?v=4"></script>
 <script src="assets/js/nav.js?v=1"></script>
