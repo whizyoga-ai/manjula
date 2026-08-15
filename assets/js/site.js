@@ -117,18 +117,23 @@
 
   /* ---------- the reel ---------------------------------------------------- */
 
-  /* Eight dishes turning on one plate. The names are here rather than in the
-     markup because the caption has to change language with the rest of the
-     page, and the file names are the only link back to which dish is which. */
+  /* The two sisters who own the shop, in their own photographs, under the word
+     each one was named for. A set of styled images stood here first — plausible
+     kitchens, plausible chefs — and they came out because the faces in them
+     were not these faces. A shop this size is its people; borrowing somebody
+     else's to stand in for them is the one substitution that cannot be worth
+     making. */
   const REEL = [
-    { f: 'chicken_steam_momo', bn: 'চিকেন স্টিম মোমো',  en: 'Chicken steam momo' },
-    { f: 'bread_chicken_stew', bn: 'স্টু পাউরুটি',       en: 'Bread & chicken stew' },
-    { f: 'chai_reel',          bn: 'চা',                 en: 'Tea' },
-    { f: 'mutton_steam_momo',  bn: 'মাটন স্টিম মোমো',   en: 'Mutton steam momo' },
-    { f: 'malai_toast',        bn: 'মালাই টোস্ট',        en: 'Malai toast' },
-    { f: 'chicken_fried_momo', bn: 'চিকেন ফ্রাইড মোমো', en: 'Chicken fried momo' },
-    { f: 'egg_cheese_maggi',   bn: 'এগ চীজ ম্যাগি',      en: 'Egg cheese maggie' },
-    { f: 'mutton_fried_momo',  bn: 'মাটন ফ্রাইড মোমো',  en: 'Mutton fried momo' },
+    { f: 'carefully-presented', bn: 'যত্ন করে সাজানো',        en: 'Carefully presented' },
+    { f: 'food-is-everything',  bn: 'খাওয়াটাই আসল',           en: 'Food is everything' },
+    { f: 'nurtured',            bn: 'যত্নে গড়া',              en: 'Nurtured' },
+    { f: 'humanity',            bn: 'মানুষের পাশে',            en: 'Humanity' },
+    { f: 'we-are-the-champion', bn: 'আমরাই চ্যাম্পিয়ন',       en: 'We are the champion' },
+    { f: 'goal-seems-nearer',   bn: 'লক্ষ্য কাছেই, তবু অনেক দূর', en: 'The goal looks near, and is still far' },
+    { f: 'thought-provoking',   bn: 'ভাবিয়ে তোলে',            en: 'Thought-provoking' },
+    { f: 'magical',             bn: 'জাদু',                    en: 'Magical' },
+    { f: 'earthy',              bn: 'মাটির কাছাকাছি',          en: 'Earthy' },
+    { f: 'secret-recipe',       bn: 'গোপন রেসিপি',            en: 'The secret recipe' },
   ];
 
   let reelAt = 0;
@@ -141,14 +146,14 @@
     disc.dataset.built = '1';
 
     // The first image is in the markup so the hero is never briefly empty; the
-    // other seven are added here and load lazily behind it.
+    // rest are added here and load lazily behind it.
     REEL.slice(1).forEach((r) => {
       const img = document.createElement('img');
       img.className = 'reel__img';
       img.src = `assets/img/reel/${r.f}.jpg`;
-      img.width = 760; img.height = 1362;
+      img.width = 1000; img.height = 1000;
       img.loading = 'lazy';
-      img.alt = '';                 // the caption names the dish
+      img.alt = '';                 // the caption carries the word
       disc.append(img);
     });
 

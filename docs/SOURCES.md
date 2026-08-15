@@ -13,7 +13,8 @@ traceable to a row below, it should not be on the page.
 | **The two laminated menu cards** on the shop wall, photographed 14 Aug 2026 (`menu-eng.jpeg`, `menu-bengali.jpeg`) | Every price on the site, in both languages, and the taglines "Good Food, Good Mood" / "ধন্যবাদ, আবার আসবেন" |
 | **The shop's chalk slate**, photographed from `video2.mp4` at 00:52 (`assets/img/slate.jpg`) | The opening-day specials; the free tea and coffee; and that a plate of chicken or mutton steam momo is **5 pieces** — a fact that is on the slate and *not* on the printed card |
 | **The owners** | Opening hours 9:00–21:00 daily; the order number for Bujuni; the family account of the name |
-| **Shop video and photographs** (`Video1.mp4`, `video2.mp4`, `owner1.jpg`, `owners.jpg`) | Every photograph on the site: the counter, the steamer, the hand-lettered signs, the shelves, the momo plate, the two owners |
+| **Shop video and photographs** (`Video1.mp4`, `video2.mp4`, `owner1.jpg`, `owners.jpg`) | The counter, the steamer, the hand-lettered signs, the shelves, the momo plate, the two owners |
+| **`menu idea/`** — ten photographs the owners supplied, each named for a word | The hero reel on the home page. These are the sisters themselves; the caption on each is the word they gave it |
 
 ## Public sources, for the Uttarpara section
 
@@ -80,6 +81,12 @@ All are short, attributed, and named to their work.
   the assistant's knowledge. It is a document identifier, not customer
   information.
 - **No claim about the food's quality.** Nobody who built this has eaten there.
+- **No AI-generated imagery.** A set of styled promotional images was supplied
+  and was briefly used in the hero. It came out: the shopfront in them is not
+  this shopfront, several showed dishes that are not on the card (rolls,
+  puchka, a flaming noodle wok, a molecular cocktail), and one presented two
+  women who are not the proprietors as the proprietors. Every image on the
+  site is a real photograph of this shop or these people.
 
 ## Known open items
 

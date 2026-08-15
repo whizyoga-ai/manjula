@@ -292,7 +292,7 @@ html[data-lang="en"] .hero h1 {
 }
 .reel__img {
   position: absolute; inset: 0;
-  width: 100%; height: 100%; object-fit: cover; object-position: center 42%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 38%;
   opacity: 0; transition: opacity .9s ease;
 }
 .reel__img.is-on { opacity: 1; }
