@@ -436,7 +436,21 @@
         add.setAttribute('aria-label', bn
           ? `${item.bn} চিরকুটে যোগ করুন`
           : `Add ${item.en} to the chit`);
-        add.addEventListener('click', () => addToChit(item));
+        add.addEventListener('click', (e) => { e.stopPropagation(); addToChit(item); });
+
+        // The row opens the dish. The + still only adds to the chit — a
+        // customer reaching for the button should not get a dialog they did
+        // not ask for, which is what the stopPropagation above is for.
+        li.tabIndex = 0;
+        li.setAttribute('role', 'button');
+        li.setAttribute('aria-label', bn
+          ? `${item.bn} — বিস্তারিত দেখুন`
+          : `${item.en} — see details`);
+        const open = () => openDish(item, group);
+        li.addEventListener('click', open);
+        li.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
 
         li.append(thumb, name, price, add);
 
@@ -457,6 +471,134 @@
       card.append(head, note, ul);
       grid.append(card);
     });
+  }
+
+  /* ---------- the dish dialog ---------------------------------------------- */
+
+  /* Tap a row on the menu and get the picture big, what is in it, and a way
+     through to where the dish came from.
+
+     IT IS A <dialog>, NOT A DIV. The native element gives the focus trap, the
+     Escape key, the inert background and the top-layer stacking for free, and
+     gives them correctly — three things that hand-rolled modals get wrong in
+     ways that only show up for somebody navigating by keyboard.
+
+     WHAT IT WILL NOT DO IS SELL ANYTHING. There is no quantity stepper here
+     and no checkout. It has one action that changes state — add to the chit —
+     and that is the same chit the row's + button fills. The rule from the top
+     of this file holds inside the dialog: no order exists anywhere but in
+     this tab until somebody at the shop answers a phone. */
+
+  let dishDlg = null;
+
+  // item id -> origin story slug, inverted out of the `covers` lists in
+  // dishes.js so there is no second mapping to keep in step. dishes.js is not
+  // loaded on every page; where it is absent the dialog simply has no link.
+  function storyFor(id) {
+    if (typeof DISHES === 'undefined') return null;
+    return DISHES.find((d) => (d.covers || []).includes(id)) || null;
+  }
+
+  function openDish(item, group) {
+    const bn = lang() === 'bn';
+    if (!dishDlg) {
+      dishDlg = document.createElement('dialog');
+      dishDlg.className = 'dishdlg';
+      // Clicking the backdrop closes. A <dialog>'s backdrop is part of the
+      // dialog's own box, so a click that lands on the element itself rather
+      // than on anything inside it is a backdrop click.
+      dishDlg.addEventListener('click', (e) => { if (e.target === dishDlg) dishDlg.close(); });
+      document.body.append(dishDlg);
+    }
+
+    const story = storyFor(item.id);
+    const meta = [];
+    if (item.pieces) meta.push(bn ? `${bnNum(item.pieces)} পিস` : `${item.pieces} pieces`);
+    const note = bn ? item.bn_note : item.en_note;
+    if (note) meta.push(note);
+
+    dishDlg.innerHTML = '';
+
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'dishdlg__x';
+    close.setAttribute('aria-label', bn ? 'বন্ধ করুন' : 'Close');
+    close.textContent = '×';
+    close.addEventListener('click', () => dishDlg.close());
+
+    const fig = document.createElement('img');
+    fig.className = 'dishdlg__pic';
+    fig.src = `assets/img/reel/${item.id}.jpg`;
+    fig.alt = '';
+    fig.addEventListener('error', () => fig.remove());
+
+    const body = document.createElement('div');
+    body.className = 'dishdlg__body';
+
+    const kicker = document.createElement('p');
+    kicker.className = 'dishdlg__kicker';
+    kicker.textContent = bn ? group.bn.name : group.en.name;
+
+    const h = document.createElement('h3');
+    h.textContent = bn ? item.bn : item.en;
+
+    const price = document.createElement('p');
+    price.className = 'dishdlg__price';
+    price.textContent = item.priceLabel
+      ? `${rupees(item.price)} (${bn ? item.priceLabelBn : item.priceLabel})`
+      : rupees(item.price);
+
+    body.append(kicker, h, price);
+
+    if (meta.length) {
+      const m = document.createElement('p');
+      m.className = 'dishdlg__meta';
+      m.textContent = meta.join(' · ');
+      body.append(m);
+    }
+
+    // The group's own line about itself, then the story's opening paragraph
+    // if the page has the stories loaded. Between them that is a real
+    // paragraph of reading rather than a name and a number blown up.
+    const gnote = document.createElement('p');
+    gnote.className = 'dishdlg__note';
+    gnote.textContent = bn ? group.bn.note : group.en.note;
+    body.append(gnote);
+
+    if (story) {
+      const lede = document.createElement('p');
+      lede.className = 'dishdlg__lede';
+      lede.innerHTML = bn ? story.lede.bn : story.lede.en;
+      body.append(lede);
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'dishdlg__actions';
+
+    const addBtn = document.createElement('button');
+    addBtn.type = 'button';
+    addBtn.className = 'btn btn--solid';
+    addBtn.textContent = bn ? 'চিরকুটে যোগ করুন' : 'Add to the chit';
+    addBtn.addEventListener('click', () => { addToChit(item); dishDlg.close(); });
+    actions.append(addBtn);
+
+    if (story) {
+      const link = document.createElement('a');
+      link.className = 'btn btn--ghost';
+      link.href = `dish.html?d=${story.slug}`;
+      link.textContent = bn ? 'কোথা থেকে এল →' : 'Where it came from →';
+      actions.append(link);
+    }
+
+    const call = document.createElement('a');
+    call.className = 'btn btn--call';
+    call.href = 'tel:+919163538794';
+    call.textContent = bn ? '☎ দোকানে ফোন' : '☎ Call the shop';
+    actions.append(call);
+
+    body.append(actions);
+    dishDlg.append(close, fig, body);
+    dishDlg.showModal();
   }
 
   /* ---------- the slate --------------------------------------------------- */

@@ -1261,3 +1261,123 @@ html[data-lang="bn"] .twn-card__yr,
 html[data-lang="bn"] .twn-snap__grid b,
 html[data-lang="bn"] .board__price,
 html[data-lang="bn"] .hours-strip .big { line-height: 1.72; }
+
+/* ==========================================================================
+   THE DISH DIALOG
+
+   Opened by tapping a menu row. A native <dialog>, so the focus trap, the
+   Escape key and the top-layer stacking are the browser's job rather than
+   this file's.
+   ========================================================================== */
+
+.dishdlg {
+  width: min(560px, calc(100% - 2rem));
+  max-height: min(88vh, 900px);
+  padding: 0; border: 0; border-radius: 18px;
+  background: var(--paper);
+  color: var(--text);
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,.6);
+  overflow: hidden auto;
+  /* A dialog in the top layer does not inherit from body. */
+  font-family: var(--body);
+}
+html[data-lang="bn"] .dishdlg { font-family: var(--body-bn); line-height: 1.8; }
+.dishdlg::backdrop { background: rgba(var(--ink-rgb), .62); backdrop-filter: blur(3px); }
+.dishdlg[open] { animation: dish-in .28s cubic-bezier(.2,.7,.3,1) both; }
+@keyframes dish-in { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .dishdlg[open] { animation: none; } }
+
+.dishdlg__x {
+  position: absolute; top: .6rem; right: .6rem; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 0; cursor: pointer; line-height: 1;
+  font-size: 1.5rem; display: grid; place-items: center;
+  background: rgba(var(--ink-rgb), .5); color: var(--chalk);
+}
+.dishdlg__x:hover { background: rgba(var(--ink-rgb), .8); }
+.dishdlg__x:focus-visible { outline: 2px solid var(--marigold-2); outline-offset: 2px; }
+
+.dishdlg__pic { width: 100%; height: 260px; object-fit: cover; display: block; }
+.dishdlg__body { padding: 1.2rem 1.4rem 1.5rem; }
+.dishdlg__kicker {
+  margin: 0 0 .2rem; font-size: .78rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+html[data-lang="bn"] .dishdlg__kicker { letter-spacing: .02em; text-transform: none; font-size: .88rem; line-height: 1.7; }
+.dishdlg h3 {
+  margin: 0 0 .3rem; font-family: var(--display);
+  font-size: clamp(1.3rem, 4vw, 1.7rem); line-height: 1.25;
+}
+html[data-lang="bn"] .dishdlg h3 { font-family: var(--display-bn); line-height: 1.6; }
+.dishdlg__price {
+  margin: 0 0 .8rem; font-weight: 700; font-size: 1.15rem; color: var(--stool-ink);
+}
+.dishdlg__meta { margin: 0 0 .8rem; font-size: .92rem; color: var(--text-dim); }
+.dishdlg__note { margin: 0 0 .7rem; color: var(--text-dim); }
+.dishdlg__lede {
+  margin: 0; padding-top: .8rem; border-top: 1px dashed var(--rule);
+  color: var(--text); font-size: .96rem; line-height: 1.72;
+}
+html[data-lang="bn"] .dishdlg__lede { line-height: 1.95; }
+.dishdlg__actions {
+  display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.3rem;
+}
+.dishdlg__actions .btn { flex: 1 1 auto; justify-content: center; text-align: center; }
+
+/* The menu row is a control now, so it has to look and focus like one. */
+.dish { cursor: pointer; }
+.dish:focus-visible { outline: 2px solid var(--stool); outline-offset: 2px; background: var(--paper-2); }
+
+@media (max-width: 480px) {
+  .dishdlg__pic { height: 190px; }
+  .dishdlg__body { padding: 1rem 1.1rem 1.2rem; }
+}
+
+/* ==========================================================================
+   BENGALI NUMERALS, PINNED TO ONE FACE
+
+   Reported as "১ is broken everywhere". The markup was checked and is right —
+   the ghugni count is U+09E7 in the DOM, not some other digit — so the
+   problem is not the text, it is the glyph that renders for it.
+
+   The site sets Bengali in two faces: Hind Siliguri for body, Noto Serif
+   Bengali for display. Their digits are drawn very differently, and the
+   serif ১ in particular is an ornate form that is easy to misread. Worse, a
+   run of numerals could pick up either face depending on which element it sat
+   in, so the same number looked like two different numbers in two places on
+   one page.
+
+   This maps the Bengali digit block — and nothing else — to Hind Siliguri,
+   whose numerals are unambiguous, and puts it first in both stacks. Bengali
+   words are untouched: the unicode-range means this face is never consulted
+   for anything outside U+09E6–09EF. Latin digits are untouched too.
+
+   The URL is Google's own font file, the same one the stylesheet link already
+   pulls. If Google ever rotates it the @font-face simply fails to load and
+   the digits fall back to the next family in the stack, which is exactly
+   where they are today — so this degrades to the current behaviour rather
+   than to nothing.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Manjula Bengali Digits';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/hindsiliguri/v14/ijwTs5juQtsyLLR5jN4cxBEoTI7ax9k0.woff2) format('woff2');
+  unicode-range: U+09E6-09EF;
+}
+@font-face {
+  font-family: 'Manjula Bengali Digits';
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/hindsiliguri/v14/ijwOs5juQtsyLLR5jN4cxBEoREP-0vQVKxGv.woff2) format('woff2');
+  unicode-range: U+09E6-09EF;
+}
+
+:root {
+  --display-bn: 'Manjula Bengali Digits', 'Noto Serif Bengali', 'Hind Siliguri', system-ui, serif;
+  --body-bn:    'Manjula Bengali Digits', 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
+  --serif-bn:   'Manjula Bengali Digits', 'Tiro Bangla', 'Hind Siliguri', serif;
+}
