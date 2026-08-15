@@ -47,6 +47,8 @@
     renderSlate();
     renderChit();
     renderStatus();
+    buildReel();
+    paintReel();
   }
 
   document.querySelectorAll('[data-lang-set]').forEach((b) => {
@@ -111,6 +113,71 @@
         ? `এখন বন্ধ · খুলবে সকাল ${bnNum(open)}টায় — আর প্রায় ${bnNum(until)} ঘণ্টা পরে`
         : `Closed now · opens at ${open}am, in about ${until} hour${until === 1 ? '' : 's'}`;
     }
+  }
+
+  /* ---------- the reel ---------------------------------------------------- */
+
+  /* Eight dishes turning on one plate. The names are here rather than in the
+     markup because the caption has to change language with the rest of the
+     page, and the file names are the only link back to which dish is which. */
+  const REEL = [
+    { f: 'chicken_steam_momo', bn: 'চিকেন স্টিম মোমো',  en: 'Chicken steam momo' },
+    { f: 'bread_chicken_stew', bn: 'স্টু পাউরুটি',       en: 'Bread & chicken stew' },
+    { f: 'chai_reel',          bn: 'চা',                 en: 'Tea' },
+    { f: 'mutton_steam_momo',  bn: 'মাটন স্টিম মোমো',   en: 'Mutton steam momo' },
+    { f: 'malai_toast',        bn: 'মালাই টোস্ট',        en: 'Malai toast' },
+    { f: 'chicken_fried_momo', bn: 'চিকেন ফ্রাইড মোমো', en: 'Chicken fried momo' },
+    { f: 'egg_cheese_maggi',   bn: 'এগ চীজ ম্যাগি',      en: 'Egg cheese maggie' },
+    { f: 'mutton_fried_momo',  bn: 'মাটন ফ্রাইড মোমো',  en: 'Mutton fried momo' },
+  ];
+
+  let reelAt = 0;
+  let reelTimer = null;
+
+  function buildReel() {
+    const disc = document.querySelector('.reel__disc');
+    const dots = document.getElementById('reelDots');
+    if (!disc || disc.dataset.built) return;
+    disc.dataset.built = '1';
+
+    // The first image is in the markup so the hero is never briefly empty; the
+    // other seven are added here and load lazily behind it.
+    REEL.slice(1).forEach((r) => {
+      const img = document.createElement('img');
+      img.className = 'reel__img';
+      img.src = `assets/img/reel/${r.f}.jpg`;
+      img.width = 760; img.height = 1362;
+      img.loading = 'lazy';
+      img.alt = '';                 // the caption names the dish
+      disc.append(img);
+    });
+
+    REEL.forEach(() => dots.append(document.createElement('i')));
+    paintReel();
+
+    // Pausing on hover matters: somebody reading the caption should not have
+    // the plate turn out from under them.
+    const stop = () => clearInterval(reelTimer);
+    const go = () => { stop(); reelTimer = setInterval(advanceReel, 4200); };
+    disc.addEventListener('mouseenter', stop);
+    disc.addEventListener('mouseleave', go);
+    disc.addEventListener('click', () => { advanceReel(); go(); });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) go();
+  }
+
+  function advanceReel() {
+    reelAt = (reelAt + 1) % REEL.length;
+    paintReel();
+  }
+
+  function paintReel() {
+    const imgs = document.querySelectorAll('.reel__img');
+    const dots = document.querySelectorAll('.reel__dots i');
+    const name = document.querySelector('.reel__name');
+    if (!imgs.length) return;
+    imgs.forEach((im, i) => im.classList.toggle('is-on', i === reelAt));
+    dots.forEach((d, i) => d.classList.toggle('is-on', i === reelAt));
+    if (name) name.textContent = lang() === 'bn' ? REEL[reelAt].bn : REEL[reelAt].en;
   }
 
   /* ---------- the menu ---------------------------------------------------- */
