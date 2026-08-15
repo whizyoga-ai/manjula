@@ -1,6 +1,0 @@
-# CNAME.pending holds manjulab.com and is deliberately NOT committed yet.
-# GitHub Pages redirects <org>.github.io/<repo> to the custom domain the moment
-# a CNAME file exists — which would make the site unreachable until the
-# Cloudflare records are switched. Commit it as `CNAME` at the same time as the
-# DNS change, not before. See README "Deploying".
-CNAME.pending

@@ -85,9 +85,16 @@ docs/SOURCES.md             where every fact came from, and what is still open
 GitHub Pages from the repository root. `CNAME` holds `manjulab.com`;
 `.nojekyll` stops Jekyll touching the asset folders.
 
-`manjulab.com` is on Cloudflare. Point the apex and `www` at GitHub Pages and
-**leave the `MX` record and the `mail` A record alone** — corporate mailboxes
-still run on `mail.manjulab.com` and are unrelated to this site.
+`manjulab.com` is on Cloudflare and **was repointed on 2026-08-15**: the apex
+is four grey-cloud A records to GitHub Pages and `www` is a CNAME to
+`whizyoga-ai.github.io`. Before that its apex was a proxied CNAME to the same
+`cfargotunnel` address that serves brahmexa.com, which is why the old
+placeholder page existed in no repository.
+
+`MX`, the `mail` A record, and the SPF, DKIM and DMARC TXT records were left
+alone — corporate mailboxes still run on `mail.manjulab.com` and are unrelated
+to this site. `docs/flip-dns.ps1` protects all of them by a predicate and
+refuses to run against any zone but this one.
 
 ## The assistant
 
