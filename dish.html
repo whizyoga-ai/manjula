@@ -20,8 +20,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;600;700&amp;family=Hind+Siliguri:wght@400;500;600&amp;family=Tiro+Bangla:ital@0;1&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=Caveat:wght@500;600;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=3">
+<link rel="stylesheet" href="assets/css/site.css?v=5">
 <link rel="stylesheet" href="assets/css/origins.css?v=2">
+<script>
+/* Theme before paint — a stored light theme must not flash black first. */
+try { var t = localStorage.getItem('manjula-theme');
+      if (t && t !== 'slate') document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('manjula-lang');
+      if (l) { document.documentElement.setAttribute('data-lang', l);
+               document.documentElement.setAttribute('lang', l); } } catch (e) {}
+</script>
 </head>
 <body data-tone="paper">
 
@@ -44,6 +52,7 @@
       <button type="button" data-lang-set="bn" aria-pressed="true">বাংলা</button>
       <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
     </div>
+    <div class="theme" role="group" aria-label="Theme"></div>
   </div>
 </header>
 
@@ -77,5 +86,6 @@
 <script src="assets/data/dishes.js?v=1"></script>
 <script src="assets/js/pages.js?v=1"></script>
 <script src="assets/js/assistant.js?v=3"></script>
+<script src="assets/js/theme.js?v=1"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 /* ==========================================================================
    The reel — the kitchen, as a story.
 
-   TWELVE SCENES, AND THE FIRST FIVE ARE REAL VIDEO.
+   ELEVEN SCENES, AND THE FIRST FIVE ARE REAL VIDEO.
 
    `vid: true` marks a clip cut from the shop's own footage — Video1.mp4 and
    video2.mp4 in C:\Customers\Manjula. Real room, real counter, real slate,
@@ -9,7 +9,8 @@
    only frames on this site that are unarguably this shop.
 
    The rest are AI-generated stills and the faces in them are not the two
-   sisters. `menu idea/we are the champion.jpg` is the sisters; five scenes
+   sisters. `wok-fire` is gone for a different reason: it was a man at the
+   wok, and this shop is run by two women. It is their show. `menu idea/we are the champion.jpg` is the sisters; five scenes
    were removed once that was clear — stew, fried momo, mutton steam, mutton
    fried and the counter shot, which was the worst of them because it read as
    "here are the owners". So no caption anywhere names anybody: they say what
@@ -52,10 +53,6 @@ const REELS = [
     bn: 'স্টিমারে মোমো বসছে',      en: 'Momos going into the steamer',
     dishBn: 'চিকেন স্টিম মোমো',    dishEn: 'Chicken steam momo',
     tabBn: 'মোমো',                 tabEn: 'Momo' },
-
-  { f: 'wok-fire',
-    bn: 'কড়াইয়ে আগুন উঠছে',       en: 'The wok catches',
-    tabBn: 'কড়াই',                 tabEn: 'The wok' },
 
   { f: 'maggi',        price: 50,
     bn: 'ম্যাগি নামছে কড়াই থেকে',   en: 'Maggie coming off the flame',

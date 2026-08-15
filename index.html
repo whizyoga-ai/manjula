@@ -84,6 +84,14 @@
   below is centred on Banerjee Para Street, which is honest about its own
   precision.
 -->
+<script>
+/* Theme before paint — a stored light theme must not flash black first. */
+try { var t = localStorage.getItem('manjula-theme');
+      if (t && t !== 'slate') document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('manjula-lang');
+      if (l) { document.documentElement.setAttribute('data-lang', l);
+               document.documentElement.setAttribute('lang', l); } } catch (e) {}
+</script>
 </head>
 
 <body>
@@ -114,6 +122,7 @@
       <button type="button" data-lang-set="bn" aria-pressed="true">বাংলা</button>
       <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
     </div>
+    <div class="theme" role="group" aria-label="Theme"></div>
   </div>
 </header>
 
@@ -552,5 +561,6 @@
 <script src="assets/data/slate.js?v=1"></script>
 <script src="assets/js/site.js?v=3"></script>
 <script src="assets/js/assistant.js?v=1"></script>
+<script src="assets/js/theme.js?v=1"></script>
 </body>
 </html>

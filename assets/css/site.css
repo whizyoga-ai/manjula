@@ -63,10 +63,17 @@
   --serif-bn:   'Tiro Bangla', 'Hind Siliguri', serif;
   --hand:       'Caveat', cursive;
 
+  /* rgb triplets so the alphas above can be themed with everything else */
+  --chalk-rgb: 246, 241, 230;
+  --text-rgb:   42,  35,  27;
+  --ink-rgb:    20,  17,  14;
+  --on-accent: #1a1408;    /* text that sits on marigold */
+  --frame:     #4b3a27;    /* the slate's wooden frame */
+
   --wrap: 1140px;
   --gap: clamp(1rem, 3vw, 2rem);
   --radius: 14px;
-  --shadow: 0 1px 2px rgba(42, 35, 27, .06), 0 12px 30px -18px rgba(42, 35, 27, .35);
+  --shadow: 0 1px 2px rgba(var(--text-rgb), .06), 0 12px 30px -18px rgba(var(--text-rgb), .35);
 }
 
 /* ---------- reset ---------- */
@@ -118,9 +125,9 @@ html[data-lang="en"] .bn-i { display: none !important; }
 
 .top {
   position: sticky; top: 0; z-index: 60;
-  background: rgba(20, 17, 14, .93);
+  background: rgba(var(--ink-rgb), .93);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(246, 241, 230, .1);
+  border-bottom: 1px solid rgba(var(--chalk-rgb), .1);
   color: var(--chalk);
 }
 .top__in {
@@ -154,12 +161,12 @@ html[data-lang="en"] .brand__mark { font-family: var(--display); font-variation-
   text-decoration: none; padding: .45rem .7rem; border-radius: 8px;
   font-size: .92rem; color: var(--chalk-dim); white-space: nowrap;
 }
-.top nav a:hover { color: var(--chalk); background: rgba(246, 241, 230, .08); }
+.top nav a:hover { color: var(--chalk); background: rgba(var(--chalk-rgb), .08); }
 @media (max-width: 880px) { .top nav { display: none; } }
 
 /* language toggle */
 .lang {
-  display: inline-flex; border: 1px solid rgba(246, 241, 230, .25);
+  display: inline-flex; border: 1px solid rgba(var(--chalk-rgb), .25);
   border-radius: 999px; overflow: hidden; flex: none;
 }
 .lang button {
@@ -189,7 +196,7 @@ html[data-lang="en"] .brand__mark { font-family: var(--display); font-variation-
 .hero::after {
   content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
   background-image:
-    repeating-linear-gradient(0deg, rgba(246,241,230,.022) 0 1px, transparent 1px 3px);
+    repeating-linear-gradient(0deg, rgba(var(--chalk-rgb), .022) 0 1px, transparent 1px 3px);
 }
 .hero > * { position: relative; z-index: 1; }
 
@@ -240,7 +247,7 @@ html[data-lang="en"] .hero h1 {
 .status {
   display: inline-flex; align-items: center; gap: .6rem;
   padding: .5rem .95rem; border-radius: 999px;
-  background: rgba(246,241,230,.07); border: 1px solid rgba(246,241,230,.16);
+  background: rgba(var(--chalk-rgb), .07); border: 1px solid rgba(var(--chalk-rgb), .16);
   font-size: .95rem; margin-bottom: 1.6rem;
 }
 .status__lamp { width: 9px; height: 9px; border-radius: 50%; background: var(--chalk-fade); flex: none; }
@@ -257,14 +264,14 @@ html[data-lang="en"] .hero h1 {
 }
 .btn:hover { transform: translateY(-1px); }
 .btn--call {
-  background: var(--marigold); color: #1a1408;
+  background: var(--marigold); color: var(--on-accent);
   box-shadow: 0 10px 26px -12px rgba(224,150,26,.9);
 }
 .btn--call:hover { background: var(--marigold-2); }
 .btn--wa { background: #1f9c5c; color: #fff; }
 .btn--wa:hover { background: #23ad67; }
-.btn--ghost { background: transparent; border-color: rgba(246,241,230,.3); color: var(--chalk); }
-.btn--ghost:hover { background: rgba(246,241,230,.08); }
+.btn--ghost { background: transparent; border-color: rgba(var(--chalk-rgb), .3); color: var(--chalk); }
+.btn--ghost:hover { background: rgba(var(--chalk-rgb), .08); }
 .btn--solid { background: var(--stool); color: #fff; box-shadow: 0 10px 26px -12px rgba(109,63,168,.9); }
 .btn--solid:hover { background: var(--stool-ink); }
 
@@ -288,12 +295,12 @@ html[data-lang="en"] .hero h1 {
   padding: 8px;
   background: linear-gradient(160deg, #3a3129, #17130f 60%);
   box-shadow:
-    inset 0 0 0 1px rgba(246,241,230,.16),
+    inset 0 0 0 1px rgba(var(--chalk-rgb), .16),
     0 40px 70px -28px rgba(0,0,0,.95);
 }
 .phone__screen {
   position: relative; height: 100%; border-radius: 27px; overflow: hidden;
-  background: #0d0b09; isolation: isolate; cursor: pointer;
+  background: var(--ink); isolation: isolate; cursor: pointer;
 }
 
 /* the scenes */
@@ -330,7 +337,7 @@ html[data-lang="en"] .hero h1 {
   display: flex; gap: 3px;
 }
 .phone__bars i {
-  flex: 1; height: 2.5px; border-radius: 2px; background: rgba(246,241,230,.28);
+  flex: 1; height: 2.5px; border-radius: 2px; background: rgba(var(--chalk-rgb), .28);
   overflow: hidden;
 }
 .phone__bars i b { display: block; height: 100%; width: 0; background: var(--chalk); }
@@ -350,7 +357,7 @@ html[data-lang="bn"] .phone__scene { font-family: var(--body-bn); font-size: .95
 .phone__dish b { font-size: 1.02rem; color: var(--chalk); font-weight: 600; }
 html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
 .phone__price {
-  margin-left: auto; font-weight: 700; color: #0f0c08; background: var(--marigold);
+  margin-left: auto; font-weight: 700; color: var(--on-accent); background: var(--marigold);
   border-radius: 999px; padding: .1rem .6rem; font-size: .9rem; font-variant-numeric: tabular-nums;
 }
 
@@ -360,13 +367,13 @@ html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
   max-width: 30rem;
 }
 .reel__tabs button {
-  border: 1px solid rgba(246,241,230,.22); background: transparent; color: var(--chalk-dim);
+  border: 1px solid rgba(var(--chalk-rgb), .22); background: transparent; color: var(--chalk-dim);
   border-radius: 999px; padding: .3rem .7rem; font-size: .82rem; cursor: pointer;
   line-height: 1.4;
 }
-.reel__tabs button:hover { color: var(--chalk); background: rgba(246,241,230,.08); }
+.reel__tabs button:hover { color: var(--chalk); background: rgba(var(--chalk-rgb), .08); }
 .reel__tabs button[aria-current="true"] {
-  background: var(--marigold); border-color: var(--marigold); color: #17120a; font-weight: 600;
+  background: var(--marigold); border-color: var(--marigold); color: var(--on-accent); font-weight: 600;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -379,7 +386,7 @@ html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
 /* the hero photo, hung like a picture on the board */
 .hero__shot {
   position: relative; border-radius: 10px; overflow: hidden;
-  border: 6px solid rgba(246,241,230,.9);
+  border: 6px solid rgba(var(--chalk-rgb), .9);
   box-shadow: 0 30px 60px -30px rgba(0,0,0,.9);
   transform: rotate(-1.4deg);
 }
@@ -461,8 +468,8 @@ html[data-lang="bn"] .epigraph blockquote {
 .board {
   background:
     linear-gradient(rgba(255,255,255,.02), rgba(0,0,0,.18)),
-    #17140f;
-  border: 10px solid #4b3a27;   /* the wooden frame the slate sits in */
+    var(--ink);
+  border: 10px solid var(--frame);   /* the wooden frame the slate sits in */
   border-radius: 8px;
   padding: clamp(1.4rem, 4vw, 2.2rem);
   box-shadow: inset 0 0 60px rgba(0,0,0,.6), 0 24px 50px -28px rgba(0,0,0,.9);
@@ -470,7 +477,7 @@ html[data-lang="bn"] .epigraph blockquote {
 }
 .board::after { /* chalk smear */
   content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .35;
-  background: radial-gradient(80% 50% at 30% 20%, rgba(246,241,230,.05), transparent 70%);
+  background: radial-gradient(80% 50% at 30% 20%, rgba(var(--chalk-rgb), .05), transparent 70%);
 }
 
 .board__date {
@@ -490,7 +497,7 @@ html[data-lang="bn"] .board__stamp { font-family: var(--body-bn); letter-spacing
   font-family: var(--hand); font-size: clamp(1.3rem, 3.4vw, 1.75rem);
   color: var(--chalk); line-height: 1.35;
   padding-bottom: .9rem; margin-bottom: .9rem;
-  border-bottom: 1px dashed rgba(246,241,230,.28);
+  border-bottom: 1px dashed rgba(var(--chalk-rgb), .28);
 }
 html[data-lang="bn"] .board__headline { font-family: var(--display-bn); font-size: clamp(1.1rem, 3vw, 1.45rem); }
 
@@ -498,7 +505,7 @@ html[data-lang="bn"] .board__headline { font-family: var(--display-bn); font-siz
 .board li {
   counter-increment: chalk;
   display: grid; grid-template-columns: 1.9rem 1fr auto; gap: .5rem 0.7rem;
-  padding: .7rem 0; border-bottom: 1px dotted rgba(246,241,230,.16);
+  padding: .7rem 0; border-bottom: 1px dotted rgba(var(--chalk-rgb), .16);
 }
 .board li:last-child { border-bottom: 0; }
 .board li::before {
@@ -522,7 +529,7 @@ html[data-lang="bn"] .board__sizes span small { font-family: var(--body-bn); }
 
 .slate-photo figure { margin: 0; }
 .slate-photo img {
-  width: 100%; border-radius: 8px; border: 5px solid rgba(246,241,230,.85);
+  width: 100%; border-radius: 8px; border: 5px solid rgba(var(--chalk-rgb), .85);
   transform: rotate(1.2deg); box-shadow: 0 26px 50px -26px rgba(0,0,0,.9);
 }
 .slate-photo figcaption { margin-top: 1.4rem; font-size: .88rem; color: var(--chalk-dim); }
@@ -551,7 +558,7 @@ html[data-lang="bn"] .board__sizes span small { font-family: var(--body-bn); }
 }
 html[data-lang="en"] .card__head h3 { font-family: var(--display); font-variation-settings: 'SOFT' 30, 'WONK' 1; }
 .card__head span { font-size: .82rem; opacity: .85; margin-left: auto; }
-.card--ink    .card__head { background: #3c3228; }
+.card--ink    .card__head { background: var(--ink-3); }
 .card--yolk   .card__head { background: var(--yolk); }
 .card--leaf   .card__head { background: var(--leaf); }
 .card--chilli .card__head { background: var(--chilli); }
@@ -646,7 +653,7 @@ html[data-lang="en"] .card__head h3 { font-family: var(--display); font-variatio
   background: repeating-linear-gradient(-45deg, var(--paper) 0 8px, transparent 8px 16px);
 }
 .chit-head {
-  background: #3c3228; color: var(--chalk); padding: .8rem 1rem;
+  background: var(--ink-3); color: var(--chalk); padding: .8rem 1rem;
   display: flex; align-items: center; gap: .6rem;
 }
 .chit-head h3 { margin: 0; font-size: 1rem; font-family: var(--display-bn); }
@@ -697,7 +704,7 @@ html[data-lang="en"] .chit-head h3 { font-family: var(--display); }
    ========================================================================== */
 
 .walk { background: var(--ink); color: var(--chalk); }
-.walk-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: rgba(246,241,230,.14); border-radius: 12px; overflow: hidden; }
+.walk-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: rgba(var(--chalk-rgb), .14); border-radius: 12px; overflow: hidden; }
 .walk-list li { background: var(--ink-2); padding: 1.15rem 1.3rem; display: grid; grid-template-columns: auto 1fr; gap: 1.1rem; align-items: start; }
 .walk-list li:hover { background: var(--ink-3); }
 .walk__dist {
@@ -739,7 +746,7 @@ html[data-lang="bn"] .hours-strip .big { font-family: var(--display-bn); }
 
 .built {
   display: flex; flex-wrap: wrap; align-items: center; gap: .8rem;
-  padding-top: 1.4rem; border-top: 1px solid rgba(246,241,230,.14);
+  padding-top: 1.4rem; border-top: 1px solid rgba(var(--chalk-rgb), .14);
 }
 .built img { width: 38px; height: 38px; flex: none; }
 .built__t { font-size: .9rem; }
@@ -751,6 +758,135 @@ html[data-lang="bn"] .hours-strip .big { font-family: var(--display-bn); }
    ========================================================================== */
 
 .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-.skip { position: absolute; left: -9999px; top: 0; background: var(--marigold); color: #1a1408; padding: .7rem 1rem; z-index: 100; border-radius: 0 0 8px 0; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--marigold); color: var(--on-accent); padding: .7rem 1rem; z-index: 100; border-radius: 0 0 8px 0; }
 .skip:focus { left: 0; }
 :focus-visible { outline: 3px solid var(--marigold); outline-offset: 2px; border-radius: 4px; }
+
+/* ==========================================================================
+   THEMES
+
+   THE RULE, AND IT IS THE ONLY ONE THAT MATTERS:
+   a theme sets colour. A theme never moves anything.
+
+   Every theme below redefines the same fixed list of tokens and nothing else.
+   There is one DOM and one layout, and no theme may introduce a spacing, a
+   size or a position — otherwise four themes become four layouts to maintain
+   and they drift apart within a month.
+
+   The site is built on two surfaces: `ink` (the chalkboard — hero, slate,
+   the town, the footer) and `paper` (the printed card — menu, frames, find
+   us). A light theme is not a separate stylesheet; it is `ink` becoming a
+   pale surface and `chalk` becoming dark ink. The dark bands invert
+   themselves and every border and shadow follows, because they were all
+   routed through --chalk-rgb / --text-rgb above.
+   ========================================================================== */
+
+/* ---- 2. টুনি / Fairy lights — dark, deeper, the shop at night ---------- */
+html[data-theme="tuni"] {
+  --ink:        #0d0a13;
+  --ink-2:      #16101f;
+  --ink-3:      #211829;
+  --ink-rgb:    13, 10, 19;
+  --chalk:      #fdf6e8;
+  --chalk-dim:  #c2b3a2;
+  --chalk-fade: #857566;
+  --chalk-rgb:  253, 246, 232;
+
+  --paper:      #f7f1e4;
+  --paper-2:    #efe6d3;
+  --paper-3:    #e5d8bf;
+  --rule:       #dccdb0;
+  --text:       #241d2b;
+  --text-dim:   #63566d;
+  --text-rgb:   36, 29, 43;
+
+  --stool:      #7d46c4;
+  --stool-ink:  #572f8c;
+  --stool-soft: #f0e8fb;
+  --marigold:   #f0a821;
+  --marigold-2: #ffd873;
+  --frame:      #40332a;
+}
+
+/* ---- 3. কাগজ / Paper — light, warm, the printed card everywhere ------- */
+html[data-theme="kagoj"] {
+  --ink:        #efe4cd;      /* the "dark" surface, gone to paper */
+  --ink-2:      #e7d9be;
+  --ink-3:      #dccbaa;
+  --ink-rgb:    239, 228, 205;
+  --chalk:      #2a2118;      /* and its text, gone to ink */
+  --chalk-dim:  #6b5c48;
+  --chalk-fade: #8d7d68;
+  --chalk-rgb:  42, 33, 24;
+
+  --paper:      #fffcf4;
+  --paper-2:    #f8f1e2;
+  --paper-3:    #efe4cd;
+  --rule:       #ddd0b6;
+  --text:       #2a2118;
+  --text-dim:   #6b5c48;
+  --text-rgb:   42, 33, 24;
+
+  --stool:      #6d3fa8;
+  --stool-ink:  #4c2a78;
+  --stool-soft: #f1eafb;
+  --marigold:   #c47a12;      /* darkened: it has to read on cream now */
+  --marigold-2: #9a5f0d;
+  --on-accent:  #fffcf4;
+  --frame:      #b39a72;
+}
+
+/* ---- 4. সকাল / Morning — light and cool, the menu card's greens -------- */
+html[data-theme="sokal"] {
+  --ink:        #e8efe9;
+  --ink-2:      #dde7de;
+  --ink-3:      #d0ddd2;
+  --ink-rgb:    232, 239, 233;
+  --chalk:      #1c2a22;
+  --chalk-dim:  #55665c;
+  --chalk-fade: #7b8a80;
+  --chalk-rgb:  28, 42, 34;
+
+  --paper:      #fdfefc;
+  --paper-2:    #f2f7f2;
+  --paper-3:    #e4ede6;
+  --rule:       #cfdcd3;
+  --text:       #1c2a22;
+  --text-dim:   #55665c;
+  --text-rgb:   28, 42, 34;
+
+  --stool:      #1f6f8b;      /* the menu card's teal takes the lead */
+  --stool-ink:  #16505f;
+  --stool-soft: #e4f0f4;
+  --marigold:   #2f7d5b;      /* and its green becomes the accent */
+  --marigold-2: #1f5c41;
+  --on-accent:  #fdfefc;
+  --frame:      #9fb3a6;
+}
+
+/* The switch itself. Sits beside the language toggle and works the same way:
+   a choice the reader makes once and the site remembers. */
+.theme {
+  display: inline-flex; gap: .25rem; flex: none;
+}
+.theme button {
+  width: 22px; height: 22px; border-radius: 50%; cursor: pointer; padding: 0;
+  border: 1px solid rgba(var(--chalk-rgb), .35);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.theme button:hover { transform: scale(1.12); }
+.theme button[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--ink), 0 0 0 3.5px var(--marigold);
+}
+.theme button[data-theme-set="slate"] { background: linear-gradient(135deg, #14110e 50%, #e0961a 50%); }
+.theme button[data-theme-set="tuni"]  { background: linear-gradient(135deg, #0d0a13 50%, #ffd873 50%); }
+.theme button[data-theme-set="kagoj"] { background: linear-gradient(135deg, #fffcf4 50%, #c47a12 50%); }
+.theme button[data-theme-set="sokal"] { background: linear-gradient(135deg, #e8efe9 50%, #2f7d5b 50%); }
+@media (max-width: 560px) { .theme button { width: 19px; height: 19px; } }
+
+/* The wordmark is a PNG cut in chalk, which vanishes on a light theme. It is
+   a flat silhouette, so brightness(0) turns it solid dark without touching
+   its shape, and the slight opacity keeps it from reading harsher than the
+   type beside it. One rule, rather than a second PNG to keep in step. */
+html[data-theme="kagoj"] .wordmark,
+html[data-theme="sokal"] .wordmark { filter: brightness(0); opacity: .88; }
