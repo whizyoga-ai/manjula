@@ -1,13 +1,14 @@
 /* ==========================================================================
    The reel — the kitchen, as a story.
 
-   ELEVEN SCENES, AND THE FIRST FIVE ARE REAL VIDEO.
+   SIX SCENES, ALL STILLS. FIVE SECONDS EACH.
 
-   `vid: true` marks a clip cut from the shop's own footage — Video1.mp4 and
-   video2.mp4 in C:\Customers\Manjula. Five seconds each, about 2MB for the
-   set, and only the scene on screen fetches. A reel is glimpses; anybody who
-   wants to actually watch goes to movies.html, where the uncut originals sit
-   behind a play button.
+   The video came off the landing page. It still exists — the real footage of
+   the shop lives on movies.html, uncut, behind a play button — but the hero
+   is stills now, each held five seconds and drifting the whole time so the
+   frame is never still.
+
+   `vid: true` is still honoured by the player if a scene ever wants it.
 
    The rest are AI-generated stills and the faces in them are not the two
    sisters. `wok-fire` is gone for a different reason: it was a man at the
@@ -29,27 +30,6 @@
 'use strict';
 
 const REELS = [
-  { f: 'steamer',     vid: true, price: 50,
-    bn: 'স্টিমার খুলছে — মোমো তৈরি',  en: 'The steamer coming off',
-    dishBn: 'চিকেন স্টিম মোমো',      dishEn: 'Chicken steam momo',
-    tabBn: 'স্টিমার',                tabEn: 'Steamer' },
-
-  { f: 'counter',     vid: true,
-    bn: 'কাউন্টার — স্টিমার, মেশিন, টুনি লাইট', en: 'The counter: steamer, machine, lights',
-    tabBn: 'কাউন্টার',               tabEn: 'Counter' },
-
-  { f: 'signs',       vid: true,
-    bn: 'ছাদ থেকে ঝোলানো সাইনবোর্ড',  en: 'The signs hanging from the ceiling',
-    tabBn: 'সাইনবোর্ড',              tabEn: 'Signs' },
-
-  { f: 'slate-board', vid: true,
-    bn: 'ফুটপাথের স্লেট',             en: 'The slate on the pavement',
-    tabBn: 'স্লেট',                  tabEn: 'Slate' },
-
-  { f: 'menu-card',   vid: true,
-    bn: 'দেওয়ালের মেনু কার্ড',        en: 'The card on the wall',
-    tabBn: 'মেনু',                   tabEn: 'Card' },
-
   { f: 'momo-steam',   price: 50,
     bn: 'স্টিমারে মোমো বসছে',      en: 'Momos going into the steamer',
     dishBn: 'চিকেন স্টিম মোমো',    dishEn: 'Chicken steam momo',

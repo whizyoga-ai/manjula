@@ -326,11 +326,15 @@ html[data-lang="en"] .hero h1 {
 /* A reel moves. Stills that cross-fade are a slideshow, so every frame drifts
    the whole time it is up and is swapped out before it can settle. The
    animation restarts with the class, which is exactly when a scene arrives. */
-@keyframes reel-drift-a { from { transform: scale(1.03) translate3d(1.2%, 1.5%, 0); }
-                          to   { transform: scale(1.18) translate3d(-1.8%, -2.2%, 0); } }
-@keyframes reel-drift-b { from { transform: scale(1.18) translate3d(-1.4%, -1.8%, 0); }
-                          to   { transform: scale(1.03) translate3d(1.6%, 1.2%, 0); } }
-.reel__img.is-on                 { animation: reel-drift-a 8s ease-out both; }
+@keyframes reel-drift-a { from { transform: scale(1.02) translate3d(1.4%, 1.6%, 0); }
+                          to   { transform: scale(1.20) translate3d(-2.0%, -2.4%, 0); } }
+@keyframes reel-drift-b { from { transform: scale(1.20) translate3d(-1.6%, -2.0%, 0); }
+                          to   { transform: scale(1.02) translate3d(1.8%, 1.4%, 0); } }
+/* Five and a bit, against a five-second hold — so the frame is still moving
+   when the next one arrives and never freezes on its last pose. Odd scenes
+   come closer, even ones pull back; alternating is what stops eleven
+   push-ins in a row from feeling like a screensaver. */
+.reel__img.is-on                 { animation: reel-drift-a 5.4s linear both; }
 .reel__img:nth-child(even).is-on { animation-name: reel-drift-b; }
 
 /* legibility under the caption, and a little warmth up top */
