@@ -409,7 +409,11 @@
     if (!board || typeof SLATE === 'undefined') return;
     const bn = lang() === 'bn';
     const today = kolkataNow().iso;
-    const isToday = SLATE.date === today;
+    // A null date means the board was photographed but nobody wrote down when.
+    // That is not "today" and it is not a stale date either — it is not known,
+    // and the page says which.
+    const undated = !SLATE.date;
+    const isToday = !undated && SLATE.date === today;
 
     board.innerHTML = '';
 
@@ -421,7 +425,7 @@
        THROUGH Intl in Kolkata time — getDate() would answer in the reader's
        zone and silently date the board a day early from anywhere west of
        India, which is exactly what it did on the first run. */
-    const written = new Date(SLATE.date + 'T12:00:00+05:30');
+    const written = new Date((SLATE.date || today) + 'T12:00:00+05:30');
     const inKolkata = (opts) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', ...opts }).format(written);
     const dayName = inKolkata({ weekday: 'long' });
     const pretty = bn
@@ -429,13 +433,17 @@
       : inKolkata({ day: 'numeric', month: 'long', weekday: 'long' });
 
     const label = document.createElement('span');
-    label.textContent = bn ? `বোর্ড লেখা হয়েছে ${pretty}` : `Board written ${pretty}`;
+    label.textContent = undated
+      ? (bn ? 'দোকানের সামনের বোর্ড' : "The board outside the shop")
+      : (bn ? `বোর্ড লেখা হয়েছে ${pretty}` : `Board written ${pretty}`);
 
     const stamp = document.createElement('span');
     stamp.className = 'board__stamp ' + (isToday ? 'is-today' : 'is-old');
     stamp.textContent = isToday
       ? (bn ? 'আজকের' : "Today's")
-      : (bn ? 'পুরনো বোর্ড' : 'Not today');
+      : undated
+        ? (bn ? 'তারিখ জানা নেই' : 'Undated')
+        : (bn ? 'পুরনো বোর্ড' : 'Not today');
 
     dateRow.append(label, stamp);
     board.append(dateRow);
@@ -455,7 +463,11 @@
       name.className = 'board__name';
       name.textContent = bn ? item.bn : item.en;
 
-      let priceEl;
+      // A real chalkboard does not always carry prices — the photographed one
+      // carries none at all. Where the board is silent the page stays silent
+      // too; printing "₹undefined", or quietly borrowing the card price, would
+      // both be the page claiming to have read something it did not read.
+      let priceEl = null;
       if (item.sizes) {
         priceEl = document.createElement('span');
         priceEl.className = 'board__sizes';
@@ -464,13 +476,15 @@
           sp.innerHTML = `${rupees(s.price)}<small>${bn ? s.bn : s.en}</small>`;
           priceEl.append(sp);
         });
-      } else {
+      } else if (typeof item.price === 'number') {
         priceEl = document.createElement('span');
         priceEl.className = 'board__price';
         priceEl.textContent = rupees(item.price);
       }
 
-      li.append(name, priceEl);
+      li.append(name);
+      if (priceEl) li.append(priceEl);
+      else li.classList.add('is-priceless');
 
       const bits = [];
       if (item.pieces) bits.push(bn ? `${bnNum(item.pieces)} পিস` : `${item.pieces} pieces`);
@@ -492,12 +506,21 @@
       const warn = document.createElement('p');
       warn.className = 'board__unknown';
       warn.innerHTML = bn
-        ? `উপরের বোর্ডটা <strong>আজকের নয়</strong>। আজ কী রান্না হয়েছে, সে খবর এখানে এসে পৌঁছয়নি।
-           <a href="tel:+919163538794">বুজুনিকে একটা ফোন করে নিন — ৯১৬৩৫ ৩৮৭৯৪</a>। মেনুর
-           বাকি পদ কিন্তু রোজই থাকে।`
-        : `The board above is <strong>not today's</strong>. This page does not know what was
-           cooked this morning — <a href="tel:+919163538794">call Bujuni on +91 91635 38794</a>
-           and ask. Everything on the printed menu is there every day.`;
+        ? (undated
+          ? `বোর্ডটার ছবি আছে, তারিখ নেই — <strong>আজকের কি না বলা যাচ্ছে না</strong>।
+             আজ কী রান্না হয়েছে জানতে <a href="tel:+919163538794">দোকানে ফোন করুন — ৯১৬৩৫ ৩৮৭৯৪</a>।
+             মেনুর বাকি পদ কিন্তু রোজই থাকে।`
+          : `উপরের বোর্ডটা <strong>আজকের নয়</strong>। আজ কী রান্না হয়েছে, সে খবর এখানে এসে পৌঁছয়নি।
+           <a href="tel:+919163538794">দোকানে একটা ফোন করে নিন — ৯১৬৩৫ ৩৮৭৯৪</a>। মেনুর
+           বাকি পদ কিন্তু রোজই থাকে।`)
+        : (undated
+          ? `This is a photograph of the real board, but nobody recorded the day
+             — so <strong>it cannot be said whether it is today's</strong>. To hear what was
+             cooked this morning, <a href="tel:+919163538794">call the shop on +91 91635 38794</a>.
+             Everything on the printed menu is there every day.`
+          : `The board above is <strong>not today's</strong>. This page does not know what was
+           cooked this morning — <a href="tel:+919163538794">call the shop on +91 91635 38794</a>
+           and ask. Everything on the printed menu is there every day.`);
       board.append(warn);
     }
 

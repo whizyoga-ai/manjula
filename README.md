@@ -2,7 +2,7 @@
 
 A one-room street food shop at 17/A Banerjee Para Street, Uttarpara, Hooghly,
 West Bengal 712258. Momo, bread and stew, maggie, eggs, tea and coffee.
-Open 9am to 9pm, every day. To order: **Bujuni, +91 91635 38794**.
+Open 9am to 9pm, every day. To order: **+91 91635 38794**.
 
 Built with **Brahmexa**. The assistant is **Nexus**, tenant `manjula`.
 

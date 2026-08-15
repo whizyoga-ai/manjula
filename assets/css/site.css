@@ -527,6 +527,9 @@ html[data-lang="bn"] .board__headline { font-family: var(--display-bn); font-siz
   color: var(--chalk-fade); line-height: 1.2;
 }
 .board__name { font-size: 1.1rem; font-weight: 600; color: var(--chalk); }
+/* No price chalked against this line — let the name have the whole width
+   rather than leave a column waiting for a number that was never written. */
+.board li.is-priceless .board__name { grid-column: 2 / -1; }
 .board__note { grid-column: 2 / -1; font-size: .88rem; color: var(--chalk-dim); margin-top: .2rem; }
 .board__price { font-family: var(--hand); font-size: 1.5rem; color: var(--marigold-2); white-space: nowrap; line-height: 1; }
 .board__sizes { display: flex; gap: .8rem; font-family: var(--hand); font-size: 1.25rem; color: var(--marigold-2); white-space: nowrap; }

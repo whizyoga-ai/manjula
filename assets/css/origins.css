@@ -455,3 +455,14 @@ html[data-lang="en"] .bulk__sheet h3 { font-family: var(--display); }
 .bulk__actions { display: grid; gap: .5rem; margin-top: .2rem; }
 .bulk__actions .btn { justify-content: center; }
 .bulk__fine { margin: 0; font-size: .78rem; color: var(--text-dim); line-height: 1.5; }
+
+/* Photographs of the shop. A plain masonry-ish grid — the pictures are
+   portrait and landscape at different ratios, so each keeps its own shape
+   rather than being cropped square to make a tidy wall. */
+.shots { columns: 3 260px; column-gap: var(--gap); }
+.shots figure { break-inside: avoid; margin: 0 0 var(--gap); }
+.shots img {
+  width: 100%; border-radius: 12px; border: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+}
+.shots figcaption { margin-top: .5rem; font-size: .85rem; color: var(--text-dim); }

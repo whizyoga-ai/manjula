@@ -97,7 +97,7 @@ const MENU = [
     bn: { name: 'ঘুগনি', note: 'স্লেট থেকে উঠে এল কার্ডে।' },
     accent: 'yolk',
     items: [
-      { id: 'charbighugni', en: 'Mutton fat ghugni', bn: 'চর্বি ঘুগনি', price: 30,
+      { id: 'charbighugni', en: 'Mutton fat ghugni', bn: 'চর্বি ঘুগনি', price: 50,
         en_note: 'Dried peas, slow, finished in mutton fat.',
         bn_note: 'শুকনো মটর, ধীরে রাঁধা, শেষে খাসির চর্বি।' },
     ],
