@@ -1,7 +1,7 @@
 /* ==========================================================================
    The reel — scenes from the kitchen.
 
-   Twelve scenes in a phone frame, running like a story: progress bars across
+   Eight scenes in a phone frame, running like a story: progress bars across
    the top, auto-advance, tap either half to go back or forward, and a slow
    drift on every frame so the screen is never once still.
 
@@ -15,12 +15,18 @@
                      and the absence of a price is what keeps that line clean
                      without needing a disclaimer to say so.
 
-   ON THE IMAGES. These are AI-generated scenes, and the faces in them are not
-   the two sisters — the client said so plainly, and better ones are being
-   generated from the real reference photographs in C:\Customers\Manjula\media.
-   So no caption here names anybody. They describe what is happening in the
-   kitchen, never who is doing it. When the corrected scenes arrive, each is a
-   one-line swap of `f` below and nothing else changes.
+   ON THE IMAGES. These are AI-generated scenes and the faces in them are not
+   the two sisters, so no caption here names anybody — they describe what is
+   happening in the kitchen, never who is doing it.
+
+   Four scenes were removed on the client's eye, not on a rule: stew, fried
+   momo, mutton steam and mutton fried all carried the same unfamiliar woman
+   and he spotted her across all four. `counter` still shows two faces that are
+   not the owners' and is flagged for the same treatment.
+
+   Corrected renders from the reference photographs in
+   C:\Customers\Manjula\media drop in over these slugs; each is a one-line
+   swap of `f` and nothing else changes.
    ========================================================================== */
 
 'use strict';
@@ -39,26 +45,6 @@ const REELS = [
     bn: 'ম্যাগি নামছে কড়াই থেকে',   en: 'Maggie coming off the flame',
     dishBn: 'এগ চীজ ম্যাগি',        dishEn: 'Egg cheese maggie',
     tabBn: 'ম্যাগি',                tabEn: 'Maggie' },
-
-  { f: 'stew',         price: 60,
-    bn: 'স্টু আর গরম পাউরুটি',      en: 'Stew, and the bread beside it',
-    dishBn: 'স্টু পাউরুটি',         dishEn: 'Bread & chicken stew',
-    tabBn: 'স্টু',                  tabEn: 'Stew' },
-
-  { f: 'momo-fried',   price: 60,
-    bn: 'ভাজা মোমো, সঙ্গে চাটনি',   en: 'Fried momos, with the chutney',
-    dishBn: 'চিকেন ফ্রাইড মোমো',    dishEn: 'Chicken fried momo',
-    tabBn: 'ফ্রাইড মোমো',           tabEn: 'Fried momo' },
-
-  { f: 'momo-mutton',  price: 90,
-    bn: 'মাটন মোমো — প্লেটে পাঁচটা', en: 'Mutton momo, five to a plate',
-    dishBn: 'মাটন স্টিম মোমো',      dishEn: 'Mutton steam momo',
-    tabBn: 'মাটন',                  tabEn: 'Mutton' },
-
-  { f: 'momo-mutton-fried', price: 100,
-    bn: 'মাটন ভাজা মোমো',           en: 'Mutton, fried',
-    dishBn: 'মাটন ফ্রাইড মোমো',     dishEn: 'Mutton fried momo',
-    tabBn: 'মাটন ফ্রাই',            tabEn: 'Mutton fried' },
 
   { f: 'toast',        price: 30,
     bn: 'মালাই টোস্ট, তাওয়া থেকে',  en: 'Malai toast off the pan',
