@@ -215,10 +215,10 @@ const DISHES = [
     slug: 'ghugni',
     art: 'd-ghugni',
     tone: 'warm',
-    price: '₹15 / ₹30',
-    priceNote: { bn: 'ছোট / বড় — স্লেটের পদ', en: 'small / large — a slate dish' },
+    price: '₹30',
+    priceNote: { bn: 'এখন কার্ডেই আছে', en: 'now on the card' },
     name: { bn: 'ঘুগনি', en: 'Ghugni' },
-    sub: { bn: 'কার্ডে নেই। স্লেটে আছে।', en: 'Not on the card. On the slate.' },
+    sub: { bn: 'স্লেট থেকে কার্ডে', en: 'Off the slate, onto the card' },
     lede: {
       bn: 'পূর্ব ভারতের সবচেয়ে চেনা রাস্তার খাবার। শুকনো মটর, ধীরে সেদ্ধ, মশলার ঝোলে। বাংলা, ওড়িশা, বিহার, ঝাড়খণ্ড — প্রত্যেকের নিজের নিজের ঘুগনি। বিহারে হয় কালো ছোলায়, বাংলা আর ওড়িশায় সাদা মটরে।',
       en: 'The most familiar street food in eastern India — dried peas, cooked slow, in a spiced gravy. Bengal, Odisha, Bihar and Jharkhand each have their own (Bihar’s with black chana, Bengal’s and Odisha’s with white peas).',
@@ -228,10 +228,10 @@ const DISHES = [
     kitchen: [
       { bn: 'দোকান খোলার দিন স্লেটে যা লেখা ছিল, সেটা সাধারণ ঘুগনি নয় — <strong>খাসির চর্বির ঘুগনি</strong>। রাস্তার ঘুগনি প্রায় সবসময় নিরামিষ। চর্বিতে শেষ করা মানে পদটাকে ইচ্ছে করে অন্যদিকে নিয়ে যাওয়া: একই মটর, কিন্তু গভীরতর, মাংসল একটা শেষ।',
         en: 'What went up on the slate on opening day was not ordinary ghugni. It was <strong>ghugni finished in mutton fat</strong>. Street ghugni is almost always vegetarian. Finishing it in fat is a deliberate turn in another direction — the same peas, taken somewhere deeper and meatier.' },
-      { bn: 'আর দামটা: <strong>ছোট ১৫, বড় ৩০</strong>। ঘুগনি চিরকালই সেই খাবার যেটা যে কেউ কিনতে পারে। দুটো মাপ রাখা মানে সেই কথাটা মানা — মাংসের চর্বিতে রাঁধা হলেও।',
-        en: 'And the price: <strong>small 15, large 30</strong>. Ghugni has always been the dish anyone can afford. Keeping two sizes is how that stays true, even when it has been cooked in mutton fat.' },
-      { bn: 'এটা ছাপানো কার্ডে নেই। এই পদগুলো স্লেটে ওঠে, রোজ বদলায় — আজ কী আছে জানতে <a href="tel:+919163538794">ফোন করুন</a>।',
-        en: 'This is not on the printed card. Dishes like it go up on the slate and change from day to day — <a href="tel:+919163538794">call the shop</a> to hear what is on today.' },
+      { bn: 'উদ্বোধনের দিন এটা ছিল স্লেটের পদ — যেদিন রান্না হয়, সেদিনই। এখন <strong>৩০ টাকায়</strong> কার্ডেই উঠে এসেছে। স্লেট বলে ‘আজ আছে’, কার্ড বলে ‘আছে’ — তফাতটা ছোট নয়।',
+        en: 'On the opening day it was a slate dish — there when it was cooked, gone when it was gone. It is on the printed card now, at <strong>₹30</strong>. A slate says “we have this today”; a card says “we have this”. That is not a small difference.' },
+      { bn: 'তবু রান্না ফুরোলে ফুরোয়। বেরোনোর আগে <a href="tel:+919163538794">একটা ফোন</a> করে নেওয়াই ভালো।',
+        en: 'It still runs out when it runs out. <a href="tel:+919163538794">A call before you set off</a> is never wasted.' },
     ],
   },
 

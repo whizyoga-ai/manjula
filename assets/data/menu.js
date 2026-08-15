@@ -6,6 +6,13 @@
    estimated and nothing is rounded. If a price is not on a card, it is not
    in this file — the site says "ask at the counter" instead of guessing.
 
+   TWO ITEMS ARE NEWER THAN THE PHOTOGRAPHED CARDS: chicken mutton momo (90)
+   and mutton fat ghugni (30), both added on the client's word. The card
+   scans on the home page still show the older card, and the captions there
+   say so — a photograph that contradicts the list beside it is worse than no
+   photograph, so the moment a new card is photographed those files should be
+   replaced and the captions dropped.
+
    ONE KNOWN CONFLICT: the English card prices cheese maggie at 40 and the
    Bengali card at 80. The English figure is used, and `verify: true` marks
    it so the next person to stand in front of the shop knows to check.
@@ -77,6 +84,22 @@ const MENU = [
       { id: 'chfried', en: 'Chicken fried momo', bn: 'চিকেন ফ্রাইড মোমো', price: 60 },
       { id: 'mtsteam', en: 'Mutton steam momo', bn: 'মাটন স্টিম মোমো', price: 90, pieces: 5 },
       { id: 'mtfried', en: 'Mutton fried momo', bn: 'মাটন ফ্রাইড মোমো', price: 100 },
+      { id: 'chmtmomo', en: 'Chicken mutton momo', bn: 'চিকেন মাটন মোমো', price: 90 },
+    ],
+  },
+  {
+    // Ghugni was a slate dish — chalked when it was cooked, gone when it was
+    // gone. It is on the printed menu now, which is a different promise: a
+    // card says "we have this", a slate says "we have this today". Its own
+    // group because it belongs to none of the other five.
+    id: 'ghugni',
+    en: { name: 'Ghugni', note: 'Off the slate, onto the card.' },
+    bn: { name: 'ঘুগনি', note: 'স্লেট থেকে উঠে এল কার্ডে।' },
+    accent: 'yolk',
+    items: [
+      { id: 'charbighugni', en: 'Mutton fat ghugni', bn: 'চর্বি ঘুগনি', price: 30,
+        en_note: 'Dried peas, slow, finished in mutton fat.',
+        bn_note: 'শুকনো মটর, ধীরে রাঁধা, শেষে খাসির চর্বি।' },
     ],
   },
   {
