@@ -1083,3 +1083,75 @@ html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
 .reel[data-view="tablet"] .globe__cap { display: none; }
 .globe__cap .phone__dish { justify-content: center; }
 .globe__cap .phone__price { margin-left: 0; }
+
+/* ==========================================================================
+   THE MOBILE NAV
+
+   The header nav was `display: none` below 880px and nothing replaced it, so
+   on a phone the only way to reach Origins, Films, The name or Uttarpara was
+   to already know the URL. On a site whose readers are overwhelmingly on
+   phones that is not a small omission — it is most of the site being
+   unreachable for most of its visitors.
+
+   A button and a panel. No overlay, no scroll lock, no animation library:
+   the panel drops below the header, the links are full-width rows with real
+   tap targets, and it closes on a link, on Escape, or on a tap outside.
+   ========================================================================== */
+
+.navtoggle {
+  display: none;
+  border: 1px solid rgba(var(--chalk-rgb), .25); background: transparent;
+  color: var(--chalk); border-radius: 10px; cursor: pointer;
+  width: 38px; height: 34px; padding: 0; flex: none;
+  align-items: center; justify-content: center;
+}
+.navtoggle:hover { background: rgba(var(--chalk-rgb), .08); }
+.navtoggle span {
+  display: block; width: 17px; height: 1.5px; background: currentColor;
+  position: relative; transition: background .18s ease;
+}
+.navtoggle span::before, .navtoggle span::after {
+  content: ''; position: absolute; left: 0; width: 17px; height: 1.5px;
+  background: currentColor; transition: transform .18s ease, top .18s ease;
+}
+.navtoggle span::before { top: -5.5px; }
+.navtoggle span::after  { top:  5.5px; }
+.top.is-open .navtoggle span { background: transparent; }
+.top.is-open .navtoggle span::before { top: 0; transform: rotate(45deg); }
+.top.is-open .navtoggle span::after  { top: 0; transform: rotate(-45deg); }
+
+@media (max-width: 880px) {
+  .navtoggle { display: flex; }
+
+  /* The nav stops being a row and becomes a panel under the header. Same
+     markup, same links, same order — only the shape changes, so there is no
+     second copy of the navigation to fall out of step with the first. */
+  .top nav {
+    display: none;
+    position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; gap: 0;
+    background: rgba(var(--ink-rgb), .985);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(var(--chalk-rgb), .12);
+    box-shadow: 0 22px 40px -22px rgba(0,0,0,.85);
+    padding: .4rem 0 .7rem;
+  }
+  .top.is-open nav { display: flex; }
+  .top nav a {
+    padding: .85rem clamp(1.2rem, 5vw, 2rem);
+    border-radius: 0; font-size: 1rem;
+    border-bottom: 1px solid rgba(var(--chalk-rgb), .07);
+  }
+  .top nav a:last-child { border-bottom: 0; }
+  .top nav a[aria-current="page"] { color: var(--marigold-2); font-weight: 600; }
+
+  /* the header has to be the panel's positioning context */
+  .top { position: sticky; }
+  .top__in { position: relative; }
+}
+
+/* Below this the brand tagline and the theme dots start fighting for room. */
+@media (max-width: 460px) {
+  .brand__sub { display: none; }
+  .theme { gap: .2rem; }
+}

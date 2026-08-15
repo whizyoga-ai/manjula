@@ -40,7 +40,8 @@ try { var t = localStorage.getItem('manjula-theme');
       <span class="brand__mark en">Manjula</span>
       <span class="brand__sub">Bite &amp; Brew</span>
     </a>
-    <nav aria-label="Sections">
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="sitenav" aria-label="Menu"><span></span></button>
+    <nav id="sitenav" aria-label="Sections">
       <a href="index.html#slate"><span class="bn-i">আজকের বোর্ড</span><span class="en-i">Today's board</span></a>
       <a href="index.html#menu"><span class="bn-i">মেনু</span><span class="en-i">Menu</span></a>
       <a href="movies.html"><span class="bn-i">ভিডিও</span><span class="en-i">Films</span></a>
@@ -87,6 +88,7 @@ try { var t = localStorage.getItem('manjula-theme');
 <script src="assets/data/dishes.js?v=2"></script>
 <script src="assets/js/pages.js?v=1"></script>
 <script src="assets/js/assistant.js?v=3"></script>
+<script src="assets/js/nav.js?v=1"></script>
 <script src="assets/js/theme.js?v=1"></script>
 </body>
 </html>
