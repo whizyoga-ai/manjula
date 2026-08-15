@@ -117,72 +117,109 @@
 
   /* ---------- the reel ---------------------------------------------------- */
 
-  /* The two sisters who own the shop, in their own photographs, under the word
-     each one was named for. A set of styled images stood here first — plausible
-     kitchens, plausible chefs — and they came out because the faces in them
-     were not these faces. A shop this size is its people; borrowing somebody
-     else's to stand in for them is the one substitution that cannot be worth
-     making. */
-  const REEL = [
-    { f: 'carefully-presented', bn: 'যত্ন করে সাজানো',        en: 'Carefully presented' },
-    { f: 'food-is-everything',  bn: 'খাওয়াটাই আসল',           en: 'Food is everything' },
-    { f: 'nurtured',            bn: 'যত্নে গড়া',              en: 'Nurtured' },
-    { f: 'humanity',            bn: 'মানুষের পাশে',            en: 'Humanity' },
-    { f: 'we-are-the-champion', bn: 'আমরাই চ্যাম্পিয়ন',       en: 'We are the champion' },
-    { f: 'goal-seems-nearer',   bn: 'লক্ষ্য কাছেই, তবু অনেক দূর', en: 'The goal looks near, and is still far' },
-    { f: 'thought-provoking',   bn: 'ভাবিয়ে তোলে',            en: 'Thought-provoking' },
-    { f: 'magical',             bn: 'জাদু',                    en: 'Magical' },
-    { f: 'earthy',              bn: 'মাটির কাছাকাছি',          en: 'Earthy' },
-    { f: 'secret-recipe',       bn: 'গোপন রেসিপি',            en: 'The secret recipe' },
-  ];
+  /* A phone in the hero running the kitchen as a story. Scenes come from
+     assets/data/reels.js; the ones with a price are dishes you can actually
+     order, the rest are atmosphere and carry a caption only. */
 
   let reelAt = 0;
   let reelTimer = null;
+  const REEL_MS = 5000;
 
   function buildReel() {
-    const disc = document.querySelector('.reel__disc');
-    const dots = document.getElementById('reelDots');
-    if (!disc || disc.dataset.built) return;
-    disc.dataset.built = '1';
+    const screen = document.querySelector('.phone__screen');
+    if (!screen || typeof REELS === 'undefined' || screen.dataset.built) return;
+    screen.dataset.built = '1';
 
-    // The first image is in the markup so the hero is never briefly empty; the
-    // rest are added here and load lazily behind it.
-    REEL.slice(1).forEach((r) => {
+    const bars = document.querySelector('.phone__bars');
+    const tabs = document.querySelector('.reel__tabs');
+
+    // Collected into a fragment and inserted in front of the bars in one go.
+    // prepend() per image reversed the DOM order, and paintReel indexes the
+    // scenes by position — so the screen showed the counter while the caption
+    // read maggi.
+    const frag = document.createDocumentFragment();
+
+    REELS.forEach((r, i) => {
       const img = document.createElement('img');
-      img.className = 'reel__img';
+      img.className = 'reel__img' + (i === 0 ? ' is-on' : '');
       img.src = `assets/img/reel/${r.f}.jpg`;
-      img.width = 1000; img.height = 1000;
-      img.loading = 'lazy';
-      img.alt = '';                 // the caption carries the word
-      disc.append(img);
+      img.width = 720; img.height = 1280;
+      if (i === 0) img.fetchPriority = 'high'; else img.loading = 'lazy';
+      img.alt = '';                       // the caption describes the scene
+      frag.append(img);
+
+      const bar = document.createElement('i');
+      bar.append(document.createElement('b'));
+      bars.append(bar);
+
+      const tab = document.createElement('button');
+      tab.type = 'button';
+      tab.addEventListener('click', (e) => { e.stopPropagation(); show(i); restart(); });
+      tabs.append(tab);
     });
 
-    REEL.forEach(() => dots.append(document.createElement('i')));
-    paintReel();
+    screen.insertBefore(frag, bars);
 
-    // Pausing on hover matters: somebody reading the caption should not have
-    // the plate turn out from under them.
-    const stop = () => clearInterval(reelTimer);
-    const go = () => { stop(); reelTimer = setInterval(advanceReel, 4200); };
-    disc.addEventListener('mouseenter', stop);
-    disc.addEventListener('mouseleave', go);
-    disc.addEventListener('click', () => { advanceReel(); go(); });
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) go();
+    /* Tap the left third to go back, anywhere else to go on — the gesture
+       everyone already has from every story app there is. */
+    screen.addEventListener('click', (e) => {
+      const r = screen.getBoundingClientRect();
+      show(e.clientX - r.left < r.width / 3 ? reelAt - 1 : reelAt + 1);
+      restart();
+    });
+
+    paintReel();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) restart();
   }
 
-  function advanceReel() {
-    reelAt = (reelAt + 1) % REEL.length;
+  function restart() {
+    clearInterval(reelTimer);
+    reelTimer = setInterval(() => show(reelAt + 1), REEL_MS);
+  }
+
+  function show(i) {
+    reelAt = (i + REELS.length) % REELS.length;
     paintReel();
   }
 
   function paintReel() {
+    if (typeof REELS === 'undefined') return;
     const imgs = document.querySelectorAll('.reel__img');
-    const dots = document.querySelectorAll('.reel__dots i');
-    const name = document.querySelector('.reel__name');
     if (!imgs.length) return;
+    const bn = lang() === 'bn';
+    const r = REELS[reelAt];
+
     imgs.forEach((im, i) => im.classList.toggle('is-on', i === reelAt));
-    dots.forEach((d, i) => d.classList.toggle('is-on', i === reelAt));
-    if (name) name.textContent = lang() === 'bn' ? REEL[reelAt].bn : REEL[reelAt].en;
+
+    document.querySelectorAll('.phone__bars i').forEach((bar, i) => {
+      bar.classList.toggle('is-on', i === reelAt);
+      bar.classList.toggle('is-done', i < reelAt);
+      if (i === reelAt) {            // retrigger the fill animation
+        const fill = bar.firstElementChild;
+        fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = '';
+      }
+    });
+
+    document.querySelectorAll('.reel__tabs button').forEach((t, i) => {
+      t.textContent = bn ? REELS[i].tabBn : REELS[i].tabEn;
+      t.setAttribute('aria-current', String(i === reelAt));
+    });
+
+    const scene = document.querySelector('.phone__scene');
+    const dish = document.querySelector('.phone__dish');
+    if (scene) scene.textContent = bn ? r.bn : r.en;
+    if (dish) {
+      dish.innerHTML = '';
+      if (r.price) {                 // a dish on the card: name it and price it
+        const b = document.createElement('b');
+        b.textContent = bn ? r.dishBn : r.dishEn;
+        const price = document.createElement('span');
+        price.className = 'phone__price';
+        price.textContent = rupees(r.price);
+        dish.append(b, price);
+      }
+      // no price means atmosphere: caption only, nothing implied for sale
+    }
   }
 
   /* ---------- the menu ---------------------------------------------------- */

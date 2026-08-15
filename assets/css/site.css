@@ -270,54 +270,108 @@ html[data-lang="en"] .hero h1 {
 
 /* ---------- the reel ----------
 
-   A plate that turns. Eight dishes cross-fading inside one circle, with the
-   dish's name underneath — so the hero shows the food rather than a picture of
-   a wall, and shows it at the size food deserves.
+   A phone in the hero, running the kitchen like a story: progress bars across
+   the top, a scene every five seconds, tap either half to step back or on.
 
-   The disc is sized off the viewport, not off the image, so it fills whatever
-   room the hero column has: roughly 300px on a phone up to 540px on a desktop.
+   Why a phone frame and not just a picture: this is how anyone under forty in
+   Uttarpara already looks at food. The frame tells you, before you read a
+   word, that the thing inside moves and that there is more of it.
 */
 
-.reel { margin: 0; display: grid; justify-items: center; gap: 1.1rem; }
+.reel { margin: 0; display: grid; justify-items: center; gap: 1rem; }
 
-.reel__disc {
-  position: relative; isolation: isolate;
-  width: clamp(280px, 34vw, 540px); aspect-ratio: 1;
-  border-radius: 50%; overflow: hidden;
-  /* two rings: a chalk-white rim, then a marigold hairline outside it */
+.phone {
+  position: relative;
+  width: clamp(240px, 26vw, 330px);
+  aspect-ratio: 9 / 19.5;
+  border-radius: 34px;
+  padding: 8px;
+  background: linear-gradient(160deg, #3a3129, #17130f 60%);
   box-shadow:
-    0 0 0 8px rgba(246,241,230,.92),
-    0 0 0 10px rgba(224,150,26,.55),
-    0 40px 80px -30px rgba(0,0,0,.95);
+    inset 0 0 0 1px rgba(246,241,230,.16),
+    0 40px 70px -28px rgba(0,0,0,.95);
 }
+.phone__screen {
+  position: relative; height: 100%; border-radius: 27px; overflow: hidden;
+  background: #0d0b09; isolation: isolate; cursor: pointer;
+}
+
+/* the scenes */
 .reel__img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%; object-fit: cover; object-position: center 38%;
-  opacity: 0; transition: opacity .9s ease;
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; transition: opacity .55s ease;
+  transform: scale(1.06);
 }
 .reel__img.is-on { opacity: 1; }
-/* A slow warm sweep across the plate, so a still image is not quite still. */
-.reel__disc::after {
+/* A reel moves. Stills that cross-fade are a slideshow, so every frame drifts
+   the whole time it is up and is swapped out before it can settle. The
+   animation restarts with the class, which is exactly when a scene arrives. */
+@keyframes reel-drift-a { from { transform: scale(1.03) translate3d(1.2%, 1.5%, 0); }
+                          to   { transform: scale(1.18) translate3d(-1.8%, -2.2%, 0); } }
+@keyframes reel-drift-b { from { transform: scale(1.18) translate3d(-1.4%, -1.8%, 0); }
+                          to   { transform: scale(1.03) translate3d(1.6%, 1.2%, 0); } }
+.reel__img.is-on                 { animation: reel-drift-a 8s ease-out both; }
+.reel__img:nth-child(even).is-on { animation-name: reel-drift-b; }
+
+/* legibility under the caption, and a little warmth up top */
+.phone__screen::after {
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 2;
-  background: radial-gradient(65% 55% at 30% 22%, rgba(255,225,170,.16), transparent 70%);
+  background:
+    linear-gradient(transparent 46%, rgba(10,8,6,.82) 88%),
+    radial-gradient(70% 40% at 30% 8%, rgba(255,214,150,.14), transparent 70%);
 }
 
-.reel__cap { display: grid; justify-items: center; gap: .6rem; text-align: center; }
-.reel__name {
-  font-family: var(--hand); font-size: clamp(1.3rem, 3vw, 1.75rem);
-  color: var(--marigold-2); line-height: 1.2;
+/* story bars */
+.phone__bars {
+  position: absolute; inset: 10px 10px auto; z-index: 4;
+  display: flex; gap: 3px;
 }
-html[data-lang="bn"] .reel__name { font-family: var(--display-bn); font-size: clamp(1.05rem, 2.4vw, 1.35rem); }
-.reel__dots { display: flex; gap: .4rem; }
-.reel__dots i {
-  width: 7px; height: 7px; border-radius: 50%; background: rgba(246,241,230,.28);
-  transition: background .3s ease, transform .3s ease;
+.phone__bars i {
+  flex: 1; height: 2.5px; border-radius: 2px; background: rgba(246,241,230,.28);
+  overflow: hidden;
 }
-.reel__dots i.is-on { background: var(--marigold); transform: scale(1.25); }
+.phone__bars i b { display: block; height: 100%; width: 0; background: var(--chalk); }
+.phone__bars i.is-done b { width: 100%; }
+.phone__bars i.is-on b { animation: bar 5s linear forwards; }
+@keyframes bar { from { width: 0; } to { width: 100%; } }
+
+/* the caption card */
+.phone__card {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 5;
+  padding: 1rem .95rem 1.05rem;
+  display: grid; gap: .3rem;
+}
+.phone__scene { font-family: var(--hand); font-size: 1.2rem; color: var(--marigold-2); line-height: 1.15; }
+html[data-lang="bn"] .phone__scene { font-family: var(--body-bn); font-size: .95rem; }
+.phone__dish { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+.phone__dish b { font-size: 1.02rem; color: var(--chalk); font-weight: 600; }
+html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
+.phone__price {
+  margin-left: auto; font-weight: 700; color: #0f0c08; background: var(--marigold);
+  border-radius: 999px; padding: .1rem .6rem; font-size: .9rem; font-variant-numeric: tabular-nums;
+}
+
+/* scene chips under the phone */
+.reel__tabs {
+  display: flex; flex-wrap: wrap; gap: .35rem; justify-content: center;
+  max-width: 30rem;
+}
+.reel__tabs button {
+  border: 1px solid rgba(246,241,230,.22); background: transparent; color: var(--chalk-dim);
+  border-radius: 999px; padding: .3rem .7rem; font-size: .82rem; cursor: pointer;
+  line-height: 1.4;
+}
+.reel__tabs button:hover { color: var(--chalk); background: rgba(246,241,230,.08); }
+.reel__tabs button[aria-current="true"] {
+  background: var(--marigold); border-color: var(--marigold); color: #17120a; font-weight: 600;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .reel__img { transition: none; }
+  .reel__img.is-on, .reel__img:nth-child(even).is-on { animation: none; transform: scale(1.03); }
+  .phone__bars i.is-on b { animation: none; width: 100%; }
 }
+@media (max-width: 900px) { .phone { width: clamp(250px, 68vw, 320px); } }
 
 /* the hero photo, hung like a picture on the board */
 .hero__shot {
