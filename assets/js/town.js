@@ -267,7 +267,16 @@
       const on = k === i;
       b.setAttribute('aria-selected', String(on));
       b.tabIndex = on ? 0 : -1;
-      if (on) b.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      // scrollLeft on the strip, NOT scrollIntoView on the button.
+      // scrollIntoView scrolls every scrollable ancestor including the page,
+      // so opening this page dumped the reader two-thirds of the way down it,
+      // at the Explore section, before they had read a word. Moving the
+      // strip's own scrollLeft cannot move the page.
+      if (on && push) {
+        const l = b.offsetLeft, r = l + b.offsetWidth;
+        if (l < strip.scrollLeft) strip.scrollLeft = l - 12;
+        else if (r > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = r - strip.clientWidth + 12;
+      }
     });
     [...panels.children].forEach((p, k) => { p.hidden = k !== i; });
 
@@ -411,8 +420,15 @@
     f.src = r.url;
 
     panel.append(shell);
+    // The facts sit under the frame whether or not the frame paints. This is
+    // the whole fallback strategy — see the note above on why detection is
+    // not available — so it must not be conditional on anything.
     const facts = factList(r);
-    if (facts) panel.append(el('div', 'twn-native twn-native--under').appendChild(facts).parentNode);
+    if (facts) {
+      const box = el('div', 'twn-native twn-native--under');
+      box.append(facts);
+      panel.append(box);
+    }
     panel.append(attribution(r));
   }
 

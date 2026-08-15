@@ -162,6 +162,16 @@
         el.width = 720; el.height = 1280;
         if (i === 0) el.fetchPriority = 'high'; else el.loading = 'lazy';
         el.alt = '';                      // the caption describes the scene
+        el.addEventListener('error', () => {
+          dead.add(i);
+          // HIDDEN, NOT REMOVED. paintReel addresses tabs and bars by
+          // position, so removing one would shift every scene after it onto
+          // the wrong caption — the same off-by-one that put the slate under
+          // the toast caption twice before.
+          if (tabs.children[i]) tabs.children[i].hidden = true;
+          if (bars.children[i]) bars.children[i].hidden = true;
+          if (reelAt === i) { show(i + 1); restart(); }
+        });
       }
       el.className = 'reel__media ' + (r.vid ? 'reel__vid' : 'reel__img') + (i === 0 ? ' is-on' : '');
       frag.append(el);
@@ -251,8 +261,22 @@
     reelTimer = setTimeout(() => { show(reelAt + 1); restart(); }, ms);
   }
 
+  /* A scene whose picture is missing is skipped, not shown.
+     Three dishes went into the reel before their stills had finished
+     rendering and the tablet held a black rectangle for five seconds each
+     time it came round. The reel is data-driven and the pictures are built
+     separately, so the two can always fall out of step; the player treats a
+     failed image as a scene that does not exist rather than as a scene with
+     nothing in it. `dead` is filled in by the error handler in buildReel. */
+  const dead = new Set();
+
   function show(i) {
-    reelAt = (i + REELS.length) % REELS.length;
+    const n = REELS.length;
+    let at = (i + n) % n;
+    // Walk forward past anything that failed to load. The guard stops this
+    // spinning if every single scene is missing.
+    for (let step = 0; step < n && dead.has(at); step++) at = (at + 1) % n;
+    reelAt = at;
     paintReel();
   }
 
@@ -315,11 +339,16 @@
       t.textContent = bn ? REELS[i].tabBn : REELS[i].tabEn;
       t.setAttribute('aria-current', String(i === reelAt));
       // The strip is one scrolling row, so with every dish in the reel the
-      // current tab is usually off-screen. Drag it back into view — nearest,
-      // not centre, so a tab already visible does not shunt the row sideways
-      // on every scene change.
-      if (i === reelAt && t.scrollIntoView) {
-        t.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+      // current tab is usually off-screen. Drag it back — by moving the
+      // strip's own scrollLeft, never by scrollIntoView, which scrolls every
+      // scrollable ancestor including the page. With a reel that advances on
+      // a timer, scrollIntoView here would haul the reader down the page
+      // every five seconds whether they were looking at it or not.
+      if (i === reelAt && t.offsetParent) {
+        const strip = t.parentNode;
+        const l = t.offsetLeft, r = l + t.offsetWidth;
+        if (l < strip.scrollLeft) strip.scrollLeft = l - 12;
+        else if (r > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = r - strip.clientWidth + 12;
       }
     });
 

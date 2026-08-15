@@ -1,8 +1,13 @@
 /* ==========================================================================
    The reel — the whole card, moving.
 
-   TWENTY-TWO SCENES: the two sisters at either end, and in between every
-   single dish on the printed menu, each as a four-second clip.
+   TWENTY-EIGHT SCENES: the two sisters at either end, the six pictures of
+   them actually working, and every single dish on the printed menu.
+
+   THE COOKING SCENES LEAD THEIR FAMILY, ON PURPOSE. A reel of twenty
+   plates that nobody appears to cook is a catalogue. Steamer first, then
+   the five momos; the pan, then the four maggis; the kettle, then the
+   tea. Whoever made it, then what they made.
 
    THE RULE THIS FILE EXISTS TO ENFORCE: every scene is either a dish the shop
    actually sells or the two people who cook it. Nothing else goes in.
@@ -45,6 +50,10 @@ const REELS = [
     tabBn: 'দুই বোন',                tabEn: 'The sisters' },
 
   /* ---- মোমো / Momo ---------------------------------------------------- */
+  { f: 'cook-momo',    photo: true,
+    bn: 'স্টিমারের ঢাকনা উঠছে',       en: 'The lid comes off the steamer',
+    tabBn: 'রান্নাঘর',                tabEn: 'In the kitchen' },
+
   { f: 'chsteam',      price: 50,
     bn: 'স্টিম মোমো, ধোঁয়া উঠছে',     en: 'Steamed momo, still steaming',
     dishBn: 'চিকেন স্টিম মোমো',       dishEn: 'Chicken steam momo',
@@ -71,10 +80,18 @@ const REELS = [
     tabBn: 'চিকেন মাটন',              tabEn: 'Chicken mutton' },
 
   /* ---- টোস্ট ও পাউরুটি / Toast ---------------------------------------- */
+  { f: 'cook-stew',    photo: true,
+    bn: 'হাঁড়ি থেকে স্টু উঠছে',        en: 'Stew coming out of the pot',
+    tabBn: 'হাঁড়ি',                   tabEn: 'The pot' },
+
   { f: 'stew',         price: 60,
     bn: 'স্টু বাটিতে, পাউরুটি কিনারায়', en: 'Stew in the bowl, bread on the rim',
     dishBn: 'স্টু পাউরুটি',           dishEn: 'Bread & chicken stew',
     tabBn: 'স্টু',                    tabEn: 'Stew' },
+
+  { f: 'cook-toast',   photo: true,
+    bn: 'তাওয়ার উপর পাউরুটি',         en: 'Bread on the tawa',
+    tabBn: 'তাওয়া',                  tabEn: 'The tawa' },
 
   { f: 'malai',        price: 30,
     bn: 'মালাই টোস্ট, উপরে সর',       en: 'Malai toast, cream on top',
@@ -113,6 +130,10 @@ const REELS = [
     tabBn: 'চীজ ওমলেট',               tabEn: 'Cheese omlet' },
 
   /* ---- নুডলস / Noodles ------------------------------------------------- */
+  { f: 'cook-maggi',   photo: true,
+    bn: 'কড়াই থেকে ম্যাগি',           en: 'Noodles out of the pan',
+    tabBn: 'কড়াই',                   tabEn: 'The pan' },
+
   { f: 'plainmag',     price: 30,
     bn: 'ম্যাগি কাঁটায় জড়াচ্ছে',       en: 'Maggie, twirled on the fork',
     dishBn: 'প্লেন ম্যাগি',            dishEn: 'Plain maggie',
@@ -140,6 +161,10 @@ const REELS = [
     tabBn: 'ঘুগনি',                   tabEn: 'Ghugni' },
 
   /* ---- পানীয় / Beverages ----------------------------------------------- */
+  { f: 'cook-chai',    photo: true,
+    bn: 'কেটলি থেকে চা পড়ছে',        en: 'Tea going into the glass',
+    tabBn: 'কেটলি',                  tabEn: 'The kettle' },
+
   { f: 'tea',          price: 10,
     bn: 'চা, উপরে সর জমছে',           en: 'Tea, the skin just forming',
     dishBn: 'চা',                     dishEn: 'Tea',
@@ -149,6 +174,10 @@ const REELS = [
     bn: 'কফি, উপরে ফেনা',             en: 'Coffee, froth on top',
     dishBn: 'কফি',                    dishEn: 'Coffee',
     tabBn: 'কফি',                     tabEn: 'Coffee' },
+
+  { f: 'cook-serve',   photo: true,
+    bn: 'কাউন্টারের ওপারে প্লেট',      en: 'A plate over the counter',
+    tabBn: 'কাউন্টার',                tabEn: 'The counter' },
 
   { f: 'sisters-two',  photo: true,
     bn: 'যাঁরা রোজ রাঁধেন',           en: 'The two who cook it, every day',

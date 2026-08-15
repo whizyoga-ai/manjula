@@ -9,7 +9,12 @@
 
    THE RULES THIS FILE FOLLOWS
      1. Where sources disagree, the entry says so rather than picking a winner
-        quietly. See `school1846` (15 vs 16 May) and `library` (1852 vs 1859).
+        quietly. Two do. The municipality's own history dates the school to
+        15 May 1846 and Wikipedia to 16 May, so the timeline says "May 1846"
+        and the note carries both. And the library is dated 1852 in one place
+        and 1859 in another — which resolves rather than conflicts, because
+        1852 is the founding and 1859 is the building; the entry says which
+        is which instead of choosing.
      2. Superlatives are attributed, never asserted. The library is not "the
         first free public library in India" here; it is "listed by the West
         Bengal Heritage Commission as the first free public library in India",
@@ -88,9 +93,9 @@ const TOWN_TIMELINE = [
   {
     year: '১৮৪৬', yearEn: '1846', src: 'municipality', mark: true,
     en: { t: 'The bridge, then the school',
-          d: 'A bridge over the Bally Khal opens on 14 February and ends the ferry crossing. Three months later, on 15 May, an English school opens — the zamindars gave a building and the money, and the people of Uttarpara and Bhadrakali put in ₹2,000 and ₹220 of their own. Ramtanu Lahiri, of the Young Bengal circle, was headmaster from 1852.' },
+          d: 'A bridge over the Bally Khal opens on 14 February and ends the ferry crossing. Three months later, in May, an English school opens — the zamindars gave a building and the money, and the people of Uttarpara and Bhadrakali put in ₹2,000 and ₹220 of their own. Ramtanu Lahiri, of the Young Bengal circle, was headmaster from 1852. <small>The municipality dates the opening to 15 May, Wikipedia to the 16th.</small>' },
     bn: { t: 'আগে সেতু, তারপর স্কুল',
-          d: '১৪ ফেব্রুয়ারি বালিখালের উপর সেতু খুলল, নৌকো পারাপার ফুরোল। তিন মাস পরে, ১৫ মে, ইংরেজি স্কুল। জমিদাররা বাড়ি আর টাকা দিলেন — কিন্তু উত্তরপাড়ার লোকে চাঁদা তুলল ২০০০ টাকা, ভদ্রকালীর লোকে ২২০। ইয়ং বেঙ্গলের রামতনু লাহিড়ী ১৮৫২ থেকে এখানকার প্রধান শিক্ষক।' },
+          d: '১৪ ফেব্রুয়ারি বালিখালের উপর সেতু খুলল, নৌকো পারাপার ফুরোল। তিন মাস পরে, মে মাসে, ইংরেজি স্কুল। জমিদাররা বাড়ি আর টাকা দিলেন — কিন্তু উত্তরপাড়ার লোকে চাঁদা তুলল ২০০০ টাকা, ভদ্রকালীর লোকে ২২০। ইয়ং বেঙ্গলের রামতনু লাহিড়ী ১৮৫২ থেকে এখানকার প্রধান শিক্ষক। <small>পৌরসভা বলছে ১৫ মে, উইকিপিডিয়া বলছে ১৬।</small>' },
   },
   {
     year: '১৮৫১', yearEn: '1851', src: 'municipality',
@@ -111,7 +116,7 @@ const TOWN_TIMELINE = [
     en: { t: 'The library opens its doors',
           d: 'Building begun in 1856 on an acre beside the Grand Trunk Road, at a cost of ₹85,000, and opened to the public on 15 April 1859 with three thousand of the founder\'s own books. Free, and open to anyone who walked in.' },
     bn: { t: 'লাইব্রেরির দরজা খুলল',
-          d: 'জিটি রোডের ধারে এক বিঘেরও বেশি জমিতে ১৮৫৬-য় কাজ শুরু, খরচ পঁচাশি হাজার টাকা। ১৫ এপ্রিল ১৮৫৯ সাধারণের জন্য খুলে গেল — প্রতিষ্ঠাতার নিজের তিন হাজার বই নিয়ে। বিনা পয়সায়, যে কেউ ঢুকতে পারে।' },
+          d: 'জিটি রোডের ধারে এক বিঘেরও বেশি জমিতে ১৮৫৬-য় কাজ শুরু, খরচ পঁচাশি হাজার টাকা। ১৫ এপ্রিল ১৮৫৯ সাধারণের জন্য খুলে গেল — প্রতিষ্ঠাতার নিজের তিন হাজার বই নিয়ে। বিনা পয়সায়, যে কেউ ঢুকতে পারে। <small>কোথাও লেখা ১৮৫২, কোথাও ১৮৫৯ — দুটোই ঠিক। ১৮৫২-য় বইয়ের সংগ্রহ সবার জন্য খোলে, ১৮৫৯-এ বাড়িটা।</small>' },
   },
   {
     year: '১৮৮১', yearEn: '1881', src: 'wikiRPM',
@@ -276,6 +281,16 @@ const TOWN_RESOURCES = [
           blurb: 'The town\'s own community portal — history, heritage, families, schools, festivals and a forum, written by people who live here.' },
     bn: { title: 'Uttarpara.com',
           blurb: 'শহরের নিজের পোর্টাল — ইতিহাস, হেরিটেজ, পুরনো পরিবার, স্কুল, উৎসব, ফোরাম। লিখছেন যাঁরা এখানেই থাকেন।' },
+    facts: [
+      { en: ['What it is', 'a community-run portal for the town'],
+        bn: ['কী', 'শহরের লোকেদের নিজেদের চালানো পোর্টাল'] },
+      { en: ['Covers', 'history, heritage, families, education, culture, travel'],
+        bn: ['কী থাকে', 'ইতিহাস, হেরিটেজ, পরিবার, শিক্ষা, সংস্কৃতি, ঘোরাঘুরি'] },
+      { en: ['Its own description', '“A heritage town with a captivating blend of history and vibrant culture”'],
+        bn: ['নিজেদের কথায়', '“ইতিহাস আর সজীব সংস্কৃতির মেলবন্ধনে গড়া এক হেরিটেজ শহর”'] },
+      { en: ['Contributions', 'residents are invited to send their own stories'],
+        bn: ['লেখা পাঠানো', 'এখানকার বাসিন্দারা নিজেদের গল্প পাঠাতে পারেন'] },
+    ],
   },
   {
     id: 'library',
@@ -305,6 +320,17 @@ const TOWN_RESOURCES = [
           blurb: 'The civic body, constituted 14 April 1853 and the oldest in West Bengal. Its own history page is the source for most of the dates on this page.' },
     bn: { title: 'উত্তরপাড়া-কোতরং পৌরসভা',
           blurb: '১৪ এপ্রিল ১৮৫৩-য় গঠিত, পশ্চিমবঙ্গের প্রাচীনতম। এই পাতার বেশির ভাগ তারিখ ওদের নিজেদের ইতিহাসের পাতা থেকেই নেওয়া।' },
+    facts: [
+      { en: ['Constituted', '14 April 1853'], bn: ['গঠিত', '১৪ এপ্রিল ১৮৫৩'] },
+      { en: ['Standing', 'the oldest municipality in West Bengal'],
+        bn: ['অবস্থান', 'পশ্চিমবঙ্গের প্রাচীনতম পৌরসভা'] },
+      { en: ['Twelve years', 'before Serampore Municipality'],
+        bn: ['বারো বছর', 'শ্রীরামপুর পৌরসভার আগে'] },
+      { en: ['Twenty-three years', 'before the Calcutta Municipal Corporation'],
+        bn: ['তেইশ বছর', 'কলকাতা পৌরসংস্থার আগে'] },
+      { en: ['Covers', 'Uttarpara, Kotrung, Bhadrakali and Hindmotor — 24 wards'],
+        bn: ['এলাকা', 'উত্তরপাড়া, কোতরং, ভদ্রকালী, হিন্দমোটর — ২৪টি ওয়ার্ড'] },
+    ],
   },
   {
     id: 'speech',
