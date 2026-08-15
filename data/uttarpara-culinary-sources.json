@@ -1,0 +1,169 @@
+{
+  "_readme": [
+    "Sources for the culinary journey on uttarpara.html.",
+    "",
+    "EVERY CLAIM IN assets/data/food.js CARRIES A `type` AND A `src` KEY THAT",
+    "POINTS INTO `sources` BELOW. The three types are not decoration and they",
+    "are the whole reason this file exists:",
+    "",
+    "  documented           somebody wrote it down at the time or a named",
+    "                       source records it. State it plainly.",
+    "  historically-informed  not recorded for Uttarpara specifically, but the",
+    "                       surrounding food history makes it a reasonable",
+    "                       reconstruction. The copy must hedge out loud —",
+    "                       'would likely have', 'a plausible table', 'we can",
+    "                       imagine'. Never state it as fact.",
+    "  interpretive         our own reading, or a concept for a future menu.",
+    "                       Labelled as such on the page.",
+    "",
+    "`confidence` is for whoever edits this next, not for the reader. It is not",
+    "rendered anywhere. It exists so that a future developer does not quietly",
+    "promote a medium-confidence reconstruction into a documented fact — which",
+    "is precisely how a website ends up teaching a town a history it never had.",
+    "",
+    "WHAT IS NOT IN HERE, AND WILL NOT GO IN WITHOUT EVIDENCE:",
+    "  · that any dish was invented in Uttarpara",
+    "  · that Portuguese ships docked at Uttarpara",
+    "  · any historical person's favourite dish",
+    "  · that Uttarpara has the best hilsa, or the best fish market, in Bengal",
+    "  · the name of any Uttarpara sweet shop. Searched; nothing with a",
+    "    verifiable founding date or history was found. The sweet chapter is",
+    "    therefore about the custom and names nobody."
+  ],
+
+  "sources": {
+    "municipality": {
+      "title": "Uttarpara-Kotrung Municipality — History of Uttarpara",
+      "url": "https://www.uttarparamunicipality.in/history-of-uttarpara.html",
+      "kind": "primary-official",
+      "supports": [
+        "1704 settlement by Ratneswar Roychowdhury of the Sabarna Chowdhury family",
+        "the area was marshland with fishermen of the Patni and Malo castes, whose trades included fishing and ferrying",
+        "Ootarpara was the northern part of the village of Bally",
+        "the bridge over the Bally Khal opened 14 February 1846",
+        "the English school opened May 1846, part-funded by public subscription",
+        "the hospital opened May 1851",
+        "the municipality was formed 14 April 1853",
+        "named visitors to Uttarpara, described as having visited"
+      ]
+    },
+    "wikiTown": {
+      "title": "Wikipedia — Uttarpara",
+      "url": "https://en.wikipedia.org/wiki/Uttarpara",
+      "kind": "tertiary",
+      "supports": ["position on the Hooghly opposite Dakshineswar", "2011 census population and literacy"]
+    },
+    "sahapedia": {
+      "title": "Sahapedia — Our Food Their Food: A Historical Overview of the Bengali Platter",
+      "url": "https://www.sahapedia.org/our-food-their-food-historical-overview-of-the-bengali-platter",
+      "kind": "scholarly-popular",
+      "supports": [
+        "chillies originated in Central America and spread in India as a substitute for long or black pepper",
+        "potatoes reached Europe via the Spanish in 1570; popular in Calcutta by 1860, avoided by orthodox households well into the twentieth century",
+        "pineapple in Bengal by 1594",
+        "bread and biscuits became contested markers of progress and of caste transgression",
+        "the chop adapted the European cutlet by replacing large pieces of meat with small ones",
+        "omelette entered Bengali as 'mamlet'",
+        "European food advertised in the Calcutta Gazette 1802–1820; Wilson's Auckland Hotel 1841; Peliti's bakery 1881"
+      ]
+    },
+    "creoleBengal": {
+      "title": "Confecting Creole Bengal, from Sandesh to Rosogolla: Textural Transformations and Sonic Recall",
+      "url": "https://www.tandfonline.com/doi/full/10.1080/20549547.2025.2583656",
+      "kind": "peer-reviewed",
+      "supports": [
+        "sandesh and rosogolla are chhana-based and popularly attributed to the Portuguese introduction of milk-curdling to Bengal",
+        "the encounter dates to Portuguese settlement in Bengal in the sixteenth and seventeenth centuries",
+        "sandesh's emergence is placed in 'creole Bengal', when European powers operated in the Hooghly district",
+        "rosogolla is popularly credited to Nabin Chandra Das in Calcutta, 1868"
+      ],
+      "note": "The paper describes the Portuguese attribution as a popular attribution and a collective memory, not as settled fact. The page follows that hedge."
+    },
+    "chhanaPaper": {
+      "title": "Chhana Sweets of West Bengal: A Culinary Legacy",
+      "url": "https://ijels.com/upload_document/issue_files/27IJELS-103202564-Chhana.pdf",
+      "kind": "journal",
+      "supports": [
+        "no mention of chhana in Bengali texts before the sixteenth century",
+        "deliberately curdling milk was considered improper in Hindu practice",
+        "Portuguese cottage cheese is close to Bengali chhana in method"
+      ]
+    },
+    "hilsaHooghly": {
+      "title": "Frontiers in Sustainable Food Systems — Hilsa fisheries in India: fishers in the deltaic Ganga region of river Hooghly",
+      "url": "https://www.frontiersin.org/journals/sustainable-food-systems/articles/10.3389/fsufs.2024.1310077/full",
+      "kind": "peer-reviewed",
+      "supports": [
+        "hilsa (Tenualosa ilisha) is a premium table fish for the Bengali community",
+        "the major Indian distribution of the species is the Bhagirathi–Hooghly component of the Ganga river system"
+      ]
+    },
+    "hooghlyFish": {
+      "title": "Fish diversity in Hooghly district",
+      "url": "https://www.ijrar.org/papers/IJRAR23B2161.pdf",
+      "kind": "journal",
+      "supports": ["rohu, mrigel, hilsa, silver carp, lata, koi and pangas are common and in demand in Hooghly district fish markets"]
+    },
+    "vidyasagarWiki": {
+      "title": "Wikipedia — Ishwar Chandra Vidyasagar",
+      "url": "https://en.wikipedia.org/wiki/Ishwar_Chandra_Vidyasagar",
+      "kind": "tertiary",
+      "supports": [
+        "born Ishwar Chandra Bandyopadhyay, 1820–1891",
+        "a childhood of scarcity in Calcutta: household chores after school, studying under street lamps to save lamp oil"
+      ],
+      "note": "No credible source found for a favourite dish. None is claimed."
+    },
+    "aurobindoDiet": {
+      "title": "Was Sri Aurobindo a Vegetarian?",
+      "url": "http://malankazlev.com/kheper/topics/Aurobindo/was_Sri_Aurobindo_a_vegetarian.html",
+      "kind": "compiled-biographical",
+      "supports": [
+        "he was not vegetarian in early life and still ate meat in Pondicherry into the early 1920s",
+        "he gave up meat as the sadhana deepened, not on sentimental grounds",
+        "from the ashram's beginning a vegetarian regime was the norm"
+      ]
+    },
+    "aurobindoOnFood": {
+      "title": "Sri Aurobindo — on vegetarianism and diet (Auro Society)",
+      "url": "https://renaissance.aurosociety.org/on-vegetarianism-compassion-and-equality-a-conversation-with-sri-aurobindo/",
+      "kind": "primary-quotation",
+      "supports": [
+        "his own guidance was that light food sufficient for strength is best and meat not advisable",
+        "he held that abstention helps but that the change of consciousness can come without it"
+      ]
+    },
+    "saioc": {
+      "title": "Sri Aurobindo Institute — Sri Aurobindo in Calcutta, the Uttarpara speech",
+      "url": "http://www.sriaurobindoinstitute.org/saioc/Sri_Aurobindo/calcutta/uttarpara_jaykrishna_library",
+      "kind": "institutional",
+      "supports": [
+        "30 May 1909, in the open courtyard on the river side of the library",
+        "a year of solitary confinement in the Alipore case preceded it",
+        "Amarendranath Chatterjee fetched him from Calcutta"
+      ]
+    },
+    "wikiLibrary": {
+      "title": "Wikipedia — Uttarpara Public Library",
+      "url": "https://en.wikipedia.org/wiki/Uttarpara_Public_Library",
+      "kind": "tertiary",
+      "supports": [
+        "Michael Madhusudan Dutt stayed two months in 1869 and again in 1873",
+        "Vidyasagar and Mary Carpenter visited in 1866"
+      ],
+      "note": "Records that Madhusudan stayed. Records nothing about what he ate. Nothing is claimed."
+    },
+    "wbhc": {
+      "title": "West Bengal Heritage Commission — Uttarpara Jaikrishna Public Library listing",
+      "url": "https://wbhc.in/home/place_list_all",
+      "kind": "state-official",
+      "supports": ["the listing's own wording, 'the first free public library in India', notified 17 January 2008"]
+    }
+  },
+
+  "open_questions": [
+    "Uttarpara sweet shops: no shop with a verifiable founding date or documented history was found. Named shops need a local source, a plaque, a registration, or the shop itself, before any of them appear on this page.",
+    "Uttarpara fish market: the market on Rajendra Avenue is real and hilsa is a Hooghly fish. Whether it is 'the best' anything is an opinion and is written on the page as one.",
+    "Michael Madhusudan Dutt's food at Uttarpara: no source located. The card says so."
+  ]
+}

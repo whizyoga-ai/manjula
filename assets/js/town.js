@@ -147,6 +147,142 @@
     arm(box.querySelectorAll('.twn-place'));
   }
 
+
+  /* ---------- the food story ----------------------------------------------- */
+
+  /* Chapters, people and ideas out of assets/data/food.js.
+     THE `type` FIELD IS RENDERED, NOT DECORATION. A chapter that is a
+     reconstruction says so on its face — the reader should be able to see
+     which paragraphs are evidence and which are a reading, without having to
+     take our word for the difference. `confidence` is never rendered; it is a
+     note to whoever edits the data next. */
+
+  const FD_TYPE = {
+    documented:   { bn: 'নথিভুক্ত',        en: 'Documented' },
+    informed:     { bn: 'ঐতিহাসিক অনুমান', en: 'Historically informed' },
+    interpretive: { bn: 'আমাদের পাঠ',      en: 'Our reading' },
+    unknown:      { bn: 'জানা নেই',        en: 'Not known' },
+  };
+
+  function fdStamp(kind, extra) {
+    const t = FD_TYPE[kind];
+    if (!t) return null;
+    const s = el('span', 'fd__stamp fd__stamp--' + kind, (extra || t)[lang()] || t[lang()]);
+    return s;
+  }
+
+  function fdSources(keys) {
+    if (!keys || !keys.length) return null;
+    const p = el('p', 'fd__src');
+    p.append(document.createTextNode(isBn() ? 'সূত্র: ' : 'Source: '));
+    keys.forEach((k, i) => {
+      const s = src(k);
+      if (!s) return;
+      if (i) p.append(document.createTextNode(' · '));
+      const a = el('a', null, s.label[lang()]);
+      a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+      p.append(a);
+    });
+    return p;
+  }
+
+  function renderFoodChapters() {
+    const ol = document.getElementById('foodChapters');
+    if (!ol || typeof FOOD_CHAPTERS === 'undefined') return;
+    ol.innerHTML = '';
+    FOOD_CHAPTERS.forEach((c, i) => {
+      const li = el('li', 'fd__ch' + (i % 2 ? ' is-flip' : '') + (c.img ? '' : ' is-textonly'));
+
+      if (c.img) {
+        const fig = el('figure', 'fd__fig');
+        const img = el('img');
+        img.src = `assets/img/food/${c.img}.jpg`;
+        img.width = 1152; img.height = 768;
+        img.loading = i === 0 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        img.alt = c[lang()] ? '' : '';
+        img.addEventListener('error', () => fig.remove());
+        fig.append(img);
+        /* Every image says what it is, and the two disclosures are not
+           interchangeable. A scene set in 1704 or 1859 is a reconstruction of
+           a past nobody photographed. The present-day ones are made pictures
+           of a present that could have been photographed and was not — which
+           is a different admission, and the one the dish pages already make.
+           Captioning today's counter as a "historical reconstruction" would
+           be its own small untruth. */
+        const past = c.type === 'informed';
+        fig.append(el('figcaption', null, past
+          ? (isBn() ? 'কল্পনানির্ভর পুনর্নির্মাণ — সমসাময়িক ছবি নয়।'
+                    : 'Artistic reconstruction — not a contemporary picture.')
+          : (isBn() ? 'বানানো ছবি, ক্যামেরায় তোলা নয়।'
+                    : 'A made picture, not a photograph.')));
+        li.append(fig);
+      }
+
+      const box = el('div', 'fd__txt');
+      const head = el('div', 'fd__head');
+      head.append(el('p', 'fd__era', c.era[lang()]));
+      const st = fdStamp(c.type);
+      if (st) head.append(st);
+      box.append(head);
+      box.append(el('h3', null, c.ttl[lang()]));
+      box.append(el('p', 'fd__lede', c.lede[lang()]));
+      if (c.body) box.append(el('p', null, c.body[lang()]));
+
+      if (c.plate) {
+        const pl = el('div', 'fd__plate');
+        pl.append(el('p', 'fd__plate__lbl', c.plate.label[lang()]));
+        const ul = el('ul');
+        c.plate.items[lang()].forEach((it) => ul.append(el('li', null, it)));
+        pl.append(ul);
+        box.append(pl);
+      }
+      if (c.note) box.append(el('p', 'fd__note', c.note[lang()]));
+      if (c.kicker) box.append(el('p', 'fd__kick', c.kicker[lang()]));
+      const sr = fdSources(c.src);
+      if (sr) box.append(sr);
+
+      li.append(box);
+      ol.append(li);
+    });
+    arm(ol.querySelectorAll('.fd__ch'));
+  }
+
+  function renderFoodPeople() {
+    const box = document.getElementById('foodPeople');
+    if (!box || typeof FOOD_PEOPLE === 'undefined') return;
+    box.innerHTML = '';
+    FOOD_PEOPLE.forEach((p) => {
+      const card = el('article', 'fd-card');
+      const head = el('div', 'fd-card__head');
+      head.append(el('h3', null, p.name[lang()]));
+      const st = fdStamp(p.stamp.kind, p.stamp);
+      if (st) head.append(st);
+      card.append(head);
+      if (p.years) card.append(el('p', 'fd-card__yr', p.years));
+      card.append(el('p', null, p.body[lang()]));
+      if (p.kicker) card.append(el('p', 'fd__kick', p.kicker[lang()]));
+      const sr = fdSources(p.src);
+      if (sr) card.append(sr);
+      box.append(card);
+    });
+    arm(box.querySelectorAll('.fd-card'));
+  }
+
+  function renderFoodIdeas() {
+    const box = document.getElementById('foodIdeas');
+    if (!box || typeof FOOD_IDEAS === 'undefined') return;
+    box.innerHTML = '';
+    FOOD_IDEAS.forEach((it) => {
+      const card = el('article', 'fd-idea');
+      card.append(el('p', 'fd-idea__from', it.from));
+      card.append(el('h3', null, it[lang()].n));
+      card.append(el('p', null, it[lang()].d));
+      box.append(card);
+    });
+    arm(box.querySelectorAll('.fd-idea'));
+  }
+
   /* ---------- sources and picture credits --------------------------------- */
 
   function renderSources() {
@@ -487,6 +623,9 @@
     renderPeople();
     renderLearning();
     renderPlaces();
+    renderFoodChapters();
+    renderFoodPeople();
+    renderFoodIdeas();
     renderSources();
     loaded.clear();                  // language changed: panels must be rebuilt
     buildTabs();

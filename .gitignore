@@ -9,3 +9,7 @@ assets/video/kitchen/
 # scripts/derive-dish-assets.py rebuilds from these. Thirty megabytes of PNG has no business
 # in a shop's website repo.
 assets/img/dish/*.png
+
+# Era renders for the food story: 1152x768 PNG masters. The page loads the
+# jpgs that scripts/derive-food-images.py builds from these.
+assets/img/food/*.png

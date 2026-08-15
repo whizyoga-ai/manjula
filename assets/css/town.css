@@ -514,3 +514,166 @@ html[data-lang="bn"] .twn-src__pics { line-height: 1.95; }
   .twn-lib__fig { position: static; }
   .twn-frame { height: clamp(360px, 62vh, 520px); }
 }
+
+/* ==========================================================================
+   THE FOOD STORY
+
+   Alternating chapters down the page, each with its own image, so the story
+   unfolds as you scroll rather than sitting there as one static graphic. The
+   client asked for exactly that and was right to.
+
+   HISTORY SLOWLY ACQUIRING COLOUR. Each chapter carries a filter keyed to its
+   era: 1704 misty and green, the trade years warm, the nineteenth century
+   sepia and brass, 1900 the colour of tea and newsprint, today untouched. It
+   is done in CSS rather than baked into the files, so a rerendered image drops
+   in without having to be graded first.
+   ========================================================================== */
+
+.fd { padding: clamp(3rem, 7vw, 5.5rem) 0; background: var(--paper); }
+.fd__rule {
+  margin-top: 1.2rem; padding: .9rem 1.1rem; border-radius: 10px;
+  background: var(--paper-2); border-left: 3px solid var(--brew);
+  font-size: .95rem; line-height: 1.7; color: var(--text-dim); max-width: 68ch;
+}
+html[data-lang="bn"] .fd__rule { line-height: 1.95; }
+.fd__rule b { color: var(--text); }
+
+.fd__chapters { list-style: none; margin: clamp(2rem, 5vw, 3.5rem) 0 0; padding: 0; }
+.fd__ch {
+  display: grid; gap: clamp(1.2rem, 3.5vw, 3rem); align-items: center;
+  padding: 0 0 clamp(2.5rem, 6vw, 4.5rem);
+}
+@media (min-width: 860px) {
+  .fd__ch { grid-template-columns: 1.05fr .95fr; }
+  .fd__ch.is-flip .fd__fig { order: 2; }
+  .fd__ch.is-textonly { grid-template-columns: 1fr; max-width: 68ch; }
+}
+.fd__fig { margin: 0; }
+.fd__fig img {
+  width: 100%; height: auto; display: block; border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: filter .8s ease;
+}
+.fd__fig figcaption {
+  margin-top: .5rem; font-size: .74rem; color: var(--text-dim); line-height: 1.6;
+  letter-spacing: .02em;
+}
+html[data-lang="bn"] .fd__fig figcaption { font-size: .82rem; line-height: 1.8; }
+
+/* the page warms up as it comes forward in time */
+.fd__ch:nth-child(1) .fd__fig img { filter: saturate(.72) sepia(.14) brightness(1.02) contrast(.96); }
+.fd__ch:nth-child(2) .fd__fig img { filter: saturate(.82) sepia(.12); }
+.fd__ch:nth-child(3) .fd__fig img { filter: saturate(.86) sepia(.16) contrast(1.02); }
+.fd__ch:nth-child(4) .fd__fig img { filter: saturate(.9) sepia(.1) contrast(1.02); }
+.fd__ch:nth-child(5) .fd__fig img { filter: saturate(.94) sepia(.05); }
+.fd__ch:nth-child(6) .fd__fig img,
+.fd__ch:nth-child(7) .fd__fig img,
+.fd__ch:nth-child(8) .fd__fig img { filter: none; }
+
+.fd__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem .9rem; margin-bottom: .5rem; }
+.fd__era {
+  margin: 0; font-family: var(--display); font-weight: 600;
+  font-size: clamp(1.3rem, 3.4vw, 1.9rem); line-height: 1.1;
+  color: var(--yolk); font-variant-numeric: tabular-nums;
+}
+html[data-lang="bn"] .fd__era { font-family: var(--display-bn); line-height: 1.72; font-variant-numeric: normal; }
+
+/* The label saying which kind of writing this is. Deliberately legible rather
+   than a discreet little tag — the distinction is the point of the section,
+   not a footnote to it. */
+.fd__stamp {
+  font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: .22rem .6rem; border-radius: 999px; white-space: nowrap;
+  border: 1px solid currentColor;
+}
+html[data-lang="bn"] .fd__stamp { letter-spacing: .02em; text-transform: none; font-size: .8rem; line-height: 1.7; }
+.fd__stamp--documented   { color: var(--leaf); background: rgba(47,125,91,.09); }
+.fd__stamp--informed     { color: var(--brew); background: rgba(31,111,139,.09); }
+.fd__stamp--interpretive { color: var(--stool); background: var(--stool-soft); }
+.fd__stamp--unknown      { color: var(--chilli); background: rgba(184,64,47,.08); }
+
+.fd__txt h3 { margin: 0 0 .7rem; font-size: clamp(1.15rem, 2.6vw, 1.5rem); line-height: 1.3; }
+html[data-lang="bn"] .fd__txt h3 { line-height: 1.6; }
+.fd__txt p { margin: 0 0 .8rem; color: var(--text-dim); line-height: 1.75; max-width: 62ch; }
+html[data-lang="bn"] .fd__txt p { line-height: 1.98; }
+.fd__lede { color: var(--text) !important; font-size: 1.02rem; }
+
+.fd__plate {
+  margin: 1rem 0; padding: .9rem 1.1rem; border-radius: 10px;
+  background: var(--paper-2); border: 1px dashed var(--rule);
+}
+.fd__plate__lbl {
+  margin: 0 0 .5rem !important; font-size: .78rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+html[data-lang="bn"] .fd__plate__lbl { letter-spacing: .02em; text-transform: none; font-size: .88rem; line-height: 1.8; }
+.fd__plate ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem .5rem; }
+.fd__plate li {
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 999px;
+  padding: .2rem .7rem; font-size: .88rem; color: var(--text);
+}
+html[data-lang="bn"] .fd__plate li { line-height: 1.75; }
+
+.fd__note {
+  border-left: 3px solid var(--marigold); padding: .1rem 0 .1rem .9rem;
+  font-size: .93rem !important;
+}
+.fd__kick {
+  font-family: var(--display); font-size: 1.05rem !important;
+  color: var(--text) !important; line-height: 1.55 !important;
+}
+html[data-lang="bn"] .fd__kick { font-family: var(--display-bn); line-height: 1.85 !important; }
+.fd__src { margin: .6rem 0 0 !important; font-size: .76rem !important; color: var(--text-dim); }
+html[data-lang="bn"] .fd__src { font-size: .84rem !important; line-height: 1.8 !important; }
+.fd__src a { color: inherit; }
+.fd__src a:hover { color: var(--stool); }
+
+/* ---------- the people ---------------------------------------------------- */
+
+.fd-people { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+.fd-people .sec-head h2 { color: var(--chalk); }
+.fd-people .sec-head p { color: var(--chalk-dim); }
+.fd-people__grid {
+  display: grid; gap: clamp(1rem, 2.4vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  margin-top: clamp(1.6rem, 4vw, 2.6rem);
+}
+.fd-card {
+  border: 1px solid rgba(var(--chalk-rgb), .14); border-radius: var(--radius);
+  background: rgba(var(--chalk-rgb), .04); padding: 1.2rem 1.3rem 1.3rem;
+}
+.fd-card__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .8rem; }
+.fd-card__head h3 { margin: 0; font-size: 1.08rem; color: var(--chalk); line-height: 1.4; }
+html[data-lang="bn"] .fd-card__head h3 { line-height: 1.7; }
+.fd-card__yr { margin: .3rem 0 .6rem !important; font-size: .8rem; color: var(--chalk-fade); font-variant-numeric: tabular-nums; }
+.fd-card p { margin: 0 0 .6rem; color: var(--chalk-dim); font-size: .95rem; line-height: 1.72; }
+html[data-lang="bn"] .fd-card p { line-height: 1.95; }
+.fd-card .fd__kick { color: var(--chalk) !important; }
+.fd-card .fd__src { color: var(--chalk-fade); }
+.fd-card .fd__src a:hover { color: var(--marigold-2); }
+.on-ink .fd__stamp--documented   { color: #7fd3ab; background: rgba(47,125,91,.18); }
+.on-ink .fd__stamp--informed     { color: #7fc6e0; background: rgba(31,111,139,.2); }
+.on-ink .fd__stamp--interpretive { color: #c9adf0; background: rgba(109,63,168,.24); }
+.on-ink .fd__stamp--unknown      { color: #f0a294; background: rgba(184,64,47,.2); }
+
+/* ---------- the ideas ----------------------------------------------------- */
+
+.fd-ideas { padding: clamp(3rem, 7vw, 5rem) 0; background: var(--paper-2); }
+.fd-ideas__grid {
+  display: grid; gap: clamp(.9rem, 2.2vw, 1.4rem);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: clamp(1.4rem, 3.5vw, 2.4rem);
+}
+.fd-idea {
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: var(--radius); padding: 1.1rem 1.2rem; box-shadow: var(--shadow);
+}
+.fd-idea__from {
+  margin: 0 0 .3rem; font-family: var(--display); font-weight: 600;
+  color: var(--yolk); font-size: .95rem; font-variant-numeric: tabular-nums;
+}
+.fd-idea h3 { margin: 0 0 .45rem; font-size: 1.05rem; line-height: 1.4; }
+html[data-lang="bn"] .fd-idea h3 { line-height: 1.7; }
+.fd-idea p { margin: 0; color: var(--text-dim); font-size: .92rem; line-height: 1.7; }
+html[data-lang="bn"] .fd-idea p { line-height: 1.95; }
+.fd-ideas__cta { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: clamp(1.6rem, 4vw, 2.4rem); }
