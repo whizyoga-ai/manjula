@@ -557,19 +557,31 @@
       body.append(m);
     }
 
-    // The group's own line about itself, then the story's opening paragraph
-    // if the page has the stories loaded. Between them that is a real
-    // paragraph of reading rather than a name and a number blown up.
-    const gnote = document.createElement('p');
-    gnote.className = 'dishdlg__note';
-    gnote.textContent = bn ? group.bn.note : group.en.note;
-    body.append(gnote);
+    /* THIS DISH, NOT ITS FAMILY.
+       It used to print the group's one-line note and then the origin story's
+       opening paragraph. Both are written per family, so all four toasts said
+       the same thing and all five momos said the same thing — and the story
+       paragraph was a word-for-word preview of the page the button two inches
+       below already goes to. Four taps and the reader has learnt the dialog
+       has nothing to tell them.
 
-    if (story) {
-      const lede = document.createElement('p');
-      lede.className = 'dishdlg__lede';
-      lede.innerHTML = bn ? story.lede.bn : story.lede.en;
-      body.append(lede);
+       menu.js now carries a `desc` per item: what this one is, what is in it,
+       and what it changes from the one directly above it on the card, since
+       the reader tapping "egg maggie" has almost certainly just read "plain
+       maggie". The link stays for the history, which is what it is for. */
+    const desc = item.desc && (bn ? item.desc.bn : item.desc.en);
+    if (desc) {
+      const d = document.createElement('p');
+      d.className = 'dishdlg__desc';
+      d.textContent = desc;
+      body.append(d);
+    } else {
+      // No per-item copy written yet: the group's line is thin, but it is
+      // better than an empty panel and it is never wrong.
+      const gnote = document.createElement('p');
+      gnote.className = 'dishdlg__note';
+      gnote.textContent = bn ? group.bn.note : group.en.note;
+      body.append(gnote);
     }
 
     const actions = document.createElement('div');
