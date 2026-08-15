@@ -197,18 +197,33 @@ const FOOD_CHAPTERS = [
 
   {
     id: 'manjula',
-    img: 'manjula-table',
-    era:   { bn: 'আজ ও আগামী', en: 'Now, and next' },
+    img: 'manjula-collage',
+    era:   { bn: '২০২৬ ও তারপর', en: '2026 and beyond' },
     type: 'interpretive', src: [], confidence: 'high',
-    ttl: { bn: 'আর এখন, আরও একটা ছোট রান্নাঘর',
-           en: 'And now, one more small kitchen' },
+    ttl: { bn: 'এবার নিজেদের একটু ইতিহাস গড়ার পালা',
+           en: 'Here to make a little history of our own' },
     lede: {
-      bn: 'তিনশো বছর ধরে এখানকার খাওয়া বদলেছে যখনই নতুন লোক, নতুন জিনিস আর নতুন ভাবনা এসেছে — নদী দিয়ে, সড়ক দিয়ে, রেল দিয়ে। মঞ্জুলা সেই ধারাবাহিকতার শেষ নাম, এইটুকুই।',
-      en: 'For three hundred years the food here has changed whenever new people, new ingredients and new ideas arrived — by river, by road, by rail. Manjula is the latest name in that sequence, and no more than that.',
+      bn: 'তিনশো বছর ধরে এখানকার খাওয়া বদলেছে যখনই নতুন লোক, নতুন জিনিস আর নতুন ভাবনা এসেছে — নদী দিয়ে, সড়ক দিয়ে, রেল দিয়ে। এতক্ষণ যা পড়লেন, সেটা অন্যদের গড়ে তোলা। এই অধ্যায়টা এখনও লেখা হয়নি।',
+      en: 'For three hundred years the food here has changed whenever new people, new ingredients and new ideas arrived — by river, by road, by rail. Everything above this was built by other people. This chapter has not been written yet.',
     },
     body: {
-      bn: 'আমরা উত্তরপাড়ার হারানো রেসিপি উদ্ধার করিনি, করার দাবিও নেই। দুই বোন মোমো বানান, চা করেন, স্কুলের ছুটি হলে ভিড় হয়। গল্পটা শহরের, আমরা কেবল আরেকটা পাতা।',
-      en: 'We have not recovered Uttarpara’s lost recipes and are not claiming to. Two sisters make momos and brew tea, and there is a queue when the school bell goes. The story belongs to the town. We are one more page of it.',
+      bn: 'মঞ্জুলা বাইট অ্যান্ড ব্রু ২০২৬-এ খুলেছে, ১৭/এ ব্যানার্জি পাড়া স্ট্রিটে — উত্তরপাড়া গার্লস হাই স্কুলের সঙ্গে একই ওয়ার্ডে। এক কামরার দোকান, চালান দুই বোন। উদ্বোধনের দিন চা আর কফি ছিল বিনা পয়সায়, একদিনই। রোজ সকাল ন’টায় স্টিমার বসে, নামে রাত ন’টায়। ছুটির ঘণ্টা পড়লে কাউন্টারে যে ভিড়টা হয়, সেটাই দিনের সবচেয়ে ব্যস্ত মিনিট।',
+      en: 'Manjula Bite & Brew opened in 2026 at 17/A Banerjee Para Street, in the same municipal ward as the Uttarpara Girls’ High School. One room, run by two sisters. On the opening day the tea and the coffee were free, and on that day only. The steamer goes on at nine in the morning and comes off at nine at night. The rush when the school bell goes is the busiest minute of the day.',
+    },
+    plate: {
+      label: { bn: 'কার্ডে যা আছে, আজ', en: 'What is on the card, today' },
+      items: {
+        bn: ['পাঁচ রকম মোমো', 'স্টু পাউরুটি', 'চার রকম টোস্ট', 'চার রকম ডিম', 'চার রকম ম্যাগি', 'চর্বি ঘুগনি', 'চা ও কফি'],
+        en: ['Five kinds of momo', 'Bread and chicken stew', 'Four toasts', 'Four eggs', 'Four maggis', 'Mutton fat ghugni', 'Tea and coffee'],
+      },
+    },
+    note: {
+      bn: 'আমরা উত্তরপাড়ার হারানো রেসিপি উদ্ধার করিনি, করার দাবিও নেই। ওপরের ছবিটা কল্পনা নয় — কার্ডের কুড়িটা পদ, কুড়িটাই।',
+      en: 'We have not recovered Uttarpara’s lost recipes and are not claiming to. The picture above is not an impression of anything: it is the twenty dishes on the card, all twenty of them.',
+    },
+    kicker: {
+      bn: 'শহরটা তিনশো বছর ধরে রেঁধে আসছে। আমরা সবে উনুন ধরিয়েছি।',
+      en: 'The town has been cooking for three hundred years. We have only just lit the stove.',
     },
   },
 ];

@@ -189,14 +189,14 @@
 
   function renderFoodChapters() {
     const ol = document.getElementById('foodChapters');
-    const closing = document.getElementById('foodClosing');
     if (!ol || typeof FOOD_CHAPTERS === 'undefined') return;
     ol.innerHTML = '';
-    if (closing) closing.innerHTML = '';
-    /* The story runs 1704 to today at the top of the page. The last chapter
-       is about this shop, and it reads as an ending — so it renders down at
-       the close instead, where the page is already finishing. One list in the
-       data, two places on the page. */
+    /* All of it in one run, ending on 2026. The last chapter was briefly
+       rendered down at the foot of the page, on the reasoning that finishing
+       at the shop and then restarting at 1704 was a bounce. It reads better
+       as written: a chapter that is explicitly about what happens next is a
+       hand-off rather than an ending, and the history below it becomes the
+       answer to how the town got here. */
     FOOD_CHAPTERS.forEach((c, i) => {
       const li = el('li', 'fd__ch' + (i % 2 ? ' is-flip' : '') + (c.img ? '' : ' is-textonly'));
 
@@ -250,7 +250,7 @@
       if (sr) box.append(sr);
 
       li.append(box);
-      (c.id === 'manjula' && closing ? closing : ol).append(li);
+      ol.append(li);
     });
     arm(document.querySelectorAll('.fd__ch'));
   }

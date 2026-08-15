@@ -698,11 +698,15 @@ html[data-lang="bn"] .fd-oral p:not(.fd-oral__lbl) { line-height: 1.98; }
 .fd__stamp--local { color: var(--stool-ink); background: #fff; }
 .on-ink .fd__stamp--local { color: #d6c2f5; background: rgba(109,63,168,.3); }
 
-/* The closing chapter, rendered down at the end of the page rather than at
-   the end of the story at the top. Same markup, no trailing gap. */
-.fd__chapters--closing { margin: 0 0 clamp(1.5rem, 4vw, 2.5rem); }
-.fd__chapters--closing .fd__ch { padding-bottom: 0; }
-/* The era grading is keyed to nth-child, and in its own list the closing
-   chapter is child one — which would have handed today's counter the 1704
-   mist. It is the present; it gets the present's colour. */
-.fd__chapters--closing .fd__fig img { filter: none !important; }
+/* THE CLOSING CHAPTER RUNS FULL WIDTH.
+   Its image is a mosaic of all twenty dishes on the card, and twenty tiles
+   squeezed into the alternating two-column layout are twenty postage stamps.
+   It gets the whole column, image above text, which also lands the section on
+   a wide picture rather than trailing off in a half-width one. */
+@media (min-width: 860px) {
+  .fd__ch:last-child { grid-template-columns: 1fr; gap: clamp(1rem, 2.5vw, 1.8rem); }
+  .fd__ch:last-child .fd__fig { order: 0; }
+  .fd__ch:last-child .fd__txt { max-width: 74ch; }
+  .fd__ch:last-child .fd__txt p { max-width: 74ch; }
+}
+.fd__ch:last-child { padding-bottom: 0; }
