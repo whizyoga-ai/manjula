@@ -138,9 +138,15 @@ const PAGES = (function () {
           <figure class="dishclip">
             <video muted loop playsinline preload="none" poster="assets/video/dish/${d.clip}.jpg"
                    data-src="assets/video/dish/${d.clip}.mp4" aria-hidden="true"></video>
+            <!-- The caption used to end "— see docs/SOURCES.md", which is a
+                 path in a source repository. A customer reading a Bengali
+                 page about momos has no idea what that is, and clicking it
+                 downloads a markdown file, because that is what the server
+                 sends for text/markdown. The honesty stays; the engineering
+                 artefact does not belong in the shop window. -->
             <figcaption>${lang() === 'en'
-              ? 'Six seconds in the kitchen. Generated, not filmed — see docs/SOURCES.md.'
-              : 'রান্নাঘরের ছ’ সেকেন্ড। তোলা ছবি নয়, বানানো — docs/SOURCES.md দেখুন।'}</figcaption>
+              ? 'Six seconds in the kitchen. Made, not filmed.'
+              : 'রান্নাঘরের ছ’ সেকেন্ড। ক্যামেরায় তোলা নয়, বানানো।'}</figcaption>
           </figure>`
           /* Egg and ghugni never got a clip, so their pages had the drawn
              plate and nothing else while the other five had moving pictures.
@@ -152,8 +158,8 @@ const PAGES = (function () {
             <img src="assets/img/reel/${d.still}.jpg" width="900" height="1200"
                  loading="lazy" decoding="async" alt="">
             <figcaption>${lang() === 'en'
-              ? 'A made picture, not a photograph — see docs/SOURCES.md.'
-              : 'বানানো ছবি, ক্যামেরায় তোলা নয় — docs/SOURCES.md দেখুন।'}</figcaption>
+              ? 'A made picture, not a photograph.'
+              : 'বানানো ছবি, ক্যামেরায় তোলা নয়।'}</figcaption>
           </figure>` : ''}
         </div>
       </div>
