@@ -1,38 +1,53 @@
 /* ==========================================================================
-   The reel — scenes from the kitchen.
+   The reel — the kitchen, as a story.
 
-   Seven scenes in a phone frame, running like a story: progress bars across
-   the top, auto-advance, tap either half to go back or forward, and a slow
-   drift on every frame so the screen is never once still.
+   TWELVE SCENES, AND THE FIRST FIVE ARE REAL VIDEO.
 
-   TWO KINDS OF SCENE, AND THE DIFFERENCE MATTERS.
+   `vid: true` marks a clip cut from the shop's own footage — Video1.mp4 and
+   video2.mp4 in C:\Customers\Manjula. Real room, real counter, real slate,
+   real hands on a real steamer. These lead the reel, because they are the
+   only frames on this site that are unarguably this shop.
 
-     `price` set   — a dish on the shop's printed card. It gets its price and
-                     an order button, because you can walk in and buy it.
-     no `price`    — atmosphere. The wok, the counter, the rolls, the puchka.
-                     Caption only, no price, no order button. These say "this
-                     is what the kitchen is like", not "this is for sale",
-                     and the absence of a price is what keeps that line clean
-                     without needing a disclaimer to say so.
+   The rest are AI-generated stills and the faces in them are not the two
+   sisters. `menu idea/we are the champion.jpg` is the sisters; five scenes
+   were removed once that was clear — stew, fried momo, mutton steam, mutton
+   fried and the counter shot, which was the worst of them because it read as
+   "here are the owners". So no caption anywhere names anybody: they say what
+   is happening in the kitchen, never who is doing it.
 
-   ON THE IMAGES. These are AI-generated scenes and the faces in them are not
-   the two sisters, so no caption here names anybody — they describe what is
-   happening in the kitchen, never who is doing it.
+   TWO KINDS OF SCENE, AND THE DIFFERENCE IS LEGIBLE WITHOUT A DISCLAIMER.
+     `price` set — a dish on the shop's printed card. Name and price shown,
+                   because you can walk in and buy it.
+     no `price`  — atmosphere. Caption only. Nothing implied for sale.
 
-   Five scenes were removed on the client's eye, not on a rule. Stew, fried
-   momo, mutton steam and mutton fried all carried the same unfamiliar woman,
-   spotted across all four at a glance. `counter` followed once the real
-   sisters were identified — `menu idea/we are the champion.jpg` is them, and
-   the two women in that scene were somebody else entirely.
-
-   Corrected renders from the reference photographs in
-   C:\Customers\Manjula\media drop in over these slugs; each is a one-line
-   swap of `f` and nothing else changes.
+   Corrected renders of the styled scenes drop in over these slugs; each is a
+   one-line change and nothing else moves.
    ========================================================================== */
 
 'use strict';
 
 const REELS = [
+  { f: 'steamer',     vid: true, price: 50,
+    bn: 'স্টিমার খুলছে — মোমো তৈরি',  en: 'The steamer coming off',
+    dishBn: 'চিকেন স্টিম মোমো',      dishEn: 'Chicken steam momo',
+    tabBn: 'স্টিমার',                tabEn: 'Steamer' },
+
+  { f: 'counter',     vid: true,
+    bn: 'কাউন্টার — স্টিমার, মেশিন, টুনি লাইট', en: 'The counter: steamer, machine, lights',
+    tabBn: 'কাউন্টার',               tabEn: 'Counter' },
+
+  { f: 'signs',       vid: true,
+    bn: 'ছাদ থেকে ঝোলানো সাইনবোর্ড',  en: 'The signs hanging from the ceiling',
+    tabBn: 'সাইনবোর্ড',              tabEn: 'Signs' },
+
+  { f: 'slate-board', vid: true,
+    bn: 'ফুটপাথের স্লেট',             en: 'The slate on the pavement',
+    tabBn: 'স্লেট',                  tabEn: 'Slate' },
+
+  { f: 'menu-card',   vid: true,
+    bn: 'দেওয়ালের মেনু কার্ড',        en: 'The card on the wall',
+    tabBn: 'মেনু',                   tabEn: 'Card' },
+
   { f: 'momo-steam',   price: 50,
     bn: 'স্টিমারে মোমো বসছে',      en: 'Momos going into the steamer',
     dishBn: 'চিকেন স্টিম মোমো',    dishEn: 'Chicken steam momo',

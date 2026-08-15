@@ -297,12 +297,15 @@ html[data-lang="en"] .hero h1 {
 }
 
 /* the scenes */
-.reel__img {
+.reel__media {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; opacity: 0; transition: opacity .55s ease;
-  transform: scale(1.06);
 }
-.reel__img.is-on { opacity: 1; }
+.reel__media.is-on { opacity: 1; }
+.reel__img { transform: scale(1.06); }
+/* Video already moves. The drift below is only for the stills, which would
+   otherwise sit dead still next to five clips that do not. */
+.reel__vid { transform: none; }
 /* A reel moves. Stills that cross-fade are a slideshow, so every frame drifts
    the whole time it is up and is swapped out before it can settle. The
    animation restarts with the class, which is exactly when a scene arrives. */
@@ -367,7 +370,7 @@ html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reel__img { transition: none; }
+  .reel__media { transition: none; }
   .reel__img.is-on, .reel__img:nth-child(even).is-on { animation: none; transform: scale(1.03); }
   .phone__bars i.is-on b { animation: none; width: 100%; }
 }

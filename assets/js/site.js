@@ -140,13 +140,26 @@
     const frag = document.createDocumentFragment();
 
     REELS.forEach((r, i) => {
-      const img = document.createElement('img');
-      img.className = 'reel__img' + (i === 0 ? ' is-on' : '');
-      img.src = `assets/img/reel/${r.f}.jpg`;
-      img.width = 720; img.height = 1280;
-      if (i === 0) img.fetchPriority = 'high'; else img.loading = 'lazy';
-      img.alt = '';                       // the caption describes the scene
-      frag.append(img);
+      let el;
+      if (r.vid) {
+        // Real footage of the shop. muted + playsinline is what lets a phone
+        // play it inline at all; preload is 'none' because five clips is
+        // 2MB and nobody should pay for four of them to look at the first.
+        el = document.createElement('video');
+        el.muted = true; el.loop = true; el.playsInline = true;
+        el.preload = i === 0 ? 'auto' : 'none';
+        el.setAttribute('aria-hidden', 'true');
+        if (i === 0) el.src = `assets/video/${r.f}.mp4`;
+        el.dataset.src = `assets/video/${r.f}.mp4`;
+      } else {
+        el = document.createElement('img');
+        el.src = `assets/img/reel/${r.f}.jpg`;
+        el.width = 720; el.height = 1280;
+        if (i === 0) el.fetchPriority = 'high'; else el.loading = 'lazy';
+        el.alt = '';                      // the caption describes the scene
+      }
+      el.className = 'reel__media ' + (r.vid ? 'reel__vid' : 'reel__img') + (i === 0 ? ' is-on' : '');
+      frag.append(el);
 
       const bar = document.createElement('i');
       bar.append(document.createElement('b'));
@@ -184,12 +197,32 @@
 
   function paintReel() {
     if (typeof REELS === 'undefined') return;
-    const imgs = document.querySelectorAll('.reel__img');
-    if (!imgs.length) return;
+    const media = document.querySelectorAll('.reel__media');
+    if (!media.length) return;
     const bn = lang() === 'bn';
     const r = REELS[reelAt];
 
-    imgs.forEach((im, i) => im.classList.toggle('is-on', i === reelAt));
+    media.forEach((el, i) => {
+      const on = i === reelAt;
+      el.classList.toggle('is-on', on);
+      if (el.tagName !== 'VIDEO') return;
+      // Fetch a clip when it is up or next, and never before. Pause the ones
+      // that are not showing — five looping videos decoding at once is how a
+      // phone gets hot holding a menu.
+      const near = on || i === (reelAt + 1) % REELS.length;
+      if (near && !el.src) el.src = el.dataset.src;
+      if (on) {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+        // Jumping straight to a tab sets src at click time, so the clip is not
+        // ready yet and that first play() is a no-op. Play again the moment it
+        // can — but only if it is still the scene on screen.
+        el.addEventListener('canplay', function once() {
+          el.removeEventListener('canplay', once);
+          if (el.classList.contains('is-on')) el.play().catch(() => {});
+        });
+      } else el.pause();
+    });
 
     document.querySelectorAll('.phone__bars i').forEach((bar, i) => {
       bar.classList.toggle('is-on', i === reelAt);
