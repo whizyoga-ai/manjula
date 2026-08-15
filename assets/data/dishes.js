@@ -150,6 +150,7 @@ const DISHES = [
   {
     slug: 'egg',
     art: 'd-egg',
+    still: 'omlet',
     tone: 'ink',
     price: '₹12 – ₹30',
     priceNote: { bn: 'সেদ্ধ · পোচ · ওমলেট · চীজ ওমলেট', en: 'boiled · poach · omlet · cheese omlet' },
@@ -214,6 +215,7 @@ const DISHES = [
   {
     slug: 'ghugni',
     art: 'd-ghugni',
+    still: 'charbighugni',
     tone: 'warm',
     price: '₹50',
     priceNote: { bn: 'এখন কার্ডেই আছে', en: 'now on the card' },

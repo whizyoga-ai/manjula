@@ -3,3 +3,9 @@
 # not ship. Finished clips get encoded for the web and moved to assets/video/
 # deliberately; nothing lands on the site by accident.
 assets/video/kitchen/
+
+# Dish renders: 768x1024 PNG masters, ~1.5MB each. The site loads the derived
+# jpgs (assets/img/dish/*.jpg thumbnails, assets/img/reel/*.jpg stills), which
+# scripts/derive-dish-assets.py rebuilds from these. Thirty megabytes of PNG has no business
+# in a shop's website repo.
+assets/img/dish/*.png

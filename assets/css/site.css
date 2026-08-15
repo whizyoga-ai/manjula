@@ -376,14 +376,30 @@ html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
 }
 
 /* scene chips under the phone */
+/* ONE ROW THAT SCROLLS, NOT FOUR THAT WRAP.
+   With eight scenes wrapping was fine. With every dish on the card in the
+   reel there are twenty-odd tabs, and wrapped they become a four-row wall of
+   pills taller than the caption they sit under. Scrolled sideways the strip
+   stays one row at any count, and snapping means a flick lands on a tab
+   rather than between two. The active tab is scrolled into view by the
+   player, so the strip follows the reel on its own. */
 .reel__tabs {
-  display: flex; flex-wrap: wrap; gap: .35rem; justify-content: center;
-  max-width: 30rem;
+  display: flex; flex-wrap: nowrap; gap: .35rem; justify-content: flex-start;
+  max-width: 30rem; width: 100%;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  padding-bottom: .3rem;
+  scrollbar-width: none;                     /* Firefox */
+  -webkit-overflow-scrolling: touch;
 }
+.reel__tabs::-webkit-scrollbar { height: 0; }
+/* Few enough to fit? Then centre them, as before. */
+.reel__tabs { justify-content: safe center; }
 .reel__tabs button {
   border: 1px solid rgba(var(--chalk-rgb), .22); background: transparent; color: var(--chalk-dim);
   border-radius: 999px; padding: .3rem .7rem; font-size: .82rem; cursor: pointer;
   line-height: 1.4;
+  flex: 0 0 auto; scroll-snap-align: center; white-space: nowrap;
 }
 .reel__tabs button:hover { color: var(--chalk); background: rgba(var(--chalk-rgb), .08); }
 .reel__tabs button[aria-current="true"] {
@@ -584,13 +600,29 @@ html[data-lang="en"] .card__head h3 { font-family: var(--display); font-variatio
 .card__note { padding: .7rem 1.2rem 0; color: var(--text-dim); font-size: .9rem; }
 .card ul { list-style: none; margin: 0; padding: .6rem .6rem 1rem; }
 
+/* A picture, the name, the price, the button. The thumbnail column is fixed
+   so twenty rows down six cards the names all start on the same line — a
+   ragged left edge is what you get if the column sizes to the image. */
 .dish {
-  display: grid; grid-template-columns: 1fr auto auto; align-items: center;
+  display: grid; grid-template-columns: 52px 1fr auto auto; align-items: center;
   gap: .5rem .8rem; padding: .58rem .6rem; border-radius: 9px;
 }
+.dish.is-picless { grid-template-columns: 1fr auto auto; }
 .dish:hover { background: var(--paper-2); }
+.dish__pic {
+  width: 52px; height: 52px; border-radius: 8px; object-fit: cover;
+  background: var(--paper-2); box-shadow: 0 1px 3px rgba(0,0,0,.16);
+  transition: transform .18s ease;
+}
+.dish:hover .dish__pic { transform: scale(1.06); }
 .dish__name { font-weight: 500; }
-.dish__meta { grid-column: 1 / -1; font-size: .82rem; color: var(--text-dim); margin-top: -.15rem; }
+/* The note lines up under the name, not under the picture. */
+.dish__meta { grid-column: 2 / -1; font-size: .82rem; color: var(--text-dim); margin-top: -.15rem; }
+.dish.is-picless .dish__meta { grid-column: 1 / -1; }
+@media (max-width: 420px) {
+  .dish { grid-template-columns: 44px 1fr auto auto; gap: .4rem .6rem; }
+  .dish__pic { width: 44px; height: 44px; }
+}
 .dish__price { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .dish__price small { font-weight: 400; color: var(--text-dim); font-size: .78rem; }
 

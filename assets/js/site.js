@@ -142,15 +142,20 @@
     REELS.forEach((r, i) => {
       let el;
       if (r.vid) {
-        // Real footage of the shop. muted + playsinline is what lets a phone
-        // play it inline at all; preload is 'none' because five clips is
-        // 2MB and nobody should pay for four of them to look at the first.
+        // muted + playsinline is what lets a phone play it inline at all;
+        // preload is 'none' because twenty clips is several megabytes and
+        // nobody should pay for nineteen of them to look at the first.
+        //
+        // The poster is the same dish's still. It means the scene is never
+        // blank while its clip is arriving, and if a clip is missing outright
+        // the reel shows the photograph instead of a black rectangle.
         el = document.createElement('video');
         el.muted = true; el.loop = true; el.playsInline = true;
         el.preload = i === 0 ? 'auto' : 'none';
+        el.poster = `assets/img/reel/${r.f}.jpg`;
         el.setAttribute('aria-hidden', 'true');
-        if (i === 0) el.src = `assets/video/${r.f}.mp4`;
-        el.dataset.src = `assets/video/${r.f}.mp4`;
+        if (i === 0) el.src = `assets/video/reel/${r.f}.mp4`;
+        el.dataset.src = `assets/video/reel/${r.f}.mp4`;
       } else {
         el = document.createElement('img');
         el.src = `assets/img/reel/${r.f}.jpg`;
@@ -190,8 +195,9 @@
           el = document.createElement('video');
           el.muted = true; el.loop = true; el.playsInline = true;
           el.preload = 'none';
+          el.poster = `assets/img/reel/${r.f}.jpg`;
           el.setAttribute('aria-hidden', 'true');
-          el.dataset.src = `assets/video/${r.f}.mp4`;
+          el.dataset.src = `assets/video/reel/${r.f}.mp4`;
         } else {
           el = document.createElement('img');
           el.src = `assets/img/reel/${r.f}.jpg`;
@@ -308,6 +314,13 @@
     document.querySelectorAll('.reel__tabs button').forEach((t, i) => {
       t.textContent = bn ? REELS[i].tabBn : REELS[i].tabEn;
       t.setAttribute('aria-current', String(i === reelAt));
+      // The strip is one scrolling row, so with every dish in the reel the
+      // current tab is usually off-screen. Drag it back into view — nearest,
+      // not centre, so a tab already visible does not shunt the row sideways
+      // on every scene change.
+      if (i === reelAt && t.scrollIntoView) {
+        t.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+      }
     });
 
     // Two caption slots now — one on the tablet screen, one under the globe.
@@ -360,6 +373,21 @@
         const li = document.createElement('li');
         li.className = 'dish';
 
+        // A picture of the dish, keyed off the item's own id — no second list
+        // to keep in step with menu.js. If a file is ever missing the thumb
+        // removes itself and the row falls back to the layout it had before
+        // pictures existed, rather than showing a broken-image icon on a menu.
+        const thumb = document.createElement('img');
+        thumb.className = 'dish__pic';
+        thumb.src = `assets/img/dish/${item.id}.jpg`;
+        thumb.width = 96; thumb.height = 96;
+        thumb.loading = 'lazy'; thumb.decoding = 'async';
+        thumb.alt = '';                       // the name is right beside it
+        thumb.addEventListener('error', () => {
+          thumb.remove();
+          li.classList.add('is-picless');
+        });
+
         const name = document.createElement('span');
         name.className = 'dish__name';
         name.textContent = bn ? item.bn : item.en;
@@ -381,7 +409,7 @@
           : `Add ${item.en} to the chit`);
         add.addEventListener('click', () => addToChit(item));
 
-        li.append(name, price, add);
+        li.append(thumb, name, price, add);
 
         const meta = [];
         if (item.pieces) meta.push(bn ? `${bnNum(item.pieces)} পিস` : `${item.pieces} pieces`);

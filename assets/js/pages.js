@@ -118,6 +118,19 @@ const PAGES = (function () {
             <figcaption>${lang() === 'en'
               ? 'Six seconds in the kitchen. Generated, not filmed — see docs/SOURCES.md.'
               : 'রান্নাঘরের ছ’ সেকেন্ড। তোলা ছবি নয়, বানানো — docs/SOURCES.md দেখুন।'}</figcaption>
+          </figure>`
+          /* Egg and ghugni never got a clip, so their pages had the drawn
+             plate and nothing else while the other five had moving pictures.
+             They have a still now — the same render the menu card uses, so
+             the page and the card cannot show different food. Captioned as
+             made, exactly like the clips are. */
+          : d.still ? `
+          <figure class="dishclip dishclip--still">
+            <img src="assets/img/reel/${d.still}.jpg" width="900" height="1200"
+                 loading="lazy" decoding="async" alt="">
+            <figcaption>${lang() === 'en'
+              ? 'A made picture, not a photograph — see docs/SOURCES.md.'
+              : 'বানানো ছবি, ক্যামেরায় তোলা নয় — docs/SOURCES.md দেখুন।'}</figcaption>
           </figure>` : ''}
         </div>
       </div>

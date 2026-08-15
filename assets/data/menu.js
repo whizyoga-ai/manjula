@@ -7,7 +7,7 @@
    in this file — the site says "ask at the counter" instead of guessing.
 
    TWO ITEMS ARE NEWER THAN THE PHOTOGRAPHED CARDS: chicken mutton momo (90)
-   and mutton fat ghugni (30), both added on the client's word. The card
+   and mutton fat ghugni (50), both added on the client's word. The card
    scans on the home page still show the older card, and the captions there
    say so — a photograph that contradicts the list beside it is worse than no
    photograph, so the moment a new card is photographed those files should be

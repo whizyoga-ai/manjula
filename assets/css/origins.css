@@ -365,8 +365,11 @@ html[data-lang="bn"] .film__meta { line-height: 1.5; }
 */
 .dishmedia { display: grid; gap: 1rem; }
 .dishclip { margin: 0; }
-.dishclip video {
-  width: 100%; display: block; border-radius: 12px;
+/* A still sits in the same frame as a clip — egg and ghugni have no clip and
+   should not look like a different kind of page because of it. */
+.dishclip video,
+.dishclip--still img {
+  width: 100%; height: auto; display: block; border-radius: 12px;
   border: 1px solid rgba(var(--chalk-rgb), .16);
   background: var(--ink-2);
   box-shadow: var(--shadow);

@@ -2,7 +2,7 @@
    The mobile nav.
 
    Below 880px the header nav was hidden and nothing took its place, so on a
-   phone the only route to Origins, Films, The name or Uttarpara was knowing
+   phone the only route to Origins, Photographs or Uttarpara was knowing
    the URL. Most of this site's readers are on phones. Most of the site was
    therefore unreachable for most of its visitors.
 
