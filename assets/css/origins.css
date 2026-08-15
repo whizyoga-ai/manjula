@@ -354,3 +354,25 @@ html[data-lang="bn"] .pager__name,
 html[data-lang="bn"] .walk__body h3,
 html[data-lang="bn"] .route .where,
 html[data-lang="bn"] .film__meta { line-height: 1.5; }
+
+/* ---------- the dish clip ----------
+
+   Six seconds of the dish being made, under the drawn plate. Generated
+   locally, from a food-only crop of the real dish — which is why the caption
+   says so rather than leaving a visitor to assume somebody stood in the
+   kitchen with a camera. The drawn plate stays above it: the illustration is
+   the dish's emblem, the clip is what it looks like happening.
+*/
+.dishmedia { display: grid; gap: 1rem; }
+.dishclip { margin: 0; }
+.dishclip video {
+  width: 100%; display: block; border-radius: 12px;
+  border: 1px solid rgba(var(--chalk-rgb), .16);
+  background: var(--ink-2);
+  box-shadow: var(--shadow);
+}
+.dishclip figcaption {
+  margin-top: .5rem; font-size: .78rem; color: var(--text-dim); line-height: 1.5;
+}
+body[data-tone="ink"] .dishclip figcaption { color: var(--chalk-fade); }
+@media (max-width: 900px) { .dishmedia { max-width: 420px; margin-inline: auto; } }

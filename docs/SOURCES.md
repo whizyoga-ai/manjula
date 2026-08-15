@@ -81,7 +81,14 @@ All are short, attributed, and named to their work.
   the assistant's knowledge. It is a document identifier, not customer
   information.
 - **No claim about the food's quality.** Nobody who built this has eaten there.
-- **No AI-generated imagery.** A set of styled promotional images was supplied
+- **The six dish clips are generated, and say so on the page.** Each is six
+  seconds, made locally on an RTX 5090 with CogVideoX-5b-I2V from a food-only
+  crop of the real dish photograph — no face went into the model, so no face
+  comes out. They live on the dish pages under a caption that tells the reader
+  they were generated rather than filmed, because a moving picture of food
+  reads as evidence unless it says otherwise. The **real** video of this shop
+  is on `movies.html`, uncut.
+- **No AI-generated imagery presented as photography.** A set of styled promotional images was supplied
   and was briefly used in the hero. It came out: the shopfront in them is not
   this shopfront, several showed dishes that are not on the card (rolls,
   puchka, a flaming noodle wok, a molecular cocktail), and one presented two

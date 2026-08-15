@@ -109,7 +109,17 @@ const PAGES = (function () {
             <span class="price-note">${d.price} <small>${pick(d.priceNote)}</small></span>
           </div>
         </div>
-        ${plate(d.art, pick(d.name))}
+        <div class="dishmedia">
+          ${plate(d.art, pick(d.name))}
+          ${d.clip ? `
+          <figure class="dishclip">
+            <video muted loop playsinline preload="none" poster="assets/video/dish/${d.clip}.jpg"
+                   data-src="assets/video/dish/${d.clip}.mp4" aria-hidden="true"></video>
+            <figcaption>${lang() === 'en'
+              ? 'Six seconds in the kitchen. Generated, not filmed — see docs/SOURCES.md.'
+              : 'রান্নাঘরের ছ’ সেকেন্ড। তোলা ছবি নয়, বানানো — docs/SOURCES.md দেখুন।'}</figcaption>
+          </figure>` : ''}
+        </div>
       </div>
 
       <nav class="pager wrap" aria-label="${lang() === 'en' ? 'More dishes' : 'আরও পদ'}">
@@ -125,14 +135,30 @@ const PAGES = (function () {
       </nav>`;
   }
 
-  return { initLang, renderIndex, renderDish, lang };
+  /* The clip loads and plays when it reaches the screen, and stops when it
+     leaves. preload="none" until then, so a dish page costs nothing extra to
+     open — the video is a detail somebody scrolls to, not a tax on arriving. */
+  function armClip() {
+    const v = document.querySelector('.dishclip video');
+    if (!v || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          if (!v.src) v.src = v.dataset.src;
+          v.play().catch(() => {});
+        } else v.pause();
+      });
+    }, { threshold: 0.25 }).observe(v);
+  }
+
+  return { initLang, renderIndex, renderDish, armClip, lang };
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
   PAGES.initLang();
   const index = document.getElementById('dishIndex');
   const single = document.getElementById('dishPage');
-  const draw = () => { PAGES.renderIndex(index); PAGES.renderDish(single); };
+  const draw = () => { PAGES.renderIndex(index); PAGES.renderDish(single); PAGES.armClip(); };
   draw();
   document.addEventListener('langchange', draw);
 });

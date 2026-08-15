@@ -14,6 +14,12 @@
                  because those are the only records of this kitchen that
                  exist.
 
+   `clip` names a six-second loop of the dish being made, generated locally on
+   the RTX 5090 with CogVideoX from a food-only crop of the real dish — no face
+   went in, so no face can come out. Only dish.html plays it, lazily, and only
+   the dishes that are actually cooked have one: ghugni is a slate dish nobody
+   filmed, and the egg shelf is four treatments rather than one thing.
+
    `art` names a <symbol> in the sprite that dish.html and origins.html both
    inline. The drawings are original because there is no photograph of a
    fourteenth-century Lhasa dumpling, and stock food photography of somebody
@@ -25,6 +31,7 @@
 const DISHES = [
   {
     slug: 'momo',
+    clip: 'momo-steam',
     art: 'd-momo',
     tone: 'ink',
     price: '₹50 – ₹100',
@@ -70,6 +77,7 @@ const DISHES = [
 
   {
     slug: 'stew',
+    clip: 'stew',
     art: 'd-stew',
     tone: 'paper',
     price: '₹60',
@@ -108,6 +116,7 @@ const DISHES = [
 
   {
     slug: 'toast',
+    clip: 'toast',
     art: 'd-pauruti',
     tone: 'warm',
     price: '₹20 – ₹30',
@@ -165,6 +174,7 @@ const DISHES = [
 
   {
     slug: 'maggi',
+    clip: 'maggi',
     art: 'd-maggi',
     tone: 'paper',
     price: '₹30 – ₹50',
@@ -227,6 +237,7 @@ const DISHES = [
 
   {
     slug: 'cha',
+    clip: 'chai',
     art: 'd-cha',
     tone: 'ink',
     price: '₹10 / ₹15',
