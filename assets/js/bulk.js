@@ -163,7 +163,7 @@
 
     let msg;
     if (bn) {
-      msg = 'নমস্কার। মঞ্জুলা বাইট অ্যান্ড ব্রু-তে একটা বড় অর্ডারের কথা বলতে চাই —\n\n'
+      msg = 'নমস্কার। মঞ্জুলা বাইট অ্যান্ড ব্রু-তে একটা ভূরিভোজের কথা বলতে চাই —\n\n'
           + (lines.length ? lines.join('\n') + `\n\nমোট ${rupees(total())}\n` : '')
           + (when ? `\nকবে: ${when}` : '')
           + (who  ? `\nনাম: ${who}` : '')
@@ -183,7 +183,7 @@
     // somebody retype everything they just picked.
     const mail = document.getElementById('bulkMail');
     if (mail) {
-      const subject = bn ? 'বড় অর্ডার — মঞ্জুলা বাইট অ্যান্ড ব্রু'
+      const subject = bn ? 'ভূরিভোজ — মঞ্জুলা বাইট অ্যান্ড ব্রু'
                          : 'Bulk order — Manjula Bite & Brew';
       mail.href = 'mailto:isha.mukherjee1996@gmail.com'
                 + '?subject=' + encodeURIComponent(subject)
