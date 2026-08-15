@@ -605,7 +605,12 @@
     const call = document.createElement('a');
     call.className = 'btn btn--call';
     call.href = 'tel:+919163538794';
-    call.textContent = bn ? '☎ দোকানে ফোন' : '☎ Call the shop';
+    // "দোকানে ফোন" is a noun — "a phone, at the shop". It is not an
+    // instruction and it is not something anybody says. The verb is required:
+    // দোকানে ফোন করুন. It was cut short to keep the button narrow, which is
+    // never a good enough reason to leave a label ungrammatical; the row of
+    // buttons wraps perfectly well.
+    call.textContent = bn ? '☎ দোকানে ফোন করুন' : '☎ Call the shop';
     actions.append(call);
 
     body.append(actions);
