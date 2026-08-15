@@ -1334,45 +1334,43 @@ html[data-lang="bn"] .dishdlg__lede { line-height: 1.95; }
 }
 
 /* ==========================================================================
-   BENGALI NUMERALS, PINNED TO ONE FACE
+   BENGALI NUMERALS — HIND SILIGURI DRAWS ১ WITHOUT ITS TOP
 
-   Reported as "১ is broken everywhere". The markup was checked and is right —
-   the ghugni count is U+09E7 in the DOM, not some other digit — so the
-   problem is not the text, it is the glyph that renders for it.
+   Root cause, found by rendering the digits to a canvas at 90px and looking
+   at them side by side rather than measuring boxes:
 
-   The site sets Bengali in two faces: Hind Siliguri for body, Noto Serif
-   Bengali for display. Their digits are drawn very differently, and the
-   serif ১ in particular is an ornate form that is easy to misread. Worse, a
-   run of numerals could pick up either face depending on which element it sat
-   in, so the same number looked like two different numbers in two places on
-   one page.
+     Hind Siliguri        ১ is a squat shape sitting at x-height, with the
+                          ascending stroke that makes it a ১ simply absent.
+                          Next to ৮ and ৫ it reads as a ৬.
+     Noto Sans Bengali    ১ is correct — a tall stroke rising well above the
+                          other digits, which is what the letterform is.
+     Noto Serif Bengali   also correct.
 
-   This maps the Bengali digit block — and nothing else — to Hind Siliguri,
-   whose numerals are unambiguous, and puts it first in both stacks. Bengali
-   words are untouched: the unicode-range means this face is never consulted
-   for anything outside U+09E6–09EF. Latin digits are untouched too.
+   So "১ is broken everywhere" was exactly right, and it was never a clipping
+   problem. Nothing was cutting the glyph off; the glyph is drawn that way.
+   Three rounds were spent measuring line boxes and ink extents that were all
+   fine, because the box model was never involved. Hind Siliguri is the body
+   face for Bengali across this whole site, which is why "everywhere".
 
-   The URL is Google's own font file, the same one the stylesheet link already
-   pulls. If Google ever rotates it the @font-face simply fails to load and
-   the digits fall back to the next family in the stack, which is exactly
-   where they are today — so this degrades to the current behaviour rather
-   than to nothing.
+   Worse, the first attempt at a fix pinned ALL Bengali digits to Hind
+   Siliguri — on the theory that the sans digits were the unambiguous ones —
+   which took the broken ১ and put it in the display text too.
+
+   The digit block, and only the digit block, is mapped to Noto Sans Bengali:
+   correct ১, and a sans face, so it sits with Hind Siliguri body text without
+   looking pasted in. Bengali words are untouched — the unicode-range means
+   this face is never consulted outside U+09E6–09EF — and Latin digits are
+   untouched. If Google rotates the file URL the @font-face fails to load and
+   digits fall back to the next family, which is the old behaviour rather than
+   nothing.
    ========================================================================== */
 
 @font-face {
   font-family: 'Manjula Bengali Digits';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 900;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/hindsiliguri/v14/ijwTs5juQtsyLLR5jN4cxBEoTI7ax9k0.woff2) format('woff2');
-  unicode-range: U+09E6-09EF;
-}
-@font-face {
-  font-family: 'Manjula Bengali Digits';
-  font-style: normal;
-  font-weight: 600 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/hindsiliguri/v14/ijwOs5juQtsyLLR5jN4cxBEoREP-0vQVKxGv.woff2) format('woff2');
+  src: url(https://fonts.gstatic.com/s/notosansbengali/v33/Cn-fJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mc4I3mYvNY.woff2) format('woff2');
   unicode-range: U+09E6-09EF;
 }
 

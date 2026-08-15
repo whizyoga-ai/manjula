@@ -197,7 +197,7 @@ const TOWN_LEARNING = [
     en: { n: 'Uttarpara Jaykrishna Public Library',
           d: 'Knowledge made public, and free, in a town of a few thousand people. Reading rooms upstairs, the river behind, and no ticket at the door.' },
     bn: { n: 'উত্তরপাড়া জয়কৃষ্ণ পাবলিক লাইব্রেরি',
-          d: 'হাজার কয়েক লোকের একটা শহরে বই সবার জন্য, বিনা পয়সায়। উপরে পড়ার ঘর, পিছনে গঙ্গা, দরজায় কোনও টিকিট নেই।' } },
+          d: 'হাজার কয়েক লোকের একটা শহরে বই সবার জন্য, বিনা পয়সায়। উপরে পড়ার ঘর, পিছনে গঙ্গা, ঢুকতে পয়সা লাগে না।' } },
 
   { year: '1881', yearBn: '১৮৮১', src: 'wikiRPM', photo: null,
     en: { n: 'Raja Peary Mohan College',
