@@ -1199,3 +1199,65 @@ html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
    the ghost variant needs the page's own ink rather than chalk. */
 .btn--mail { border-color: var(--rule); color: var(--text); }
 .btn--mail:hover { background: var(--paper-2); }
+
+/* ==========================================================================
+   BENGALI NUMERALS — the fixes, gathered in one place
+
+   Reported repeatedly as "the numbers are broken, ১ especially". It could not
+   be reproduced on this machine, where nothing on any page clips: every
+   Bengali element was measured against its own box and against every clipping
+   ancestor, and the overflow was zero everywhere. So rather than chase the
+   screenshot, these are the three real defects found while looking, each of
+   which produces exactly that symptom on a machine where the fonts resolve
+   differently.
+
+   ONE: TABULAR FIGURES WERE BEING ASKED OF BENGALI DIGITS.
+   `font-variant-numeric: tabular-nums` requests the OpenType `tnum` feature.
+   It is a Latin typographic device — equal-width lining figures for columns
+   of accounts — and Bengali digit sets generally do not carry it. Ask a font
+   for a feature it does not have and the browser is free to fall back per
+   glyph, which is how one numeral in a run ends up in a different face at a
+   different size from its neighbours. That is what "১ is broken everywhere"
+   looks like. Tabular figures are switched off for Bengali below; ₹50 in
+   English still lines up in its column, and ৫০ in Bengali is simply set in
+   the font it is written in.
+
+   TWO: A WEIGHT WAS NEVER LOADED. Every page asked Google for Noto Serif
+   Bengali at 500, 600 and 700 — never 400 — while the CSS sets Bengali
+   display text at normal weight in several places. document.fonts.check()
+   confirms 400 was missing. Anything landing on it was rendering in a
+   fallback with its own metrics and its own idea of where a numeral's top
+   is. The font links now request 400 as well, and Hind Siliguri 300 and 700
+   for the same reason.
+
+   THREE: THE YEARS HAD THE TIGHTEST LEADING ON THE SITE. 1.5 is comfortable
+   for Latin and marginal for Bengali, which carries a matra along the top and
+   descenders below. The year elements are the largest Bengali numerals on the
+   site and had the least room; they get 1.72 below.
+   ========================================================================== */
+
+html[data-lang="bn"] .dish__price,
+html[data-lang="bn"] .chit-qty,
+html[data-lang="bn"] .chit-open b,
+html[data-lang="bn"] .hours-strip .big,
+html[data-lang="bn"] .bulk__price,
+html[data-lang="bn"] .bulk__count,
+html[data-lang="bn"] .bulk__line span:first-child,
+html[data-lang="bn"] .dishcard__items b,
+html[data-lang="bn"] .dishcard__price,
+html[data-lang="bn"] .twn-line__yr,
+html[data-lang="bn"] .twn-card__yr,
+html[data-lang="bn"] .twn-ppl__yr,
+html[data-lang="bn"] .twn-speech__year,
+html[data-lang="bn"] .badge {
+  font-variant-numeric: normal;
+  font-feature-settings: normal;
+}
+
+/* Room above the matra and below the descender, at the sizes where the
+   numerals are largest and the leading was tightest. */
+html[data-lang="bn"] .twn-line__yr,
+html[data-lang="bn"] .twn-card__yr,
+html[data-lang="bn"] .twn-snap__grid b,
+html[data-lang="bn"] .board__price,
+html[data-lang="bn"] .hours-strip .big { line-height: 1.72; }

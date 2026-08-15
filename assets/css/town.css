@@ -10,10 +10,16 @@
    gradient line rather than an SVG, so it costs nothing, follows the content
    at any length, and disappears cleanly on a phone.
 
-   BENGALI LINE HEIGHT. Every rule that sets a size on Bengali text sets 1.5
-   or more with it. Bengali carries a matra along the top and descenders
-   below, and 1.3 — which is fine for Latin — clips both. This has bitten
-   this site more than once; the numbers below are deliberate.
+   BENGALI LINE HEIGHT, AND WHY THE NUMBERS ARE IN THIS FILE.
+   Bengali carries a matra along the top and descenders below, so 1.3 — fine
+   for Latin — cuts both. Everything here sets 1.6 or more, and the numerals,
+   which are the largest Bengali glyphs on the page, get 1.72.
+
+   The leading fixes have to live in THIS file, not site.css. town.css loads
+   after it and the selectors tie on specificity, so a correction written in
+   site.css is silently overruled by the original written here. That cascade
+   has now cost time three separate times on this project — once in
+   origins.css and twice here.
    ========================================================================== */
 
 /* ---------- the reveal ---------------------------------------------------- */
@@ -92,7 +98,7 @@ html[data-lang="bn"] .twn-snap__label { letter-spacing: .06em; text-transform: n
   font-family: var(--display); font-size: clamp(1.8rem, 4.4vw, 2.6rem);
   font-weight: 600; color: var(--marigold-2); line-height: 1.1;
 }
-html[data-lang="bn"] .twn-snap__grid b { font-family: var(--display-bn); line-height: 1.5; }
+html[data-lang="bn"] .twn-snap__grid b { font-family: var(--display-bn); line-height: 1.72; }
 .twn-snap__grid li span { color: var(--chalk-dim); font-size: .95rem; line-height: 1.55; }
 html[data-lang="bn"] .twn-snap__grid li span { line-height: 1.75; }
 .twn-snap__note { margin: 0; max-width: 62ch; color: var(--chalk-dim); line-height: 1.7; }
@@ -128,7 +134,7 @@ html[data-lang="bn"] .twn-snap__note { line-height: 1.9; }
   font-size: clamp(1.15rem, 2.6vw, 1.5rem); line-height: 1.25;
   color: var(--text-dim); font-variant-numeric: tabular-nums;
 }
-html[data-lang="bn"] .twn-line__yr { font-family: var(--display-bn); line-height: 1.5; }
+html[data-lang="bn"] .twn-line__yr { font-family: var(--display-bn); line-height: 1.72; }
 .twn-line__item.is-big .twn-line__yr { color: var(--yolk); font-size: clamp(1.35rem, 3vw, 1.9rem); }
 .twn-line__body h3 { margin: 0 0 .35rem; font-size: clamp(1.05rem, 2.2vw, 1.28rem); line-height: 1.35; }
 html[data-lang="bn"] .twn-line__body h3 { line-height: 1.6; }
@@ -187,7 +193,7 @@ html[data-lang="bn"] .twn-lib__txt p { line-height: 2; }
   border-top: 1px solid rgba(var(--chalk-rgb), .12); padding-top: .7rem;
 }
 .twn-facts b { font-family: var(--display); color: var(--marigold-2); font-size: 1rem; }
-html[data-lang="bn"] .twn-facts b { font-family: var(--display-bn); line-height: 1.6; }
+html[data-lang="bn"] .twn-facts b { font-family: var(--display-bn); line-height: 1.72; }
 .twn-facts li > span { color: var(--chalk-dim); font-size: .93rem; line-height: 1.6; }
 html[data-lang="bn"] .twn-facts li > span { line-height: 1.8; }
 @media (max-width: 520px) { .twn-facts li { grid-template-columns: 1fr; gap: .15rem; } }
@@ -307,7 +313,7 @@ html[data-lang="bn"] .twn-ppl__role { line-height: 1.9; }
   font-size: 1.5rem; color: var(--marigold-2); line-height: 1.1;
   font-variant-numeric: tabular-nums;
 }
-html[data-lang="bn"] .twn-card__yr { font-family: var(--display-bn); line-height: 1.5; }
+html[data-lang="bn"] .twn-card__yr { font-family: var(--display-bn); line-height: 1.72; }
 .twn-card h3 { margin: 0 0 .5rem; font-size: 1.06rem; color: var(--chalk); line-height: 1.4; }
 html[data-lang="bn"] .twn-card h3 { line-height: 1.7; }
 .twn-card__d { margin: 0; color: var(--chalk-dim); font-size: .94rem; line-height: 1.7; flex: 1; }

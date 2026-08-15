@@ -1,13 +1,20 @@
 /* ==========================================================================
    The reel — the whole card, moving.
 
-   TWENTY-EIGHT SCENES: the two sisters at either end, the six pictures of
-   them actually working, and every single dish on the printed menu.
+   THIRTY SCENES: the two sisters at either end, eight pictures of the shop
+   actually working, and every single dish on the printed menu.
 
-   THE COOKING SCENES LEAD THEIR FAMILY, ON PURPOSE. A reel of twenty
-   plates that nobody appears to cook is a catalogue. Steamer first, then
-   the five momos; the pan, then the four maggis; the kettle, then the
-   tea. Whoever made it, then what they made.
+   THE COOKING SCENES LEAD AND BREAK UP THEIR FAMILY, ON PURPOSE. A reel of
+   twenty plates that nobody appears to cook is a catalogue. Steamer, then
+   the chicken momos, then the lid coming off, then the mutton ones; the
+   flame, two maggis, the pan, two more. No two cooking shots sit next to
+   each other — two steamers or two pans in a row reads as a stutter.
+
+   NO MEN. The shop is run by two women and there is nobody else behind the
+   counter. The egg-toast picture came with a middle-aged man at a street
+   griddle and is cropped to the griddle in scripts/derive-dish-assets.py.
+   A picture that puts a stranger in this kitchen is the same kind of
+   untrue as a dish they do not sell.
 
    THE RULE THIS FILE EXISTS TO ENFORCE: every scene is either a dish the shop
    actually sells or the two people who cook it. Nothing else goes in.
@@ -50,9 +57,9 @@ const REELS = [
     tabBn: 'দুই বোন',                tabEn: 'The sisters' },
 
   /* ---- মোমো / Momo ---------------------------------------------------- */
-  { f: 'cook-momo',    photo: true,
-    bn: 'স্টিমারের ঢাকনা উঠছে',       en: 'The lid comes off the steamer',
-    tabBn: 'রান্নাঘর',                tabEn: 'In the kitchen' },
+  { f: 'cook-steamer', photo: true,
+    bn: 'ভর্তি স্টিমার, সবে নামল',      en: 'A full steamer, just off the heat',
+    tabBn: 'স্টিমার',                 tabEn: 'The steamer' },
 
   { f: 'chsteam',      price: 50,
     bn: 'স্টিম মোমো, ধোঁয়া উঠছে',     en: 'Steamed momo, still steaming',
@@ -63,6 +70,10 @@ const REELS = [
     bn: 'ফ্রাইড মোমো, সোনালি খোলস',    en: 'Fried momo, gone golden',
     dishBn: 'চিকেন ফ্রাইড মোমো',      dishEn: 'Chicken fried momo',
     tabBn: 'ফ্রাইড মোমো',             tabEn: 'Fried momo' },
+
+  { f: 'cook-momo',    photo: true,
+    bn: 'স্টিমারের ঢাকনা উঠছে',       en: 'The lid comes off the steamer',
+    tabBn: 'রান্নাঘর',                tabEn: 'In the kitchen' },
 
   { f: 'mtsteam',      price: 90,
     bn: 'মাটন মোমো, ভিতরে পুর',       en: 'Mutton momo, opened up',
@@ -130,9 +141,9 @@ const REELS = [
     tabBn: 'চীজ ওমলেট',               tabEn: 'Cheese omlet' },
 
   /* ---- নুডলস / Noodles ------------------------------------------------- */
-  { f: 'cook-maggi',   photo: true,
-    bn: 'কড়াই থেকে ম্যাগি',           en: 'Noodles out of the pan',
-    tabBn: 'কড়াই',                   tabEn: 'The pan' },
+  { f: 'cook-wok',     photo: true,
+    bn: 'কড়াইয়ে আগুন উঠেছে',          en: 'The flame up under the wok',
+    tabBn: 'আগুন',                   tabEn: 'The flame' },
 
   { f: 'plainmag',     price: 30,
     bn: 'ম্যাগি কাঁটায় জড়াচ্ছে',       en: 'Maggie, twirled on the fork',
@@ -143,6 +154,10 @@ const REELS = [
     bn: 'ম্যাগির উপর ডিম',            en: 'An egg on the noodles',
     dishBn: 'এগ ম্যাগি',              dishEn: 'Egg maggie',
     tabBn: 'এগ ম্যাগি',               tabEn: 'Egg maggie' },
+
+  { f: 'cook-maggi',   photo: true,
+    bn: 'কড়াই থেকে ম্যাগি',           en: 'Noodles out of the pan',
+    tabBn: 'কড়াই',                   tabEn: 'The pan' },
 
   { f: 'cheesemag',    price: 40,
     bn: 'চীজ গলে ম্যাগিতে মিশছে',     en: 'Cheese melting into the noodles',

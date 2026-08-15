@@ -73,6 +73,12 @@ CROP = {
     # UTTARPARA" printed across an apron nobody at this shop owns.
     "mtsteam": (0.04, 0.655, 0.98, 1.00),
     "mtfried": (0.02, 0.560, 0.98, 0.94),
+    # eggtoast is a middle-aged man in a blue shirt at a street griddle. This
+    # shop is run by two women and there is no man behind the counter; a
+    # picture that says otherwise is the same kind of untrue as a dish they
+    # do not sell. The toast on the griddle is good, so the crop keeps the
+    # griddle and loses him.
+    "eggtoast": (0.00, 0.400, 1.00, 1.00),
 }
 
 
