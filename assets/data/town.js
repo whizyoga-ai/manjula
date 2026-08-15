@@ -69,7 +69,7 @@ const TOWN_SOURCES = {
   wikiAmar:    { label: { en: 'Wikipedia — Amarendranath Chatterjee', bn: 'উইকিপিডিয়া —  ঁঅমরেন্দ্রনাথ চট্টোপাধ্যায়' },
                  url: 'https://en.wikipedia.org/wiki/Amarendranath_Chatterjee' },
   saioc:       { label: { en: 'Sri Aurobindo Institute — Sri Aurobindo in Calcutta',
-                          bn: 'শ্রীঅরবিন্দ ইনস্টিটিউট — কলকাতায় শ্রীঅরবিন্দ' },
+                          bn: 'শ্রীঅরবিন্দ ইনস্টিটিউট — কলকাতায়  ঁশ্রীঅরবিন্দ' },
                  url: 'http://www.sriaurobindoinstitute.org/saioc/Sri_Aurobindo/calcutta/uttarpara_jaykrishna_library' },
   wikisource:  { label: { en: 'Wikisource — the Uttarpara Speech',    bn: 'উইকিসোর্স — উত্তরপাড়া বক্তৃতা' },
                  url: 'https://en.wikisource.org/wiki/Uttarpara_Speech' },
@@ -130,14 +130,14 @@ const TOWN_TIMELINE = [
     en: { t: 'The Uttarpara Speech',
           d: 'On 30 May, a year out of a British jail, Sri Aurobindo speaks in the open courtyard on the river side of the library. It is the first time he speaks publicly of his own inner life, and close to the last thing he says in politics. He leaves for Pondicherry the following February.' },
     bn: { t: 'উত্তরপাড়া বক্তৃতা',
-          d: '৩০ মে, জেল থেকে ছাড়া পাওয়ার এক বছরের মাথায়, শ্রীঅরবিন্দ বললেন লাইব্রেরির গঙ্গার দিকের খোলা চত্বরে। নিজের অন্তর্জীবনের কথা এই প্রথম প্রকাশ্যে, আর রাজনীতিতে প্রায় শেষ কথা। পরের ফেব্রুয়ারিতেই তিনি পন্ডিচেরি।' },
+          d: '৩০ মে, জেল থেকে ছাড়া পাওয়ার এক বছরের মাথায়,  ঁশ্রীঅরবিন্দ বললেন লাইব্রেরির গঙ্গার দিকের খোলা চত্বরে। নিজের অন্তর্জীবনের কথা এই প্রথম প্রকাশ্যে, আর রাজনীতিতে প্রায় শেষ কথা। পরের ফেব্রুয়ারিতেই তিনি পন্ডিচেরি।' },
   },
   {
     year: '১৯৩৯', yearEn: '1939', src: 'wikiAV',
     en: { t: 'Amarendra Vidyapith',
           d: 'Uttarpara English High School opens on 6 March. In 1958 it is renamed for Amarendranath Chattopadhyay — the Uttarpara revolutionary who, thirty years before, had gone to Calcutta to fetch Sri Aurobindo for the speech.' },
     bn: { t: 'অমরেন্দ্র বিদ্যাপীঠ',
-          d: '৬ মার্চ চালু হল উত্তরপাড়া ইংলিশ হাই স্কুল। ১৯৫৮-য় নাম বদলে  ঁঅমরেন্দ্রনাথ চট্টোপাধ্যায়ের নামে — সেই উত্তরপাড়ার বিপ্লবী, যিনি ত্রিশ বছর আগে কলকাতা থেকে শ্রীঅরবিন্দকে ডেকে এনেছিলেন ওই বক্তৃতার জন্য।' },
+          d: '৬ মার্চ চালু হল উত্তরপাড়া ইংলিশ হাই স্কুল। ১৯৫৮-য় নাম বদলে  ঁঅমরেন্দ্রনাথ চট্টোপাধ্যায়ের নামে — সেই উত্তরপাড়ার বিপ্লবী, যিনি ত্রিশ বছর আগে কলকাতা থেকে  ঁশ্রীঅরবিন্দকে ডেকে এনেছিলেন ওই বক্তৃতার জন্য।' },
   },
   {
     year: '১৯৪২', yearEn: '1942', src: 'wikiTown',
@@ -161,7 +161,7 @@ const TOWN_PEOPLE = [
 
   { kind: 'town', years: '1880–1957', src: 'wikiAmar',
     en: { n: 'Amarendranath Chatterjee', r: 'Born here. Raised money for the Jugantar revolutionaries, and fetched Sri Aurobindo from Calcutta for the 1909 speech.' },
-    bn: { n: ' ঁঅমরেন্দ্রনাথ চট্টোপাধ্যায়', r: 'এখানেই জন্ম। যুগান্তরের জন্য টাকা জোগাড় করতেন। ১৯০৯-এর বক্তৃতার জন্য কলকাতা থেকে শ্রীঅরবিন্দকে নিয়ে আসেন ইনিই।' } },
+    bn: { n: ' ঁঅমরেন্দ্রনাথ চট্টোপাধ্যায়', r: 'এখানেই জন্ম। যুগান্তরের জন্য টাকা জোগাড় করতেন। ১৯০৯-এর বক্তৃতার জন্য কলকাতা থেকে  ঁশ্রীঅরবিন্দকে নিয়ে আসেন ইনিই।' } },
 
   { kind: 'stayed', years: '1869, 1873', src: 'wikiLibrary',
     en: { n: 'Michael Madhusudan Dutt', r: 'The poet stayed at the library — two months in 1869, and again in 1873, the year he died.' },
@@ -169,19 +169,19 @@ const TOWN_PEOPLE = [
 
   { kind: 'visitor', years: '1866', src: 'wikiLibrary',
     en: { n: 'Ishwar Chandra Vidyasagar', r: 'Came to the library in 1866, with Mary Carpenter. Jaykrishna Mukhopadhyay was the first to sign his petition for widow remarriage.' },
-    bn: { n: ' ঁঈশ্বরচন্দ্র বিদ্যাসাগর', r: '১৮৬৬-য় মেরি কার্পেন্টারকে নিয়ে লাইব্রেরিতে আসেন। বিধবাবিবাহের আবেদনপত্রে প্রথম সইটি ছিল  ঁজয়কৃষ্ণ মুখোপাধ্যায়ের।' } },
+    bn: { n: ' ঁঈশ্বরচন্দ্র বিদ্যাসাগর', r: '১৮৬৬-য়  ঁমেরি কার্পেন্টারকে নিয়ে লাইব্রেরিতে আসেন। বিধবাবিবাহের আবেদনপত্রে প্রথম সইটি ছিল  ঁজয়কৃষ্ণ মুখোপাধ্যায়ের।' } },
 
   { kind: 'visitor', years: '1866', src: 'wikiLibrary',
     en: { n: 'Mary Carpenter', r: 'The English education reformer, on one of her Indian journeys, at the library with Vidyasagar.' },
-    bn: { n: 'মেরি কার্পেন্টার', r: 'ইংরেজ শিক্ষা-সংস্কারক। ভারত-সফরের মাঝে বিদ্যাসাগরের সঙ্গে এই লাইব্রেরিতে।' } },
+    bn: { n: ' ঁমেরি কার্পেন্টার', r: 'ইংরেজ শিক্ষা-সংস্কারক। ভারত-সফরের মাঝে বিদ্যাসাগরের সঙ্গে এই লাইব্রেরিতে।' } },
 
   { kind: 'visitor', years: '1909', src: 'saioc',
     en: { n: 'Sri Aurobindo', r: 'Spoke here once, on 30 May 1909, to something like ten thousand people. That once was enough to name the speech after the town.' },
-    bn: { n: 'শ্রীঅরবিন্দ', r: 'একবারই বলেছিলেন এখানে, ৩০ মে ১৯০৯, হাজার দশেক লোকের সামনে। ওই একবারেই বক্তৃতাটার নাম হয়ে গেল শহরের নামে।' } },
+    bn: { n: ' ঁশ্রীঅরবিন্দ', r: 'একবারই বলেছিলেন এখানে, ৩০ মে ১৯০৯, হাজার দশেক লোকের সামনে। ওই একবারেই বক্তৃতাটার নাম হয়ে গেল শহরের নামে।' } },
 
   { kind: 'visitor', years: '—', src: 'municipality',
     en: { n: 'Vivekananda, Keshab Sen, Surendranath Banerjee, Bipin Chandra Pal', r: 'The municipality\'s own history records them among those who came to Uttarpara — visitors, several times over, not residents.' },
-    bn: { n: 'বিবেকানন্দ,  ঁকেশবচন্দ্র সেন,  ঁসুরেন্দ্রনাথ বন্দ্যোপাধ্যায়,  ঁবিপিনচন্দ্র পাল', r: 'পৌরসভার নিজের ইতিহাসে এঁদের নাম আছে উত্তরপাড়ায় আসা মানুষদের তালিকায় — একাধিকবার এসেছেন, বাস করেননি।' } },
+    bn: { n: ' ঁবিবেকানন্দ,  ঁকেশবচন্দ্র সেন,  ঁসুরেন্দ্রনাথ বন্দ্যোপাধ্যায়,  ঁবিপিনচন্দ্র পাল', r: 'পৌরসভার নিজের ইতিহাসে এঁদের নাম আছে উত্তরপাড়ায় আসা মানুষদের তালিকায় — একাধিকবার এসেছেন, বাস করেননি।' } },
 ];
 
 /* ---------- institutions ------------------------------------------------ */
@@ -209,7 +209,7 @@ const TOWN_LEARNING = [
     en: { n: 'Uttarpara Amarendra Vidyapith',
           d: 'Opened on 6 March 1939 as Uttarpara English High School; renamed in 1958 for Amarendranath Chattopadhyay, the revolutionary who brought Sri Aurobindo to the library in 1909. A Bengali-medium boys\' school, and one the town measures itself by.' },
     bn: { n: 'উত্তরপাড়া অমরেন্দ্র বিদ্যাপীঠ',
-          d: '৬ মার্চ ১৯৩৯-এ শুরু, তখন নাম উত্তরপাড়া ইংলিশ হাই স্কুল। ১৯৫৮-য় নাম হল  ঁঅমরেন্দ্রনাথ চট্টোপাধ্যায়ের নামে — সেই বিপ্লবী, যিনি ১৯০৯-এ শ্রীঅরবিন্দকে লাইব্রেরিতে এনেছিলেন। বাংলা মাধ্যম, ছেলেদের স্কুল, আর শহর নিজেকে মাপে এই স্কুলটা দিয়েই।' } },
+          d: '৬ মার্চ ১৯৩৯-এ শুরু, তখন নাম উত্তরপাড়া ইংলিশ হাই স্কুল। ১৯৫৮-য় নাম হল  ঁঅমরেন্দ্রনাথ চট্টোপাধ্যায়ের নামে — সেই বিপ্লবী, যিনি ১৯০৯-এ  ঁশ্রীঅরবিন্দকে লাইব্রেরিতে এনেছিলেন। বাংলা মাধ্যম, ছেলেদের স্কুল, আর শহর নিজেকে মাপে এই স্কুলটা দিয়েই।' } },
 
   { year: '1940', yearBn: '১৯৪০', src: 'wikiTown', photo: null,
     en: { n: 'Uttarpara Girls\' High School',
@@ -341,7 +341,7 @@ const TOWN_RESOURCES = [
     en: { title: 'The Uttarpara Speech, 30 May 1909',
           blurb: 'Sri Aurobindo\'s address at the library, in full, on Wikisource. It is a long text and a serious one; it belongs on the page that hosts it, not paraphrased here.' },
     bn: { title: 'উত্তরপাড়া বক্তৃতা, ৩০ মে ১৯০৯',
-          blurb: 'লাইব্রেরিতে দেওয়া শ্রীঅরবিন্দের সেই ভাষণ, পুরোটা, উইকিসোর্সে। লেখাটা দীর্ঘ এবং গুরুত্বপূর্ণ — এখানে সারসংক্ষেপ করে দেওয়ার জিনিস নয়।' },
+          blurb: 'লাইব্রেরিতে দেওয়া  ঁশ্রীঅরবিন্দের সেই ভাষণ, পুরোটা, উইকিসোর্সে। লেখাটা দীর্ঘ এবং গুরুত্বপূর্ণ — এখানে সারসংক্ষেপ করে দেওয়ার জিনিস নয়।' },
     facts: [
       { en: ['Occasion', 'a Sanatana Dharma Rakshini Sabha meeting'], bn: ['উপলক্ষ', 'সনাতন ধর্ম রক্ষিণী সভার অধিবেশন'] },
       { en: ['Where', 'the open courtyard on the river side of the library'], bn: ['কোথায়', 'লাইব্রেরির গঙ্গার দিকের খোলা চত্বরে'] },
