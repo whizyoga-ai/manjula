@@ -1,7 +1,7 @@
 /* ==========================================================================
    The reel — scenes from the kitchen.
 
-   Eight scenes in a phone frame, running like a story: progress bars across
+   Seven scenes in a phone frame, running like a story: progress bars across
    the top, auto-advance, tap either half to go back or forward, and a slow
    drift on every frame so the screen is never once still.
 
@@ -19,10 +19,11 @@
    the two sisters, so no caption here names anybody — they describe what is
    happening in the kitchen, never who is doing it.
 
-   Four scenes were removed on the client's eye, not on a rule: stew, fried
-   momo, mutton steam and mutton fried all carried the same unfamiliar woman
-   and he spotted her across all four. `counter` still shows two faces that are
-   not the owners' and is flagged for the same treatment.
+   Five scenes were removed on the client's eye, not on a rule. Stew, fried
+   momo, mutton steam and mutton fried all carried the same unfamiliar woman,
+   spotted across all four at a glance. `counter` followed once the real
+   sisters were identified — `menu idea/we are the champion.jpg` is them, and
+   the two women in that scene were somebody else entirely.
 
    Corrected renders from the reference photographs in
    C:\Customers\Manjula\media drop in over these slugs; each is a one-line
@@ -55,10 +56,6 @@ const REELS = [
     bn: 'চা ঢালা হচ্ছে',            en: 'The tea being poured',
     dishBn: 'চা',                   dishEn: 'Tea',
     tabBn: 'চা',                    tabEn: 'Tea' },
-
-  { f: 'counter',
-    bn: 'কাউন্টারের ভিড়',           en: 'A busy counter',
-    tabBn: 'কাউন্টার',              tabEn: 'Counter' },
 
   { f: 'roll',
     bn: 'তাওয়ার উপর, সন্ধেবেলা',    en: 'On the griddle, evening',
