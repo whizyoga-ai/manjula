@@ -159,6 +159,7 @@
 
   const FD_TYPE = {
     documented:   { bn: 'নথিভুক্ত',        en: 'Documented' },
+    local:        { bn: 'পারিবারিক ও স্থানীয় স্মৃতি', en: 'Family and local memory' },
     informed:     { bn: 'ঐতিহাসিক অনুমান', en: 'Historically informed' },
     interpretive: { bn: 'আমাদের পাঠ',      en: 'Our reading' },
     unknown:      { bn: 'জানা নেই',        en: 'Not known' },
@@ -210,7 +211,7 @@
            is a different admission, and the one the dish pages already make.
            Captioning today's counter as a "historical reconstruction" would
            be its own small untruth. */
-        const past = c.type === 'informed';
+        const past = c.type === 'informed';   // 'local' is testimony, not reconstruction
         fig.append(el('figcaption', null, past
           ? (isBn() ? 'কল্পনানির্ভর পুনর্নির্মাণ — সমসাময়িক ছবি নয়।'
                     : 'Artistic reconstruction — not a contemporary picture.')

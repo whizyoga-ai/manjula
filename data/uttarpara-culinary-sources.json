@@ -2,35 +2,39 @@
   "_readme": [
     "Sources for the culinary journey on uttarpara.html.",
     "",
-    "EVERY CLAIM IN assets/data/food.js CARRIES A `type` AND A `src` KEY THAT",
-    "POINTS INTO `sources` BELOW. The three types are not decoration and they",
-    "are the whole reason this file exists:",
+    "EVERY CLAIM IN assets/data/food.js CARRIES A `type` AND A `src` KEY.",
     "",
-    "  documented           somebody wrote it down at the time or a named",
-    "                       source records it. State it plainly.",
+    "  documented   somebody wrote it down. State it plainly, cite it.",
+    "  local        held in the town and in the family that settled it in",
+    "               1704. ATTRIBUTED, not footnoted — which is what oral",
+    "               history is. NOT a weaker category than the one above.",
     "  historically-informed  not recorded for Uttarpara specifically, but the",
-    "                       surrounding food history makes it a reasonable",
-    "                       reconstruction. The copy must hedge out loud —",
-    "                       'would likely have', 'a plausible table', 'we can",
-    "                       imagine'. Never state it as fact.",
-    "  interpretive         our own reading, or a concept for a future menu.",
-    "                       Labelled as such on the page.",
+    "               surrounding food history makes it a fair reconstruction.",
+    "               The copy hedges out loud.",
+    "  interpretive our own reading, or a concept for a future menu.",
     "",
-    "`confidence` is for whoever edits this next, not for the reader. It is not",
-    "rendered anywhere. It exists so that a future developer does not quietly",
-    "promote a medium-confidence reconstruction into a documented fact — which",
-    "is precisely how a website ends up teaching a town a history it never had.",
+    "WHY `local` EXISTS, AND WHY IT WAS MISSING.",
+    "The first version of this file had no category for oral testimony, which",
+    "meant it treated 'written down somewhere' as a synonym for 'true'. That",
+    "is not a standard a town can meet. Municipal records exist because a",
+    "clerk was obliged to keep them; scholarship exists because somebody got",
+    "funded. Neither obligation ever extended to what was cooked in a house",
+    "on this bank, so the absence of a document is evidence of nothing at all.",
     "",
-    "WHAT IS NOT IN HERE, AND WILL NOT GO IN WITHOUT EVIDENCE:",
-    "  · that any dish was invented in Uttarpara",
-    "  · that Portuguese ships docked at Uttarpara",
-    "  · any historical person's favourite dish",
-    "  · that Uttarpara has the best hilsa, or the best fish market, in Bengal",
-    "  · the name of any Uttarpara sweet shop. Searched; nothing with a",
-    "    verifiable founding date or history was found. The sweet chapter is",
-    "    therefore about the custom and names nobody."
+    "A family descended from the Sabarna Chowdhury line that settled Uttarpara",
+    "in 1704 holds knowledge no archive holds. Excluding it produced a page",
+    "that was careful and thin. `local` entries are attributed on the page to",
+    "the person whose knowledge they are, and that attribution IS the source.",
+    "",
+    "`confidence` is for whoever edits this next and is never rendered. It",
+    "exists so a reconstruction is not quietly promoted into a fact — which is",
+    "how a website ends up teaching a town a history it never had.",
+    "",
+    "WHAT STILL WILL NOT GO IN WITHOUT SOMEBODY STANDING BEHIND IT:",
+    "  · a claim with no source AND no person attached to it",
+    "  · a superlative presented as fact rather than as the opinion it is",
+    "  · a date invented to fill a gap in an oral account"
   ],
-
   "sources": {
     "municipality": {
       "title": "Uttarpara-Kotrung Municipality — History of Uttarpara",
@@ -51,7 +55,10 @@
       "title": "Wikipedia — Uttarpara",
       "url": "https://en.wikipedia.org/wiki/Uttarpara",
       "kind": "tertiary",
-      "supports": ["position on the Hooghly opposite Dakshineswar", "2011 census population and literacy"]
+      "supports": [
+        "position on the Hooghly opposite Dakshineswar",
+        "2011 census population and literacy"
+      ]
     },
     "sahapedia": {
       "title": "Sahapedia — Our Food Their Food: A Historical Overview of the Bengali Platter",
@@ -102,7 +109,9 @@
       "title": "Fish diversity in Hooghly district",
       "url": "https://www.ijrar.org/papers/IJRAR23B2161.pdf",
       "kind": "journal",
-      "supports": ["rohu, mrigel, hilsa, silver carp, lata, koi and pangas are common and in demand in Hooghly district fish markets"]
+      "supports": [
+        "rohu, mrigel, hilsa, silver carp, lata, koi and pangas are common and in demand in Hooghly district fish markets"
+      ]
     },
     "vidyasagarWiki": {
       "title": "Wikipedia — Ishwar Chandra Vidyasagar",
@@ -157,13 +166,22 @@
       "title": "West Bengal Heritage Commission — Uttarpara Jaikrishna Public Library listing",
       "url": "https://wbhc.in/home/place_list_all",
       "kind": "state-official",
-      "supports": ["the listing's own wording, 'the first free public library in India', notified 17 January 2008"]
+      "supports": [
+        "the listing's own wording, 'the first free public library in India', notified 17 January 2008"
+      ]
+    },
+    "oralSabarna": {
+      "title": "Family and local memory — Sabarna Chowdhury lineage, Uttarpara",
+      "url": null,
+      "kind": "oral-testimony",
+      "attribution": "Held in the family descended from the line that settled Uttarpara in 1704, and in the town.",
+      "supports": [],
+      "note": "Entries citing this are attributed on the page rather than footnoted. Nothing is filed here that the person giving it has not actually said; the `supports` list stays empty until it is."
     }
   },
-
   "open_questions": [
-    "Uttarpara sweet shops: no shop with a verifiable founding date or documented history was found. Named shops need a local source, a plaque, a registration, or the shop itself, before any of them appear on this page.",
-    "Uttarpara fish market: the market on Rajendra Avenue is real and hilsa is a Hooghly fish. Whether it is 'the best' anything is an opinion and is written on the page as one.",
-    "Michael Madhusudan Dutt's food at Uttarpara: no source located. The card says so."
+    "The `local` category is built and empty. The written sources have been worked through; the oral ones have not been collected yet, and they are where the rest of this story lives.",
+    "Specifically still to gather: the sweet shops and their ages; what the family's own table looked like; the fish market and its reputation; anything about the river, the ghats and the boats that is known in town and not in print.",
+    "Michael Madhusudan Dutt's food at Uttarpara: no written source located. If the town remembers, the town is the source."
   ]
 }

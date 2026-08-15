@@ -8,7 +8,16 @@
    THE RULE THIS FILE ENFORCES, AND IT IS THE WHOLE POINT.
    Two different things are being done here and they are never allowed to blur:
 
-     type: 'documented'  — somebody recorded it. Say it plainly, cite it.
+     type: 'documented'  — somebody wrote it down. Say it plainly, cite it.
+     type: 'local'       — held in the town and in the family that settled it
+                           in 1704, and not in any book. ATTRIBUTED, not
+                           sourced, which is what oral history is. This is
+                           not a weaker kind of evidence than a citation; for
+                           a town's food it is frequently the better one, and
+                           the first version of this file was wrong to have
+                           no category for it. A written source is a record of
+                           what somebody once bothered to write; most of what
+                           a place knows about itself nobody bothered to.
      type: 'informed'    — nobody recorded it FOR UTTARPARA, but the wider
                            food history makes it a fair reconstruction. The
                            copy must hedge out loud, in both languages:

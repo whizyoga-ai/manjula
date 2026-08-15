@@ -677,3 +677,23 @@ html[data-lang="bn"] .fd-idea h3 { line-height: 1.7; }
 .fd-idea p { margin: 0; color: var(--text-dim); font-size: .92rem; line-height: 1.7; }
 html[data-lang="bn"] .fd-idea p { line-height: 1.95; }
 .fd-ideas__cta { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: clamp(1.6rem, 4vw, 2.4rem); }
+
+/* The panel that says what a written source cannot reach. It sits between
+   the section's own honesty note and the chapters, because a reader needs it
+   before the first stamp rather than after the last one. */
+.fd-oral {
+  margin: 1.6rem 0 0; padding: 1.2rem 1.4rem; border-radius: var(--radius);
+  background: var(--stool-soft); border: 1px solid rgba(109,63,168,.22);
+  max-width: 72ch;
+}
+.fd-oral__lbl {
+  margin: 0 0 .7rem; font-size: .78rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--stool-ink); font-weight: 600;
+}
+html[data-lang="bn"] .fd-oral__lbl { letter-spacing: .02em; text-transform: none; font-size: .9rem; line-height: 1.8; }
+.fd-oral p:not(.fd-oral__lbl) { margin: 0 0 .7rem; color: var(--text); line-height: 1.75; font-size: .96rem; }
+html[data-lang="bn"] .fd-oral p:not(.fd-oral__lbl) { line-height: 1.98; }
+.fd-oral p:last-child { margin-bottom: 0; }
+.fd-oral .fd__stamp { display: inline-block; vertical-align: baseline; }
+.fd__stamp--local { color: var(--stool-ink); background: #fff; }
+.on-ink .fd__stamp--local { color: #d6c2f5; background: rgba(109,63,168,.3); }
