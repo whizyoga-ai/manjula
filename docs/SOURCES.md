@@ -28,6 +28,32 @@ traceable to a row below, it should not be on the page.
 | Hindustan Motors factory at Hindmotor: built 1942, operations from 1957, closed 24 May 2014 | [Hindustan Motors factory, Uttarpara](https://en.wikipedia.org/wiki/Hindustan_Motors_factory,_Uttarpara) |
 | *mañju* / *mañjulā*: beautiful, sweet, charming, melodious; the *-la* suffix; kinship with *manjari* | Sanskrit lexicography via [wisdomlib](https://www.wisdomlib.org/definition/manjula) and [Behind the Name](https://www.behindthename.com/name/manjula) |
 
+## Food history, for `origins.html`
+
+The origins page keeps two kinds of writing apart and says so on the page
+itself. This table covers the first kind — the history. The second kind, under
+the *From this kitchen* headings, is the shop's own account of how it cooks:
+it carries no batch counts, no named suppliers and no claim that is not
+anchored to something visible on the shop's printed card or its slate.
+
+| Claim | Source |
+|---|---|
+| Momo originates in Tibet around the 14th–15th centuries as portable food for people crossing the Himalaya | [Sikkim Project](https://sikkimproject.org/momo-home-memory-history-culture-on-a-plate/) |
+| Reaches Nepal by the 17th century along the Kathmandu–Lhasa trade route | [Gorkha Haat](https://gorkhahaat.com/blog/momo-in-darjeeling-history-recipes-cultural-spread-across-hills-nepal-india-gorkha-haat) |
+| Carried into Darjeeling and Kalimpong by Gorkha soldiers, Nepali-speaking settlers (Darjeeling founded as a sanatorium, 1835) and Tibetan traders on mule caravans | as above |
+| The 1959 fall of Lhasa brings Tibetan refugees into India en masse; momo spreads to Indian cities through the 1960s–70s | [Sikkim Project](https://sikkimproject.org/momo-home-memory-history-culture-on-a-plate/) |
+| পাউরুটি is a hybrid of Portuguese *pão* and Bengali *ruti*, and names the loaf as distinct from flatbread; introduced via the Portuguese community in and around Calcutta | [Wiktionary: পাঁউরুটি](https://en.wiktionary.org/wiki/%E0%A6%AA%E0%A6%BE%E0%A6%81%E0%A6%89%E0%A6%B0%E0%A7%81%E0%A6%9F%E0%A6%BF) · [An Ode to Pauruti](https://indrabasak.github.io/an-ode-to-pauruti/) |
+| A quarter-pound of pauruti with tea as an ordinary middle-class pairing in the 1960s–70s | [An Ode to Pauruti](https://indrabasak.github.io/an-ode-to-pauruti/) |
+| Kolkata cabin culture: curtained plywood booths, over a century old, built so women could eat out with their families away from public view | [En Route Indian History](https://enrouteindianhistory.com/kolkatas-hidden-cabin-culture-of-food/) |
+| Chicken stew as Anglo-Indian adaptation — European stewing method, Indian aromatics (peppercorn, bay leaf, clove), light broth in place of cream and butter, served with toasted bread | [Slurrp](https://www.slurrp.com/article/kolkata-cabin-style-creamy-white-chicken-stew-1658571555730) |
+| Maggi launched in India in 1983 in masala, tomato and chicken; "fast to cook, good to eat"; India a closed economy until 1991; target shifted from working women to children | [Nestlé India](https://www.nestle.in/aboutus/trending-now/answers/maggi-noodles-india-overview-timeline) · [IMD case study](https://www.imd.org/research-knowledge/strategy/case-studies/maggi-noodles-in-india-creating-and-growing-the-category/) |
+| Ghugni is dried white or yellow peas in a spiced gravy, eaten across Bengal, Odisha, Bihar and Jharkhand; Bihar's version uses black chana | [Veg Recipes of India](https://www.vegrecipesofindia.com/ghugni-recipe/) |
+
+The seven dish illustrations are original SVG, drawn for this site in its own
+three colours. No stock food photography is used anywhere, because a
+photograph of somebody else's momo standing in for this shop's would be the
+same kind of small lie the rest of the site is built to avoid.
+
 ## Literary quotations
 
 All are short, attributed, and named to their work.
