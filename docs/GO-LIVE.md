@@ -23,7 +23,30 @@ The apex and `www` are **proxied** (orange cloud) to Cloudflare IPs
 GitHub Pages, and it is not in any repository I could find. Replacing the
 records replaces what is served.
 
-### What to change
+### The quick way: run the script
+
+`docs/flip-dns.ps1` does all of it, with your own token, so nobody has to hand
+a credential to anyone. Create a token at
+<https://dash.cloudflare.com/profile/api-tokens> using the **Edit zone DNS**
+template, scoped under **Zone Resources → Include → Specific zone →
+manjulab.com**, and nothing else. Then:
+
+```powershell
+$env:CLOUDFLARE_API_TOKEN = 'paste-it-here'
+cd C:\whizyoga\repos\Manjula\docs
+.\flip-dns.ps1 -WhatIf
+.\flip-dns.ps1
+```
+
+It prints the zone before and after, refuses to touch `MX`, `mail.*` or any
+`TXT` record, is idempotent, and will not run against any zone but
+manjulab.com. It also replaces an **apex CNAME**, not just A records — the
+sibling zone brahmexa.com turned out to serve its apex through a Cloudflare
+Tunnel CNAME rather than an A record, and manjulab.com has the same
+fingerprint, so a script that only looked for A records would have reported
+success and changed nothing.
+
+### Or by hand, in the dashboard
 
 Delete the existing apex `A`/`AAAA` records and create these four, all
 **grey cloud (DNS only)** — GitHub Pages issues its own certificate and cannot
