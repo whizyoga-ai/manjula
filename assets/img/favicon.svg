@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Manjula">
+  <!-- A slate with two curls of steam. Dark ground, chalk mark, marigold steam
+       — the same three colours the site is built from. -->
+  <rect width="64" height="64" rx="14" fill="#14110e"/>
+  <rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="#4b3a27" stroke-width="3"/>
+  <path d="M22 20c0-4 6-4 6-8M36 20c0-4 6-4 6-8" fill="none" stroke="#e0961a"
+        stroke-width="3.4" stroke-linecap="round" opacity=".95"/>
+  <path d="M14 34h36c0 9-8 14-18 14s-18-5-18-14z" fill="#f6f1e6"/>
+  <path d="M14 34h36" stroke="#e0961a" stroke-width="3" stroke-linecap="round"/>
+</svg>
