@@ -8,11 +8,22 @@
 
    TWO KINDS OF WRITING, AND THE PAGE LABELS WHICH IS WHICH.
      `route`   — sourced history. Every line is traceable to docs/SOURCES.md.
-     `kitchen` — the shop's own account of how it cooks. No batch counts, no
-                 suppliers nobody named. Every claim here is anchored to
-                 something visible on the printed card or the chalk slate,
-                 because those are the only records of this kitchen that
-                 exist.
+     `kitchen` — the shop's own account of how it cooks. This used to be an
+                 argument about pricing: which rung of the ladder a dish sat
+                 on, why the sum on the card was split, what the plate count
+                 implied. All true, all correct, and unreadable — a page about
+                 food that talked about arithmetic. It is about the cooking
+                 now: what the dish asks of a pair of hands, what had to
+                 change to make it belong here rather than where it came from,
+                 and what goes wrong when it goes wrong.
+
+                 THE LINE THIS COPY DOES NOT CROSS. Nobody has interviewed the
+                 two women who run this kitchen. So there is no childhood in
+                 here, no hardship anybody described to me, no scene I was not
+                 in. What is here is true of the work itself — the pleat, the
+                 steam, the fat, the twenty seconds a poach gives you — which
+                 is knowable, and which is the part worth reading anyway. An
+                 invented struggle would be worse than a dull paragraph.
 
    `clip` names a six-second loop of the dish being made, generated locally on
    the RTX 5090 with CogVideoX from a food-only crop of the real dish — no face
@@ -31,6 +42,7 @@
 const DISHES = [
   {
     slug: 'momo',
+    covers: ['chsteam', 'chfried', 'mtsteam', 'mtfried', 'chmtmomo'],
     clip: 'momo-steam',
     art: 'd-momo',
     tone: 'ink',
@@ -68,15 +80,18 @@ const DISHES = [
       { bn: 'সঙ্গে স্যুপ', en: 'Soup on the side' },
     ],
     kitchen: [
-      { bn: 'চারটে রাস্তা খোলা রাখা হয়েছে, আর সেটাই আসল সিদ্ধান্ত: চিকেন না মাটন, আর ভাপে না ভাজা। ভাপের মোমো পুরের স্বাদ সামনে আনে; ভাজা মোমো খোলসটাকে সামনে আনে। দুটো আলাদা খাবার, একই পুর — তাই দুটোই থাকে, আর দাম আলাদা।',
-        en: 'Four doors are kept open, and that is the actual decision: chicken or mutton, steamed or fried. Steaming puts the filling in front; frying puts the skin in front. They are two different dishes made from one filling, so both stay on the card, priced apart.' },
-      { bn: 'প্লেটে পাঁচটা। কথাটা ছাপানো কার্ডে নেই, আছে ফুটপাথের স্লেটে। মানে সংখ্যাটা ঠিক হয়েছে কাউন্টারে দাঁড়ানো লোকটার দিকে তাকিয়ে — ছাপাখানায় বসে নয়।',
-        en: 'Five to a plate. That number is not on the printed card — it is chalked on the slate outside. Which tells you it was settled by looking at the person standing at the counter, not by a printer.' },
+      { bn: 'মোমো গড়া হাতের কাজ, আর হাতটা শিখতে সময় লাগে। এক টুকরো লেচি, পাতলা করে বেলা, মাঝখানে পুর, তারপর আঙুলের ডগায় কুঁচি — একটার পর একটা, গোল হয়ে এসে মুখটা বন্ধ। কুঁচি কম পড়লে ভাপে ফেটে যায়, বেশি পড়লে মুখের কাছটা শক্ত। দিনে কয়েকশো। প্রথম দিকে আঙুল ব্যথা করে; পরে আর করে না, কিন্তু কুঁচি গোনা বন্ধ হয় না।',
+        en: 'A momo is made by hand, and the hand takes time to learn. A ball of dough rolled thin, filling in the middle, then the pleat — thumb and forefinger, one fold after another, walking round until the top closes. Too few pleats and it splits in the steam. Too many and the crown goes tough. Several hundred in a day. Early on the fingers ache; later they stop aching, but nobody stops counting the folds.' },
+      { bn: 'লাসার মোমোয় পুর সাদামাটা — মাংস, একটু পেঁয়াজ, নুন। উত্তরপাড়ায় ওটুকুতে চলে না। এখানকার জিভ চায় আরও পেঁয়াজ, আদা-রসুন, ধনেপাতা, আর ঝাল যেন টের পাওয়া যায়। তাই পুর বদলেছে — পাহাড়ের রান্নাটা ধরে রেখে, মশলাটা এই রাস্তার মাপে গড়া। সঙ্গের লঙ্কা-রসুনের চাটনিও পাহাড়ের নয়; ওটা এই দোকানের।',
+        en: 'A Lhasa momo is plain inside: meat, a little onion, salt. That does not carry in Uttarpara. The palate here wants more onion, ginger and garlic, coriander through it, and enough chilli that you notice. So the filling changed — the hill dish kept, the seasoning rebuilt to the measure of the street it is sold on. The chilli-garlic chutney beside it is not a hill thing either. That one belongs to this shop.' },
+      { bn: 'তারপর ভাপ। ঢাকনা তোলার সময় মুখ ঘুরিয়ে নিতে হয়, নইলে গরম বাষ্প সোজা চোখে। ঢাকনা ওঠে ঠিক যতক্ষণ দরকার, তার এক সেকেন্ড বেশি নয় — এক সেকেন্ড বেশি মানে নেতিয়ে যাওয়া মোমো। রান্নাটা মশলায় নয়, ওই সেকেন্ডটায়।',
+        en: 'Then the steam. You turn your face away as the lid comes off or it goes straight into your eyes. The lid comes up for exactly as long as it needs and not a second longer, because a second longer is a slack, wet momo. The cooking is not in the spice. It is in that second.' },
     ],
   },
 
   {
     slug: 'stew',
+    covers: ['stew'],
     clip: 'stew',
     art: 'd-stew',
     tone: 'paper',
@@ -107,15 +122,18 @@ const DISHES = [
       { bn: 'লবঙ্গ', en: 'Clove' }, { bn: 'হালকা ঝোল', en: 'Light broth' },
     ],
     kitchen: [
-      { bn: 'কার্ডে দামটা লেখা আছে <strong>১০ + ৫০ = ৬০</strong> — একটা যোগফল নয়, একটা সিদ্ধান্ত। পাউরুটি আলাদা, স্টু আলাদা। যার হাতে ষাট টাকা নেই, সে দশ টাকার পাউরুটি নিতে পারে; যার বেশি খিদে, সে দু’টুকরো নিতে পারে। দামটাকে ভাঙা মানে খাবারটাকে সবার নাগালে রাখা।',
-        en: 'The card prices it <strong>10 + 50 = 60</strong>. That is not a sum, it is a decision. The bread is one thing and the stew is another. Somebody without sixty rupees can take the ten-rupee bread; somebody hungrier can take a second piece. Breaking the price apart is how the dish stays within reach.' },
-      { bn: 'ঝোলটা হালকা রাখা হয় ইচ্ছে করেই। ভারী করলে পাউরুটি গলে যায়; হালকা থাকলে পাউরুটি ঝোল টেনে নেয় আর নিজের চেহারা ধরে রাখে। এই দু’টোর মাঝখানে দাঁড়ানোটাই আসল কাজ।',
-        en: 'The broth is kept light on purpose. Thicken it and the bread collapses; keep it light and the bread drinks it up while still holding its shape. Standing between those two is the whole job.' },
+      { bn: 'স্টুয়ের গোড়া ব্রিটিশ হেঁশেলে — ঘন, মাখন-ক্রিম দেওয়া, ছুরি-কাঁটায় বসে খাওয়ার জিনিস। এখানে সেটা চলে না। এখানে স্টু খাওয়া হয় দাঁড়িয়ে, হাতে বাটি, পাউরুটি ডুবিয়ে। তাই ঝোল রাখা হয় পাতলা — ঘন হলে পাউরুটি চুপসে হাতেই ভেঙে পড়ে। পাতলা রাখলে পাউরুটি ঝোল টানে, অথচ আকারটা ধরে রাখে। ওই সরু সীমানার উপর দাঁড়িয়ে থাকাটাই পুরো কাজ।',
+        en: 'The stew starts in a British kitchen — thick, buttered, creamed, eaten sitting down with a knife and fork. That is no use here. Here it is eaten standing up, bowl in one hand, bread going in and out of it. So the broth is kept thin. Thicken it and the bread collapses in your fingers. Keep it thin and the bread drinks and still holds its shape. The whole job is standing on that line.' },
+      { bn: 'মশলাও সরেছে। অ্যাংলো-ইন্ডিয়ান স্টু মৃদু, প্রায় পথ্য — অসুস্থ মানুষের খাবার। উত্তরপাড়ার সন্ধেবেলায় সেটা পানসে ঠেকে। তাই গোলমরিচ বেড়েছে, তেজপাতা আর লবঙ্গ বেশিক্ষণ ফোটে, আর আলুটা নামে ঠিক সেই সময়ে যখন সে ভাঙে কিন্তু গলে না। ঝোল এখনও হালকা, কিন্তু আর নিরীহ নয়।',
+        en: 'The seasoning moved too. An Anglo-Indian stew is mild almost to the point of being medicine — it was food for the unwell. On an Uttarpara evening that reads as flat. So the peppercorn goes up, the bay leaf and clove sit in the pot longer, and the potato comes out at the point where it breaks but has not gone to mush. The broth is still light. It is no longer polite.' },
+      { bn: 'পাউরুটি সেঁকা হয় আলাদা, তাওয়ায়, দুই পিঠ। কিনারা পুড়ে কালো, মাঝখানটা নরম — ওই পোড়া ধারটাই ঝোলের মিষ্টিভাব কাটে। বাটির গায়ে হেলান দিয়ে বসানো হয়, যাতে নীচের দিকটা ভেজে আর উপরের দিকটা মুচমুচে থাকে। কেউ শিখিয়ে দেয়নি, দোকান নিজেই শিখেছে।',
+        en: 'The bread is griddled separately, both sides, on a hot tawa. Black at the edges, soft in the middle — the burnt rim is what cuts the sweetness in the broth. It goes on the bowl leaning against the rim so the underside soaks and the top stays crisp. Nobody taught that. The shop worked it out.' },
     ],
   },
 
   {
     slug: 'toast',
+    covers: ['malai', 'butter', 'eggtoast'],
     clip: 'toast',
     art: 'd-pauruti',
     tone: 'warm',
@@ -140,15 +158,18 @@ const DISHES = [
     ],
     chips: [],
     kitchen: [
-      { bn: 'চারটে টোস্ট, চারটে আলাদা কাজ — আর দাম দেখলেই বোঝা যায় কোনটা কেন। <strong>মাখন পাউরুটি ২০</strong>: সবচেয়ে সাদামাটা, তাই সবচেয়ে কঠিন — লুকোনোর কিছু নেই। <strong>ডিম পাউরুটি ২৫</strong>: পাঁচ টাকায় জলখাবার হয়ে যায়। <strong>মালাই টোস্ট ৩০</strong>: মিষ্টির দিকটা, যা চায়ের সঙ্গে বিকেলে চলে।',
-        en: 'Four toasts doing four different jobs, and the price ladder tells you which is which. <strong>Butter toast at 20</strong> — the plainest, and so the hardest, because there is nothing to hide behind. <strong>Egg toast at 25</strong> — five rupees turns a snack into breakfast. <strong>Malai toast at 30</strong> — the sweet end of the shelf, which is what an afternoon tea wants.' },
-      { bn: 'হিসেবটা সরল: যে জিনিস সবচেয়ে বেশি বিক্রি হবে, সেটাই সবচেয়ে সস্তা রাখতে হবে। তাই মাখন পাউরুটি বিশ টাকাতেই থেকে গেছে।',
-        en: 'The arithmetic is plain: the thing that sells most has to be the thing that costs least. Which is why butter toast has stayed at twenty.' },
+      { bn: 'মালাই টোস্টের মালাই কেনা যায় না, জমাতে হয়। দুধ ফুটিয়ে ঠান্ডা হতে দিলে উপরে যে সর পড়ে, সেটা তুলে রাখা — রোজ একটু একটু করে। তাড়াহুড়োয় হয় না; ফুটন্ত দুধ থেকে তুললে ওটা সর নয়, ছেঁড়া চামড়া। তাই কাজটা শুরু হয় দোকান খোলার আগে, আর শেষ হয় পরের দিনের জন্য কিছু সরিয়ে রেখে।',
+        en: 'The malai on a malai toast cannot be bought. It has to be collected. Milk boiled and then left alone; the skin that forms as it cools is lifted off and kept, a little each day. It will not be hurried — take it off milk that is still boiling and what you have is torn skin, not cream. So the work starts before the shutter goes up, and ends by putting something aside for tomorrow.' },
+      { bn: 'মাখন পাউরুটি শুনতে সবচেয়ে সহজ, বানাতে সবচেয়ে কঠিন। দুটো উপকরণ, লুকোনোর জায়গা নেই। তাওয়া বেশি গরম হলে মাখন ধরে গিয়ে তেতো লাগে; কম গরম হলে পাউরুটি তেল টেনে ভারী হয়ে যায়। ঠিক তাপটা ঘড়ি দেখে হয় না, শব্দ শুনে হয় — মাখন পড়ার সময়ের ওই চড়চড় আওয়াজ। ওটা ঠিক হলে বাকিটা ঠিক।',
+        en: 'Butter toast sounds like the easy one and is the hardest thing on the shelf. Two ingredients and nowhere to hide. Too hot and the butter catches and turns bitter; too cool and the bread drinks the fat and goes heavy. The right heat is not read off a clock, it is heard — the particular hiss when the butter goes down. Get that sound right and the rest follows.' },
+      { bn: 'ডিম পাউরুটির কুসুম ভাঙা হয় একেবারে শেষে, প্লেটে যাওয়ার ঠিক আগে। আগে ভাঙলে পাউরুটি ভিজে যায়, আর কামড়ে সেই টানটা আর পাওয়া যায় না। এই চারটে টোস্টই আসলে একটা জিনিস নিয়ে — কখন নামাতে হবে।',
+        en: 'On an egg toast the yolk is broken at the last moment, just before it goes out. Break it earlier and the bread is wet by the time it reaches anybody, and the pull has gone out of the bite. All four toasts on this card are really about one thing: knowing when to take it off.' },
     ],
   },
 
   {
     slug: 'egg',
+    covers: ['boiled', 'poach', 'omlet', 'cheeseomlet'],
     art: 'd-egg',
     still: 'omlet',
     tone: 'ink',
@@ -166,15 +187,18 @@ const DISHES = [
     route: [],
     chips: [],
     kitchen: [
-      { bn: 'দামগুলো পরপর দেখুন — <strong>১২, ১৫, ২০, ৩০</strong>। এক ধাপ থেকে পরের ধাপ, তিন থেকে দশ টাকার তফাত। মানে ডিমের তাকটা ইচ্ছে করে এমনভাবে সাজানো, যাতে পকেটে যা-ই থাক, একটা ধাপ আপনার জন্য থাকবেই। সেদ্ধ ডিম বারো টাকায় স্কুলের বাচ্চার হাতের নাগালে, আর চীজ ওমলেট তিরিশে গোটা একটা জলখাবার।',
-        en: 'Look at the ladder: <strong>12 · 15 · 20 · 30</strong>. Each rung is three to ten rupees above the last. The egg shelf is arranged so that whatever is in your pocket, one rung is meant for you. A boiled egg at twelve is within a schoolchild’s reach; a cheese omlet at thirty is a whole breakfast.' },
-      { bn: 'চীজটা এখানে বিলাসিতা নয়, একটা সিদ্ধান্ত — ওটাই একমাত্র উপকরণ যা এই দোকানের তিনটে আলাদা তাকে (ডিম, ম্যাগি, টোস্ট) একই কাজ করে: দশ টাকা যোগ করে খাবারটাকে ‘পেট ভরা’ বানিয়ে দেয়।',
-        en: 'The cheese is not a luxury here, it is a lever. It is the one ingredient that does the same job on three different shelves — eggs, maggie, toast — adding ten rupees and turning a snack into something that fills you up.' },
+      { bn: 'বাংলার রাস্তার ওমলেট ফরাসি ওমলেট নয়, আর হওয়ার চেষ্টাও করে না। ফরাসিটা ফ্যাকাশে, নরম, ভাঁজে মসৃণ। এটার কিনারা খয়েরি, ফিতের মতো ফুলে ওঠা, ভিতরে পেঁয়াজ-কাঁচালঙ্কা-ধনেপাতা কুচি। তেল ধোঁয়া ওঠা অবস্থায় ডিম পড়ে — ওই ধাক্কাটাই কিনারাটা বানায়। ধীরে রাঁধলে ওটা আর এই পদ থাকে না।',
+        en: 'A Bengali street omelette is not a French omelette and is not trying to be. The French one is pale, soft, folded smooth. This one has a brown lacy edge, and onion, green chilli and coriander chopped through it. The egg goes into oil that is already smoking, and it is that shock which makes the edge. Cook it gently and it stops being this dish.' },
+      { bn: 'পোচ আরও নিষ্ঠুর, কারণ সেখানে ভুল লুকোনোর জায়গা নেই। কুসুম গড়াতে হবে, অথচ সাদাটা কাঁচা থাকলে চলবে না। জানলাটা সেকেন্ড কুড়ির। এক দিকে বেশি গেলে সাদাটা লালচে, অন্য দিকে গেলে কুসুম জমাট — আর দুটোই চামচে থাকতেই বোঝা যায়। বোঝা গেলে ওটা আর প্লেটে যায় না।',
+        en: 'A poach is crueller, because there is nowhere to put the mistake. The yolk has to run and the white cannot be raw. The window is about twenty seconds. Miss it one way and the white browns; miss it the other and the yolk sets — and either way you can see it on the spoon before it reaches the plate. When you can see it, it does not go out.' },
+      { bn: 'চীজ ওমলেটে চীজ পড়ে ভাঁজ করার ঠিক আগের মুহূর্তে, যাতে ভিতরে গলে, বেরিয়ে এসে কড়াইয়ে পুড়ে না যায়। ডিম শস্তা বলে যত্ন কম লাগে — এই ভুলটা এই তাকের চারটে পদই ধরিয়ে দেয়।',
+        en: 'On a cheese omelette the cheese goes on in the last moment before the fold, so it melts inside instead of leaking out and burning on the pan. Eggs are cheap, so people assume they are forgiving. All four things on this shelf will correct you.' },
     ],
   },
 
   {
     slug: 'maggi',
+    covers: ['plainmag', 'eggmag', 'cheesemag', 'eggcheesemag'],
     clip: 'maggi',
     art: 'd-maggi',
     tone: 'paper',
@@ -205,15 +229,16 @@ const DISHES = [
       { bn: 'চীজ', en: 'Cheese' }, { bn: 'দুটোই', en: 'Both' },
     ],
     kitchen: [
-      { bn: 'প্যাকেটের ম্যাগি সবাই বানাতে পারে। তফাত হয় তার পরে কী পড়ল তাতে — আর মঞ্জুলার কার্ডে সেই তফাতটা ধাপে ধাপে সাজানো: <strong>প্লেন ৩০ → এগ ৪০ → চীজ ৪০ → এগ চীজ ৫০</strong>।',
-        en: 'Anyone can make maggie out of the packet. The difference is what goes in after, and on Manjula’s card that difference is laid out as a staircase: <strong>plain 30 → egg 40 → cheese 40 → egg-and-cheese 50</strong>.' },
-      { bn: 'খেয়াল করুন, ডিম আর চীজ দুটোরই দাম চল্লিশ। ইচ্ছে করে। একটাকে অন্যটার উপরে বসানো হয়নি — কে কী চায়, সেটা খদ্দেরের রুচির ব্যাপার, দামের নয়। দশ টাকা বাড়তি লাগে কেবল যখন দুটোই একসঙ্গে চান।',
-        en: 'Notice that egg and cheese are the same forty. That is deliberate. Neither is ranked above the other — which you want is a matter of taste, not of price. The extra ten rupees is only charged when you want both.' },
+      { bn: 'প্যাকেটে লেখা দু’মিনিট। ওটা বাড়ির রান্নার হিসেব, দোকানের নয়। এখানে নুডলস আধসেদ্ধ অবস্থাতেই জল থেকে উঠে যায়, তারপর যায় গরম কড়াইয়ে — পেঁয়াজ, কাঁচালঙ্কা, একটু মশলা, আর শেষ জলটুকু টেনে নেওয়া। সেদ্ধ নুডলস আর রান্না করা নুডলসের তফাত ওখানেই। প্যাকেট মেনে করলে ওটা ম্যাগি; কড়াইয়ে গেলে ওটা এই পাড়ার ম্যাগি।',
+        en: 'The packet says two minutes. That is for a kitchen at home, not a counter. Here the noodles come out of the water while they are still short of done and go into a hot pan — onion, green chilli, a little masala, and the last of the water pulled in. That is the whole difference between boiled noodles and cooked ones. Follow the packet and you have made Maggi. Take it to the pan and you have made the neighbourhood\'s.' },
+      { bn: 'ডিমেরও নিজের সময় আছে। ডিম ভাজা হয় আলাদা, তারপর বসানো হয় নুডলসের উপর — মিশিয়ে দিলে কুসুম সসের মধ্যে হারিয়ে যায়। চীজ পড়ে একেবারে শেষে, আঁচ নিভিয়ে, কারণ জ্বলন্ত আঁচে চীজ পড়লে সেটা টানে না — ফেটে যায়, তেল ছাড়ে।',
+        en: 'The egg has its own timing. It is fried separately and set on top, not stirred through — mix it in and the yolk disappears into the sauce. The cheese goes on last of all, off the flame, because cheese dropped onto live heat does not pull into strands. It splits and gives up its oil.' },
     ],
   },
 
   {
     slug: 'ghugni',
+    covers: ['charbighugni'],
     art: 'd-ghugni',
     still: 'charbighugni',
     tone: 'warm',
@@ -228,17 +253,18 @@ const DISHES = [
     route: [],
     chips: [],
     kitchen: [
-      { bn: 'দোকান খোলার দিন স্লেটে যা লেখা ছিল, সেটা সাধারণ ঘুগনি নয় — <strong>খাসির চর্বির ঘুগনি</strong>। রাস্তার ঘুগনি প্রায় সবসময় নিরামিষ। চর্বিতে শেষ করা মানে পদটাকে ইচ্ছে করে অন্যদিকে নিয়ে যাওয়া: একই মটর, কিন্তু গভীরতর, মাংসল একটা শেষ।',
-        en: 'What went up on the slate on opening day was not ordinary ghugni. It was <strong>ghugni finished in mutton fat</strong>. Street ghugni is almost always vegetarian. Finishing it in fat is a deliberate turn in another direction — the same peas, taken somewhere deeper and meatier.' },
-      { bn: 'উদ্বোধনের দিন এটা ছিল স্লেটের পদ — যেদিন রান্না হয়, সেদিনই। এখন <strong>৫০ টাকায়</strong> কার্ডেই উঠে এসেছে। স্লেট বলে ‘আজ আছে’, কার্ড বলে ‘আছে’ — তফাতটা ছোট নয়।',
-        en: 'On the opening day it was a slate dish — there when it was cooked, gone when it was gone. It is on the printed card now, at <strong>₹50</strong>. A slate says “we have this today”; a card says “we have this”. That is not a small difference.' },
-      { bn: 'তবু রান্না ফুরোলে ফুরোয়। বেরোনোর আগে <a href="tel:+919163538794">একটা ফোন</a> করে নেওয়াই ভালো।',
-        en: 'It still runs out when it runs out. <a href="tel:+919163538794">A call before you set off</a> is never wasted.' },
+      { bn: 'ঘুগনি বাংলার সবচেয়ে সাধারণ রাস্তার খাবার, আর প্রায় সর্বত্র নিরামিষ — শুকনো মটর, আলু, একটু মশলা। এখানে সেটা ঘুরিয়ে দেওয়া হয়েছে। মটর সারা রাত ভেজে, তারপর ধীরে সেদ্ধ হয়, আর একেবারে শেষে পড়ে খাসির চর্বি। ওই চর্বিটাই গোটা পদটাকে অন্য দিকে নিয়ে যায় — একই মটর, কিন্তু আরও গভীর, আরও মাংসল।',
+        en: 'Ghugni is the most ordinary street food in Bengal and almost everywhere it is vegetarian: dried peas, potato, a little spice. Here it has been turned round. The peas soak overnight, cook slow, and mutton fat goes in at the end. That fat takes the whole dish somewhere else — the same peas, gone deeper and meatier.' },
+      { bn: 'চর্বি সস্তা নয়, আর রোজ পাওয়াও যায় না। মাংসের দোকান থেকে যেদিন যেমন আসে। তাই ঘুগনি রোজ ঠিক একই রকম হয় না, একই পরিমাণেও হয় না। এটা দুর্বলতা নয় — যে রান্নার একটা উপকরণ বাজারের উপর দাঁড়িয়ে, সেই রান্না বাজারের সঙ্গেই ওঠে-নামে।',
+        en: 'Fat is not cheap and it is not there every day. It comes from the butcher as and when it comes. So the ghugni is not identical every day, and there is not the same amount of it every day. That is not a failing. A dish with one ingredient that stands on the market moves with the market.' },
+      { bn: 'প্রথম দিন এটা ছিল স্লেটের পদ — যেদিন রান্না হয়েছে সেদিন আছে, ফুরোলে নেই। এখন ছাপানো কার্ডে উঠে এসেছে। তবু ফুরোয়, আর ফুরোলে ফুরোয়। বেরোনোর আগে একটা ফোন কোনওদিন বৃথা যায় না।',
+        en: 'On the first day it was a slate dish: there when it had been cooked, gone when it was gone. It is on the printed card now. It still runs out, and when it runs out it is out. A call before you set off is never wasted.' },
     ],
   },
 
   {
     slug: 'cha',
+    covers: ['tea', 'coffee'],
     clip: 'chai',
     art: 'd-cha',
     tone: 'ink',
@@ -253,13 +279,12 @@ const DISHES = [
     route: [],
     chips: [],
     kitchen: [
-      // Past tense, and it stays past tense. The free tea was the inauguration
-      // and has never been repeated; a visitor who walks over expecting it
-      // would have been misled by this page, not by the shop.
-      { bn: 'দোকান খোলার দিন — শুধু সেই একটি দিনই — বোর্ডে লেখা ছিল <strong>চা ও কফি সম্পূর্ণ বিনামূল্যে</strong>। প্রথম দিনে যা বিনামূল্যে দেওয়া হয়, সেটাই বলে দেয় দোকানটা নিজেকে কী মনে করে। মঞ্জুলা বেছেছিল চা। তারপর থেকে চা দশ টাকাতেই।',
-        en: 'On the opening day — and on that one day only — the board read <strong>tea and coffee, completely free</strong>. What a shop gives away on its first day tells you what it thinks it is. Manjula chose the tea. Every day since, it has been ten rupees.' },
-      { bn: 'দশ টাকা মানে ছাত্রছাত্রীরাও রোজ আসতে পারে। মেনুর সবচেয়ে সস্তা জিনিসটা যদি স্কুলের বাচ্চার নাগালে থাকে, তবে বুঝতে হবে দোকানটা পাড়ারই — বাইরের কারও নয়।',
-        en: 'Ten rupees means students can come every day. If the cheapest thing on the menu is within a schoolchild’s reach, the shop belongs to the neighbourhood and not to somebody passing through.' },
+      { bn: 'দশ টাকার চায়ে কিছু লুকোনো যায় না। পাতা বেশি দিলে লোকসান, কম দিলে গরম জল। তাই মাপটা সারাদিন এক, আর মাপা হয় হাতে — চামচে নয়, আঙুলের চিমটিতে। কেটলি বসে সকাল ন’টায়, নামে রাত ন’টায়, আর মাঝের বারো ঘণ্টায় ওই চিমটিটা একবারও বদলায় না।',
+        en: 'There is nothing to hide behind in a ten-rupee tea. Too much leaf and you lose money; too little and you have sold somebody hot water. So the measure stays the same all day, and it is measured by hand — a pinch, not a spoon. The kettle goes on at nine in the morning and comes off at nine at night, and across those twelve hours that pinch does not change.' },
+      { bn: 'দুধ ফোটে আলাদা, আর ঢালা হয় উঁচু থেকে — ফেনাটা ওই ঢালা থেকেই আসে, কোনও যন্ত্র থেকে নয়। কাপের উপরে যে সরটা জমে, সেটা ফেলে দেওয়ার জিনিস নয়। ওটাই প্রমাণ যে দুধ সত্যিই ফুটেছে।',
+        en: 'The milk is boiled separately and poured from a height — the froth comes from the pour, not from a machine. The skin that gathers on top of the cup is not something to skim off. It is the proof that the milk was actually boiled.' },
+      { bn: 'কফির মেশিন কাউন্টারের পিছনেই আছে, আর সে কাজটা তাড়াতাড়ি করে দেয়। কিন্তু বেশির ভাগ লোক চা-ই চায়। উত্তরপাড়ায় সকাল কফি দিয়ে শুরু হয় না — এখানে সকাল শুরু হয় এক কাপ চায়ে, আর সেটা বদলানোর চেষ্টা করে লাভ নেই।',
+        en: 'The coffee machine sits behind the counter and it does its job quickly. But most people want the tea. Uttarpara does not start its mornings on coffee — it starts them on a cup of cha, and there is no percentage in trying to change that.' },
     ],
   },
 ];

@@ -43,6 +43,21 @@ const PAGES = (function () {
 
   /* ------------------------------------------------------- origins index */
 
+  /* Seven stories, twenty items on the card. That is not a gap — a story
+     about ghugni covers the one ghugni, and a story about eggs covers all
+     four of them — but a reader counting cards cannot see it, and "the
+     origins page is missing items" is the correct thing to conclude from
+     seven cards and twenty dishes. So each card now names the menu items it
+     actually covers, read live out of menu.js by the `covers` list of ids.
+     One list, one source of prices, and a dish added to the menu shows up
+     here the moment it is added there. */
+  function itemsFor(d) {
+    if (!d.covers || typeof MENU === 'undefined') return [];
+    const byId = new Map();
+    MENU.forEach((g) => g.items.forEach((it) => byId.set(it.id, it)));
+    return d.covers.map((id) => byId.get(id)).filter(Boolean);
+  }
+
   function renderIndex(el) {
     if (!el || typeof DISHES === 'undefined') return;
     el.innerHTML = '';
@@ -50,12 +65,20 @@ const PAGES = (function () {
       const a = document.createElement('a');
       a.className = 'dishcard';
       a.href = `dish.html?d=${d.slug}`;
+
+      const items = itemsFor(d);
+      const covers = items.length ? `
+        <ul class="dishcard__items">${items.map((it) =>
+          `<li><span>${lang() === 'en' ? it.en : it.bn}</span><b>₹${it.price}</b></li>`
+        ).join('')}</ul>` : '';
+
       a.innerHTML =
         plate(d.art, pick(d.name)) +
         `<div class="dishcard__body">
            <span class="dishcard__no">${String(i + 1).padStart(2, '0')}</span>
            <h3>${pick(d.name)}</h3>
            <p class="dishcard__sub">${pick(d.sub)}</p>
+           ${covers}
            <span class="dishcard__price">${d.price}</span>
          </div>`;
       el.append(a);

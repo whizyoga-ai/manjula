@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <!--
-  The town. A shop two streets from the first free public library in India
-  should be able to say so, but not on the page where people are trying to
-  find out what a plate of momos costs.
+  UTTARPARA.
+
+  A shop in a town like this one has a choice: put the address in the footer
+  and say nothing, or say what the address means. This page says what it
+  means, and it does it under two constraints that shape every line.
+
+  ONE: NOT A WORD OF IT IS INVENTED. Every date, name and figure comes from a
+  named source in assets/data/town.js, and every entry there carries the key
+  of the source it came from. Where sources disagree the page says so. Where a
+  superlative is contested — and "the first free public library in India" is
+  contested — the page attributes it to the body that says it rather than
+  asserting it, because the honest sentence and the impressive sentence are
+  the same sentence once you write it properly.
+
+  TWO: THE SHOP DOES NOT CLAIM ANY OF IT. Sri Aurobindo spoke two streets
+  away; that is a fact about the street, not about the momos. The connection
+  at the bottom is one paragraph and it is deliberately small. A town that has
+  been making room for other people's ideas since 1846 does not need a tea
+  shop to explain its significance.
+
+  The Bengali is not a translation. Both languages were written from the same
+  research and neither is downstream of the other — this is Bengal's own
+  history and it should not read as though it arrived through English.
 -->
 <html lang="bn" data-lang="bn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>উত্তরপাড়া — দুই পা ফেলিয়া | Uttarpara, two steps from the door</title>
-<meta name="description" content="১৮৫৯-এর জয়কৃষ্ণ পাবলিক লাইব্রেরি, শ্রীঅরবিন্দের উত্তরপাড়া বক্তৃতা, ১৮৫৩-র পৌরসভা। The library, the speech, the school and the river, all within a short walk of the shop.">
+<title>উত্তরপাড়া — বই, নদী আর একটা শহর | Uttarpara: the library, the river, the town | Manjula Bite &amp; Brew</title>
+<meta name="description" content="১৮৪৬-এর স্কুল, ১৮৫৩-র পৌরসভা, ১৮৫৯-এর জয়কৃষ্ণ পাবলিক লাইব্রেরি আর ১৯০৯-এর উত্তরপাড়া বক্তৃতা — হুগলির পাড়ের এই শহরের ইতিহাস, সূত্র ধরে ধরে। Uttarpara, West Bengal: a school in 1846, West Bengal's oldest municipality in 1853, the Jaykrishna Public Library in 1859 and Sri Aurobindo's Uttarpara Speech in 1909 — sourced, and told as a story.">
+<meta name="keywords" content="Uttarpara, Uttarpara West Bengal, Uttarpara history, Uttarpara Jaykrishna Public Library, Jaykrishna Mukherjee, Uttarpara Speech, Uttarpara heritage, Uttarpara Hooghly, Raja Peary Mohan College, Uttarpara Amarendra Vidyapith">
 <meta name="theme-color" content="#14110e">
 <link rel="canonical" href="https://manjulab.com/uttarpara.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="উত্তরপাড়া — দুই পা ফেলিয়া">
+<meta property="og:title" content="উত্তরপাড়া — বই, নদী আর একটা শহর | Uttarpara: the library, the river, the town">
+<meta property="og:description" content="A school in 1846, West Bengal's oldest municipality in 1853, a free public library in 1859, and a speech in 1909 that carries the town's name.">
 <meta property="og:url" content="https://manjulab.com/uttarpara.html">
-<meta property="og:image" content="https://manjulab.com/assets/img/slate.jpg">
+<meta property="og:image" content="https://manjulab.com/assets/img/town/library-2.jpg">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;600;700&amp;family=Hind+Siliguri:wght@400;500;600&amp;family=Tiro+Bangla:ital@0;1&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=Caveat:wght@500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=16">
-<link rel="stylesheet" href="assets/css/origins.css?v=9">
+<link rel="stylesheet" href="assets/css/origins.css?v=10">
+<link rel="stylesheet" href="assets/css/town.css?v=1">
 <script>
 /* Theme before paint — a stored light theme must not flash black first. */
 try { var t = localStorage.getItem('manjula-theme');
@@ -30,6 +54,28 @@ try { var t = localStorage.getItem('manjula-theme');
       var l = localStorage.getItem('manjula-lang');
       if (l) { document.documentElement.setAttribute('data-lang', l);
                document.documentElement.setAttribute('lang', l); } } catch (e) {}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Uttarpara: the library, the river, the town",
+  "about": [
+    { "@type": "Place", "name": "Uttarpara",
+      "address": { "@type": "PostalAddress", "addressLocality": "Uttarpara",
+                   "addressRegion": "West Bengal", "addressCountry": "IN" },
+      "sameAs": "https://en.wikipedia.org/wiki/Uttarpara" },
+    { "@type": "Library", "name": "Uttarpara Jaykrishna Public Library",
+      "foundingDate": "1859-04-15",
+      "sameAs": "https://en.wikipedia.org/wiki/Uttarpara_Public_Library" },
+    { "@type": "Person", "name": "Jaykrishna Mukherjee",
+      "birthDate": "1808", "deathDate": "1888",
+      "sameAs": "https://en.wikipedia.org/wiki/Jaykrishna_Mukherjee" }
+  ],
+  "inLanguage": ["bn", "en"],
+  "isPartOf": { "@type": "WebSite", "name": "Manjula Bite & Brew",
+                "url": "https://manjulab.com/" }
+}
 </script>
 </head>
 <body>
@@ -48,7 +94,6 @@ try { var t = localStorage.getItem('manjula-theme');
       <a href="bulk.html"><span class="bn-i">বড় অর্ডার</span><span class="en-i">Bulk order</span></a>
       <a href="origins.html"><span class="bn-i">কোথা থেকে এল</span><span class="en-i">Origins</span></a>
       <a href="uttarpara.html" aria-current="page"><span class="bn-i">উত্তরপাড়া</span><span class="en-i">Uttarpara</span></a>
-      <a href="index.html#slate"><span class="bn-i">আজকের বোর্ড</span><span class="en-i">Today's board</span></a>
       <a href="index.html#find"><span class="bn-i">কোথায়</span><span class="en-i">Find us</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Language / ভাষা">
@@ -60,140 +105,448 @@ try { var t = localStorage.getItem('manjula-theme');
 </header>
 
 <main>
-<section class="walk on-ink">
+
+<!-- ========================================================= HERO ====== -->
+<section class="twn-hero">
+  <img class="twn-hero__img" src="assets/img/town/ghat.jpg" width="1414" height="1200"
+       fetchpriority="high" decoding="async"
+       alt="উত্তরপাড়ার ঘাটে গঙ্গা, দূরে বালি ব্রিজ / The Hooghly at an Uttarpara ghat, the Bally bridge upstream">
+  <div class="twn-hero__in wrap">
+    <p class="kicker">
+      <span class="bn-i">হুগলির পশ্চিম পাড়</span>
+      <span class="en-i">The west bank of the Hooghly</span>
+    </p>
+    <h1 class="bn">উত্তরপাড়া</h1>
+    <h1 class="en">Uttarpara</h1>
+    <p class="twn-hero__lede bn">
+      কলকাতা থেকে দশ কিলোমিটার উত্তরে, গঙ্গার এই পাড়ে একটা ছোট শহর — যার ইতিহাস
+      তার আয়তনের তুলনায় অনেকটাই বড়। এখানে স্কুল তৈরি হয়েছিল পৌরসভার আগে, আর
+      লাইব্রেরির দরজায় কোনওদিন টিকিট লাগেনি।
+    </p>
+    <p class="twn-hero__lede en">
+      Ten kilometres north of Kolkata, on this side of the river, stands a town
+      whose history runs a good deal longer than its four-and-a-half square
+      miles. The school here is older than the town council, and nobody has
+      ever needed a ticket to get into the library.
+    </p>
+  </div>
+  <div class="twn-hero__fade" aria-hidden="true"></div>
+</section>
+
+<!-- ================================================ 30 SECONDS ========= -->
+<section class="twn-snap on-ink">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="kicker"><span class="bn-i">দোকান থেকে হাঁটা পথে</span><span class="en-i">On foot from the counter</span></p>
-      <h2 class="bn">উত্তরপাড়া — দুই পা ফেলিয়া</h2>
-      <h2 class="en">Uttarpara, two steps from the door</h2>
-      <p class="bn">
-        হুগলির যে পাড়ায় এই দোকান, সেখানেই দাঁড়িয়ে আছে ভারতের প্রথম বিনামূল্যের
-        গণগ্রন্থাগার। চা খেতে এসেছিলেন — শহরটাও একবার ঘুরে যান।
-      </p>
-      <p class="en">
-        The shop stands in a neighbourhood of Hooghly that holds the first free
-        public library in India. You can come for the tea and stay for the town.
-      </p>
-    </div>
-
-    <div class="epigraph bn">
-      <blockquote>“বাংলার মুখ আমি দেখিয়াছি, তাই আমি পৃথিবীর রূপ খুঁজিতে যাই না আর।”</blockquote>
-      <cite>— জীবনানন্দ দাশ, ‘রূপসী বাংলা’</cite>
-    </div>
-    <div class="epigraph en">
-      <blockquote>“Now, good digestion wait on appetite, and health on both!”</blockquote>
-      <cite>— William Shakespeare, <i>Macbeth</i>, Act III</cite>
-    </div>
-
-    <ul class="walk-list">
+    <p class="twn-snap__label">
+      <span class="bn-i">উত্তরপাড়া, আধ মিনিটে</span>
+      <span class="en-i">Uttarpara in thirty seconds</span>
+    </p>
+    <ul class="twn-snap__grid">
       <li>
-        <span class="walk__dist">১৮৫৯<small><span class="bn-i">সাল</span><span class="en-i">Founded</span></small></span>
-        <div class="walk__body">
-          <h3><span class="bn-i">উত্তরপাড়া জয়কৃষ্ণ পাবলিক লাইব্রেরি</span><span class="en-i">Uttarpara Jaykrishna Public Library</span></h3>
-          <p class="bn">
-            জমিদার <span class="yr">জয়কৃষ্ণ মুখোপাধ্যায়</span> (১৮০৮–১৮৮৮) হুগলির
-            পাড়ে এটি গড়ে তোলেন — <strong>ভারতের প্রথম বিনামূল্যের গণগ্রন্থাগার</strong>,
-            জনসাধারণের জন্য খোলে ১৫ এপ্রিল ১৮৫৯। নিজের তিন হাজার বই দান করেছিলেন।
-            মাইকেল মধুসূদন দত্ত জীবনের শেষ দিনগুলি এখানেই কাটান।
-          </p>
-          <p class="en">
-            Built on the bank of the Hooghly by the zamindar
-            <span class="yr">Jaykrishna Mukherjee</span> (1808–1888) and opened
-            to the public on 15 April 1859 — <strong>the first free public
-            library in India</strong>. He gave it three thousand of his own
-            books. Michael Madhusudan Dutt spent his last days here.
-          </p>
-        </div>
+        <b><span class="bn-i">১৭০৪</span><span class="en-i">1704</span></b>
+        <span class="bn-i">জলা জমিতে প্রথম বসত</span>
+        <span class="en-i">first settled, on marshland</span>
       </li>
       <li>
-        <span class="walk__dist">১৯০৯<small><span class="bn-i">সাল</span><span class="en-i">Year</span></small></span>
-        <div class="walk__body">
-          <h3><span class="bn-i">উত্তরপাড়া বক্তৃতা</span><span class="en-i">The Uttarpara Speech</span></h3>
-          <p class="bn">
-            আলিপুর বোমার মামলা থেকে ছাড়া পেয়ে <span class="yr">শ্রীঅরবিন্দ</span>
-            ৩০ মে ১৯০৯ তারিখে এই লাইব্রেরির মাঠে যে ভাষণ দেন, তা ‘উত্তরপাড়া বক্তৃতা’
-            নামে পরিচিত — তাঁর রাজনৈতিক জীবনের প্রায় শেষ ভাষণ।
-          </p>
-          <p class="en">
-            Newly released from the Alipore Bomb Case,
-            <span class="yr">Sri Aurobindo</span> spoke on the library grounds
-            on 30 May 1909. It is remembered as the Uttarpara Speech, and it was
-            close to the last address of his political life.
-          </p>
-        </div>
+        <b><span class="bn-i">১৮৪৬</span><span class="en-i">1846</span></b>
+        <span class="bn-i">স্কুল — চাঁদা তুলে</span>
+        <span class="en-i">a school, paid for by subscription</span>
       </li>
       <li>
-        <span class="walk__dist">১৯৪০<small><span class="bn-i">সাল</span><span class="en-i">Founded</span></small></span>
-        <div class="walk__body">
-          <h3><span class="bn-i">উত্তরপাড়া গার্লস হাই স্কুল</span><span class="en-i">Uttarpara Girls High School</span></h3>
-          <p class="bn">
-            দোকানের সবচেয়ে কাছের প্রতিবেশী। আর সবচেয়ে নিয়মিত খদ্দেরও। পঞ্চম থেকে
-            দ্বাদশ, বাংলা মাধ্যম — আর ছুটির ঘণ্টা পড়লেই কাউন্টারে ভিড়। স্কুল আর
-            দোকান, দুটোই <span class="yr">১৮ নম্বর ওয়ার্ডে</span>।
-          </p>
-          <p class="en">
-            The shop's nearest neighbour and its most reliable custom. Classes
-            five to twelve, taught in Bengali, and a rush at the counter when
-            the last bell goes. School and shop sit in the
-            <span class="yr">same ward, number 18</span>.
-          </p>
-        </div>
+        <b><span class="bn-i">১৮৫৩</span><span class="en-i">1853</span></b>
+        <span class="bn-i">রাজ্যের প্রাচীনতম পৌরসভা</span>
+        <span class="en-i">West Bengal's oldest municipality</span>
       </li>
       <li>
-        <span class="walk__dist">১৮৫৩<small><span class="bn-i">সাল</span><span class="en-i">Since</span></small></span>
-        <div class="walk__body">
-          <h3><span class="bn-i">উত্তরপাড়া কোতরং পৌরসভা</span><span class="en-i">Uttarpara Kotrung Municipality</span></h3>
-          <p class="bn">
-            ১৮৫৩ সালে তৈরি — পশ্চিমবঙ্গের প্রাচীনতম পৌরসভাগুলির একটি, ২৪টি ওয়ার্ড।
-            মঞ্জুলার এনলিস্টমেন্ট সার্টিফিকেট এই পৌরসভারই দেওয়া, ক্যাটেগরি
-            ‘স্ন্যাকস কাম টি, কফি সেন্টার’।
-          </p>
-          <p class="en">
-            Constituted in 1853, one of the oldest civic bodies in West Bengal,
-            with 24 wards. Manjula's certificate of enlistment is issued by this
-            municipality, under the category “snacks cum tea, coffee centre”.
-          </p>
-        </div>
-      </li>
-      <li>
-        <span class="walk__dist">১৯৪২<small><span class="bn-i">হিন্দমোটর</span><span class="en-i">Hindmotor</span></small></span>
-        <div class="walk__body">
-          <h3><span class="bn-i">অ্যাম্বাসাডরের কারখানা</span><span class="en-i">The Ambassador factory</span></h3>
-          <p class="bn">
-            উত্তরপাড়ার একটা গোটা পাড়ার নামই <strong>হিন্দমোটর</strong> — কারখানার
-            নাম থেকে। ১৯৪২-এ তৈরি, ১৯৫৭ থেকে উৎপাদন শুরু। এখান থেকেই বেরোত
-            <strong>হিন্দুস্তান অ্যাম্বাসাডর</strong>। কারখানা বন্ধ হয়ে যায় ২০১৪-র
-            ২৪ মে। দু’প্রজন্ম ধরে এটা ছিল কারখানার শহর — আর চায়ের দোকানগুলো চলত
-            শিফটের তালে তালে।
-          </p>
-          <p class="en">
-            A neighbourhood of Uttarpara is named <strong>Hindmotor</strong>,
-            after the plant. Built in 1942, producing from 1957, it was the home
-            of the <strong>Hindustan Ambassador</strong> — India's taxi and
-            India's government car for decades. The unit closed on 24 May 2014.
-            For two generations this was a factory town, and the tea shops
-            around it fed the shifts.
-          </p>
-        </div>
-      </li>
-      <li>
-        <span class="walk__dist">১০<small><span class="bn-i">কিমি · কলকাতা</span><span class="en-i">km · Kolkata</span></small></span>
-        <div class="walk__body">
-          <h3><span class="bn-i">নদী, রেল আর জিটি রোড</span><span class="en-i">The river, the railway, the GT Road</span></h3>
-          <p class="bn">
-            উত্তরপাড়া হুগলি নদীর পশ্চিম পাড়ে, ঠিক <strong>দক্ষিণেশ্বর কালী মন্দিরের
-            উল্টো দিকে</strong>। হাওড়া–বর্ধমান মেন লাইনে উত্তরপাড়া স্টেশন, আর শহরের
-            ভিতর দিয়ে গিয়েছে জিটি রোড। কলকাতা দশ কিলোমিটারের মধ্যে।
-          </p>
-          <p class="en">
-            Uttarpara sits on the west bank of the Hooghly, directly
-            <strong>across the water from the Dakshineswar Kali Temple</strong>.
-            Uttarpara station is on the Howrah–Bardhaman main line, and the Grand
-            Trunk Road runs through the town. Kolkata is within ten kilometres.
-          </p>
-        </div>
+        <b><span class="bn-i">১৮৫৯</span><span class="en-i">1859</span></b>
+        <span class="bn-i">বিনা পয়সার গণগ্রন্থাগার</span>
+        <span class="en-i">a free public library</span>
       </li>
     </ul>
+    <p class="twn-snap__note bn">
+      দক্ষিণেশ্বর ঠিক উল্টো পাড়ে। জিটি রোড শহরের ভিতর দিয়ে। হাওড়া–বর্ধমান লাইনে
+      স্টেশন। আর এই দোকান, ১৮ নম্বর ওয়ার্ডে, লাইব্রেরি থেকে হাঁটা পথে।
+    </p>
+    <p class="twn-snap__note en">
+      Dakshineswar is directly across the water. The Grand Trunk Road runs
+      through the middle. The station is on the Howrah–Bardhaman line. And this
+      shop is in ward 18, a walk from the library.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================== TIMELINE ========= -->
+<section class="twn-time">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span class="bn-i">নদীর মতো বয়ে যাওয়া</span><span class="en-i">Following the river</span></p>
+      <h2 class="bn">যে ক্রমে শহরটা তৈরি হল</h2>
+      <h2 class="en">The order things were built in</h2>
+      <p class="bn">
+        একটা শহরের চরিত্র বোঝা যায় সে কী আগে বানিয়েছে তা দেখে। এখানে সেতু এল
+        প্রথমে, তারপর স্কুল, তারপর হাসপাতাল — পৌরসভা তারও পরে, আর লাইব্রেরি সবার
+        শেষে। প্রতিষ্ঠান আগে, প্রশাসন পরে।
+      </p>
+      <p class="en">
+        You can read a town by the order it built things in. Here it went
+        bridge, school, hospital — and only then a municipality, and only then
+        the library. The institutions came before the administration.
+      </p>
+    </div>
+    <ol class="twn-line" id="townTimeline"></ol>
+  </div>
+</section>
+
+<!-- =================================================== LIBRARY ========= -->
+<section class="twn-lib on-ink">
+  <div class="wrap twn-lib__in">
+    <figure class="twn-lib__fig">
+      <img src="assets/img/town/library-2.jpg" width="1024" height="768" loading="lazy" decoding="async"
+           alt="উত্তরপাড়া জয়কৃষ্ণ পাবলিক লাইব্রেরির সামনের দিক, পেডিমেন্টে ১৮৫৯ লেখা / The front of the Uttarpara Jaykrishna Public Library, 1859 cut into the pediment">
+      <figcaption>
+        <span class="bn-i">ছবি: Kinjal bose 78, উইকিমিডিয়া কমন্স · CC BY-SA 4.0</span>
+        <span class="en-i">Photograph: Kinjal bose 78, Wikimedia Commons · CC BY-SA 4.0</span>
+      </figcaption>
+    </figure>
+    <div class="twn-lib__txt">
+      <p class="kicker"><span class="bn-i">১৫ এপ্রিল ১৮৫৯</span><span class="en-i">15 April 1859</span></p>
+      <h2 class="bn">যে বাড়িতে বই সবার</h2>
+      <h2 class="en">The house where the books belonged to everyone</h2>
+      <p class="bn">
+        জয়কৃষ্ণ মুখোপাধ্যায় ১৮৫৬ সালে জিটি রোডের ধারে এক একর জমিতে কাজ শুরু করেন।
+        খরচ পড়ে পঁচাশি হাজার টাকা — তখনকার হিসেবে বিপুল। ১৮৫৯-এর ১৫ এপ্রিল দরজা
+        খুলল, তাকে উঠল তাঁরই নিজের তিন হাজার বই। ছ’বছর পরে সেখানে ইংরেজি বই বারো
+        হাজার, বাংলা ও সংস্কৃত আড়াই হাজার।
+      </p>
+      <p class="en">
+        Jaykrishna Mukherjee began building in 1856, on an acre beside the
+        Grand Trunk Road, and spent ₹85,000 on it — an enormous sum then. The
+        doors opened on 15 April 1859 and the shelves held three thousand books
+        out of his own house. Six years later there were twelve thousand in
+        English and two and a half thousand in Bengali and Sanskrit.
+      </p>
+
+      <div class="twn-claim">
+        <p class="bn">
+          <b>‘ভারতের প্রথম বিনামূল্যের গণগ্রন্থাগার’</b> — কথাটা এই পাতার নিজের নয়।
+          <span class="twn-claim__src">পশ্চিমবঙ্গ হেরিটেজ কমিশন</span> তাদের তালিকায়
+          ঠিক এই ভাষাতেই লিখেছে, বিজ্ঞপ্তির তারিখ ১৭ জানুয়ারি ২০০৮। উইকিপিডিয়া আরও
+          এক ধাপ এগিয়ে বলে ‘হয়তো এশিয়াতেও প্রথম’ — ‘হয়তো’ শব্দটা সমেত। তর্কটা থাক
+          তর্কের জায়গায়; যেটা নিয়ে কারও দ্বিমত নেই সেটা হল, ১৮৫৯ সালে একটা ছোট
+          শহরে যে কেউ ঢুকে বই পড়তে পারত, বিনা পয়সায়।
+        </p>
+        <p class="en">
+          <b>“The first free public library in India”</b> is not this page's
+          phrase. It is the wording the
+          <span class="twn-claim__src">West Bengal Heritage Commission</span>
+          uses in its own listing, notified on 17 January 2008. Wikipedia goes
+          a step further and says “and perhaps in Asia as well” — with the
+          “perhaps” left in. Let the superlative stay arguable. What is not
+          arguable is that in 1859, in a small town, anyone could walk in and
+          read, and it cost them nothing.
+        </p>
+      </div>
+
+      <ul class="twn-facts">
+        <li><b><span class="bn-i">১৮৬৬</span><span class="en-i">1866</span></b>
+            <span class="bn-i">ঈশ্বরচন্দ্র বিদ্যাসাগর ও মেরি কার্পেন্টার আসেন</span>
+            <span class="en-i">Vidyasagar and Mary Carpenter visit</span></li>
+        <li><b><span class="bn-i">১৮৬৯, ১৮৭৩</span><span class="en-i">1869, 1873</span></b>
+            <span class="bn-i">মাইকেল মধুসূদন দত্ত এখানে থাকেন</span>
+            <span class="en-i">Michael Madhusudan Dutt stays here</span></li>
+        <li><b><span class="bn-i">১৯০৯</span><span class="en-i">1909</span></b>
+            <span class="bn-i">চত্বরে শ্রীঅরবিন্দের বক্তৃতা</span>
+            <span class="en-i">Sri Aurobindo speaks in the courtyard</span></li>
+        <li><b><span class="bn-i">আজ</span><span class="en-i">Today</span></b>
+            <span class="bn-i">প্রায় ৪৫,০০০ দুষ্প্রাপ্য বই, ৪৫০ পুঁথি</span>
+            <span class="en-i">some 45,000 rare books, 450 manuscripts</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== SPEECH ========= -->
+<section class="twn-speech">
+  <div class="wrap twn-speech__in">
+    <p class="twn-speech__year" aria-hidden="true">1909</p>
+    <div class="twn-speech__txt">
+      <h2 class="bn">উত্তরপাড়া বক্তৃতা</h2>
+      <h2 class="en">The Uttarpara Speech</h2>
+      <p class="bn">
+        আলিপুর বোমার মামলায় এক বছর জেল খেটে বেরিয়েছেন শ্রীঅরবিন্দ। ১৯০৯-এর ৩০ মে,
+        সনাতন ধর্ম রক্ষিণী সভার ডাকে, তিনি এলেন উত্তরপাড়ায় — নিয়ে এলেন এখানকারই
+        ছেলে, বিপ্লবী অমরেন্দ্রনাথ চট্টোপাধ্যায়। লাইব্রেরির গঙ্গার দিকের খোলা চত্বরে
+        হাজার দশেক লোক। তিনি নিচু গলায় বললেন; লেখা আছে, কেউ শব্দ করেনি।
+      </p>
+      <p class="en">
+        A year in a British jail on the Alipore Bomb Case, and newly out. On
+        30 May 1909 Sri Aurobindo came to Uttarpara at the invitation of the
+        Sanatana Dharma Rakshini Sabha — fetched from Calcutta by
+        Amarendranath Chatterjee, a son of this town. Ten thousand people in
+        the open courtyard on the river side of the library. He spoke quietly,
+        and the accounts all say nobody made a sound.
+      </p>
+      <p class="bn">
+        এই প্রথম তিনি প্রকাশ্যে নিজের সাধনার কথা বললেন, আর রাজনীতিতে এটাই প্রায়
+        তাঁর শেষ কথা। পরের ফেব্রুয়ারিতে তিনি পন্ডিচেরি চলে যান। ১৯৭২-এ চত্বরে
+        একটা মার্বেল ফলক বসেছে।
+      </p>
+      <p class="en">
+        It was the first time he spoke in public of his own inner life, and
+        very nearly the last thing he said in politics; he left for Pondicherry
+        the following February. A marble plaque went up on the grounds in 1972.
+      </p>
+      <p class="twn-speech__link">
+        <a href="https://en.wikisource.org/wiki/Uttarpara_Speech" target="_blank" rel="noopener">
+          <span class="bn-i">পুরো ভাষণটা উইকিসোর্সে</span>
+          <span class="en-i">The full text, on Wikisource</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ JAYKRISHNA ========= -->
+<section class="twn-jk on-ink">
+  <div class="wrap twn-jk__in">
+    <figure class="twn-jk__fig">
+      <img src="assets/img/town/jaykrishna.jpg" width="608" height="780" loading="lazy" decoding="async"
+           alt="জয়কৃষ্ণ মুখোপাধ্যায়ের প্রতিকৃতি / An engraved portrait of Jaykrishna Mukherjee">
+      <figcaption>
+        <span class="bn-i">প্রতিকৃতি: James Archer, R.S.A. · পাবলিক ডোমেইন</span>
+        <span class="en-i">Portrait: James Archer, R.S.A. · public domain</span>
+      </figcaption>
+    </figure>
+    <div class="twn-jk__txt">
+      <p class="kicker"><span class="bn-i">১৮০৮ – ১৮৮৮</span><span class="en-i">1808 – 1888</span></p>
+      <h2 class="bn">জয়কৃষ্ণ মুখোপাধ্যায়</h2>
+      <h2 class="en">Jaykrishna Mukherjee</h2>
+      <p class="bn">
+        কেরানির ছেলে। ১৮৩০-এ হুগলির রাজস্ব দপ্তরে নথি রাখার কাজে ঢোকেন, ১৮৩৫-এ
+        চাকরি ছেড়ে জমিদারি শুরু করেন। তারপর যা করলেন সেটা জমিদারের চেনা কাজ নয় —
+        তিনি বাড়ি বানাননি শুধু, প্রতিষ্ঠান বানিয়েছেন। আর বেশ কয়েকবার নিজের
+        বাড়িই দান করে দিয়েছেন, যাতে তার ভাড়ায় প্রতিষ্ঠানটা চলে।
+      </p>
+      <p class="en">
+        A clerk's son. He took a job keeping records for the Hooghly land
+        revenue office in 1830, left it in 1835, and became a zamindar. What he
+        did next is not what zamindars are remembered for. He did not only put
+        up buildings; he put up institutions — and more than once handed over
+        one of his own houses so its rent would keep an institution running.
+      </p>
+      <ul class="twn-jk__list">
+        <li><span class="bn-i">উত্তরপাড়ার স্কুল, হাসপাতাল, লাইব্রেরি ও কলেজ</span>
+            <span class="en-i">The school, the hospital, the library and the college</span></li>
+        <li><span class="bn-i">মোট একত্রিশটি স্কুলের খরচ চালাতেন</span>
+            <span class="en-i">Thirty-one schools funded in all</span></li>
+        <li><span class="bn-i">বেথুন কলেজে ১০,০০০ টাকা; কলকাতা বিশ্ববিদ্যালয়ের লাইব্রেরিতে ৫,০০০</span>
+            <span class="en-i">₹10,000 to Bethune College; ₹5,000 to a University of Calcutta library</span></li>
+        <li><span class="bn-i">বিদ্যাসাগরের বিধবাবিবাহ আবেদনে প্রথম স্বাক্ষর</span>
+            <span class="en-i">First signature on Vidyasagar's widow-remarriage petition</span></li>
+        <li><span class="bn-i">ব্রিটিশ ইন্ডিয়ান অ্যাসোসিয়েশনের অন্যতম প্রতিষ্ঠাতা</span>
+            <span class="en-i">One of the founders of the British Indian Association</span></li>
+      </ul>
+      <p class="twn-jk__coda bn">
+        ১৮৫১-তে পৌরসভার প্রথম আবেদন নাকচ হয়। তিনি আবার আবেদন করেন। ১৮৫৩-য় সেটা
+        মঞ্জুর হল — কলকাতা পৌর সংস্থার তেইশ বছর আগে।
+      </p>
+      <p class="twn-jk__coda en">
+        The first petition for a municipality was refused in 1851. He filed
+        again. It was granted in 1853 — twenty-three years before Calcutta got
+        its corporation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== PEOPLE ======== -->
+<section class="twn-people">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span class="bn-i">যাঁরা এসেছেন, যাঁরা ছিলেন</span><span class="en-i">Who came, and who stayed</span></p>
+      <h2 class="bn">যাঁরা এই পথ দিয়ে গিয়েছেন</h2>
+      <h2 class="en">People who passed through</h2>
+      <p class="bn">
+        একটা ছোট শহর সহজেই বলে ফেলতে পারে যে অমুক তমুক ‘এখানকার মানুষ’। এই পাতা
+        সেটা করে না। কে এখানকার, কে থেকে গিয়েছিলেন কিছুদিন, আর কে শুধু এসেছিলেন —
+        নীচে তিনটে আলাদা করে লেখা আছে। সত্যিটাই যথেষ্ট চমকপ্রদ।
+      </p>
+      <p class="en">
+        It costs a small town nothing to let a famous visitor blur into a
+        famous resident. This page keeps them apart: who was of the town, who
+        stayed a while, and who simply came. The true version is remarkable
+        enough without help.
+      </p>
+    </div>
+    <ul class="twn-ppl" id="townPeople"></ul>
+  </div>
+</section>
+
+<!-- =================================================== LEARNING ======== -->
+<section class="twn-learn on-ink">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span class="bn-i">স্কুল, কলেজ, লাইব্রেরি</span><span class="en-i">Schools, a college, a library</span></p>
+      <h2 class="bn">যে শহর তাড়াতাড়ি পড়তে শিখেছিল</h2>
+      <h2 class="en">A town that learned early</h2>
+      <p class="bn">
+        উত্তরপাড়া শুধু বাড়ি তোলেনি, প্রতিষ্ঠান তুলেছে। আর সেগুলো তুলেছে এমন এক
+        সময়ে যখন তার দরকার ছিল না — জলা জমিতে গড়ে ওঠা একটা গ্রামের ইংরেজি স্কুল
+        লাগে না, বিনা পয়সার লাইব্রেরি তো নয়ই। তবু হয়েছিল, আর একবার হয়ে যাওয়ার
+        পর প্রজন্মের পর প্রজন্ম ওগুলোর ভিতর দিয়েই গিয়েছে।
+      </p>
+      <p class="en">
+        Uttarpara did not only build houses. It built institutions, and it
+        built them at a point when nothing obliged it to — a village on
+        reclaimed marsh does not need an English school, and it certainly does
+        not need a free library. It got both anyway, and once they existed,
+        generation after generation went through them.
+      </p>
+    </div>
+    <div class="twn-cards" id="townLearning"></div>
+  </div>
+</section>
+
+<!-- ===================================================== PLACES ======== -->
+<section class="twn-places">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span class="bn-i">ইট, চুন, সিঁড়ি</span><span class="en-i">Brick, lime, steps</span></p>
+      <h2 class="bn">যা দাঁড়িয়ে আছে</h2>
+      <h2 class="en">What is still standing</h2>
+      <p class="bn">
+        জিটি রোড থেকে গঙ্গার দিকে নামতে থাকলে পুরনো বাড়ি, মন্দিরের চূড়া আর ঘাটের
+        সিঁড়ি — একটার পর একটা। কোনওটাই ঘেরা নয়, টিকিটও লাগে না। রোজকার রাস্তার
+        মধ্যেই দাঁড়িয়ে আছে, রোজকার জিনিস হয়ে।
+      </p>
+      <p class="en">
+        Walk from the Grand Trunk Road down towards the water and you pass old
+        houses, temple towers and the steps of the ghats, one after another.
+        None of it is fenced off and none of it charges. It stands in the
+        ordinary street, being ordinary.
+      </p>
+    </div>
+    <div class="twn-places__grid" id="townPlaces"></div>
+  </div>
+</section>
+
+<!-- ====================================================== TODAY ======== -->
+<section class="twn-today on-ink">
+  <div class="wrap twn-today__in">
+    <div class="twn-today__txt">
+      <p class="kicker"><span class="bn-i">আজকের উত্তরপাড়া</span><span class="en-i">Uttarpara today</span></p>
+      <h2 class="bn">শহরটা জাদুঘর নয়</h2>
+      <h2 class="en">The town is not a museum</h2>
+      <p class="bn">
+        দেড় লাখ লোকের শহর, সাক্ষরতা নব্বই শতাংশের উপরে। সকালে হাওড়ার লোকাল ধরার
+        ভিড়, জিটি রোডে টোটো, বাজারে মাছের দর নিয়ে তর্ক। হিন্দমোটরের কারখানা
+        ২০১৪-য় বন্ধ হয়েছে, কিন্তু তার পাশেই এখন মেট্রোর কামরা তৈরি হয়। আর পুজোর
+        সময় সি. এ. মাঠের ঠাকুর দেখতে গোটা শহর হাঁটে।
+      </p>
+      <p class="en">
+        A hundred and fifty thousand people, and literacy over ninety per cent.
+        The morning crush for the Howrah local, totos on the Grand Trunk Road,
+        an argument about the price of fish. The Hindmotor plant shut in 2014,
+        and metro coaches are built next to where it stood. At puja the whole
+        town walks to the C. A. Math pandal.
+      </p>
+      <p class="bn">
+        আর ব্যানার্জি পাড়া স্ট্রিটে সকাল ন’টায় একটা স্টিমার বসে, আর রাত ন’টা
+        পর্যন্ত নামে না।
+      </p>
+      <p class="en">
+        And on Banerjee Para Street a steamer goes on at nine in the morning
+        and does not come off until nine at night.
+      </p>
+    </div>
+    <div class="twn-today__pics">
+      <figure>
+        <img src="assets/img/town/durgapuja.jpg" width="1400" height="1050" loading="lazy" decoding="async"
+             alt="উত্তরপাড়া সি. এ. মাঠের দুর্গাপুজোর প্রতিমা / The Durga idol at the Uttarpara C. A. Math puja">
+        <figcaption><span class="bn-i">সি. এ. মাঠের পুজো · ছবি VNC200, CC BY-SA 4.0</span><span class="en-i">The C. A. Math puja · photo VNC200, CC BY-SA 4.0</span></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/shop/tea-and-signs.jpg" width="1087" height="1447" loading="lazy" decoding="async"
+             alt="দোকানের ভিতর, হাতে চায়ের কাপ / Inside the shop, a cup of tea in hand">
+        <figcaption><span class="bn-i">ব্যানার্জি পাড়া স্ট্রিট, সন্ধেবেলা</span><span class="en-i">Banerjee Para Street, evening</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ CONNECTION ========= -->
+<section class="twn-us">
+  <div class="wrap">
+    <p class="twn-us__mark" aria-hidden="true">·</p>
+    <p class="bn">
+      ১৮৪৬-এ এই শহরের লোকে চাঁদা তুলে একটা স্কুল বানিয়েছিল। ১৮৫৯-এ একজন তাঁর
+      নিজের বইগুলো তাকে তুলে দরজা খুলে দিয়েছিলেন সবার জন্য। সেই তুলনায় একটা চায়ের
+      দোকান কিছুই নয়, আর আমরা সেটা জানি।
+    </p>
+    <p class="en">
+      In 1846 the people of this town put their own money together for a
+      school. In 1859 one of them put his own books on a shelf and opened the
+      door to anybody. Set against that, a tea shop is nothing, and we know it.
+    </p>
+    <p class="bn">
+      তবু, যে জায়গা এতদিন ধরে অন্যের ভাবনার জন্য জায়গা করে দিয়ে এসেছে, সেখানে
+      নিজের ছোট জিনিসটা শুরু করা সহজ। আমরা দুই বোন এখানে মোমো বানাই আর চা করি।
+      স্কুলের ছুটির ঘণ্টা পড়লে ভিড় হয়। ওইটুকুই।
+    </p>
+    <p class="en">
+      Still — a place that has been making room for other people's ideas this
+      long is an easy place to start a small thing of your own. Two sisters
+      make momos here and brew tea. When the school bell goes there is a
+      queue. That is the whole of it.
+    </p>
+    <p class="twn-us__cta">
+      <a class="btn btn--solid" href="index.html#menu"><span class="bn-i">মেনু দেখুন</span><span class="en-i">See the menu</span></a>
+      <a class="btn btn--ghost" href="origins.html"><span class="bn-i">খাবারের গল্প</span><span class="en-i">The dish stories</span></a>
+    </p>
+  </div>
+</section>
+
+<!-- ==================================================== EXPLORE ======== -->
+<section class="twn-explore on-ink" id="explore">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span class="bn-i">আরও পড়ুন</span><span class="en-i">Read further</span></p>
+      <h2 class="bn">উত্তরপাড়া ঘুরে দেখুন</h2>
+      <h2 class="en">Explore Uttarpara</h2>
+      <p class="bn">
+        এই পাতার তথ্য যেখান থেকে এসেছে, সেগুলোই নীচে। কোনওটা সরাসরি এখানে খুলবে,
+        কোনওটা খুলবে না — যে সাইট নিজেকে অন্য পাতার ভিতরে দেখাতে দেয় না, তার
+        সিদ্ধান্ত আমরা ঘুরিয়ে দিই না। সে ক্ষেত্রে এখানে একটা সংক্ষিপ্ত পরিচয় আর
+        মূল সাইটে যাওয়ার লিঙ্ক থাকবে।
+      </p>
+      <p class="en">
+        These are the sources this page was built from. Some open here, some do
+        not — where a site has decided not to be shown inside another page,
+        that decision stands. In that case you get a short introduction and a
+        link to the real thing.
+      </p>
+    </div>
+
+    <div class="twn-tabs" role="tablist" aria-label="Uttarpara resources" id="townTabs"></div>
+    <div class="twn-panels" id="townPanels"></div>
+  </div>
+</section>
+
+<!-- ==================================================== SOURCES ======== -->
+<section class="twn-src">
+  <div class="wrap">
+    <h2 class="bn">সূত্র</h2>
+    <h2 class="en">Sources</h2>
+    <p class="bn">
+      এই পাতার প্রতিটি তারিখ, নাম আর সংখ্যা নীচের কোনও না কোনও সূত্র থেকে নেওয়া।
+      যেখানে সূত্রে সূত্রে মিল নেই, সেখানে পাতাটা সেটা বলে দিয়েছে।
+    </p>
+    <p class="en">
+      Every date, name and figure on this page comes from one of these. Where
+      the sources disagree, the page says so rather than quietly picking one.
+    </p>
+    <ul class="twn-src__list" id="townSources"></ul>
+    <p class="twn-src__pics" id="townCredits"></p>
   </div>
 </section>
 
@@ -204,7 +557,7 @@ try { var t = localStorage.getItem('manjula-theme');
       <span class="en-i">9am to 9pm daily · 17/A Banerjee Para Street, Uttarpara</span>
     </p>
     <span style="display:flex;gap:.7rem;flex-wrap:wrap">
-      <a class="btn btn--solid" href="origins.html"><span class="bn-i">খাবারের গল্প</span><span class="en-i">The dish stories</span></a>
+      <a class="btn btn--solid" href="index.html#menu"><span class="bn-i">পুরো মেনু</span><span class="en-i">The full menu</span></a>
       <a class="btn btn--call" href="tel:+919163538794"><span aria-hidden="true">☎</span><span class="bn-i">দোকানে ফোন করুন</span><span class="en-i">Call the shop</span></a>
     </span>
   </div>
@@ -223,7 +576,9 @@ try { var t = localStorage.getItem('manjula-theme');
   </div>
 </footer>
 
-<script src="assets/js/pages.js?v=3"></script>
+<script src="assets/data/town.js?v=1"></script>
+<script src="assets/js/town.js?v=1"></script>
+<script src="assets/js/pages.js?v=4"></script>
 <script src="assets/js/assistant.js?v=3"></script>
 <script src="assets/js/nav.js?v=1"></script>
 <script src="assets/js/theme.js?v=1"></script>

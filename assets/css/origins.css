@@ -45,6 +45,20 @@
 }
 html[data-lang="en"] .dishcard h3 { font-family: var(--display); font-variation-settings: 'SOFT' 40, 'WONK' 1; }
 .dishcard__sub { margin: 0 0 .7rem; font-size: .9rem; color: var(--text-dim); }
+
+/* Which dishes on the card this story is actually about. Seven stories over
+   twenty items reads as thirteen missing dishes unless the card says so. */
+.dishcard__items {
+  list-style: none; margin: 0 0 .9rem; padding: .6rem 0 0;
+  border-top: 1px dashed var(--rule); display: grid; gap: .2rem;
+}
+.dishcard__items li {
+  display: flex; justify-content: space-between; gap: .8rem;
+  font-size: .84rem; color: var(--text-dim); line-height: 1.55;
+}
+html[data-lang="bn"] .dishcard__items li { font-size: .9rem; line-height: 1.8; }
+.dishcard__items b { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
 .dishcard__price { font-weight: 700; color: var(--stool-ink); font-variant-numeric: tabular-nums; }
 
 /* ==========================================================================
