@@ -1,0 +1,5 @@
+# Raw CogVideoX output. The generator writes its first frame and its unencoded
+# clip here as it goes, so this folder fills with work-in-progress that should
+# not ship. Finished clips get encoded for the web and moved to assets/video/
+# deliberately; nothing lands on the site by accident.
+assets/video/kitchen/
