@@ -173,6 +173,46 @@
 
     screen.insertBefore(frag, bars);
 
+    // The globe gets its own copy of the scenes. Cloning rather than moving
+    // means paintReel can address both with one selector and neither vessel
+    // is special — switching views changes what is visible, never what is
+    // playing.
+    const ball = document.getElementById('globeBall');
+    if (ball) {
+      // Into a fragment, inserted ahead of the meridian overlay in one go.
+      // prepend() per scene reverses the order and paintReel indexes by
+      // position, so the globe showed the slate while the caption read toast.
+      // Exactly the bug the tablet had, made twice.
+      const gfrag = document.createDocumentFragment();
+      REELS.forEach((r, i) => {
+        let el;
+        if (r.vid) {
+          el = document.createElement('video');
+          el.muted = true; el.loop = true; el.playsInline = true;
+          el.preload = 'none';
+          el.setAttribute('aria-hidden', 'true');
+          el.dataset.src = `assets/video/${r.f}.mp4`;
+        } else {
+          el = document.createElement('img');
+          el.src = `assets/img/reel/${r.f}.jpg`;
+          el.loading = 'lazy'; el.alt = '';
+        }
+        el.className = 'reel__media ' + (r.vid ? 'reel__vid' : 'reel__img') + (i === 0 ? ' is-on' : '');
+        gfrag.append(el);
+      });
+      ball.insertBefore(gfrag, ball.firstChild);
+      ball.addEventListener('click', () => { show(reelAt + 1); restart(); });
+    }
+
+    // Which vessel is on show. Remembered, like the language and the theme.
+    const reel = document.getElementById('reel');
+    document.querySelectorAll('[data-view-set]').forEach((b) => {
+      b.addEventListener('click', () => setView(b.dataset.viewSet));
+    });
+    let savedView = 'tablet';
+    try { savedView = localStorage.getItem('manjula-view') || 'tablet'; } catch (e) { /* private mode */ }
+    setView(savedView);
+
     /* Tap the left third to go back, anywhere else to go on — the gesture
        everyone already has from every story app there is. */
     screen.addEventListener('click', (e) => {
@@ -183,6 +223,17 @@
 
     paintReel();
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) restart();
+  }
+
+  function setView(v) {
+    const view = v === 'globe' ? 'globe' : 'tablet';
+    const reel = document.getElementById('reel');
+    if (reel) reel.dataset.view = view;
+    document.querySelectorAll('[data-view-set]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.viewSet === view));
+    });
+    try { localStorage.setItem('manjula-view', view); } catch (e) { /* private mode */ }
+    paintReel();          // the newly visible copy needs its video started
   }
 
   function restart() {
@@ -197,14 +248,25 @@
 
   function paintReel() {
     if (typeof REELS === 'undefined') return;
-    const media = document.querySelectorAll('.reel__media');
+    // Both vessels hold a full set, so index within each rather than across
+    // the pair — a flat querySelectorAll would put scene 0 of the globe at
+    // index 11 and light the wrong one.
+    const groups = [document.querySelector('.phone__screen'), document.getElementById('globeBall')].filter(Boolean);
+    const media = groups.flatMap((g) => [...g.querySelectorAll('.reel__media')]);
     if (!media.length) return;
     const bn = lang() === 'bn';
     const r = REELS[reelAt];
 
-    media.forEach((el, i) => {
-      const on = i === reelAt;
-      el.classList.toggle('is-on', on);
+    // Only the vessel on screen decodes. Both hold a full set, so without
+    // this the active clip plays twice at once — two decoders for one picture,
+    // and the invisible one is pure heat.
+    const view = document.getElementById('reel')?.dataset.view || 'tablet';
+    groups.forEach((g) => {
+      const visible = (view === 'globe') === (g.id === 'globeBall');
+      [...g.querySelectorAll('.reel__media')].forEach((el, i) => {
+      const current = i === reelAt;
+      const on = current && visible;
+      el.classList.toggle('is-on', current);   // both vessels show the scene
       if (el.tagName !== 'VIDEO') return;
       // Fetch a clip when it is up or next, and never before. Pause the ones
       // that are not showing — five looping videos decoding at once is how a
@@ -222,6 +284,7 @@
           if (el.classList.contains('is-on')) el.play().catch(() => {});
         });
       } else el.pause();
+      });
     });
 
     document.querySelectorAll('.phone__bars i').forEach((bar, i) => {
@@ -238,10 +301,12 @@
       t.setAttribute('aria-current', String(i === reelAt));
     });
 
-    const scene = document.querySelector('.phone__scene');
-    const dish = document.querySelector('.phone__dish');
-    if (scene) scene.textContent = bn ? r.bn : r.en;
-    if (dish) {
+    // Two caption slots now — one on the tablet screen, one under the globe.
+    // Both are filled always; CSS decides which is on show.
+    document.querySelectorAll('.phone__scene').forEach((scene) => {
+      scene.textContent = bn ? r.bn : r.en;
+    });
+    document.querySelectorAll('.phone__dish').forEach((dish) => {
       dish.innerHTML = '';
       if (r.price) {                 // a dish on the card: name it and price it
         const b = document.createElement('b');
@@ -252,7 +317,7 @@
         dish.append(b, price);
       }
       // no price means atmosphere: caption only, nothing implied for sale
-    }
+    });
   }
 
   /* ---------- the menu ---------------------------------------------------- */

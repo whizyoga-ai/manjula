@@ -46,7 +46,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;600;700&amp;family=Hind+Siliguri:wght@400;500;600&amp;family=Tiro+Bangla:ital@0;1&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=Caveat:wght@500;600;700&amp;display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/site.css?v=5">
+<link rel="stylesheet" href="assets/css/site.css?v=7">
 
 <script type="application/ld+json">
 {
@@ -190,16 +190,43 @@ try { var t = localStorage.getItem('manjula-theme');
          sisters, so no caption here names anybody — they describe what is
          happening, never who is doing it. Corrected renders drop straight in
          over the same twelve slugs. -->
-    <figure class="reel" id="reel">
-      <div class="phone">
-        <div class="phone__screen">
-          <div class="phone__bars" aria-hidden="true"></div>
-          <div class="phone__card">
-            <span class="phone__scene" aria-live="polite"></span>
-            <span class="phone__dish"></span>
+    <figure class="reel" id="reel" data-view="tablet">
+      <div class="stage">
+        <div class="phone">
+          <div class="phone__screen">
+            <div class="phone__bars" aria-hidden="true"></div>
+            <div class="phone__card">
+              <span class="phone__scene" aria-live="polite"></span>
+              <span class="phone__dish"></span>
+            </div>
           </div>
         </div>
+
+        <!-- The same reel in a glass sphere. The player does not know which
+             vessel it is drawing into; only the clipping and the lighting
+             differ, so the two views cannot fall out of step. -->
+        <div class="globe">
+          <div class="globe__ball" id="globeBall">
+            <div class="globe__grid" aria-hidden="true"></div>
+          </div>
+          <div class="globe__stand" aria-hidden="true"></div>
+        </div>
       </div>
+
+      <!-- The tablet carries its caption on the screen. A sphere cannot, so
+           the globe gets the same words underneath it. -->
+      <p class="globe__cap">
+        <span class="phone__scene" aria-live="polite"></span>
+        <span class="phone__dish"></span>
+      </p>
+
+      <div class="reel__views" role="group" aria-label="View">
+        <button type="button" data-view-set="tablet" aria-pressed="true">
+          <span class="bn-i">ট্যাব</span><span class="en-i">Tablet</span></button>
+        <button type="button" data-view-set="globe" aria-pressed="false">
+          <span class="bn-i">গ্লোব</span><span class="en-i">Globe</span></button>
+      </div>
+
       <figcaption class="reel__tabs" role="group" aria-label="Scenes"></figcaption>
     </figure>
   </div>
@@ -555,7 +582,7 @@ try { var t = localStorage.getItem('manjula-theme');
 <script src="assets/data/menu.js?v=1"></script>
 <script src="assets/data/reels.js?v=2"></script>
 <script src="assets/data/slate.js?v=1"></script>
-<script src="assets/js/site.js?v=3"></script>
+<script src="assets/js/site.js?v=7"></script>
 <script src="assets/js/assistant.js?v=1"></script>
 <script src="assets/js/theme.js?v=1"></script>
 </body>

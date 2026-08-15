@@ -287,26 +287,31 @@ html[data-lang="en"] .hero h1 {
 
 .reel { margin: 0; display: grid; justify-items: center; gap: 1rem; }
 
+ /* A TABLET, NOT A PHONE. The phone frame had the right idea and the wrong
+    size: a 9:19.5 slab standing in a hero column is a sliver, and the food
+    inside it came out postage-stamp sized. 3:4 at the same column width is
+    nearly three times the picture area for the same footprint. */
 .phone {
   position: relative;
-  width: clamp(240px, 26vw, 330px);
-  aspect-ratio: 9 / 19.5;
-  border-radius: 34px;
-  padding: 8px;
-  background: linear-gradient(160deg, #3a3129, #17130f 60%);
+  width: clamp(280px, 34vw, 470px);
+  aspect-ratio: 3 / 4;
+  border-radius: 24px;
+  padding: 14px;
+  background: linear-gradient(150deg, #4a4036, #1b1712 62%);
   box-shadow:
     inset 0 0 0 1px rgba(var(--chalk-rgb), .16),
     0 40px 70px -28px rgba(0,0,0,.95);
 }
 .phone__screen {
-  position: relative; height: 100%; border-radius: 27px; overflow: hidden;
+  position: relative; height: 100%; border-radius: 12px; overflow: hidden;
   background: var(--ink); isolation: isolate; cursor: pointer;
 }
 
 /* the scenes */
 .reel__media {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; opacity: 0; transition: opacity .55s ease;
+  object-fit: cover; object-position: center 36%;
+  opacity: 0; transition: opacity .55s ease;
 }
 .reel__media.is-on { opacity: 1; }
 .reel__img { transform: scale(1.06); }
@@ -381,7 +386,7 @@ html[data-lang="bn"] .phone__dish b { font-size: .95rem; }
   .reel__img.is-on, .reel__img:nth-child(even).is-on { animation: none; transform: scale(1.03); }
   .phone__bars i.is-on b { animation: none; width: 100%; }
 }
-@media (max-width: 900px) { .phone { width: clamp(250px, 68vw, 320px); } }
+@media (max-width: 900px) { .phone { width: clamp(260px, 84vw, 430px); padding: 10px; } }
 
 /* the hero photo, hung like a picture on the board */
 .hero__shot {
@@ -954,3 +959,119 @@ html[data-lang="bn"] .card__head { padding-block: 1rem; }
 html[data-lang="bn"] .sec-head h2,
 html[data-lang="bn"] .origins-hero h1,
 html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
+
+/* ==========================================================================
+   THE GLOBE — the second way to show the reel
+
+   A glass sphere on a stand with the kitchen running inside it. Same eleven
+   scenes, same player, same captions: only the vessel changes, so nothing
+   here duplicates logic and the two views cannot drift.
+
+   Built in CSS rather than with a 3D library on purpose. Three.js to spin a
+   textured sphere is ~600KB of JavaScript before a single frame of the shop
+   loads, on a site whose readers are on Indian mobile data. What actually
+   sells a sphere is not geometry, it is light: a specular highlight up and
+   left, a terminator falling away to the lower right, a rim where the glass
+   catches, and a contact shadow on the ground beneath. All four are gradients.
+
+   The scenes keep playing inside it, video included, because the media stack
+   is untouched — the globe just clips it to a circle and lights it.
+   ========================================================================== */
+
+.stage { display: grid; justify-items: center; }
+.stage > * { grid-area: 1 / 1; }          /* both vessels stacked, one shown */
+.reel[data-view="globe"] .phone { visibility: hidden; pointer-events: none; }
+.reel[data-view="tablet"] .globe { visibility: hidden; pointer-events: none; }
+
+.globe {
+  position: relative;
+  width: clamp(280px, 34vw, 470px);
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+}
+
+.globe__ball {
+  position: relative;
+  width: 100%; aspect-ratio: 1; border-radius: 50%;
+  overflow: hidden; isolation: isolate; cursor: pointer;
+  background: var(--ink);
+  /* the rim, and the light the glass throws onto the ground */
+  box-shadow:
+    inset 0 0 0 2px rgba(var(--chalk-rgb), .22),
+    0 0 0 1px rgba(var(--chalk-rgb), .10),
+    0 40px 60px -34px rgba(0,0,0,.95);
+}
+
+/* the media, pushed out so the sphere's edge never shows a straight crop */
+.globe__ball .reel__media { transform: scale(1.14); }
+.globe__ball .reel__img.is-on,
+.globe__ball .reel__img:nth-child(even).is-on { animation: none; }
+
+/* SHADING. Everything that makes it read as a ball rather than a hole. */
+.globe__ball::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background:
+    /* specular highlight, up and left */
+    radial-gradient(38% 30% at 27% 20%, rgba(255,255,255,.42), transparent 62%),
+    /* a second, tighter catch on the glass */
+    radial-gradient(12% 9% at 32% 15%, rgba(255,255,255,.55), transparent 70%),
+    /* terminator: the far side falling into shadow */
+    radial-gradient(120% 120% at 28% 22%, transparent 42%, rgba(0,0,0,.30) 74%, rgba(0,0,0,.72) 100%),
+    /* bounce light coming back up off the ground */
+    radial-gradient(60% 34% at 62% 96%, rgba(224,150,26,.20), transparent 70%);
+}
+
+/* the meridians, turning — the one part that says "this is rotating" */
+.globe__grid {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  border-radius: 50%; overflow: hidden; opacity: .22;
+}
+.globe__grid::before {
+  content: ''; position: absolute; top: -10%; bottom: -10%; left: 0; width: 200%;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(var(--chalk-rgb), .55) 0 1px, transparent 1px 8.33%),
+    repeating-linear-gradient(0deg,  rgba(var(--chalk-rgb), .30) 0 1px, transparent 1px 16.6%);
+  animation: globe-spin 26s linear infinite;
+}
+@keyframes globe-spin { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* the stand */
+.globe__stand {
+  position: absolute; bottom: -6%; left: 50%; transform: translateX(-50%);
+  width: 42%; height: 9%;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  background: linear-gradient(180deg, #4a4036, #241d17);
+  box-shadow: inset 0 2px 0 rgba(var(--chalk-rgb), .16), 0 12px 22px -10px rgba(0,0,0,.9);
+}
+/* contact shadow, so the ball sits on something */
+.globe::after {
+  content: ''; position: absolute; bottom: -9%; left: 50%; transform: translateX(-50%);
+  width: 62%; height: 5%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), transparent 78%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) { .globe__grid::before { animation: none; } }
+@media (max-width: 900px) { .globe { width: clamp(260px, 84vw, 430px); } }
+
+/* the view switch */
+.reel__views { display: flex; gap: .35rem; justify-content: center; }
+.reel__views button {
+  border: 1px solid rgba(var(--chalk-rgb), .24); background: transparent;
+  color: var(--chalk-dim); border-radius: 999px; padding: .3rem .85rem;
+  font-size: .82rem; cursor: pointer; line-height: 1.4;
+}
+.reel__views button:hover { color: var(--chalk); background: rgba(var(--chalk-rgb), .08); }
+.reel__views button[aria-pressed="true"] {
+  background: var(--chalk); border-color: var(--chalk); color: var(--ink); font-weight: 600;
+}
+
+/* The globe's caption. Same words the tablet prints on its screen, set below
+   the sphere instead — a curved surface is no place for a line of Bengali. */
+.globe__cap {
+  margin: .2rem 0 0; display: grid; justify-items: center; gap: .35rem;
+  text-align: center; max-width: 30rem;
+}
+.reel[data-view="tablet"] .globe__cap { display: none; }
+.globe__cap .phone__dish { justify-content: center; }
+.globe__cap .phone__price { margin-left: 0; }
