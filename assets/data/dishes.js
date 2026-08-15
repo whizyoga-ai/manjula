@@ -131,7 +131,7 @@ const DISHES = [
     ],
     chips: [],
     kitchen: [
-      { bn: 'চারটে টোস্ট, চারটে আলাদা কাজ — আর দামের সিঁড়িটাই বুঝিয়ে দেয় কোনটা কেন। <strong>মাখন পাউরুটি ২০</strong>: সবচেয়ে সাদামাটা, তাই সবচেয়ে কঠিন — লুকোনোর কিছু নেই। <strong>ডিম পাউরুটি ২৫</strong>: পাঁচ টাকায় জলখাবার হয়ে যায়। <strong>মালাই টোস্ট ৩০</strong>: মিষ্টির দিকটা, যা চায়ের সঙ্গে বিকেলে চলে।',
+      { bn: 'চারটে টোস্ট, চারটে আলাদা কাজ — আর দাম দেখলেই বোঝা যায় কোনটা কেন। <strong>মাখন পাউরুটি ২০</strong>: সবচেয়ে সাদামাটা, তাই সবচেয়ে কঠিন — লুকোনোর কিছু নেই। <strong>ডিম পাউরুটি ২৫</strong>: পাঁচ টাকায় জলখাবার হয়ে যায়। <strong>মালাই টোস্ট ৩০</strong>: মিষ্টির দিকটা, যা চায়ের সঙ্গে বিকেলে চলে।',
         en: 'Four toasts doing four different jobs, and the price ladder tells you which is which. <strong>Butter toast at 20</strong> — the plainest, and so the hardest, because there is nothing to hide behind. <strong>Egg toast at 25</strong> — five rupees turns a snack into breakfast. <strong>Malai toast at 30</strong> — the sweet end of the shelf, which is what an afternoon tea wants.' },
       { bn: 'হিসেবটা সরল: যে জিনিস সবচেয়ে বেশি বিক্রি হবে, সেটাই সবচেয়ে সস্তা রাখতে হবে। তাই মাখন পাউরুটি বিশ টাকাতেই থেকে গেছে।',
         en: 'The arithmetic is plain: the thing that sells most has to be the thing that costs least. Which is why butter toast has stayed at twenty.' },
@@ -156,7 +156,7 @@ const DISHES = [
     route: [],
     chips: [],
     kitchen: [
-      { bn: 'দামের সিঁড়িটা লক্ষ করুন: <strong>১২ · ১৫ · ২০ · ৩০</strong>। প্রতিটা ধাপ তিন থেকে দশ টাকার। মানে ডিমের তাকটা ইচ্ছে করে এমনভাবে সাজানো, যাতে পকেটে যা-ই থাক, একটা ধাপ আপনার জন্য থাকবেই। সেদ্ধ ডিম বারো টাকায় স্কুলের বাচ্চার হাতের নাগালে, আর চীজ ওমলেট তিরিশে গোটা একটা জলখাবার।',
+      { bn: 'দামগুলো পরপর দেখুন — <strong>১২, ১৫, ২০, ৩০</strong>। এক ধাপ থেকে পরের ধাপ, তিন থেকে দশ টাকার তফাত। মানে ডিমের তাকটা ইচ্ছে করে এমনভাবে সাজানো, যাতে পকেটে যা-ই থাক, একটা ধাপ আপনার জন্য থাকবেই। সেদ্ধ ডিম বারো টাকায় স্কুলের বাচ্চার হাতের নাগালে, আর চীজ ওমলেট তিরিশে গোটা একটা জলখাবার।',
         en: 'Look at the ladder: <strong>12 · 15 · 20 · 30</strong>. Each rung is three to ten rupees above the last. The egg shelf is arranged so that whatever is in your pocket, one rung is meant for you. A boiled egg at twelve is within a schoolchild’s reach; a cheese omlet at thirty is a whole breakfast.' },
       { bn: 'চীজটা এখানে বিলাসিতা নয়, একটা সিদ্ধান্ত — ওটাই একমাত্র উপকরণ যা এই দোকানের তিনটে আলাদা তাকে (ডিম, ম্যাগি, টোস্ট) একই কাজ করে: দশ টাকা যোগ করে খাবারটাকে ‘পেট ভরা’ বানিয়ে দেয়।',
         en: 'The cheese is not a luxury here, it is a lever. It is the one ingredient that does the same job on three different shelves — eggs, maggie, toast — adding ten rupees and turning a snack into something that fills you up.' },
@@ -194,7 +194,7 @@ const DISHES = [
       { bn: 'চীজ', en: 'Cheese' }, { bn: 'দুটোই', en: 'Both' },
     ],
     kitchen: [
-      { bn: 'প্যাকেটের ম্যাগি সবাই বানাতে পারে। তফাত হয় তার পরে কী পড়ল তাতে — আর মঞ্জুলার কার্ডে সেই তফাতটা একটা সিঁড়ি হয়ে সাজানো: <strong>প্লেন ৩০ → এগ ৪০ → চীজ ৪০ → এগ চীজ ৫০</strong>।',
+      { bn: 'প্যাকেটের ম্যাগি সবাই বানাতে পারে। তফাত হয় তার পরে কী পড়ল তাতে — আর মঞ্জুলার কার্ডে সেই তফাতটা ধাপে ধাপে সাজানো: <strong>প্লেন ৩০ → এগ ৪০ → চীজ ৪০ → এগ চীজ ৫০</strong>।',
         en: 'Anyone can make maggie out of the packet. The difference is what goes in after, and on Manjula’s card that difference is laid out as a staircase: <strong>plain 30 → egg 40 → cheese 40 → egg-and-cheese 50</strong>.' },
       { bn: 'খেয়াল করুন, ডিম আর চীজ দুটোরই দাম চল্লিশ। ইচ্ছে করে। একটাকে অন্যটার উপরে বসানো হয়নি — কে কী চায়, সেটা খদ্দেরের রুচির ব্যাপার, দামের নয়। দশ টাকা বাড়তি লাগে কেবল যখন দুটোই একসঙ্গে চান।',
         en: 'Notice that egg and cheese are the same forty. That is deliberate. Neither is ranked above the other — which you want is a matter of taste, not of price. The extra ten rupees is only charged when you want both.' },

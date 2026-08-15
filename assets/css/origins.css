@@ -328,3 +328,29 @@ html[data-lang="en"] .film figcaption h2 {
 }
 html[data-lang="bn"] .film__meta { font-family: var(--body-bn); font-size: .9rem; }
 .film figcaption p { max-width: 58ch; color: var(--text-dim); }
+
+/* ==========================================================================
+   BENGALI LEADING FOR THIS FILE'S OWN ELEMENTS
+
+   site.css sets 1.45–1.6 for Bengali, but this stylesheet loads after it and
+   several of its rules match at equal specificity — `.film figcaption h2` ties
+   with `html[data-lang="bn"] h2`, and a tie goes to whoever is later. So the
+   overrides for elements defined here have to live here.
+
+   Measured, not guessed: seven dish-card headings on the origins index were
+   clipping two pixels, and both film headings on the movies page were seven
+   pixels short of their own glyphs.
+   ========================================================================== */
+
+html[data-lang="bn"] .dishcard h3,
+html[data-lang="bn"] .film figcaption h2,
+html[data-lang="bn"] .chapter h1,
+html[data-lang="bn"] .chapter h2,
+html[data-lang="bn"] .origins-hero h1 { line-height: 1.6; }
+
+html[data-lang="bn"] .dishcard__sub,
+html[data-lang="bn"] .chapter__sub,
+html[data-lang="bn"] .pager__name,
+html[data-lang="bn"] .walk__body h3,
+html[data-lang="bn"] .route .where,
+html[data-lang="bn"] .film__meta { line-height: 1.5; }

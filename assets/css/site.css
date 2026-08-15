@@ -961,8 +961,11 @@ html[data-lang="bn"] .card__head { padding-block: 1rem; }
 /* The section headings are the largest Bengali on the page, and at that size
    Noto Serif Bengali's matra reaches a couple of pixels past what 1.45 gives
    it. Measured, not guessed: four h2s were still two pixels over. */
+html[data-lang="bn"] h1,
+html[data-lang="bn"] h2,
 html[data-lang="bn"] .sec-head h2,
 html[data-lang="bn"] .origins-hero h1,
+html[data-lang="bn"] .chapter h1,
 html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
 
 /* ==========================================================================
