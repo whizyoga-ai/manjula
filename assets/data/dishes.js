@@ -35,7 +35,7 @@ const DISHES = [
       en: 'Lhasa to Banerjee Para, in about six hundred years',
     },
     lede: {
-      bn: 'পৃথিবীর সবচেয়ে বেশি হেঁটে আসা খাবারগুলোর একটা। পাহাড়ের রাখাল, সন্ন্যাসী আর বণিকদের জন্য তৈরি — হাতে ধরা যায়, ঠান্ডায় নষ্ট হয় না, আর ভিতরে পুরো একটা খাবার।',
+      bn: 'পৃথিবীর সবচেয়ে বেশি পথ হেঁটে আসা খাবারগুলোর একটা। পাহাড়ের রাখাল, সন্ন্যাসী আর বণিকদের কথা ভেবেই তৈরি — এক হাতে ধরা যায়, ঠান্ডায় নষ্ট হয় না, আর ভিতরে গোটা একটা খাবার মুড়ে রাখা।',
       en: 'One of the most travelled foods on earth. It was built for herders, monks and traders crossing hard country — something you can hold in one hand, that survives the cold, and that has an entire meal folded inside it.',
     },
     route: [
@@ -63,7 +63,7 @@ const DISHES = [
     kitchen: [
       { bn: 'ঈশা চারটে রাস্তা খোলা রেখেছেন, আর সেটাই আসল সিদ্ধান্ত: চিকেন না মাটন, আর ভাপে না ভাজা। ভাপের মোমো পুরের স্বাদ সামনে আনে; ভাজা মোমো খোলসটাকে সামনে আনে। দুটো আলাদা খাবার, একই পুর — তাই দুটোই থাকে, আর দাম আলাদা।',
         en: 'Isha kept four doors open, and that is the actual decision: chicken or mutton, steamed or fried. Steaming puts the filling in front; frying puts the skin in front. They are two different dishes made from one filling, so both stay on the card, priced apart.' },
-      { bn: 'প্লেটে পাঁচটা — ছাপানো কার্ডে সেটা লেখা নেই, লেখা আছে দোকানের সামনের স্লেটে। মানে সংখ্যাটা ঠিক করা হয়েছে দাঁড়িয়ে থাকা খদ্দেরের দিকে তাকিয়ে, ছাপাখানায় নয়।',
+      { bn: 'প্লেটে পাঁচটা। কথাটা ছাপানো কার্ডে নেই, আছে ফুটপাথের স্লেটে। মানে সংখ্যাটা ঠিক হয়েছে কাউন্টারে দাঁড়ানো লোকটার দিকে তাকিয়ে — ছাপাখানায় বসে নয়।',
         en: 'Five to a plate. That number is not on the printed card — it is chalked on the slate outside. Which tells you it was settled by looking at the person standing at the counter, not by a printer.' },
     ],
   },
@@ -77,7 +77,7 @@ const DISHES = [
     name: { bn: 'স্টু পাউরুটি', en: 'Bread & chicken stew' },
     sub: { bn: 'কলকাতার কেবিন থেকে সোজা', en: 'Straight out of a Calcutta cabin' },
     lede: {
-      bn: 'মঞ্জুলার মেনুতে সবচেয়ে কলকাতার পদ — যদিও জন্ম ইউরোপে। ব্রিটিশ আমলে অ্যাংলো-ইন্ডিয়ান রান্নাঘরে ইউরোপীয় স্টু-এর পদ্ধতির সঙ্গে ভারতীয় মশলা মিশে যা তৈরি হল, তা আর কোনওটাই রইল না — মাখন-ক্রিমের বদলে হালকা ঝোল, তাতে গোলমরিচ, তেজপাতা, লবঙ্গ।',
+      bn: 'মেনুর সবচেয়ে কলকাতার পদ। অথচ জন্ম ইউরোপে। ব্রিটিশ আমলে অ্যাংলো-ইন্ডিয়ান হেঁশেলে ইউরোপের স্টু রাঁধার ধরনটা মিশল ভারতীয় মশলার সঙ্গে — আর যা দাঁড়াল, সেটা আর কোনওটাই রইল না। মাখন-ক্রিম সরে গিয়ে এল হালকা ঝোল, তাতে গোলমরিচ, তেজপাতা, লবঙ্গ।',
       en: 'The most Calcutta thing on Manjula’s menu, and it was born in Europe. In Anglo-Indian kitchens under the British, the European method of stewing met Indian aromatics and became neither — the butter and cream gave way to a light broth carrying peppercorn, bay leaf and clove.',
     },
     route: [
@@ -115,7 +115,7 @@ const DISHES = [
     name: { bn: 'পাউরুটি ও টোস্ট', en: 'Pauruti, and toast' },
     sub: { bn: 'একটা শব্দ, যার অর্ধেক পর্তুগিজ', en: 'A word that is half Portuguese' },
     lede: {
-      bn: 'বাংলার সবচেয়ে সুন্দর শব্দগুলোর একটা, কারণ শব্দটার ভিতরেই ইতিহাস ধরা আছে। <strong>পাউরুটি</strong> = পর্তুগিজ <i>pão</i> (রুটি) + বাংলা <i>রুটি</i>। দুটো ভাষার দুটো শব্দ, একই মানে, জোড়া লেগে একটা নতুন জিনিস বোঝাতে শুরু করল — যে রুটি চ্যাপ্টা নয়, ফোলা।',
+      bn: 'বাংলার সবচেয়ে সুন্দর শব্দগুলোর একটা — কারণ ইতিহাসটা শব্দের ভিতরেই রয়ে গেছে। <strong>পাউরুটি</strong> = পর্তুগিজ <i>pão</i> + বাংলা <i>রুটি</i>। দুই ভাষার দুটো শব্দ, মানে একই, জুড়ে গিয়ে বোঝাতে শুরু করল তৃতীয় একটা জিনিস — যে রুটি চ্যাপ্টা নয়, ফুলে ওঠে।',
       en: 'One of the loveliest words in Bengali, because the history is inside the word itself. <strong>পাউরুটি</strong> = Portuguese <i>pão</i> (bread) + Bengali <i>ruti</i> (bread). Two words from two languages, both meaning the same thing, welded together to name a third — the bread that rises, as opposed to the flatbread that does not.',
     },
     route: [
@@ -150,7 +150,7 @@ const DISHES = [
       en: 'Twelve rupees to thirty — one ingredient, four answers',
     },
     lede: {
-      bn: 'ডিমের কোনও উৎসের গল্প লাগে না; ওটা সব রাস্তার খাবারের মেরুদণ্ড। যেটা বলার মতো, সেটা হল <em>নামগুলো</em> — ‘পোচ’ আর ‘ওমলেট’ ইংরেজি থেকে এসে বাংলা শব্দ হয়ে বসে আছে, ঠিক যেমন পাউরুটি এসেছিল পর্তুগিজ থেকে।',
+      bn: 'ডিমের আবার উৎসের গল্প কী — ওটা তো সব রাস্তার খাবারেরই মেরুদণ্ড। বরং <em>নামগুলো</em> খেয়াল করার মতো। ‘পোচ’ আর ‘ওমলেট’ ইংরেজি থেকে এসে দিব্যি বাংলা শব্দ হয়ে বসে আছে — ঠিক যেমন পাউরুটি এসেছিল পর্তুগিজ থেকে।',
       en: 'The egg needs no origin story; it is the spine of every street food anywhere. What is worth noticing is the <em>names</em>. “Poach” and “omlet” walked out of English and settled down as Bengali words, exactly the way <i>pauruti</i> came in from Portuguese.',
     },
     route: [],
@@ -175,7 +175,7 @@ const DISHES = [
       en: 'A completely foreign food that landed in 1983',
     },
     lede: {
-      bn: 'মেনুর সবচেয়ে নতুন পদ, আর সবচেয়ে অসম্ভব সাফল্য। ১৯৮৩-তে যখন নেসলে ভারতে ম্যাগি আনে, তখন দেশটা বন্ধ অর্থনীতি — উদারীকরণ আসতে আরও আট বছর — আর ভারতীয় বাড়িতে নুডলস বলে কোনও ধারণাই ছিল না।',
+      bn: 'মেনুর সবচেয়ে নতুন পদ। আর সবচেয়ে অপ্রত্যাশিত সাফল্যও। ১৯৮৩-তে নেসলে যখন ভারতে ম্যাগি আনল, দেশের অর্থনীতি তখনও বন্ধ — উদারীকরণ আসতে আরও আট বছর বাকি। আর ভারতীয় হেঁশেলে নুডলস বলে কোনও ধারণাই ছিল না।',
       en: 'The newest thing on the menu and the least likely success on it. When Nestlé brought Maggi to India in 1983, this was a closed economy — liberalisation was still eight years away — and noodles were not a thing Indian households ate at all.',
     },
     route: [
@@ -210,7 +210,7 @@ const DISHES = [
     name: { bn: 'ঘুগনি', en: 'Ghugni' },
     sub: { bn: 'কার্ডে নেই। স্লেটে আছে।', en: 'Not on the card. On the slate.' },
     lede: {
-      bn: 'পূর্ব ভারতের সবচেয়ে চেনা রাস্তার খাবার — শুকনো মটর, ধীরে সেদ্ধ, মশলার ঝোলে। বাংলা, ওড়িশা, বিহার, ঝাড়খণ্ড — সবার নিজের নিজের ঘুগনি আছে (বিহারে কালো ছোলায়, বাংলা ও ওড়িশায় সাদা মটরে)।',
+      bn: 'পূর্ব ভারতের সবচেয়ে চেনা রাস্তার খাবার। শুকনো মটর, ধীরে সেদ্ধ, মশলার ঝোলে। বাংলা, ওড়িশা, বিহার, ঝাড়খণ্ড — প্রত্যেকের নিজের নিজের ঘুগনি। বিহারে হয় কালো ছোলায়, বাংলা আর ওড়িশায় সাদা মটরে।',
       en: 'The most familiar street food in eastern India — dried peas, cooked slow, in a spiced gravy. Bengal, Odisha, Bihar and Jharkhand each have their own (Bihar’s with black chana, Bengal’s and Odisha’s with white peas).',
     },
     route: [],
@@ -234,7 +234,7 @@ const DISHES = [
     name: { bn: 'চা ও কফি', en: 'Tea, and coffee' },
     sub: { bn: 'দশ টাকা — নামের অর্ধেকটা', en: 'Ten rupees — and half the name' },
     lede: {
-      bn: 'দোকানের নাম <em>Bite &amp; Brew</em>। ‘বাইট’-টা মেনুর বেশিরভাগ জুড়ে, আর ‘ব্রু’-টা মাত্র দুটো লাইন — চা ১০, কফি ১৫। কিন্তু নামের অর্ধেকটা ওদেরই, আর সেটা ঠিকই আছে: পাড়ার দোকানে বেশিরভাগ মানুষ আসেন চায়ের জন্য, আর তারপর অন্য কিছু নেন।',
+      bn: 'দোকানের নাম <em>Bite &amp; Brew</em>। ‘বাইট’ জুড়ে আছে মেনুর প্রায় গোটাটা, আর ‘ব্রু’-র ভাগে মোটে দুটো লাইন — চা ১০, কফি ১৫। তবু নামের অর্ধেকটা ওদেরই। ঠিকই আছে: পাড়ার দোকানে বেশির ভাগ লোক আসেন চায়ের টানে, বাকিটা তারপর।',
       en: 'The shop is called <em>Bite &amp; Brew</em>. The bite takes up most of the menu; the brew is two lines — tea 10, coffee 15. But it owns half the name, and rightly: most people come to a para shop for the tea, and order the rest afterwards.',
     },
     route: [],
@@ -245,7 +245,7 @@ const DISHES = [
       // would have been misled by this page, not by the shop.
       { bn: 'দোকান খোলার দিন — শুধু সেই একটি দিনই — বোর্ডে লেখা ছিল <strong>চা ও কফি সম্পূর্ণ বিনামূল্যে</strong>। প্রথম দিনে যা বিনামূল্যে দেওয়া হয়, সেটাই বলে দেয় দোকানটা নিজেকে কী মনে করে। মঞ্জুলা বেছেছিল চা। তারপর থেকে চা দশ টাকাতেই।',
         en: 'On the opening day — and on that one day only — the board read <strong>tea and coffee, completely free</strong>. What a shop gives away on its first day tells you what it thinks it is. Manjula chose the tea. Every day since, it has been ten rupees.' },
-      { bn: 'দশ টাকা মানে ছাত্রছাত্রীরাও রোজ আসতে পারে। মেনুর সবচেয়ে সস্তা জিনিসটা যদি স্কুলের বাচ্চার নাগালে থাকে, তবে দোকানটা পাড়ার — অন্য কারও নয়।',
+      { bn: 'দশ টাকা মানে ছাত্রছাত্রীরাও রোজ আসতে পারে। মেনুর সবচেয়ে সস্তা জিনিসটা যদি স্কুলের বাচ্চার নাগালে থাকে, তবে বুঝতে হবে দোকানটা পাড়ারই — বাইরের কারও নয়।',
         en: 'Ten rupees means students can come every day. If the cheapest thing on the menu is within a schoolchild’s reach, the shop belongs to the neighbourhood and not to somebody passing through.' },
     ],
   },

@@ -22,7 +22,7 @@ const MENU = [
   {
     id: 'toast',
     en: { name: 'Toast', note: 'The morning half of the shop.' },
-    bn: { name: 'টোস্ট ও পাউরুটি', note: 'সকালের পাট।' },
+    bn: { name: 'টোস্ট ও পাউরুটি', note: 'সকালটা এখান থেকেই শুরু।' },
     accent: 'ink',
     items: [
       {
@@ -33,7 +33,7 @@ const MENU = [
         priceLabel: '10 + 50',
         priceLabelBn: '১০ + ৫০',
         en_note: 'Bread ₹10, stew ₹50 — priced apart on the card, eaten together.',
-        bn_note: 'পাউরুটি ১০, স্টু ৫০ — কার্ডে আলাদা, পাতে এক।',
+        bn_note: 'কার্ডে আলাদা দুটো দাম, পাতে একটাই খাবার।',
       },
       { id: 'malai', en: 'Malai toast', bn: 'মালাই টোস্ট', price: 30 },
       { id: 'butter', en: 'Butter toast', bn: 'মাখন পাউরুটি', price: 20 },
@@ -43,7 +43,7 @@ const MENU = [
   {
     id: 'eggs',
     en: { name: 'Eggs', note: 'Four ways, none of them complicated.' },
-    bn: { name: 'ডিম', note: 'চার রকম, কোনওটাই জটিল নয়।' },
+    bn: { name: 'ডিম', note: 'চার রকম। জটিল কিছু নয়।' },
     accent: 'yolk',
     items: [
       { id: 'boiled', en: 'Boiled egg', bn: 'ডিম সেদ্ধ', price: 12 },
@@ -55,7 +55,7 @@ const MENU = [
   {
     id: 'noodles',
     en: { name: 'Noodles', note: 'Maggie, the way a para shop makes it.' },
-    bn: { name: 'নুডলস', note: 'ম্যাগি — পাড়ার দোকানের হাতে।' },
+    bn: { name: 'নুডলস', note: 'ম্যাগি, পাড়ার দোকানের হাতে যেমন হয়।' },
     accent: 'leaf',
     items: [
       { id: 'plainmag', en: 'Plain maggie', bn: 'প্লেন ম্যাগি', price: 30 },
@@ -67,7 +67,7 @@ const MENU = [
   {
     id: 'momo',
     en: { name: 'Momo', note: 'Five to a plate, with the soup.' },
-    bn: { name: 'মোমো', note: 'প্লেটে পাঁচটা, সঙ্গে স্যুপ।' },
+    bn: { name: 'মোমো', note: 'প্লেটে পাঁচটা। সঙ্গে স্যুপ।' },
     accent: 'chilli',
     // The 5-piece portion is not on the laminated card. It is chalked on the
     // shop's own slate — see assets/img/slate.jpg, where chicken momo reads
@@ -82,7 +82,7 @@ const MENU = [
   {
     id: 'beverages',
     en: { name: 'Beverages', note: 'The brew half of Bite & Brew.' },
-    bn: { name: 'পানীয়', note: 'ব্রু-এর দিকটা।' },
+    bn: { name: 'পানীয়', note: 'নামের ব্রু-টুকু এখানেই।' },
     accent: 'brew',
     items: [
       { id: 'tea', en: 'Tea', bn: 'চা', price: 10 },

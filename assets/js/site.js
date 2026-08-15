@@ -96,8 +96,8 @@
       const left = Math.round((close * 60 - mins) / 60);
       text.textContent = bn
         ? (left >= 1
-            ? `এখন খোলা · আরও প্রায় ${bnNum(left)} ঘণ্টা`
-            : 'এখন খোলা · বন্ধ হওয়ার মুখে')
+            ? `খোলা আছে · আরও প্রায় ${bnNum(left)} ঘণ্টা`
+            : 'খোলা আছে · তবে বন্ধ হওয়ার মুখে')
         : (left >= 1
             ? `Open now · about ${left} more hour${left === 1 ? '' : 's'}`
             : 'Open now · closing shortly');
@@ -106,7 +106,9 @@
         ? Math.round((open * 60 - mins) / 60)
         : Math.round((24 * 60 - mins + open * 60) / 60);
       text.textContent = bn
-        ? `এখন বন্ধ · খুলবে সকাল ${bnNum(open)}টায় (আর প্রায় ${bnNum(until)} ঘণ্টা)`
+        // "ঘণ্টা দুয়েক" is the idiom, but it only works with the number
+        // spelled out; against a numeral it reads as a typo. Plain and clean.
+        ? `এখন বন্ধ · খুলবে সকাল ${bnNum(open)}টায় — আর প্রায় ${bnNum(until)} ঘণ্টা পরে`
         : `Closed now · opens at ${open}am, in about ${until} hour${until === 1 ? '' : 's'}`;
     }
   }
@@ -274,9 +276,9 @@
       const warn = document.createElement('p');
       warn.className = 'board__unknown';
       warn.innerHTML = bn
-        ? `উপরের বোর্ডটা <strong>আজকের নয়</strong>। আজ কী রান্না হয়েছে, সেটা এই পাতা জানে না —
-           <a href="tel:+919163538794">বুজুনিকে ফোন করে (৯১৬৩৫ ৩৮৭৯৪)</a> জেনে নিন। মেনুর
-           বাকি সব পদ রোজই পাওয়া যায়।`
+        ? `উপরের বোর্ডটা <strong>আজকের নয়</strong>। আজ কী রান্না হয়েছে, সে খবর এখানে এসে পৌঁছয়নি।
+           <a href="tel:+919163538794">বুজুনিকে একটা ফোন করে নিন — ৯১৬৩৫ ৩৮৭৯৪</a>। মেনুর
+           বাকি পদ কিন্তু রোজই থাকে।`
         : `The board above is <strong>not today's</strong>. This page does not know what was
            cooked this morning — <a href="tel:+919163538794">call Bujuni on +91 91635 38794</a>
            and ask. Everything on the printed menu is there every day.`;
@@ -375,7 +377,7 @@
         : `${row.qty} × ${row.item.en} — ₹${row.item.price * row.qty}`);
     });
     const msg = bn
-      ? `নমস্কার! মঞ্জুলা বাইট অ্যান্ড ব্রু-তে অর্ডার দিতে চাই:\n\n${lines.join('\n')}\n\nমোট ${rupees(chitTotal())}\n\n(manjulab.com থেকে পাঠানো)`
+      ? `নমস্কার। মঞ্জুলা বাইট অ্যান্ড ব্রু-তে একটা অর্ডার দিতে চাই —\n\n${lines.join('\n')}\n\nমোট ${rupees(chitTotal())}\n\n(manjulab.com থেকে পাঠানো)`
       : `Hello! I'd like to order from Manjula Bite & Brew:\n\n${lines.join('\n')}\n\nTotal ₹${chitTotal()}\n\n(sent from manjulab.com)`;
 
     const wa = document.getElementById('chitWa');

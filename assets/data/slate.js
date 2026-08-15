@@ -58,7 +58,7 @@ const SLATE = {
         { bn: 'ছোট', en: 'Small', price: 15 },
         { bn: 'বড়', en: 'Large', price: 30 },
       ],
-      bn_note: 'রবিবারের রান্না, রোজকার দামে।',
+      bn_note: 'রবিবারের যত্নে রাঁধা, রোজকার দামে।',
       en_note: 'Sunday cooking at a weekday price. Dried peas, slow, and finished in mutton fat.',
     },
     {
