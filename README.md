@@ -69,16 +69,36 @@ stranger at 3am, so the software is not allowed to accept one.
 
 ## Layout
 
+Seven short pages rather than two long scrolls. A visitor who wants a plate of
+momos should not have to scroll past six hundred years of Himalayan trade to
+find a phone number.
+
 ```
-index.html                  the page
-assets/css/site.css         one stylesheet
+index.html                  hero, menu, the shop in five frames, find us,
+                            and the slate LAST — the board may not be today's,
+                            so it does not stand between anyone and the menu
+origins.html                seven dish cards
+dish.html?d=<slug>          one dish, with prev/next
+story.html                  the name: Manju, then Manjula
+uttarpara.html              the town
+
+assets/css/site.css         the shared stylesheet
+assets/css/origins.css      cards, pager, single-dish tones
 assets/js/site.js           language, open/closed, menu, slate, chit
+assets/js/pages.js          language + renders a dish as card or page
+assets/js/sprite.js         the seven drawings, injected once
 assets/js/assistant.js      Nexus — POST chat.brahmando.com/api/embed/manjula/stream
 assets/data/menu.js         the printed card, as data
 assets/data/slate.js        the board  ← the file the shop edits
+assets/data/dishes.js       the seven stories  ← cards and pages read this
 assets/img/                 photographs, all of this shop, none stock
 docs/SOURCES.md             where every fact came from, and what is still open
+docs/flip-dns.ps1           the Cloudflare repoint, already run
 ```
+
+The nav and footer are literal HTML on each page rather than injected, so every
+page still reads with JavaScript off. They are small and they are identical;
+change one and change them all.
 
 ## Deploying
 

@@ -34,15 +34,20 @@ const SLATE = {
 
   // A headline the shop chalks above the list. Optional — set both to null
   // and the page simply omits the line.
+  //
+  // THE FREE TEA WAS ONE DAY ONLY — the inauguration, and never since. The
+  // wording below is past tense on purpose. A visitor who reads "tea and
+  // coffee are free" and walks over expecting it has been misled by us, not
+  // by the shop, so this line must never be written in the present tense
+  // again. It survives only because the board is a dated record of what was
+  // chalked that morning.
   headline: {
-    bn: 'আজ শুভ উদ্বোধনের দিন — চা ও কফি সম্পূর্ণ বিনামূল্যে',
-    en: 'Opening day. Tea and coffee are on the house.',
+    bn: 'উদ্বোধনের দিন চা ও কফি বিনামূল্যে দেওয়া হয়েছিল — শুধু সেই একটি দিনই।',
+    en: 'Tea and coffee were free on the opening day. That one day only.',
   },
 
-  // Set true only on the day itself. It turns the headline into a banner
-  // rather than a footnote, and it is the one flag that must be turned off
-  // again the next morning.
-  occasion: true,
+  // The board is a record of the inauguration, not a live offer.
+  occasion: false,
 
   items: [
     {

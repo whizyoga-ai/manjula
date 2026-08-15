@@ -14,6 +14,89 @@
    evidence.
    ========================================================================== */
 
+/* ==========================================================================
+   The origins index — seven cards instead of one endless scroll
+   ========================================================================== */
+
+.dishgrid {
+  display: grid; gap: var(--gap);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+.dishcard {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.dishcard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1px 2px rgba(42,35,27,.06), 0 22px 44px -22px rgba(42,35,27,.5);
+}
+/* The plate is square and dark inside a card too, so the seven drawings read
+   as one set whichever page they appear on. */
+.dishcard .plate { position: static; border-radius: 0; aspect-ratio: 4/3; }
+.dishcard .plate svg { width: 56%; }
+.dishcard__body { padding: 1rem 1.2rem 1.3rem; }
+.dishcard__no {
+  font-family: var(--hand); font-size: 1.3rem; color: var(--marigold); line-height: 1;
+}
+.dishcard h3 {
+  margin: .1rem 0 .25rem; font-family: var(--display-bn); font-size: 1.35rem; font-weight: 700;
+}
+html[data-lang="en"] .dishcard h3 { font-family: var(--display); font-variation-settings: 'SOFT' 40, 'WONK' 1; }
+.dishcard__sub { margin: 0 0 .7rem; font-size: .9rem; color: var(--text-dim); }
+.dishcard__price { font-weight: 700; color: var(--stool-ink); font-variant-numeric: tabular-nums; }
+
+/* ==========================================================================
+   Pager — the bottom of a single dish page
+   ========================================================================== */
+
+.pager {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center;
+  margin-top: clamp(2rem, 5vw, 3rem); padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+}
+body[data-tone="ink"] .pager { border-top-color: rgba(246,241,230,.16); }
+.pager a { text-decoration: none; }
+.pager__dir {
+  display: block; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--text-dim);
+}
+html[data-lang="bn"] .pager__dir { letter-spacing: .02em; text-transform: none; font-size: .84rem; }
+body[data-tone="ink"] .pager__dir { color: var(--chalk-fade); }
+.pager__name { font-weight: 600; font-size: 1.05rem; }
+.pager__next { text-align: right; }
+.pager__all {
+  padding: .5rem 1rem; border-radius: 999px; border: 1px solid var(--rule);
+  font-size: .9rem; white-space: nowrap;
+}
+body[data-tone="ink"] .pager__all { border-color: rgba(246,241,230,.28); }
+.pager__all:hover { background: var(--paper-2); }
+body[data-tone="ink"] .pager__all:hover { background: rgba(246,241,230,.08); }
+@media (max-width: 620px) {
+  .pager { grid-template-columns: 1fr 1fr; }
+  .pager__all { grid-column: 1 / -1; order: 3; text-align: center; }
+}
+
+/* A single dish page takes its ground from the dish's own tone, so the seven
+   pages alternate the way the seven chapters used to. */
+body[data-tone="ink"]   { background: var(--ink); color: var(--chalk); }
+body[data-tone="ink"] .lede, body[data-tone="ink"] .origin p { color: var(--chalk-dim); }
+body[data-tone="ink"] .route li { border-left-color: rgba(246,241,230,.28); }
+body[data-tone="ink"] .route li::before { background: var(--ink); }
+body[data-tone="ink"] .route .when { color: var(--marigold-2); }
+body[data-tone="ink"] .route .what { color: var(--chalk-dim); }
+body[data-tone="ink"] .origin h3, body[data-tone="ink"] .kitchen h3 { color: var(--marigold-2); }
+body[data-tone="ink"] .kitchen {
+  background: rgba(246,241,230,.05); border-color: rgba(246,241,230,.16);
+  border-left-color: var(--marigold);
+}
+body[data-tone="ink"] .kitchen .price-note { color: var(--marigold-2); }
+body[data-tone="ink"] .chips li {
+  background: rgba(246,241,230,.08); color: var(--chalk); border-color: rgba(246,241,230,.2);
+}
+body[data-tone="warm"] { background: var(--paper-2); }
+
 /* ---------- chapter rhythm ---------- */
 
 .chapters { counter-reset: chapter; }
@@ -35,12 +118,13 @@
 }
 @media (max-width: 900px) { .chapter__grid { grid-template-columns: 1fr; } }
 
+/* The number is written by pages.js now, because a dish page shows one dish
+   and a CSS counter has nothing to count. The ::before rule that used to
+   supply it is gone — with both in place the first dish rendered as "0101". */
 .chapter__no {
-  counter-increment: chapter;
   font-family: var(--hand); font-size: 2.4rem; line-height: 1;
   color: var(--marigold); margin-bottom: .3rem;
 }
-.chapter__no::before { content: counter(chapter, decimal-leading-zero); }
 
 .chapter h2 {
   margin: 0 0 .2rem; font-family: var(--display-bn); font-weight: 700;

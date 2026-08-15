@@ -1,38 +1,22 @@
 <!DOCTYPE html>
 <!--
-  Origins — where each dish on the Manjula menu came from, and what this
-  kitchen did with it.
+  The origins index. Seven dishes, seven short pages, one card each.
 
-  TWO KINDS OF WRITING LIVE ON THIS PAGE AND THEY ARE NOT MIXED.
-
-  1. The history. Sourced, checked, and listed in docs/SOURCES.md — the
-     Tibetan route of the momo, the Portuguese half of the word পাউরুটি, the
-     Anglo-Indian cabin stew, Maggi's 1983 launch. If it is stated as fact
-     here, a citation exists for it.
-
-  2. The kitchen notes. These are the shop's own account of how it arrived at
-     its version, printed under a heading that says so. No batch counts, no
-     invented suppliers, no "forty-seven attempts" — every claim is anchored
-     to something visible on the shop's own card or slate, because those are
-     the only records of its cooking that exist.
-
-  The art is drawn rather than photographed. There is no photograph of a
-  fourteenth-century Lhasa dumpling, and stock food photography of somebody
-  else's momo would be a small lie in a site built on not telling them.
+  This was a single scroll of seven chapters and it was too long to read. The
+  content now lives in assets/data/dishes.js and renders here as cards and on
+  dish.html as a page, so the two can never drift apart.
 -->
 <html lang="bn" data-lang="bn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>কোথা থেকে এল — মঞ্জুলার মেনুর গল্প | The Origins of the Menu</title>
-
-<meta name="description" content="মোমো এল তিব্বত থেকে, পাউরুটি এল পর্তুগিজ ‘পাঁও’ থেকে, ম্যাগি এল ১৯৮৩-র ভারতে। প্রতিটি পদের ইতিহাস, আর মঞ্জুলার রান্নাঘরে তার নিজস্ব রূপ। Where every dish on the Manjula menu came from, and what this kitchen did with it.">
+<title>কোথা থেকে এল — মঞ্জুলার মেনুর গল্প | Origins of the Menu</title>
+<meta name="description" content="মোমো এল তিব্বত থেকে, পাউরুটি এল পর্তুগিজ ‘পাঁও’ থেকে, ম্যাগি এল ১৯৮৩-র ভারতে। সাতটা পদ, সাতটা গল্প। Seven dishes and the road each took to Uttarpara.">
 <meta name="theme-color" content="#14110e">
 <link rel="canonical" href="https://manjulab.com/origins.html">
-
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="কোথা থেকে এল — মঞ্জুলার মেনুর গল্প">
-<meta property="og:description" content="তিব্বতের খচ্চরের সারি থেকে ব্যানার্জি পাড়া স্ট্রিট পর্যন্ত। Every dish, and the road it took to Uttarpara.">
+<meta property="og:description" content="তিব্বতের খচ্চরের সারি থেকে ব্যানার্জি পাড়া স্ট্রিট পর্যন্ত।">
 <meta property="og:url" content="https://manjulab.com/origins.html">
 <meta property="og:image" content="https://manjulab.com/assets/img/steamer.jpg">
 
@@ -40,139 +24,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;600;700&amp;family=Hind+Siliguri:wght@400;500;600&amp;family=Tiro+Bangla:ital@0;1&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=Caveat:wght@500;600;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=2">
-<link rel="stylesheet" href="assets/css/origins.css?v=1">
+<link rel="stylesheet" href="assets/css/site.css?v=3">
+<link rel="stylesheet" href="assets/css/origins.css?v=2">
 </head>
-
 <body>
-<a class="skip bn" href="#momo">সরাসরি গল্পে যান</a>
-<a class="skip en" href="#momo">Skip to the stories</a>
-
-<!-- ====================================================================
-     The drawn dishes. Defined once as symbols, used wherever needed.
-     Three colours only — chalk, marigold, purple — so the plates read as
-     one set rather than seven unrelated pictures.
-     ==================================================================== -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="d-momo" viewBox="0 0 200 200">
-      <g class="steam" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".55">
-        <path d="M78 52c-7-9 7-15 0-24"/></g>
-      <g class="steam steam--b" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".55">
-        <path d="M100 46c-7-9 7-15 0-24"/></g>
-      <g class="steam steam--c" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".55">
-        <path d="M122 52c-7-9 7-15 0-24"/></g>
-      <!-- bamboo steamer -->
-      <ellipse cx="100" cy="150" rx="72" ry="18" fill="#e0961a" opacity=".25"/>
-      <path d="M28 118h144v26a10 10 0 0 1-10 10H38a10 10 0 0 1-10-10z" fill="#e0961a" opacity=".3"/>
-      <ellipse cx="100" cy="118" rx="72" ry="18" fill="none" stroke="#e0961a" stroke-width="5"/>
-      <!-- three pleated dumplings -->
-      <g fill="#f6f1e6">
-        <path d="M62 118c0-16 9-28 21-28s21 12 21 28z" opacity=".92"/>
-        <path d="M100 118c0-18 10-31 23-31s23 13 23 31z" opacity=".82"/>
-        <path d="M82 118c0-21 11-36 26-36s26 15 26 36z"/>
-      </g>
-      <!-- pleats -->
-      <g stroke="#241e18" stroke-width="2.4" stroke-linecap="round" opacity=".45">
-        <path d="M96 116c0-14 3-24 6-30M108 116c0-14 1-25 0-31M120 116c0-14-2-24-6-30"/>
-      </g>
-      <circle cx="108" cy="83" r="4.5" fill="#6d3fa8"/>
-    </symbol>
-
-    <symbol id="d-pauruti" viewBox="0 0 200 200">
-      <!-- loaf -->
-      <path d="M34 96c0-26 30-42 66-42s66 16 66 42v44a10 10 0 0 1-10 10H44a10 10 0 0 1-10-10z"
-            fill="#f6f1e6" opacity=".9"/>
-      <path d="M34 96c0-26 30-42 66-42s66 16 66 42z" fill="#e0961a" opacity=".55"/>
-      <!-- the slice, standing -->
-      <path d="M112 92c0-16 14-26 28-26s28 10 28 26v50h-56z" fill="#f6f1e6"/>
-      <path d="M112 92c0-16 14-26 28-26s28 10 28 26z" fill="#e0961a" opacity=".7"/>
-      <!-- butter pat, melting -->
-      <path d="M126 100h22l-4 14h-14z" fill="#f6c65a"/>
-      <path d="M132 114c0 8-3 12 0 18" stroke="#f6c65a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-      <g stroke="#241e18" stroke-width="2.2" opacity=".28">
-        <path d="M52 118h44M52 130h34"/>
-      </g>
-    </symbol>
-
-    <symbol id="d-egg" viewBox="0 0 200 200">
-      <!-- white -->
-      <path d="M46 120c-14-16-6-42 16-50 14-5 18-22 38-24 22-2 28 14 44 18 20 5 30 26 18 44-9 13 2 26-14 34-18 9-32-4-48-2-18 2-40 0-54-20z"
-            fill="#f6f1e6"/>
-      <!-- yolk -->
-      <circle cx="102" cy="102" r="27" fill="#e0961a"/>
-      <circle cx="93" cy="93" r="8" fill="#f6c65a" opacity=".85"/>
-      <!-- pepper -->
-      <g fill="#241e18" opacity=".5">
-        <circle cx="72" cy="128" r="2.6"/><circle cx="132" cy="126" r="2.2"/><circle cx="118" cy="142" r="2.4"/>
-      </g>
-    </symbol>
-
-    <symbol id="d-maggi" viewBox="0 0 200 200">
-      <g class="steam" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".5">
-        <path d="M84 60c-7-9 7-15 0-24"/></g>
-      <g class="steam steam--b" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".5">
-        <path d="M114 60c-7-9 7-15 0-24"/></g>
-      <!-- bowl -->
-      <path d="M34 104h132c0 34-30 56-66 56s-66-22-66-56z" fill="#f6f1e6" opacity=".9"/>
-      <ellipse cx="100" cy="104" rx="66" ry="15" fill="#e0961a" opacity=".55"/>
-      <!-- noodles lifted on a fork -->
-      <g stroke="#f6c65a" stroke-width="5" stroke-linecap="round" fill="none">
-        <path d="M60 100c8-10 22-6 26 4M84 98c6-12 22-10 26 2M110 100c6-11 20-9 26 2"/>
-      </g>
-      <g stroke="#6d3fa8" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".9">
-        <path d="M148 40v34"/><path d="M138 40v18M148 40v18M158 40v18"/>
-      </g>
-      <g stroke="#f6c65a" stroke-width="4.5" stroke-linecap="round" fill="none">
-        <path d="M148 74c-14 4-10 18-24 20"/>
-      </g>
-      <circle cx="76" cy="128" r="5" fill="#2f7d5b" opacity=".85"/>
-      <circle cx="112" cy="134" r="5" fill="#2f7d5b" opacity=".85"/>
-    </symbol>
-
-    <symbol id="d-cha" viewBox="0 0 200 200">
-      <g class="steam" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".5">
-        <path d="M86 54c-7-9 7-15 0-24"/></g>
-      <g class="steam steam--b" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".5">
-        <path d="M112 54c-7-9 7-15 0-24"/></g>
-      <!-- glass -->
-      <path d="M62 74h76l-10 76a12 12 0 0 1-12 10H84a12 12 0 0 1-12-10z" fill="#f6f1e6" opacity=".22"/>
-      <path d="M68 104h64l-7 46a12 12 0 0 1-12 10H87a12 12 0 0 1-12-10z" fill="#e0961a" opacity=".8"/>
-      <path d="M62 74h76l-10 76a12 12 0 0 1-12 10H84a12 12 0 0 1-12-10z" fill="none" stroke="#f6f1e6" stroke-width="5"/>
-      <ellipse cx="100" cy="74" rx="38" ry="9" fill="none" stroke="#f6f1e6" stroke-width="5"/>
-      <!-- saucer -->
-      <ellipse cx="100" cy="168" rx="56" ry="12" fill="#f6f1e6" opacity=".35"/>
-    </symbol>
-
-    <symbol id="d-ghugni" viewBox="0 0 200 200">
-      <!-- bowl -->
-      <path d="M36 100h128c0 36-28 58-64 58s-64-22-64-58z" fill="#f6f1e6" opacity=".9"/>
-      <ellipse cx="100" cy="100" rx="64" ry="15" fill="#e0961a" opacity=".65"/>
-      <!-- peas -->
-      <g fill="#f6c65a">
-        <circle cx="76" cy="96" r="9"/><circle cx="98" cy="102" r="10"/><circle cx="122" cy="95" r="9"/>
-        <circle cx="86" cy="110" r="8"/><circle cx="112" cy="112" r="8.5"/>
-      </g>
-      <g fill="#b8402f" opacity=".8">
-        <circle cx="90" cy="92" r="4"/><circle cx="118" cy="108" r="3.6"/>
-      </g>
-      <!-- a wedge of lemon on the rim -->
-      <path d="M150 92a16 16 0 0 1 0 20z" fill="#6d3fa8" opacity=".75"/>
-    </symbol>
-
-    <symbol id="d-coffee" viewBox="0 0 200 200">
-      <g class="steam" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".5">
-        <path d="M88 56c-7-9 7-15 0-24"/></g>
-      <g class="steam steam--c" stroke="#f6f1e6" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".5">
-        <path d="M114 56c-7-9 7-15 0-24"/></g>
-      <path d="M46 76h92v42c0 24-20 40-46 40s-46-16-46-40z" fill="#f6f1e6" opacity=".9"/>
-      <ellipse cx="92" cy="76" rx="46" ry="11" fill="#e0961a" opacity=".7"/>
-      <path d="M138 86h14a20 20 0 0 1 0 40h-14" fill="none" stroke="#f6f1e6" stroke-width="8" stroke-linecap="round"/>
-      <ellipse cx="92" cy="170" rx="62" ry="12" fill="#f6f1e6" opacity=".3"/>
-      <path d="M78 72c8-4 18-4 26 0" stroke="#6d3fa8" stroke-width="4" fill="none" stroke-linecap="round"/>
-    </symbol>
-  </defs>
-</svg>
 
 <header class="top">
   <div class="wrap top__in">
@@ -184,7 +39,9 @@
     <nav aria-label="Sections">
       <a href="index.html#slate"><span class="bn-i">আজকের বোর্ড</span><span class="en-i">Today's board</span></a>
       <a href="index.html#menu"><span class="bn-i">মেনু</span><span class="en-i">Menu</span></a>
-      <a href="origins.html"><span class="bn-i">কোথা থেকে এল</span><span class="en-i">Origins</span></a>
+      <a href="origins.html" aria-current="page"><span class="bn-i">কোথা থেকে এল</span><span class="en-i">Origins</span></a>
+      <a href="story.html"><span class="bn-i">নামের গল্প</span><span class="en-i">The name</span></a>
+      <a href="uttarpara.html"><span class="bn-i">উত্তরপাড়া</span><span class="en-i">Uttarpara</span></a>
       <a href="index.html#find"><span class="bn-i">কোথায়</span><span class="en-i">Find us</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Language / ভাষা">
@@ -195,7 +52,6 @@
 </header>
 
 <main>
-
 <section class="origins-hero">
   <div class="wrap">
     <p class="eyebrow">
@@ -209,574 +65,46 @@
       একটা এক-ঘরের দোকানের মেনুতে সাতশো বছর আর চারটে মহাদেশ ধরা আছে। মোমো এসেছে
       হিমালয়ের খচ্চরের সারিতে চেপে, পাউরুটি এসেছে পর্তুগিজ জাহাজে, ম্যাগি এসেছে
       সুইজারল্যান্ড থেকে ১৯৮৩ সালের ভারতে, আর স্টু এসেছে কলকাতার কেবিন থেকে।
-      নীচে প্রতিটার পথ, আর শেষে — মঞ্জুলার রান্নাঘর সেটাকে কী করল।
+      একটা পদ বেছে নিন।
     </p>
     <p class="en">
       The menu of a one-room shop holds seven centuries and four continents in
       it. The momo travelled by mule train across the Himalaya, the
       <i>pauruti</i> arrived on Portuguese ships, Maggi flew in from
-      Switzerland in 1983, and the stew walked out of a Calcutta cabin. Below
-      is the road each of them took — and then what this kitchen did with it.
+      Switzerland in 1983, and the stew walked out of a Calcutta cabin. Pick a
+      dish.
     </p>
-
     <p class="honesty bn">
-      <b>এই পাতায় দু’রকম লেখা আছে, আর মেশানো নেই।</b> ইতিহাসের অংশটুকু যাচাই করা
+      <b>এই পাতাগুলোয় দু’রকম লেখা আছে, আর মেশানো নেই।</b> ইতিহাসের অংশটুকু যাচাই করা
       এবং সূত্র ধরা আছে <a href="docs/SOURCES.md">SOURCES.md</a>-এ। আর
       ‘রান্নাঘরের কথা’ বলে যে অংশ, সেটা দোকানের নিজের বলা — কত বার চেষ্টা হয়েছে বা
       কোথা থেকে মশলা আসে, তেমন কোনও বানানো হিসেব এখানে নেই।
     </p>
     <p class="honesty en">
-      <b>There are two kinds of writing on this page and they are kept apart.</b>
+      <b>There are two kinds of writing on these pages and they are kept apart.</b>
       The history is checked and sourced in
       <a href="docs/SOURCES.md">SOURCES.md</a>. Everything under
       <i>From this kitchen</i> is the shop's own account of how it cooks —
       no invented batch counts, no suppliers nobody named.
     </p>
-
-    <ul class="toc">
-      <li><a href="#momo"><span class="bn-i">মোমো</span><span class="en-i">Momo</span></a></li>
-      <li><a href="#stew"><span class="bn-i">স্টু পাউরুটি</span><span class="en-i">Bread &amp; stew</span></a></li>
-      <li><a href="#toast"><span class="bn-i">টোস্ট</span><span class="en-i">Toast</span></a></li>
-      <li><a href="#egg"><span class="bn-i">ডিম</span><span class="en-i">Eggs</span></a></li>
-      <li><a href="#maggi"><span class="bn-i">ম্যাগি</span><span class="en-i">Maggie</span></a></li>
-      <li><a href="#ghugni"><span class="bn-i">ঘুগনি</span><span class="en-i">Ghugni</span></a></li>
-      <li><a href="#cha"><span class="bn-i">চা ও কফি</span><span class="en-i">Tea &amp; coffee</span></a></li>
-    </ul>
   </div>
 </section>
 
-<div class="chapters">
-
-<!-- ================= MOMO ================= -->
-<article class="chapter chapter--ink" id="momo">
-  <div class="wrap chapter__grid">
-    <div>
-      <p class="chapter__no"></p>
-      <h2 class="bn">মোমো</h2>
-      <h2 class="en">Momo</h2>
-      <p class="chapter__sub bn">লাসা থেকে ব্যানার্জি পাড়া — প্রায় ছ’শো বছর</p>
-      <p class="chapter__sub en">Lhasa to Banerjee Para, in about six hundred years</p>
-
-      <p class="lede bn">
-        পৃথিবীর সবচেয়ে বেশি হেঁটে আসা খাবারগুলোর একটা। পাহাড়ের রাখাল, সন্ন্যাসী
-        আর বণিকদের জন্য তৈরি — হাতে ধরা যায়, ঠান্ডায় নষ্ট হয় না, আর ভিতরে পুরো
-        একটা খাবার।
-      </p>
-      <p class="lede en">
-        One of the most travelled foods on earth. It was built for herders,
-        monks and traders crossing hard country — something you can hold in one
-        hand, that survives the cold, and that has an entire meal folded inside
-        it.
-      </p>
-
-      <div class="origin">
-        <h3><span class="bn-i">যে পথে এল</span><span class="en-i">The road it took</span></h3>
-        <ol class="route">
-          <li>
-            <span class="when">14–15c</span>
-            <span class="where"><span class="bn-i">তিব্বত</span><span class="en-i">Tibet</span></span>
-            <span class="what bn">হিমালয় পেরোনো মানুষের বহনযোগ্য খাবার হিসেবে মোমোর জন্ম।</span>
-            <span class="what en">Born as portable food for people crossing the Himalaya.</span>
-          </li>
-          <li>
-            <span class="when">17c</span>
-            <span class="where"><span class="bn-i">কাঠমান্ডু</span><span class="en-i">Kathmandu</span></span>
-            <span class="what bn">লাসার সঙ্গে বাণিজ্যপথ ধরে নেপালে পৌঁছয়, আর সেখানকার মশলার সঙ্গে মেশে।</span>
-            <span class="what en">Carried down the Lhasa trade route into Nepal, where it met local spicing.</span>
-          </li>
-          <li>
-            <span class="when">1835+</span>
-            <span class="where"><span class="bn-i">দার্জিলিং, কালিম্পং</span><span class="en-i">Darjeeling, Kalimpong</span></span>
-            <span class="what bn">গোর্খা সৈনিক আর নেপালি-ভাষী বসতিকারীরা নিয়ে আসেন; তিব্বতি বণিকেরা খচ্চরের সারিতে চাপিয়ে আনেন।</span>
-            <span class="what en">Brought by Gorkha soldiers and Nepali-speaking settlers, and carried in by Tibetan traders on mule caravans.</span>
-          </li>
-          <li>
-            <span class="when">1959</span>
-            <span class="where"><span class="bn-i">শরণার্থীর ঢল</span><span class="en-i">The refugee wave</span></span>
-            <span class="what bn">লাসার পতনের পর তিব্বতি শরণার্থীরা দলে দলে ভারতে আসেন। মোমো আর পাহাড়ে আটকে থাকে না।</span>
-            <span class="what en">After Lhasa fell, Tibetan refugees came into India in numbers. The momo stopped being a hill food.</span>
-          </li>
-          <li>
-            <span class="when">1960s–70s</span>
-            <span class="where"><span class="bn-i">উত্তরবঙ্গ, কলকাতা</span><span class="en-i">North Bengal, then Kolkata</span></span>
-            <span class="what bn">শহরের রাস্তার খাবার হয়ে ওঠে — আর তারপর হুগলির প্রতিটা পাড়ার।</span>
-            <span class="what en">It became a city street food, and then a food of every neighbourhood in Hooghly.</span>
-          </li>
-        </ol>
-      </div>
-
-      <div class="kitchen">
-        <h3><span class="bn-i">রান্নাঘরের কথা — দোকানের নিজের বলা</span><span class="en-i">From this kitchen — the shop's own account</span></h3>
-        <p class="bn">
-          ঈশা চারটে রাস্তা খোলা রেখেছেন, আর সেটাই আসল সিদ্ধান্ত: চিকেন না মাটন,
-          আর ভাপে না ভাজা। ভাপের মোমো পুরের স্বাদ সামনে আনে; ভাজা মোমো খোলসটাকে
-          সামনে আনে। দুটো আলাদা খাবার, একই পুর — তাই দুটোই থাকে, আর দাম আলাদা।
-        </p>
-        <p class="en">
-          Isha kept four doors open, and that is the actual decision: chicken or
-          mutton, steamed or fried. Steaming puts the filling in front; frying
-          puts the skin in front. They are two different dishes made from one
-          filling, so both stay on the card, priced apart.
-        </p>
-        <p class="bn">
-          প্লেটে পাঁচটা — ছাপানো কার্ডে সেটা লেখা নেই, লেখা আছে দোকানের সামনের
-          স্লেটে। মানে সংখ্যাটা ঠিক করা হয়েছে দাঁড়িয়ে থাকা খদ্দেরের দিকে তাকিয়ে,
-          ছাপাখানায় নয়।
-        </p>
-        <p class="en">
-          Five to a plate. That number is not on the printed card — it is chalked
-          on the slate outside. Which tells you it was settled by looking at the
-          person standing at the counter, not by a printer.
-        </p>
-        <ul class="chips">
-          <li><span class="bn-i">ভাপে</span><span class="en-i">Steamed</span></li>
-          <li><span class="bn-i">ভাজা</span><span class="en-i">Fried</span></li>
-          <li><span class="bn-i">চিকেন</span><span class="en-i">Chicken</span></li>
-          <li><span class="bn-i">মাটন</span><span class="en-i">Mutton</span></li>
-          <li><span class="bn-i">সঙ্গে স্যুপ</span><span class="en-i">Soup on the side</span></li>
-        </ul>
-        <span class="price-note">₹50 – ₹100
-          <small><span class="bn-i">ভাপের প্লেটে ৫ পিস</span><span class="en-i">5 pieces to a steamed plate</span></small>
-        </span>
-      </div>
+<section>
+  <div class="wrap">
+    <div class="dishgrid" id="dishIndex">
+      <noscript>
+        <p><a href="dish.html?d=momo">মোমো / Momo</a> ·
+           <a href="dish.html?d=stew">স্টু পাউরুটি / Bread &amp; stew</a> ·
+           <a href="dish.html?d=toast">টোস্ট / Toast</a> ·
+           <a href="dish.html?d=egg">ডিম / Eggs</a> ·
+           <a href="dish.html?d=maggi">ম্যাগি / Maggie</a> ·
+           <a href="dish.html?d=ghugni">ঘুগনি / Ghugni</a> ·
+           <a href="dish.html?d=cha">চা ও কফি / Tea &amp; coffee</a></p>
+      </noscript>
     </div>
-    <div class="plate"><svg role="img" viewBox="0 0 200 200" aria-label="Momo"><use href="#d-momo"></use></svg></div>
   </div>
-</article>
-
-<!-- ================= STEW ================= -->
-<article class="chapter" id="stew">
-  <div class="wrap chapter__grid">
-    <div>
-      <p class="chapter__no"></p>
-      <h2 class="bn">স্টু পাউরুটি</h2>
-      <h2 class="en">Bread &amp; chicken stew</h2>
-      <p class="chapter__sub bn">কলকাতার কেবিন থেকে সোজা</p>
-      <p class="chapter__sub en">Straight out of a Calcutta cabin</p>
-
-      <p class="lede bn">
-        মঞ্জুলার মেনুতে সবচেয়ে কলকাতার পদ — যদিও জন্ম ইউরোপে। ব্রিটিশ আমলে
-        অ্যাংলো-ইন্ডিয়ান রান্নাঘরে ইউরোপীয় স্টু-এর পদ্ধতির সঙ্গে ভারতীয় মশলা
-        মিশে যা তৈরি হল, তা আর কোনওটাই রইল না — মাখন-ক্রিমের বদলে হালকা ঝোল,
-        তাতে গোলমরিচ, তেজপাতা, লবঙ্গ।
-      </p>
-      <p class="lede en">
-        The most Calcutta thing on Manjula's menu, and it was born in Europe.
-        In Anglo-Indian kitchens under the British, the European method of
-        stewing met Indian aromatics and became neither — the butter and cream
-        gave way to a light broth carrying peppercorn, bay leaf and clove.
-      </p>
-
-      <div class="origin">
-        <h3><span class="bn-i">যে পথে এল</span><span class="en-i">The road it took</span></h3>
-        <ol class="route">
-          <li>
-            <span class="when">Colonial</span>
-            <span class="where"><span class="bn-i">ব্রিটিশ হেঁশেল</span><span class="en-i">The British kitchen</span></span>
-            <span class="what bn">স্টু তখন সাধারণ ব্রিটিশ খাবার — ধীরে সেদ্ধ মাংস, সঙ্গে রুটি।</span>
-            <span class="what en">Stew was ordinary British cooking: meat cooked slow, eaten with bread.</span>
-          </li>
-          <li>
-            <span class="when">19c</span>
-            <span class="where"><span class="bn-i">অ্যাংলো-ইন্ডিয়ান রান্নাঘর</span><span class="en-i">Anglo-Indian kitchens</span></span>
-            <span class="what bn">ক্রিম আর মাখন সরে গিয়ে এল মশলাদার হালকা ঝোল — পেটে সইবে, শরীর জুড়োবে।</span>
-            <span class="what en">Cream and butter out, a light spiced broth in — food meant to be easy to digest.</span>
-          </li>
-          <li>
-            <span class="when">1900s</span>
-            <span class="where"><span class="bn-i">কেবিন</span><span class="en-i">The cabins</span></span>
-            <span class="what bn">কলকাতার ‘কেবিন’ — পর্দা টানা কাঠের খোপ, যাতে মেয়েরা পরিবারের সঙ্গে বাইরে খেতে পারেন। সেখান থেকেই স্টু হয়ে ওঠে শহরের খাবার।</span>
-            <span class="what en">Calcutta's cabins — curtained plywood booths built so women could eat out with their families away from public view. The stew became a city dish there.</span>
-          </li>
-          <li>
-            <span class="when">Now</span>
-            <span class="where"><span class="bn-i">উত্তরপাড়া</span><span class="en-i">Uttarpara</span></span>
-            <span class="what bn">কেবিনের পর্দা নেই, কাঠের খোপ নেই — আছে ফুটপাথে বেগুনি টুল। খাবারটা একই।</span>
-            <span class="what en">No curtain, no booth — a purple stool on the pavement instead. The dish is the same one.</span>
-          </li>
-        </ol>
-      </div>
-
-      <div class="kitchen">
-        <h3><span class="bn-i">রান্নাঘরের কথা — দোকানের নিজের বলা</span><span class="en-i">From this kitchen — the shop's own account</span></h3>
-        <p class="bn">
-          কার্ডে দামটা লেখা আছে <strong>১০ + ৫০ = ৬০</strong> — একটা যোগফল নয়,
-          একটা সিদ্ধান্ত। পাউরুটি আলাদা, স্টু আলাদা। যার হাতে ষাট টাকা নেই, সে
-          দশ টাকার পাউরুটি নিতে পারে; যার বেশি খিদে, সে দু’টুকরো নিতে পারে।
-          দামটাকে ভাঙা মানে খাবারটাকে সবার নাগালে রাখা।
-        </p>
-        <p class="en">
-          The card prices it <strong>10 + 50 = 60</strong>. That is not a sum, it
-          is a decision. The bread is one thing and the stew is another. Somebody
-          without sixty rupees can take the ten-rupee bread; somebody hungrier can
-          take a second piece. Breaking the price apart is how the dish stays
-          within reach.
-        </p>
-        <p class="bn">
-          ঝোলটা হালকা রাখা হয় ইচ্ছে করেই। ভারী করলে পাউরুটি গলে যায়; হালকা
-          থাকলে পাউরুটি ঝোল টেনে নেয় আর নিজের চেহারা ধরে রাখে। এই দু’টোর মাঝখানে
-          দাঁড়ানোটাই আসল কাজ।
-        </p>
-        <p class="en">
-          The broth is kept light on purpose. Thicken it and the bread collapses;
-          keep it light and the bread drinks it up while still holding its shape.
-          Standing between those two is the whole job.
-        </p>
-        <ul class="chips">
-          <li><span class="bn-i">গোলমরিচ</span><span class="en-i">Peppercorn</span></li>
-          <li><span class="bn-i">তেজপাতা</span><span class="en-i">Bay leaf</span></li>
-          <li><span class="bn-i">লবঙ্গ</span><span class="en-i">Clove</span></li>
-          <li><span class="bn-i">হালকা ঝোল</span><span class="en-i">Light broth</span></li>
-        </ul>
-        <span class="price-note">₹60
-          <small><span class="bn-i">পাউরুটি ১০ · স্টু ৫০</span><span class="en-i">bread 10 · stew 50</span></small>
-        </span>
-      </div>
-    </div>
-    <div class="plate"><svg role="img" viewBox="0 0 200 200" aria-label="Bread and stew"><use href="#d-pauruti"></use></svg></div>
-  </div>
-</article>
-
-<!-- ================= TOAST ================= -->
-<article class="chapter chapter--warm" id="toast">
-  <div class="wrap chapter__grid">
-    <div>
-      <p class="chapter__no"></p>
-      <h2 class="bn">পাউরুটি ও টোস্ট</h2>
-      <h2 class="en">Pauruti, and toast</h2>
-      <p class="chapter__sub bn">একটা শব্দ, যার অর্ধেক পর্তুগিজ</p>
-      <p class="chapter__sub en">A word that is half Portuguese</p>
-
-      <p class="lede bn">
-        বাংলার সবচেয়ে সুন্দর শব্দগুলোর একটা, কারণ শব্দটার ভিতরেই ইতিহাস ধরা আছে।
-        <strong>পাউরুটি</strong> = পর্তুগিজ <i>pão</i> (রুটি) + বাংলা
-        <i>রুটি</i>। দুটো ভাষার দুটো শব্দ, একই মানে, জোড়া লেগে একটা নতুন জিনিস
-        বোঝাতে শুরু করল — যে রুটি চ্যাপ্টা নয়, ফোলা।
-      </p>
-      <p class="lede en">
-        One of the loveliest words in Bengali, because the history is inside the
-        word itself. <strong>পাউরুটি</strong> = Portuguese <i>pão</i> (bread) +
-        Bengali <i>ruti</i> (bread). Two words from two languages, both meaning
-        the same thing, welded together to name a third — the bread that rises,
-        as opposed to the flatbread that does not.
-      </p>
-
-      <div class="origin">
-        <h3><span class="bn-i">যে পথে এল</span><span class="en-i">The road it took</span></h3>
-        <ol class="route">
-          <li>
-            <span class="when">16–17c</span>
-            <span class="where"><span class="bn-i">পর্তুগিজ বাংলা</span><span class="en-i">Portuguese Bengal</span></span>
-            <span class="what bn">কলকাতা ও তার আশপাশে পর্তুগিজ জনগোষ্ঠী থিতু হয় — সঙ্গে আসে খামিরের রুটি, আর <i>pão</i> শব্দটা।</span>
-            <span class="what en">A Portuguese community settled in and around Calcutta, bringing leavened bread — and the word <i>pão</i>.</span>
-          </li>
-          <li>
-            <span class="when">—</span>
-            <span class="where"><span class="bn-i">শব্দটা জোড়া লাগে</span><span class="en-i">The word fuses</span></span>
-            <span class="what bn">বাংলা <i>রুটি</i>-র সঙ্গে জুড়ে হয় <i>পাউরুটি</i>, আর তা আলাদা করে বোঝাতে থাকে পাউরুটির লোফ-কে।</span>
-            <span class="what en">It joins Bengali <i>ruti</i> to make <i>pauruti</i>, which comes to mean specifically the loaf.</span>
-          </li>
-          <li>
-            <span class="when">1960s–70s</span>
-            <span class="where"><span class="bn-i">বাঙালি বাড়ি</span><span class="en-i">The Bengali household</span></span>
-            <span class="what bn">এক পোয়া পাউরুটি আর এক কাপ চা — মধ্যবিত্ত বাড়ির সবচেয়ে চেনা জোড়।</span>
-            <span class="what en">A quarter-pound of pauruti and a cup of tea: as ordinary a pairing as a middle-class household had.</span>
-          </li>
-        </ol>
-      </div>
-
-      <div class="kitchen">
-        <h3><span class="bn-i">রান্নাঘরের কথা — দোকানের নিজের বলা</span><span class="en-i">From this kitchen — the shop's own account</span></h3>
-        <p class="bn">
-          চারটে টোস্ট, চারটে আলাদা কাজ — আর দামের সিঁড়িটাই বুঝিয়ে দেয় কোনটা
-          কেন। <strong>মাখন পাউরুটি ২০</strong>: সবচেয়ে সাদামাটা, তাই সবচেয়ে
-          কঠিন — লুকোনোর কিছু নেই। <strong>ডিম পাউরুটি ২৫</strong>: পাঁচ টাকায়
-          জলখাবার হয়ে যায়। <strong>মালাই টোস্ট ৩০</strong>: মিষ্টির দিকটা, যা
-          চায়ের সঙ্গে বিকেলে চলে।
-        </p>
-        <p class="en">
-          Four toasts doing four different jobs, and the price ladder tells you
-          which is which. <strong>Butter toast at 20</strong> — the plainest, and
-          so the hardest, because there is nothing to hide behind.
-          <strong>Egg toast at 25</strong> — five rupees turns a snack into
-          breakfast. <strong>Malai toast at 30</strong> — the sweet end of the
-          shelf, which is what an afternoon tea wants.
-        </p>
-        <p class="bn">
-          ঈশার হিসেবটা সরল: যে জিনিস সবচেয়ে বেশি বিক্রি হবে, সেটাই সবচেয়ে সস্তা
-          রাখতে হবে। তাই মাখন পাউরুটি বিশ টাকাতেই থেকে গেছে।
-        </p>
-        <p class="en">
-          Isha's arithmetic is plain: the thing that sells most has to be the
-          thing that costs least. Which is why butter toast has stayed at twenty.
-        </p>
-        <span class="price-note">₹20 – ₹30
-          <small><span class="bn-i">মাখন · ডিম · মালাই</span><span class="en-i">butter · egg · malai</span></small>
-        </span>
-      </div>
-    </div>
-    <div class="plate"><svg role="img" viewBox="0 0 200 200" aria-label="Buttered toast"><use href="#d-pauruti"></use></svg></div>
-  </div>
-</article>
-
-<!-- ================= EGG ================= -->
-<article class="chapter chapter--ink" id="egg">
-  <div class="wrap chapter__grid">
-    <div>
-      <p class="chapter__no"></p>
-      <h2 class="bn">ডিম</h2>
-      <h2 class="en">Eggs</h2>
-      <p class="chapter__sub bn">বারো টাকা থেকে তিরিশ — একটাই জিনিস, চারটে চেহারা</p>
-      <p class="chapter__sub en">Twelve rupees to thirty — one ingredient, four answers</p>
-
-      <p class="lede bn">
-        ডিমের কোনও উৎসের গল্প লাগে না; ওটা সব রাস্তার খাবারের মেরুদণ্ড। যেটা
-        বলার মতো, সেটা হল <em>নামগুলো</em> — ‘পোচ’ আর ‘ওমলেট’ ইংরেজি থেকে এসে
-        বাংলা শব্দ হয়ে বসে আছে, ঠিক যেমন পাউরুটি এসেছিল পর্তুগিজ থেকে।
-      </p>
-      <p class="lede en">
-        The egg needs no origin story; it is the spine of every street food
-        anywhere. What is worth noticing is the <em>names</em>. "Poach" and
-        "omlet" walked out of English and settled down as Bengali words, exactly
-        the way <i>pauruti</i> came in from Portuguese.
-      </p>
-
-      <div class="kitchen">
-        <h3><span class="bn-i">রান্নাঘরের কথা — দোকানের নিজের বলা</span><span class="en-i">From this kitchen — the shop's own account</span></h3>
-        <p class="bn">
-          দামের সিঁড়িটা লক্ষ করুন: <strong>১২ · ১৫ · ২০ · ৩০</strong>। প্রতিটা
-          ধাপ তিন থেকে দশ টাকার। মানে ডিমের তাকটা ইচ্ছে করে এমনভাবে সাজানো, যাতে
-          পকেটে যা-ই থাক, একটা ধাপ আপনার জন্য থাকবেই। সেদ্ধ ডিম বারো টাকায়
-          স্কুলের বাচ্চার হাতের নাগালে, আর চীজ ওমলেট তিরিশে গোটা একটা জলখাবার।
-        </p>
-        <p class="en">
-          Look at the ladder: <strong>12 · 15 · 20 · 30</strong>. Each rung is
-          three to ten rupees above the last. The egg shelf is arranged so that
-          whatever is in your pocket, one rung is meant for you. A boiled egg at
-          twelve is within a schoolchild's reach; a cheese omlet at thirty is a
-          whole breakfast.
-        </p>
-        <p class="bn">
-          চীজটা এখানে বিলাসিতা নয়, একটা সিদ্ধান্ত — ওটাই একমাত্র উপকরণ যা এই
-          দোকানের চারটে আলাদা তাকে (ডিম, ম্যাগি, টোস্ট) একই কাজ করে: দশ টাকা
-          যোগ করে খাবারটাকে ‘পেট ভরা’ বানিয়ে দেয়।
-        </p>
-        <p class="en">
-          The cheese is not a luxury here, it is a lever. It is the one
-          ingredient that does the same job on three different shelves — eggs,
-          maggie, toast — adding ten rupees and turning a snack into something
-          that fills you up.
-        </p>
-        <span class="price-note">₹12 – ₹30
-          <small><span class="bn-i">সেদ্ধ · পোচ · ওমলেট · চীজ ওমলেট</span><span class="en-i">boiled · poach · omlet · cheese omlet</span></small>
-        </span>
-      </div>
-    </div>
-    <div class="plate"><svg role="img" viewBox="0 0 200 200" aria-label="Fried egg"><use href="#d-egg"></use></svg></div>
-  </div>
-</article>
-
-<!-- ================= MAGGI ================= -->
-<article class="chapter" id="maggi">
-  <div class="wrap chapter__grid">
-    <div>
-      <p class="chapter__no"></p>
-      <h2 class="bn">ম্যাগি</h2>
-      <h2 class="en">Maggie</h2>
-      <p class="chapter__sub bn">১৯৮৩ সালে ভারতে নামা একটা সম্পূর্ণ অচেনা খাবার</p>
-      <p class="chapter__sub en">A completely foreign food that landed in 1983</p>
-
-      <p class="lede bn">
-        মেনুর সবচেয়ে নতুন পদ, আর সবচেয়ে অসম্ভব সাফল্য। ১৯৮৩-তে যখন নেসলে ভারতে
-        ম্যাগি আনে, তখন দেশটা বন্ধ অর্থনীতি — উদারীকরণ আসতে আরও আট বছর — আর
-        ভারতীয় বাড়িতে নুডলস বলে কোনও ধারণাই ছিল না।
-      </p>
-      <p class="lede en">
-        The newest thing on the menu and the least likely success on it. When
-        Nestlé brought Maggi to India in 1983, this was a closed economy —
-        liberalisation was still eight years away — and noodles were not a thing
-        Indian households ate at all.
-      </p>
-
-      <div class="origin">
-        <h3><span class="bn-i">যে পথে এল</span><span class="en-i">The road it took</span></h3>
-        <ol class="route">
-          <li>
-            <span class="when">1983</span>
-            <span class="where"><span class="bn-i">ভারতে আসে</span><span class="en-i">It lands</span></span>
-            <span class="what bn">মশলা, টম্যাটো আর চিকেন — এই তিন স্বাদে শুরু। বিজ্ঞাপনের কথা ছিল “fast to cook, good to eat”।</span>
-            <span class="what en">Launched in masala, tomato and chicken. The line was "fast to cook, good to eat".</span>
-          </li>
-          <li>
-            <span class="when">Then</span>
-            <span class="where"><span class="bn-i">লক্ষ্য বদলায়</span><span class="en-i">The aim shifts</span></span>
-            <span class="what bn">প্রথমে ভাবা হয়েছিল কর্মরত মহিলাদের কথা। কিন্তু দেখা গেল স্বাদটা বাচ্চাদের ভালো লাগছে — আর তখনই জিনিসটা ধরে যায়।</span>
-            <span class="what en">It was aimed at working women. Children turned out to like the taste, and that is when it caught.</span>
-          </li>
-          <li>
-            <span class="when">Now</span>
-            <span class="where"><span class="bn-i">পাড়ার দোকান</span><span class="en-i">The para shop</span></span>
-            <span class="what bn">চল্লিশ বছর পরে সেটা আর বিদেশি খাবার নয় — স্কুলের পাশের দোকানে যা পাওয়া যায়, তাই।</span>
-            <span class="what en">Forty years on it is not a foreign food. It is what you get at the shop beside the school.</span>
-          </li>
-        </ol>
-      </div>
-
-      <div class="kitchen">
-        <h3><span class="bn-i">রান্নাঘরের কথা — দোকানের নিজের বলা</span><span class="en-i">From this kitchen — the shop's own account</span></h3>
-        <p class="bn">
-          প্যাকেটের ম্যাগি সবাই বানাতে পারে। তফাত হয় তার পরে কী পড়ল তাতে — আর
-          মঞ্জুলার কার্ডে সেই তফাতটা একটা সিঁড়ি হয়ে সাজানো:
-          <strong>প্লেন ৩০ → এগ ৪০ → চীজ ৪০ → এগ চীজ ৫০</strong>।
-        </p>
-        <p class="en">
-          Anyone can make maggie out of the packet. The difference is what goes
-          in after, and on Manjula's card that difference is laid out as a
-          staircase: <strong>plain 30 → egg 40 → cheese 40 → egg-and-cheese
-          50</strong>.
-        </p>
-        <p class="bn">
-          খেয়াল করুন, ডিম আর চীজ দুটোরই দাম চল্লিশ। ইচ্ছে করে। ঈশা একটাকে
-          অন্যটার উপরে বসাননি — কে কী চায়, সেটা খদ্দেরের রুচির ব্যাপার, দামের
-          নয়। দশ টাকা বাড়তি লাগে কেবল যখন দুটোই একসঙ্গে চান।
-        </p>
-        <p class="en">
-          Notice that egg and cheese are the same forty. That is deliberate.
-          Neither is ranked above the other — which you want is a matter of
-          taste, not of price. The extra ten rupees is only charged when you want
-          both.
-        </p>
-        <ul class="chips">
-          <li><span class="bn-i">প্লেন</span><span class="en-i">Plain</span></li>
-          <li><span class="bn-i">ডিম</span><span class="en-i">Egg</span></li>
-          <li><span class="bn-i">চীজ</span><span class="en-i">Cheese</span></li>
-          <li><span class="bn-i">দুটোই</span><span class="en-i">Both</span></li>
-        </ul>
-        <span class="price-note">₹30 – ₹50</span>
-      </div>
-    </div>
-    <div class="plate"><svg role="img" viewBox="0 0 200 200" aria-label="Bowl of noodles"><use href="#d-maggi"></use></svg></div>
-  </div>
-</article>
-
-<!-- ================= GHUGNI ================= -->
-<article class="chapter chapter--warm" id="ghugni">
-  <div class="wrap chapter__grid">
-    <div>
-      <p class="chapter__no"></p>
-      <h2 class="bn">ঘুগনি</h2>
-      <h2 class="en">Ghugni</h2>
-      <p class="chapter__sub bn">কার্ডে নেই। স্লেটে আছে।</p>
-      <p class="chapter__sub en">Not on the card. On the slate.</p>
-
-      <p class="lede bn">
-        পূর্ব ভারতের সবচেয়ে চেনা রাস্তার খাবার — শুকনো মটর, ধীরে সেদ্ধ, মশলার
-        ঝোলে। বাংলা, ওড়িশা, বিহার, ঝাড়খণ্ড — সবার নিজের নিজের ঘুগনি আছে
-        (বিহারে কালো ছোলায়, বাংলা ও ওড়িশায় সাদা মটরে)।
-      </p>
-      <p class="lede en">
-        The most familiar street food in eastern India — dried peas, cooked
-        slow, in a spiced gravy. Bengal, Odisha, Bihar and Jharkhand each have
-        their own (Bihar's with black chana, Bengal's and Odisha's with white
-        peas).
-      </p>
-
-      <div class="kitchen">
-        <h3><span class="bn-i">রান্নাঘরের কথা — দোকানের নিজের বলা</span><span class="en-i">From this kitchen — the shop's own account</span></h3>
-        <p class="bn">
-          দোকান খোলার দিন স্লেটে যা লেখা ছিল, সেটা সাধারণ ঘুগনি নয় —
-          <strong>খাসির চর্বির ঘুগনি</strong>। রাস্তার ঘুগনি প্রায় সবসময়
-          নিরামিষ। চর্বিতে শেষ করা মানে পদটাকে ইচ্ছে করে অন্যদিকে নিয়ে যাওয়া:
-          একই মটর, কিন্তু গভীরতর, মাংসল একটা শেষ।
-        </p>
-        <p class="en">
-          What went up on the slate on opening day was not ordinary ghugni. It
-          was <strong>ghugni finished in mutton fat</strong>. Street ghugni is
-          almost always vegetarian. Finishing it in fat is a deliberate turn in
-          another direction — the same peas, taken somewhere deeper and meatier.
-        </p>
-        <p class="bn">
-          আর দামটা: <strong>ছোট ১৫, বড় ৩০</strong>। ঘুগনি চিরকালই সেই খাবার
-          যেটা যে কেউ কিনতে পারে। দুটো মাপ রাখা মানে সেই কথাটা মানা — মাংসের
-          চর্বিতে রাঁধা হলেও।
-        </p>
-        <p class="en">
-          And the price: <strong>small 15, large 30</strong>. Ghugni has always
-          been the dish anyone can afford. Keeping two sizes is how that stays
-          true, even when it has been cooked in mutton fat.
-        </p>
-        <p class="bn">
-          এটা ছাপানো কার্ডে নেই। এই পদগুলো স্লেটে ওঠে, রোজ বদলায় — আজ কী আছে
-          জানতে <a href="tel:+919163538794">ফোন করুন</a>।
-        </p>
-        <p class="en">
-          This is not on the printed card. Dishes like it go up on the slate and
-          change from day to day — <a href="tel:+919163538794">call the shop</a>
-          to hear what is on today.
-        </p>
-        <span class="price-note">₹15 / ₹30
-          <small><span class="bn-i">ছোট / বড় — স্লেটের পদ</span><span class="en-i">small / large — a slate dish</span></small>
-        </span>
-      </div>
-    </div>
-    <div class="plate"><svg role="img" viewBox="0 0 200 200" aria-label="Bowl of ghugni"><use href="#d-ghugni"></use></svg></div>
-  </div>
-</article>
-
-<!-- ================= TEA ================= -->
-<article class="chapter chapter--ink" id="cha">
-  <div class="wrap chapter__grid">
-    <div>
-      <p class="chapter__no"></p>
-      <h2 class="bn">চা ও কফি</h2>
-      <h2 class="en">Tea, and coffee</h2>
-      <p class="chapter__sub bn">দশ টাকা — নামের অর্ধেকটা</p>
-      <p class="chapter__sub en">Ten rupees — and half the name</p>
-
-      <p class="lede bn">
-        দোকানের নাম <em>Bite &amp; Brew</em>। ‘বাইট’-টা মেনুর বেশিরভাগ জুড়ে,
-        আর ‘ব্রু’-টা মাত্র দুটো লাইন — চা ১০, কফি ১৫। কিন্তু নামের অর্ধেকটা
-        ওদেরই, আর সেটা ঠিকই আছে: পাড়ার দোকানে বেশিরভাগ মানুষ আসেন চায়ের জন্য,
-        আর তারপর অন্য কিছু নেন।
-      </p>
-      <p class="lede en">
-        The shop is called <em>Bite &amp; Brew</em>. The bite takes up most of
-        the menu; the brew is two lines — tea 10, coffee 15. But it owns half
-        the name, and rightly: most people come to a para shop for the tea, and
-        order the rest afterwards.
-      </p>
-
-      <div class="kitchen">
-        <h3><span class="bn-i">রান্নাঘরের কথা — দোকানের নিজের বলা</span><span class="en-i">From this kitchen — the shop's own account</span></h3>
-        <p class="bn">
-          দোকান খোলার দিনে বোর্ডে লেখা ছিল — <strong>চা ও কফি সম্পূর্ণ
-          বিনামূল্যে</strong>। প্রথম দিনে যা বিনামূল্যে দেওয়া হয়, সেটাই বলে দেয়
-          দোকানটা নিজেকে কী মনে করে। মঞ্জুলা বেছেছিল চা।
-        </p>
-        <p class="en">
-          The board on opening day read: <strong>tea and coffee, completely
-          free</strong>. What a shop gives away on its first day tells you what
-          it thinks it is. Manjula chose the tea.
-        </p>
-        <p class="bn">
-          দশ টাকা মানে ছাত্রছাত্রীরাও রোজ আসতে পারে। মেনুর সবচেয়ে সস্তা জিনিসটা
-          যদি স্কুলের বাচ্চার নাগালে থাকে, তবে দোকানটা পাড়ার — অন্য কারও নয়।
-        </p>
-        <p class="en">
-          Ten rupees means students can come every day. If the cheapest thing on
-          the menu is within a schoolchild's reach, the shop belongs to the
-          neighbourhood and not to somebody passing through.
-        </p>
-        <span class="price-note">₹10 / ₹15
-          <small><span class="bn-i">চা / কফি</span><span class="en-i">tea / coffee</span></small>
-        </span>
-      </div>
-    </div>
-    <div class="plate"><svg role="img" viewBox="0 0 200 200" aria-label="Glass of tea"><use href="#d-cha"></use></svg></div>
-  </div>
-</article>
-
-</div><!-- /.chapters -->
+</section>
 
 <section class="backbar">
   <div class="wrap">
@@ -785,17 +113,11 @@
       <span class="en-i">9am to 9pm daily · 17/A Banerjee Para Street, Uttarpara</span>
     </p>
     <span style="display:flex;gap:.7rem;flex-wrap:wrap">
-      <a class="btn btn--solid" href="index.html#menu">
-        <span class="bn-i">মেনু দেখুন</span><span class="en-i">See the menu</span>
-      </a>
-      <a class="btn btn--call" href="tel:+919163538794">
-        <span aria-hidden="true">☎</span>
-        <span class="bn-i">বুজুনিকে ফোন করুন</span><span class="en-i">Call Bujuni</span>
-      </a>
+      <a class="btn btn--solid" href="index.html#menu"><span class="bn-i">মেনু দেখুন</span><span class="en-i">See the menu</span></a>
+      <a class="btn btn--call" href="tel:+919163538794"><span aria-hidden="true">☎</span><span class="bn-i">বুজুনিকে ফোন করুন</span><span class="en-i">Call Bujuni</span></a>
     </span>
   </div>
 </section>
-
 </main>
 
 <footer class="foot">
@@ -814,7 +136,9 @@
   </div>
 </footer>
 
-<script src="assets/js/origins.js?v=1"></script>
-<script src="assets/js/assistant.js?v=2"></script>
+<script src="assets/js/sprite.js?v=1"></script>
+<script src="assets/data/dishes.js?v=1"></script>
+<script src="assets/js/pages.js?v=1"></script>
+<script src="assets/js/assistant.js?v=3"></script>
 </body>
 </html>
