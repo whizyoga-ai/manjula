@@ -178,6 +178,17 @@
           + '\n\n(sent from manjulab.com)';
     }
     wa.href = 'https://wa.me/919163538794?text=' + encodeURIComponent(msg);
+
+    // The email button carries the same list. An empty mailto: would make
+    // somebody retype everything they just picked.
+    const mail = document.getElementById('bulkMail');
+    if (mail) {
+      const subject = bn ? 'বড় অর্ডার — মঞ্জুলা বাইট অ্যান্ড ব্রু'
+                         : 'Bulk order — Manjula Bite & Brew';
+      mail.href = 'mailto:isha.mukherjee1996@gmail.com'
+                + '?subject=' + encodeURIComponent(subject)
+                + '&body=' + encodeURIComponent(msg);
+    }
   }
 
   /* ---------- placeholders follow the language ---------- */

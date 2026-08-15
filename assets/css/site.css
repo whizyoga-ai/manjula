@@ -1159,3 +1159,8 @@ html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
   .brand__sub { display: none; }
   .theme { gap: .2rem; }
 }
+
+/* The email button on the bulk sheet sits on paper, not on the dark hero, so
+   the ghost variant needs the page's own ink rather than chalk. */
+.btn--mail { border-color: var(--rule); color: var(--text); }
+.btn--mail:hover { background: var(--paper-2); }
