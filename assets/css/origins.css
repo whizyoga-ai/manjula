@@ -153,12 +153,17 @@ html[data-lang="en"] .chapter h2 {
   position: sticky; top: 84px;
   display: grid; place-items: center;
   aspect-ratio: 1; border-radius: 50%;
+  /* EXEMPT FROM THE THEMES, deliberately. The seven drawings are cream,
+     marigold and purple — one colourway, drawn once. Let this disc follow a
+     light theme and the cream vanishes into it and the loaf reads as a dark
+     brick, which is the bug that put the plate on a fixed dark ground in the
+     first place. It is a plate; a plate does not change colour with the room. */
   background:
-    radial-gradient(circle at 34% 28%, rgba(var(--chalk-rgb),.12), transparent 58%),
-    var(--ink-2);
-  box-shadow: inset 0 0 0 1px rgba(var(--chalk-rgb),.12), 0 26px 60px -26px rgba(var(--text-rgb),.75);
+    radial-gradient(circle at 34% 28%, rgba(246, 241, 230, .12), transparent 58%),
+    #241e18;
+  box-shadow: inset 0 0 0 1px rgba(246, 241, 230, .12), 0 26px 60px -26px rgba(42, 35, 27, .75);
 }
-.chapter--ink .plate { box-shadow: inset 0 0 0 1px rgba(var(--chalk-rgb),.10), 0 26px 60px -26px rgba(0,0,0,.9); }
+.chapter--ink .plate { box-shadow: inset 0 0 0 1px rgba(246, 241, 230, .10), 0 26px 60px -26px rgba(0,0,0,.9); }
 .plate svg { display: block; width: 78%; height: auto; overflow: visible; }
 @media (max-width: 900px) { .plate { position: static; max-width: 340px; margin-inline: auto; } }
 
