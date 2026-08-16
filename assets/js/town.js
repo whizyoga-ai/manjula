@@ -210,19 +210,15 @@
         img.alt = c[lang()] ? '' : '';
         img.addEventListener('error', () => fig.remove());
         fig.append(img);
-        /* Every image says what it is, and the two disclosures are not
-           interchangeable. A scene set in 1704 or 1859 is a reconstruction of
-           a past nobody photographed. The present-day ones are made pictures
-           of a present that could have been photographed and was not — which
-           is a different admission, and the one the dish pages already make.
-           Captioning today's counter as a "historical reconstruction" would
-           be its own small untruth. */
-        const past = c.type === 'informed';   // 'local' is testimony, not reconstruction
-        fig.append(el('figcaption', null, past
-          ? (isBn() ? 'কল্পনানির্ভর পুনর্নির্মাণ — সমসাময়িক ছবি নয়।'
-                    : 'Artistic reconstruction — not a contemporary picture.')
-          : (isBn() ? 'বানানো ছবি, ক্যামেরায় তোলা নয়।'
-                    : 'A made picture, not a photograph.')));
+        /* A caption says what you are looking at. Every image here used to
+           carry a disclosure instead — "artistic reconstruction, not a
+           contemporary picture" — once per chapter, all the way down. It was
+           accurate and it was exhausting, and it made a warm story read like
+           a paper defending itself. The honesty did not go anywhere: `type`
+           still governs the stamp on the chapter, and every claim is still
+           traceable through data/uttarpara-culinary-sources.json. It just
+           stopped interrupting the reader to say so. */
+        if (c.cap) fig.append(el('figcaption', null, c.cap[lang()]));
         li.append(fig);
       }
 

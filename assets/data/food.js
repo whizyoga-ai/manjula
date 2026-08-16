@@ -52,6 +52,8 @@ const FOOD_CHAPTERS = [
   {
     id: '1704',
     img: '1704-river',
+    cap: { bn: 'ভোরের কুয়াশা, পাড়ে টানা নৌকো, শুকোতে দেওয়া জাল, আর রান্নার ধোঁয়া।',
+           en: 'Dawn mist, boats pulled up on the mud, nets out to dry, and smoke from the morning fire.' },
     era:   { bn: '১৭০৪',  en: '1704' },
     type: 'informed', src: ['municipality'], confidence: 'medium',
     ttl: { bn: 'নদী আগে, বই পরে',
@@ -80,6 +82,8 @@ const FOOD_CHAPTERS = [
   {
     id: '1750',
     img: '1750-trade',
+    cap: { bn: 'নদীর ধারে বাণিজ্য — ঝুড়িতে পাউরুটি, শুকনো লঙ্কা আর রসুন, দূরে নোঙর করা জাহাজ।',
+           en: 'Trade on the bank: bread, dried chillies and garlic in the baskets, a ship at anchor beyond.' },
     era:   { bn: '১৭৫০–১৮০০', en: '1750–1800' },
     type: 'documented', src: ['sahapedia', 'creoleBengal', 'chhanaPaper'], confidence: 'high',
     ttl: { bn: 'হুগলি তখনই আন্তর্জাতিক',
@@ -92,15 +96,13 @@ const FOOD_CHAPTERS = [
       bn: 'লঙ্কা আসে মধ্য আমেরিকা থেকে, লম্বা মরিচ আর গোলমরিচের জায়গা নিতে নিতে। আলু ইউরোপে পৌঁছয় ১৫৭০-এ, কলকাতায় জনপ্রিয় হয় ১৮৬০ নাগাদ — আর গোঁড়া বাড়িতে তারও অনেক পরে। পাউরুটি, ভিনিগার, চিজ তৈরির কৌশল — সবই এই পথ ধরেই।',
       en: 'Chillies came from Central America and worked their way in as a substitute for long pepper and black pepper. The potato reached Europe in 1570 and was popular in Calcutta by about 1860 — and avoided in orthodox households for a good while after that. Bread, vinegar and cheese-making technique travelled the same road.',
     },
-    note: {
-      bn: 'সাবধানে: পর্তুগিজ জাহাজ উত্তরপাড়ায় ভিড়ত — এমন কোনও প্রমাণ নেই, আর এই পাতা সেটা বলেও না। যেটা বলা যায়, উত্তরপাড়ার জন্ম এমন এক নদীর পাড়ে যে নদী দিয়ে এসব ইতিমধ্যেই যাতায়াত করছিল।',
-      en: 'Carefully: there is no evidence that Portuguese ships docked at Uttarpara, and this page does not say so. What can be said is that Uttarpara was born beside a river along which all of this was already moving.',
-    },
   },
 
   {
     id: '1800',
     img: '1800-sweets',
+    cap: { bn: 'মিষ্টির দোকানের কাউন্টার — বাঁয়ে গুড় আর নাড়ু, মাঝখানে কাপড়ে ছানা, ডানে সন্দেশ আর রসগোল্লা।',
+           en: 'A confectioner’s counter: jaggery and coconut sweets on the left, chhana in the muslin, sandesh and rosogolla on the right.' },
     era:   { bn: '১৮০০–১৮৫০', en: '1800–1850' },
     type: 'documented', src: ['creoleBengal', 'chhanaPaper'], confidence: 'high',
     ttl: { bn: 'ছানা এল, আর মিষ্টির ভাষাটাই বদলে গেল',
@@ -113,15 +115,13 @@ const FOOD_CHAPTERS = [
       bn: 'আগে মিষ্টি মানে ছিল দুধ আর গুড়ের কারবার — পায়েস, ক্ষীর, নাড়ু। ছানা আসার পর এল সন্দেশ, রসগোল্লা, পান্তুয়া। গবেষণাপত্র বলছে সন্দেশের উঠে আসা ওই ‘ক্রেওল বাংলা’-র সময়ে, যখন হুগলি জেলায় ইউরোপীয়দের আনাগোনা; আর রসগোল্লার কৃতিত্ব লোকে দেয় ১৮৬৮-র কলকাতায়, নবীনচন্দ্র দাশকে।',
       en: 'Before, a sweet meant milk and jaggery — payesh, kheer, naru. After chhana came sandesh, rosogolla, pantua. The scholarship places sandesh’s emergence in what it calls creole Bengal, when European powers were working the Hooghly district; rosogolla is popularly credited to Nabin Chandra Das in Calcutta in 1868.',
     },
-    note: {
-      bn: 'পর্তুগিজরা সন্দেশ বা রসগোল্লা বানিয়েছিলেন — এমন দাবি এখানে নেই। যেটা বলা হচ্ছে, তাঁদের ছানা তৈরির কৌশল বাংলার ছানার ঐতিহ্য গড়ে উঠতে সাহায্য করেছিল। গবেষণাপত্রটিও কথাটাকে ‘প্রচলিত ধারণা’ বলেই লিখেছে, আর আমরাও তাই লিখছি।',
-      en: 'Nobody here is claiming the Portuguese invented sandesh or rosogolla. The claim is that their cheese-making contributed to Bengal’s chhana tradition — and the paper itself calls the attribution a popular one, so this page calls it that too.',
-    },
   },
 
   {
     id: '1859',
     img: '1859-table',
+    cap: { bn: 'কাঁসা-পিতলের থালায় ভাত, মাছের ঝোল, লুচি আর তরকারি — পাশে বইপত্র সরানো।',
+           en: 'Rice, fish curry, luchi and vegetables on bell-metal, with the books pushed to one side.' },
     era:   { bn: '১৮৫৯–১৯০০', en: '1859–1900' },
     type: 'informed', src: ['municipality', 'wikiLibrary', 'wbhc'], confidence: 'medium',
     ttl: { bn: 'লাইব্রেরি খুলল, দরজাও খুলল',
@@ -143,6 +143,8 @@ const FOOD_CHAPTERS = [
   {
     id: '1900',
     img: '1900-adda',
+    cap: { bn: 'বারান্দার টেবিলে চা, পাউরুটি আর কাটলেট, আর কেউ কাগজটা যেখানে রেখে গেছে।',
+           en: 'Tea, bread and cutlets on a verandah table, and the newspaper where somebody left it.' },
     era:   { bn: '১৯০০–১৯৪৭', en: '1900–1947' },
     type: 'documented', src: ['sahapedia'], confidence: 'high',
     ttl: { bn: 'বাংলা কোনও পদ ধার করেনি — তর্ক করে নিজের করে নিয়েছে',
@@ -160,6 +162,8 @@ const FOOD_CHAPTERS = [
   {
     id: 'today',
     img: 'today-market',
+    cap: { bn: 'সকালের মাছবাজার — সারি সারি ইলিশ, চিংড়ির স্তূপ, বরফ আর ভেজা মেঝে।',
+           en: 'The morning market: hilsa in rows, a heap of prawns, ice, and a wet floor.' },
     era:   { bn: 'আজ', en: 'Today' },
     type: 'documented', src: ['hilsaHooghly', 'hooghlyFish', 'wikiTown'], confidence: 'high',
     ttl: { bn: 'তিনশো বছর পরেও নদীটা দুপুরের পাতে',
@@ -189,15 +193,13 @@ const FOOD_CHAPTERS = [
       bn: 'জন্মদিন। অতিথি। পুজো। রেজাল্ট। বিয়ে। নতুন চাকরি। বহুদিন পর মামারবাড়ির লোক। — যা-ই হোক না কেন, কোথাও থেকে একটা মিষ্টির বাক্স এসে পড়ে, আর সুতো বাঁধা অবস্থাতেই টেবিলে ওঠে।',
       en: 'A birthday. A guest. Pujo. Exam results. A wedding. A new job. Relatives nobody has seen in two years. Whatever it is, a box of mishti turns up from somewhere and goes on the table still tied with string.',
     },
-    note: {
-      bn: 'উত্তরপাড়ার কোনও মিষ্টির দোকানের নাম এখানে নেই, আর সেটা ইচ্ছে করেই। খুঁজে দেখা হয়েছে — কোন দোকান কবেকার, তার যাচাই করা মতো কিছু পাওয়া যায়নি। দোকানের ইতিহাস বানিয়ে লেখার চেয়ে না লেখা ভালো।',
-      en: 'No Uttarpara sweet shop is named here, and that is deliberate. We looked; nothing turned up with a verifiable founding date or history. Better to name none than to invent one a shop never had.',
-    },
   },
 
   {
     id: 'manjula',
     img: 'manjula-collage',
+    cap: { bn: 'কার্ডের কুড়িটা পদ, কুড়িটাই।',
+           en: 'The twenty dishes on the card, all twenty of them.' },
     era:   { bn: '২০২৬ ও তারপর', en: '2026 and beyond' },
     type: 'interpretive', src: [], confidence: 'high',
     ttl: { bn: 'এবার নিজেদের একটু ইতিহাস গড়ার পালা',
@@ -216,10 +218,6 @@ const FOOD_CHAPTERS = [
         bn: ['পাঁচ রকম মোমো', 'স্টু পাউরুটি', 'চার রকম টোস্ট', 'চার রকম ডিম', 'চার রকম ম্যাগি', 'চর্বি ঘুগনি', 'চা ও কফি'],
         en: ['Five kinds of momo', 'Bread and chicken stew', 'Four toasts', 'Four eggs', 'Four maggis', 'Mutton fat ghugni', 'Tea and coffee'],
       },
-    },
-    note: {
-      bn: 'আমরা উত্তরপাড়ার হারানো রেসিপি উদ্ধার করিনি, করার দাবিও নেই। ওপরের ছবিটা কল্পনা নয় — কার্ডের কুড়িটা পদ, কুড়িটাই।',
-      en: 'We have not recovered Uttarpara’s lost recipes and are not claiming to. The picture above is not an impression of anything: it is the twenty dishes on the card, all twenty of them.',
     },
     kicker: {
       bn: 'শহরটা তিনশো বছর ধরে রেঁধে আসছে। আমরা সবে উনুন ধরিয়েছি।',
