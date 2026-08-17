@@ -56,25 +56,25 @@ const FOOD_CHAPTERS = [
            en: 'Dawn mist, boats pulled up on the mud, nets out to dry, and smoke from the morning fire.' },
     era:   { bn: '১৭০৪',  en: '1704' },
     type: 'informed', src: ['municipality'], confidence: 'medium',
-    ttl: { bn: 'নদী আগে, বই পরে',
+    ttl: { bn: 'প্রথমে ছিল নদী, কাদামাটি আর সকালের জাল',
            en: 'The river fed the town before the books did' },
     lede: {
-      bn: 'পৌরসভার নিজের ইতিহাস বলছে, ১৭০৪ সালে রত্নেশ্বর রায়চৌধুরী পরিবার নিয়ে এখানে এসে বসেন। জায়গাটা তখন জলা, লোকবসতি পাতলা, আর যাঁরা ছিলেন তাঁদের মধ্যে পাটনি ও মালো — মাছ ধরা আর নৌকো বাওয়াই ছিল কাজ।',
+      bn: 'পৌরসভার নিজের ইতিহাস বলছে, ১৭০৪ সালে রত্নেশ্বর রায়চৌধুরী পরিবার নিয়ে এখানে এসে বসেন। চারদিকে তখন আজকের মতো পাকা শহর নয় — জলা, নদীর পাড়, ছড়ানো বসতি; যাঁরা আগে থেকে ছিলেন তাঁদের মধ্যে পাটনি ও মালো, মাছ ধরা আর নৌকো বাওয়াই যাঁদের জীবিকা।',
       en: 'The municipality’s own history records Ratneswar Roychowdhury settling here with his family in 1704. The ground was marsh, the settlement thin, and among the people already living on it were Patni and Malo families whose trades were fishing and ferrying.',
     },
     body: {
-      bn: 'তাহলে হেঁশেলে কী উঠত? লেখা নেই কোথাও। কিন্তু জায়গাটা দেখলে আন্দাজ করা যায় — আর আন্দাজটা আন্দাজ বলেই বলা ভালো। ভাত। সকালে জাল যা তুলেছে, সেই ছোট মাছ। ভেজা মাটির শাক। ডাল। সরষে। মরসুমি সবজি, কলা, নারকেল, একটু গুড়।',
+      bn: 'হেঁশেলে তখন কী উঠত, তার কোনও রান্নার খাতা আমাদের হাতে নেই — তাই এই অংশ ইতিহাসের দাবি নয়, ভূগোল আর বাংলার সমকালীন খাদ্যাভ্যাস থেকে একটা সম্ভাব্য ছবি। ভাত ছিল সবচেয়ে স্বাভাবিক কেন্দ্র; তার পাশে সকালে জালে ওঠা ছোট নদীর মাছ, ভেজা মাটির শাক, ডাল, সরষে, মরসুমি সবজি, কলা, নারকেল, একটু গুড় — যা স্থানীয়ভাবে মেলে আর দীর্ঘ সংরক্ষণ ছাড়াই খাওয়া যায়। জীবনানন্দ পরে লিখবেন, “বাংলার মুখ আমি দেখিয়াছি” — সেই মুখে নদী, ধান আর সদ্য-ধরা মাছের গন্ধও আছে, আর উত্তরপাড়ার প্রথম দিককার থালাকেও সেই ভূদৃশ্যের ভিতরেই কল্পনা করা সংগত।',
       en: 'So what went on the fire? Nobody wrote it down. But you can read it off the ground itself — and it is better said as a reading than as a fact. Rice. Whatever the net brought up that morning. Greens off the wet earth. Dal. Mustard. Seasonal vegetables, banana, coconut, a little jaggery.',
     },
     plate: {
-      label: { bn: 'সম্ভাব্য এক থালা, আনুমানিক ১৭০৪', en: 'A plausible plate, c. 1704' },
+      label: { bn: 'সম্ভাব্য একটা থালা, আনুমানিক ১৭০৪', en: 'A plausible plate, c. 1704' },
       items: {
         bn: ['ভাত', 'নদীর ছোট মাছ', 'ভেজা জমির শাক', 'ডাল', 'সরষে', 'মরসুমি সবজি'],
         en: ['Rice', 'Small river fish', 'Greens from the wet ground', 'Dal', 'Mustard', 'Whatever was in season'],
       },
     },
     kicker: {
-      bn: 'উত্তরপাড়ার প্রথম রান্না কোনও রাঁধুনির আবিষ্কার নয়। ভূগোল যা দিয়েছে, তাই।',
+      bn: 'এই রান্নার প্রথম রাঁধুনি কোনও এক ব্যক্তি নন — এই রান্নার প্রথম রেসিপি লিখেছিল নদী ও মাটি।',
       en: 'The first Uttarpara cooking was not invented by any cook. It was dictated by geography.',
     },
   },
@@ -86,14 +86,14 @@ const FOOD_CHAPTERS = [
            en: 'Trade on the bank: bread, dried chillies and garlic in the baskets, a ship at anchor beyond.' },
     era:   { bn: '১৭৫০–১৮০০', en: '1750–1800' },
     type: 'documented', src: ['sahapedia', 'creoleBengal', 'chhanaPaper'], confidence: 'high',
-    ttl: { bn: 'হুগলি তখনই আন্তর্জাতিক',
+    ttl: { bn: 'হুগলি নদী তখন শুধু জলধারা নয় — দুনিয়ার সঙ্গে বাংলার পথ',
            en: 'The Hooghly was already global' },
     lede: {
-      bn: 'উত্তরপাড়া যে নদীর ধারে গড়ে উঠল, সে নদী ততদিনে দুনিয়ার রাস্তা। হুগলি জেলার ওপরেই ইউরোপীয় শক্তিগুলোর আনাগোনা — আর তার ছাপ পড়ে বাঙালির হেঁশেলে।',
+      bn: 'হুগলির দুই পারে বাণিজ্য, বন্দর আর বহিরাগত বসতির দীর্ঘ ইতিহাস বাংলার খাদ্যভাষাকেও বদলে দিয়েছিল। উত্তরপাড়া যে নদীর ধারে গড়ে উঠল, সে নদী ততদিনে দুনিয়ার রাস্তা — আর তার ছাপ পড়েছিল বাঙালির হেঁশেলেও।',
       en: 'The river Uttarpara grew up beside was, by then, an international road. European powers were operating up and down the Hooghly district, and the mark of that landed in the Bengali kitchen.',
     },
     body: {
-      bn: 'লঙ্কা আসে মধ্য আমেরিকা থেকে, লম্বা মরিচ আর গোলমরিচের জায়গা নিতে নিতে। আলু ইউরোপে পৌঁছয় ১৫৭০-এ, কলকাতায় জনপ্রিয় হয় ১৮৬০ নাগাদ — আর গোঁড়া বাড়িতে তারও অনেক পরে। পাউরুটি, ভিনিগার, চিজ তৈরির কৌশল — সবই এই পথ ধরেই।',
+      bn: 'লঙ্কা এল মধ্য আমেরিকা থেকে, লম্বা মরিচ আর গোলমরিচের জায়গা নিতে নিতে। আলু ইউরোপে পৌঁছয় ১৫৭০-এ, কলকাতায় জনপ্রিয় হয় ১৮৬০ নাগাদ — আর গোঁড়া বাড়িতে তারও অনেক পরে। পাউরুটি, ভিনিগার, ছানা তৈরির কৌশল — সবই এই পথ ধরেই এসেছিল, এক দিনে বা এক জায়গায় নয়; ধীরে ধীরে পুরোনো রান্নার সঙ্গে মিশে। উত্তরপাড়া কোনও বিচ্ছিন্ন দ্বীপ ছিল না — নদী একে কলকাতা, হুগলি আর আরও দূরের বাজারের সঙ্গে যুক্ত রেখেছিল। বাঙালি রান্নার শক্তি নতুন জিনিসকে অক্ষত রাখায় নয়; তাকে নিজের স্বাদের ব্যাকরণে টেনে নেওয়ায়।',
       en: 'Chillies came from Central America and worked their way in as a substitute for long pepper and black pepper. The potato reached Europe in 1570 and was popular in Calcutta by about 1860 — and avoided in orthodox households for a good while after that. Bread, vinegar and cheese-making technique travelled the same road.',
     },
   },
@@ -105,14 +105,14 @@ const FOOD_CHAPTERS = [
            en: 'A confectioner’s counter: jaggery and coconut sweets on the left, chhana in the muslin, sandesh and rosogolla on the right.' },
     era:   { bn: '১৮০০–১৮৫০', en: '1800–1850' },
     type: 'documented', src: ['creoleBengal', 'chhanaPaper'], confidence: 'high',
-    ttl: { bn: 'ছানা এল, আর মিষ্টির ভাষাটাই বদলে গেল',
+    ttl: { bn: 'দুধ কাটল, ছানা হল — মিষ্টির বাংলা বদলে গেল',
            en: 'Chhana arrives, and the whole language of sweets changes' },
     lede: {
-      bn: 'ষোড়শ শতকের আগে বাংলা লেখায় ছানার নাম নেই। দুধ ইচ্ছে করে কাটানো হিন্দু রান্নায় অচল ছিল। তারপর সেটা বদলায় — আর পর্তুগিজদের ছানা তৈরির পদ্ধতির সঙ্গে বাংলার ছানার মিল এত কাছের যে গবেষকরা দুটোকে একসঙ্গে পড়েন।',
+      bn: 'ষোড়শ শতকের আগে বাংলা লেখায় ছানার নাম মেলে না — দুধ ইচ্ছাকৃত কাটানো তখন হিন্দু রান্নায় অচল ছিল। তারপর তা বদলায়, আর পর্তুগিজদের ছানা তৈরির পদ্ধতির সঙ্গে বাংলার ছানার মিল এতটাই কাছের যে গবেষকেরা দুটোকে একসঙ্গে পড়েন।',
       en: 'There is no mention of chhana in Bengali writing before the sixteenth century; deliberately curdling milk was improper in Hindu practice. Then it changed — and Portuguese cheese-making is close enough in method to Bengali chhana that scholars read the two together.',
     },
     body: {
-      bn: 'আগে মিষ্টি মানে ছিল দুধ আর গুড়ের কারবার — পায়েস, ক্ষীর, নাড়ু। ছানা আসার পর এল সন্দেশ, রসগোল্লা, পান্তুয়া। গবেষণাপত্র বলছে সন্দেশের উঠে আসা ওই ‘ক্রেওল বাংলা’-র সময়ে, যখন হুগলি জেলায় ইউরোপীয়দের আনাগোনা; আর রসগোল্লার কৃতিত্ব লোকে দেয় ১৮৬৮-র কলকাতায়, নবীনচন্দ্র দাশকে।',
+      bn: 'ছানার আগেও বাংলায় মিষ্টি ছিল — দুধ ঘন করে ক্ষীর, পায়েস, গুড়-নারকেলের নাড়ু। কিন্তু ছানা জনপ্রিয় হওয়ার পর মিষ্টির সম্ভাবনা অন্য মাত্রা পেল — সন্দেশ, তারপর রসগোল্লা আর পান্তুয়া। গবেষণাপত্র সন্দেশের উঠে আসাকে বসায় সেই সময়ে, যখন হুগলি জেলায় ইউরোপীয়দের আনাগোনা; রসগোল্লার কৃতিত্ব লোকে দেয় ১৮৬৮ সালের কলকাতাকে, নবীনচন্দ্র দাশকে। উত্তরপাড়ার নিজস্ব কোনও নির্দিষ্ট মিষ্টির জন্মকাহিনি প্রমাণ ছাড়া বানানো ঠিক নয় — তবে কলকাতার এত কাছে, হুগলির এই সাংস্কৃতিক অঞ্চলে, নতুন মিষ্টির ভাষা দ্রুত পৌঁছেছিল বলে ভাবার যথেষ্ট ঐতিহাসিক কারণ আছে। একসময় যে দুধ কেটে যাওয়া ছিল অশুভ, সেই ছানাই পরে বাঙালির আনন্দের সবচেয়ে পরিচিত স্বাদগুলোর জন্ম দিল।',
       en: 'Before, a sweet meant milk and jaggery — payesh, kheer, naru. After chhana came sandesh, rosogolla, pantua. The scholarship places sandesh’s emergence in what it calls creole Bengal, when European powers were working the Hooghly district; rosogolla is popularly credited to Nabin Chandra Das in Calcutta in 1868.',
     },
   },
@@ -127,11 +127,11 @@ const FOOD_CHAPTERS = [
     ttl: { bn: 'লাইব্রেরি খুলল, দরজাও খুলল',
            en: 'The library opens, and so do the doors' },
     lede: {
-      bn: 'জয়কৃষ্ণ পাবলিক লাইব্রেরি খোলে ১৮৫৯-এ, আর উত্তরপাড়ায় লোক আসতে থাকে — শিক্ষক, লেখক, সংস্কারক, প্রশাসক, ইংরেজ অতিথি। পাতার অন্য দিকটায় সেই নামগুলো আছে। এখানে প্রশ্নটা আলাদা: এঁরা এলে টেবিলে কী পড়ত?',
+      bn: 'জয়কৃষ্ণ পাবলিক লাইব্রেরি খোলে ১৮৫৯ সালে, আর উত্তরপাড়ায় লোক আসতে শুরু করে — শিক্ষক, লেখক, সংস্কারক, প্রশাসক, ইংরেজ অতিথি। তাঁদের নাম পাতার অন্য অংশে আছে; এখানে প্রশ্নটা আলাদা — তাঁরা এলে টেবিলে কী উঠত?',
       en: 'The Jaykrishna Public Library opened in 1859 and people started coming to Uttarpara — teachers, writers, reformers, administrators, English visitors. The other half of this page has their names. The question here is a different one: when they came, what went on the table?',
     },
     body: {
-      bn: 'লাইব্রেরির উনিশ শতকের দুপুরের মেনু কারও কাছে নেই, আমাদের কাছেও না। তবে ওই সময়ের সচ্ছল বাঙালি বাড়ির আতিথেয়তা কেমন ছিল, সেটা জানা — ভাত, ডাল, শুক্তো, ভাজা, তরকারি, মাছের ঝোল, উৎসবে কালিয়া, চাটনি, দই, মিষ্টি। বিশেষ দিনে লুচি আর পোলাও।',
+      bn: 'লাইব্রেরির উনিশ শতকের দুপুরের মেনু কারও কাছে নেই, আমাদের কাছেও না। তবে সেই সময়ের সচ্ছল বাঙালি বাড়ির আতিথেয়তা কেমন ছিল তা জানা যায় — তেতো বা শাক দিয়ে শুরু, তারপর ডাল, তরকারি, মাছের ঝোল, উপলক্ষ বুঝে কালিয়া, শেষে চাটনি, দই, মিষ্টি; বিশেষ দিনে লুচি আর পোলাও। আহারের এই ক্রমই তখনকার মধ্যবিত্ত গৃহস্থে একরকম সামাজিক ভাষা হয়ে উঠেছিল। জয়কৃষ্ণ মুখোপাধ্যায় বা বিদ্যাসাগর উত্তরপাড়ায় এসে ঠিক কী খেয়েছিলেন, তেমন কোনও নির্ভরযোগ্য দলিল নেই বলে তা এখানে লেখা হয়নি — ইতিহাসের প্রতি সম্মান কখনও কখনও ‘জানি না’ বলতে জানার মধ্যেই থাকে।',
       en: 'Nobody has the library’s nineteenth-century lunch menu, and neither do we. But the shape of hospitality in a comfortable Bengali household of the period is known — rice, dal, shukto, something fried, vegetables, a fish jhol, a richer kalia when the occasion asked for it, chutney, curd, a sweet. Luchi and pulao on a day that mattered.',
     },
     kicker: {
@@ -150,11 +150,11 @@ const FOOD_CHAPTERS = [
     ttl: { bn: 'বাংলা কোনও পদ ধার করেনি — তর্ক করে নিজের করে নিয়েছে',
            en: 'Bengal never merely borrowed a dish. It argued with it until it turned Bengali' },
     lede: {
-      bn: 'চা, পাউরুটি, বিস্কুট, কেক, পুডিং, কাটলেট — উনিশ শতকের শেষ আর বিশ শতকের গোড়ায় এগুলো শহুরে বাঙালি জীবনে ঢুকে পড়ে। পাউরুটি আর বিস্কুট নিয়ে তখন রীতিমতো তর্ক — কারও কাছে প্রগতি, কারও কাছে জাত খোয়ানো।',
+      bn: 'চা, পাউরুটি, বিস্কুট, কেক, পুডিং, কাটলেট — উনিশ শতকের শেষ আর বিশ শতকের গোড়ায় এসব শহুরে বাঙালি জীবনে ঢুকে পড়ল। পাউরুটি আর বিস্কুট নিয়ে তখন রীতিমতো তর্ক চলত — কারও কাছে অগ্রগতি, কারও কাছে জাত খোয়ানো।',
       en: 'Tea, bread, biscuits, cake, pudding, cutlets — these came into urban Bengali life in the late nineteenth and early twentieth centuries. Bread and biscuits were argued over: progress to some, a caste transgression to others.',
     },
     body: {
-      bn: 'কিন্তু নকল হয়নি কিছুই। ইউরোপীয় কাটলেটের বড় মাংসের টুকরো ছোট হয়ে হয়ে দাঁড়াল বাঙালি চপ। omelette মুখে মুখে হয়ে গেল ‘মামলেট’। tea হল চা, pão হল পাউরুটি। সরষে, কাঁচালঙ্কা, আদা আর নদীর মাছ ঢুকে পড়ল ইউরোপীয় কায়দার ভিতরে — আর পদগুলো আর ইউরোপীয় রইল না।',
+      bn: 'কিন্তু নকল হয়নি কিছুই। ইউরোপীয় কাটলেটের বড় মাংসের টুকরো ছোট হতে হতে দাঁড়াল বাঙালি চপ। omelette মুখে মুখে হয়ে গেল ‘মামলেট’, tea হল চা, pão হল পাউরুটি। সরষে, কাঁচালঙ্কা, আদা আর নদীর মাছ ঢুকে পড়ল ইউরোপীয় কায়দার ভিতরে — আর পদগুলো তখন থেকেই আর ইউরোপীয় রইল না।',
       en: 'None of it was copied. The European cutlet’s big pieces of meat got smaller and smaller until they were a Bengali chop. Omelette became mamlet in Bengali mouths. Tea became cha and pão became pauruti. Mustard, green chilli, ginger and river fish went inside the European method, and the dishes stopped being European.',
     },
   },
@@ -169,11 +169,11 @@ const FOOD_CHAPTERS = [
     ttl: { bn: 'তিনশো বছর পরেও নদীটা দুপুরের পাতে',
            en: 'Three centuries on, the river is still part of lunch' },
     lede: {
-      bn: 'ইলিশের ভারতীয় আঁতুড়ঘর মূলত গঙ্গা-ভাগীরথী-হুগলির এই অংশটাই — গবেষণাপত্রের কথা। হুগলি জেলার বাজারে রুই, মৃগেল, ইলিশ, কই, পাবদা রোজকার জিনিস। উত্তরপাড়ার মাছবাজার রাজেন্দ্র অ্যাভিনিউতে।',
+      bn: 'ইলিশের প্রধান ভারতীয় আঁতুড়ঘর মূলত গঙ্গা-ভাগীরথী-হুগলির এই অংশ — এটা গবেষণাপত্রের কথা, আমাদের নয়। হুগলি জেলার বাজারে রুই, মৃগেল, ইলিশ, কই, পাবদা রোজকার মাছ। উত্তরপাড়ার নিজের মাছবাজার রাজেন্দ্র অ্যাভিনিউতে।',
       en: 'The main Indian home of hilsa is this stretch of the Ganga–Bhagirathi–Hooghly system — that is from the research, not from us. Rohu, mrigel, hilsa, koi and pabda are everyday fish in Hooghly district markets. Uttarpara’s own fish market is on Rajendra Avenue.',
     },
     body: {
-      bn: 'কোন বাজারের ইলিশ সেরা, সেটা তথ্য নয় — মত। আর উত্তরপাড়ায় সেই মত জিজ্ঞেস করলে ঠিকানা পাবেন, সঙ্গে বিনামূল্যে একটা তর্কও।',
+      bn: 'কোন বাজারের ইলিশ সবচেয়ে ভালো, সেটা তথ্য নয়, মত। উত্তরপাড়ায় সেই মত জিজ্ঞেস করলে ঠিকানা মিলবে, সঙ্গে বিনামূল্যে একটা তর্কও।',
       en: 'Which market has the best hilsa is not a fact, it is an opinion. Ask for one in Uttarpara and you will get directions, and an argument thrown in free.',
     },
     kicker: {
@@ -205,11 +205,11 @@ const FOOD_CHAPTERS = [
     ttl: { bn: 'এবার নিজেদের একটু ইতিহাস গড়ার পালা',
            en: 'Here to make a little history of our own' },
     lede: {
-      bn: 'তিনশো বছর ধরে এখানকার খাওয়া বদলেছে যখনই নতুন লোক, নতুন জিনিস আর নতুন ভাবনা এসেছে — নদী দিয়ে, সড়ক দিয়ে, রেল দিয়ে। এতক্ষণ যা পড়লেন, সেটা অন্যদের গড়ে তোলা। এই অধ্যায়টা এখনও লেখা হয়নি।',
+      bn: 'তিনশো বছর ধরে এখানকার খাওয়া বদলেছে যখনই নতুন লোক, নতুন জিনিস আর নতুন ভাবনা এসেছে — নদী দিয়ে, সড়ক দিয়ে, রেল দিয়ে। এতক্ষণ যা পড়লেন, তা অন্যদের গড়ে তোলা ইতিহাস। এই অধ্যায় এখনও লেখা হয়নি।',
       en: 'For three hundred years the food here has changed whenever new people, new ingredients and new ideas arrived — by river, by road, by rail. Everything above this was built by other people. This chapter has not been written yet.',
     },
     body: {
-      bn: 'মঞ্জুলা বাইট অ্যান্ড ব্রু ২০২৬-এ খুলেছে, ১৭/এ ব্যানার্জি পাড়া স্ট্রিটে — উত্তরপাড়া গার্লস হাই স্কুলের সঙ্গে একই ওয়ার্ডে। এক কামরার দোকান, চালান দুই বোন। উদ্বোধনের দিন চা আর কফি ছিল বিনা পয়সায়, একদিনই। রোজ সকাল ন’টায় স্টিমার বসে, নামে রাত ন’টায়। ছুটির ঘণ্টা পড়লে কাউন্টারে যে ভিড়টা হয়, সেটাই দিনের সবচেয়ে ব্যস্ত মিনিট।',
+      bn: 'মঞ্জুলা বাইট অ্যান্ড ব্রু ২০২৬ সালে খুলেছে, ১৭/এ ব্যানার্জি পাড়া স্ট্রিটে — উত্তরপাড়া গার্লস হাই স্কুলের সঙ্গে একই ওয়ার্ডে। এক কামরার দোকান, চালান দুই বোন। উদ্বোধনের দিন চা আর কফি ছিল বিনা পয়সায়, শুধু সেই একদিনই। রোজ সকাল ন’টায় স্টিমার বসে, নামে রাত ন’টায়। ছুটির ঘণ্টা পড়লে কাউন্টারে যে ভিড় হয়, সেটাই দিনের সবচেয়ে ব্যস্ত মিনিট।',
       en: 'Manjula Bite & Brew opened in 2026 at 17/A Banerjee Para Street, in the same municipal ward as the Uttarpara Girls’ High School. One room, run by two sisters. On the opening day the tea and the coffee were free, and on that day only. The steamer goes on at nine in the morning and comes off at nine at night. The rush when the school bell goes is the busiest minute of the day.',
     },
     plate: {
@@ -220,7 +220,7 @@ const FOOD_CHAPTERS = [
       },
     },
     kicker: {
-      bn: 'শহরটা তিনশো বছর ধরে রেঁধে আসছে। আমরা সবে উনুন ধরিয়েছি।',
+      bn: 'গঙ্গার পলিমাটির উনুন থেকে আজকের মোমোর ভাপ—মাঝখানে বয়ে গেছে তিনশো বছরের উত্তরপাড়া।',
       en: 'The town has been cooking for three hundred years. We have only just lit the stove.',
     },
   },
