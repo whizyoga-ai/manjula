@@ -17,7 +17,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: manjula
   TEST_CONTAINER: manjula-staging-regression
-  TEST_PORT: "18080"
+  TEST_PORT: "18081"
 
 jobs:
   staging:
@@ -49,7 +49,7 @@ jobs:
             --label org.opencontainers.image.revision="${GITHUB_SHA}" \
             -t manjula:test-${GITHUB_SHA} .
 
-      - name: Run staging container
+      - name: Run isolated regression container
         shell: bash
         run: |
           set -euo pipefail
@@ -70,7 +70,7 @@ jobs:
             sleep 1
           done
           docker logs "$TEST_CONTAINER" || true
-          echo "::error::Staging container did not become healthy"
+          echo "::error::Regression container did not become healthy"
           exit 1
 
       - name: Regression smoke suite
@@ -119,9 +119,11 @@ jobs:
             echo "- Image: \`${IMAGE}:${SHA_TAG}\`"
             echo "- Digest: \`${DIGEST}\`"
             echo "- Regression host: \`yoga-5090-staging\`"
+            echo "- Regression port: \`${TEST_PORT}\`"
+            echo "- Persistent UAT site remains on \`127.0.0.1:18080\` / \`staging.manjulab.com\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Cleanup
+      - name: Cleanup regression container
         if: always()
         shell: bash
         run: |
