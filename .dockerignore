@@ -1,0 +1,11 @@
+.git
+.github
+docs
+scripts
+README.md
+CNAME
+.nojekyll
+.gitignore
+*.log
+.DS_Store
+Thumbs.db
