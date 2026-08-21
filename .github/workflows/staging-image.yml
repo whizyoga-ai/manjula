@@ -1,0 +1,129 @@
+name: Build, regress, and publish staging image
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: manjula-staging-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: manjula
+  TEST_CONTAINER: manjula-staging-regression
+  TEST_PORT: "18080"
+
+jobs:
+  staging:
+    name: Ubuntu staging regression
+    runs-on: [self-hosted, Linux, X64, staging, regression, yoga-5090]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Resolve image coordinates
+        id: vars
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER_LC="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          IMAGE="${REGISTRY}/${OWNER_LC}/${IMAGE_NAME}"
+          echo "owner=${OWNER_LC}" >> "$GITHUB_OUTPUT"
+          echo "short_sha=${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "image=${IMAGE}" >> "$GITHUB_OUTPUT"
+          echo "sha_tag=sha-${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+
+      - name: Build exact staging image locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build \
+            --label org.opencontainers.image.revision="${GITHUB_SHA}" \
+            -t manjula:test-${GITHUB_SHA} .
+
+      - name: Run staging container
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker rm -f "$TEST_CONTAINER" >/dev/null 2>&1 || true
+          docker run -d \
+            --name "$TEST_CONTAINER" \
+            -p "127.0.0.1:${TEST_PORT}:80" \
+            manjula:test-${GITHUB_SHA}
+
+      - name: Wait for health
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 30); do
+            if curl -fsS "http://127.0.0.1:${TEST_PORT}/healthz" | grep -qx 'ok'; then
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs "$TEST_CONTAINER" || true
+          echo "::error::Staging container did not become healthy"
+          exit 1
+
+      - name: Regression smoke suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="http://127.0.0.1:${TEST_PORT}"
+          for path in / /origins.html /dish.html /bulk.html /movies.html /uttarpara.html; do
+            echo "Testing ${path}"
+            curl -fsS -o /dev/null "${BASE}${path}"
+          done
+          curl -fsS "${BASE}/" | grep -qi '<html'
+          curl -fsS "${BASE}/uttarpara.html" | grep -qi '<html'
+
+      - name: Login to GHCR
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s' '${{ secrets.GITHUB_TOKEN }}' | docker login "$REGISTRY" -u '${{ github.actor }}' --password-stdin
+
+      - name: Publish the exact tested image
+        shell: bash
+        run: |
+          set -euo pipefail
+          IMAGE='${{ steps.vars.outputs.image }}'
+          SHA_TAG='${{ steps.vars.outputs.sha_tag }}'
+          docker tag "manjula:test-${GITHUB_SHA}" "${IMAGE}:${SHA_TAG}"
+          docker tag "manjula:test-${GITHUB_SHA}" "${IMAGE}:staging-latest"
+          docker push "${IMAGE}:${SHA_TAG}"
+          docker push "${IMAGE}:staging-latest"
+
+      - name: Verify published digest
+        id: digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          IMAGE='${{ steps.vars.outputs.image }}'
+          SHA_TAG='${{ steps.vars.outputs.sha_tag }}'
+          DIGEST="$(docker buildx imagetools inspect "${IMAGE}:${SHA_TAG}" --format '{{json .Manifest.Digest}}' | tr -d '"')"
+          test -n "$DIGEST"
+          echo "digest=${DIGEST}" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Manjula staging image"
+            echo ""
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Image: \`${IMAGE}:${SHA_TAG}\`"
+            echo "- Digest: \`${DIGEST}\`"
+            echo "- Regression host: \`yoga-5090-staging\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Cleanup
+        if: always()
+        shell: bash
+        run: |
+          docker rm -f "$TEST_CONTAINER" >/dev/null 2>&1 || true
+          docker logout "$REGISTRY" >/dev/null 2>&1 || true
