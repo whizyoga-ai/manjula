@@ -1,0 +1,104 @@
+name: Promote tested Manjula image to GitLab
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_tag:
+        description: GHCR staging tag that already passed regression/UAT
+        required: true
+        default: sha-472b72f
+      release_tag:
+        description: GitLab production release tag
+        required: true
+        default: release-2026-08-21
+
+permissions:
+  contents: read
+  packages: read
+
+env:
+  GHCR_IMAGE: ghcr.io/whizyoga-ai/manjula
+  GITLAB_IMAGE: registry.gitlab.com/kai-production/hosted-customers/manjula/website-release
+
+jobs:
+  promote:
+    name: Promote exact tested image
+    runs-on: [self-hosted, Linux, X64, staging, regression, yoga-5090]
+
+    steps:
+      - name: Login to GHCR
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s' '${{ secrets.GITHUB_TOKEN }}' | docker login ghcr.io -u '${{ github.actor }}' --password-stdin
+
+      - name: Login to GitLab registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s' '${{ secrets.GITLAB_KAI_PROD_TOKEN_BRAHMANDO }}' | docker login registry.gitlab.com -u '${{ secrets.GITLAB_USERNAME }}' --password-stdin
+
+      - name: Pull exact tested source image
+        id: source
+        shell: bash
+        env:
+          SOURCE_TAG: ${{ inputs.source_tag }}
+        run: |
+          set -euo pipefail
+          SOURCE="${GHCR_IMAGE}:${SOURCE_TAG}"
+          docker pull --platform linux/amd64 "$SOURCE"
+          SOURCE_ID="$(docker image inspect "$SOURCE" --format '{{.Id}}')"
+          SOURCE_REPODIGEST="$(docker image inspect "$SOURCE" --format '{{index .RepoDigests 0}}')"
+          SOURCE_MANIFEST_DIGEST="${SOURCE_REPODIGEST##*@}"
+          echo "source=${SOURCE}" >> "$GITHUB_OUTPUT"
+          echo "source_id=${SOURCE_ID}" >> "$GITHUB_OUTPUT"
+          echo "source_manifest_digest=${SOURCE_MANIFEST_DIGEST}" >> "$GITHUB_OUTPUT"
+
+      - name: Promote without rebuilding
+        id: promote
+        shell: bash
+        env:
+          SOURCE_TAG: ${{ inputs.source_tag }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          set -euo pipefail
+          SOURCE="${GHCR_IMAGE}:${SOURCE_TAG}"
+          DEST="${GITLAB_IMAGE}:${RELEASE_TAG}"
+          docker tag "$SOURCE" "$DEST"
+          docker push "$DEST"
+          docker pull "$DEST"
+          DEST_ID="$(docker image inspect "$DEST" --format '{{.Id}}')"
+          DEST_REPODIGEST="$(docker image inspect "$DEST" --format '{{index .RepoDigests 0}}')"
+          DEST_MANIFEST_DIGEST="${DEST_REPODIGEST##*@}"
+          echo "dest=${DEST}" >> "$GITHUB_OUTPUT"
+          echo "dest_id=${DEST_ID}" >> "$GITHUB_OUTPUT"
+          echo "dest_manifest_digest=${DEST_MANIFEST_DIGEST}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify artifact identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test '${{ steps.source.outputs.source_id }}' = '${{ steps.promote.outputs.dest_id }}'
+          test '${{ steps.source.outputs.source_manifest_digest }}' = '${{ steps.promote.outputs.dest_manifest_digest }}'
+          echo 'Verified: GitLab image is byte-identical to the tested GHCR linux/amd64 image manifest.'
+
+      - name: Publish immutable release metadata
+        shell: bash
+        run: |
+          {
+            echo '## Manjula production promotion'
+            echo ''
+            echo '- Source: `${{ steps.source.outputs.source }}`'
+            echo '- Destination: `${{ steps.promote.outputs.dest }}`'
+            echo '- Image ID: `${{ steps.promote.outputs.dest_id }}`'
+            echo '- Manifest digest: `${{ steps.promote.outputs.dest_manifest_digest }}`'
+            echo '- Promotion mode: **no rebuild**'
+            echo '- Regression/UAT source: `staging.manjulab.com`'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Cleanup registry sessions
+        if: always()
+        shell: bash
+        run: |
+          docker logout ghcr.io >/dev/null 2>&1 || true
+          docker logout registry.gitlab.com >/dev/null 2>&1 || true
