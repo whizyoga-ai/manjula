@@ -204,11 +204,34 @@ jobs:
           json.dump(body, open("/tmp/gl_pipeline_req.json", "w"))
           '
 
-          code="$(curl -sS -o /tmp/gl_pipeline.json -w '%{http_code}' -X POST \
-                    -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
-                    -H 'Content-Type: application/json' \
-                    --data @/tmp/gl_pipeline_req.json \
-                    "${GITLAB_API}/projects/${PROJECT_ID}/pipeline" || echo 000)"
+          # Diagnostics only - an access level, not a credential.
+          ACCESS="$(python3 -c 'import json;d=(json.load(open("/tmp/gl_project.json")).get("permissions") or {});lv=[(d.get(k) or {}).get("access_level") for k in ("project_access","group_access")];print(max([x for x in lv if x] or [0]))')"
+          echo "Effective access level for the release credential: ${ACCESS} (30 = Developer, 40 = Maintainer)."
+
+          post_pipeline() {
+            curl -sS -o /tmp/gl_pipeline.json -w '%{http_code}' -X POST \
+              -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+              -H 'Content-Type: application/json' \
+              --data @"$1" \
+              "${GITLAB_API}/projects/${PROJECT_ID}/pipeline" || echo 000
+          }
+
+          HANDOFF_MODE='explicit release variables'
+          code="$(post_pipeline /tmp/gl_pipeline_req.json)"
+
+          # Setting pipeline variables over the API needs Maintainer. A
+          # Developer-level release credential can still open the pipeline, and
+          # approved-latest - which this same run has just verified points at
+          # the approved manifest - still carries the release. Prefer the
+          # explicit digest, fall back to the pointer, never to a rebuild.
+          if [ "$code" != "201" ] && grep -q 'Insufficient permissions to set pipeline variables' /tmp/gl_pipeline.json 2>/dev/null; then
+            echo "::warning::The release credential (access level ${ACCESS}) may open pipelines but not set pipeline variables; GitLab requires Maintainer (40) for that. Falling back to a plain pipeline, where GitLab resolves the release from approved-latest. Raise the credential to Maintainer to hand off the explicit digest instead."
+            python3 -c 'import json,os;json.dump({"ref":os.environ["DEFAULT_BRANCH"]},open("/tmp/gl_pipeline_plain.json","w"))'
+            HANDOFF_MODE="approved-latest pointer (credential lacks variable permission)"
+            code="$(post_pipeline /tmp/gl_pipeline_plain.json)"
+          fi
+
+          echo "handoff_mode=${HANDOFF_MODE}" >> "$GITHUB_OUTPUT"
 
           if [ "$code" = "201" ]; then
             URL="$(python3 -c 'import json;print(json.load(open("/tmp/gl_pipeline.json")).get("web_url",""))')"
@@ -216,6 +239,7 @@ jobs:
             echo "pipeline_url=${URL}" >> "$GITHUB_OUTPUT"
             echo "pipeline_id=${ID}" >> "$GITHUB_OUTPUT"
             echo "Handed off to GitLab pipeline ${ID}: ${URL}"
+            echo "Handoff carried: ${HANDOFF_MODE}"
             echo "Production deployment stays manual there, as intended."
           else
             echo "::error::GitLab refused to create the pipeline (HTTP ${code}). Response follows; it contains no credential."
@@ -239,6 +263,7 @@ jobs:
             echo '- Promotion mode: **no rebuild**'
             echo '- Regression/UAT source: `staging.manjulab.com`'
             echo '- GitLab handoff pipeline: ${{ steps.handoff.outputs.pipeline_url }}'
+            echo '- GitLab handoff mode: ${{ steps.handoff.outputs.handoff_mode }}'
             echo '- Production deployment: **manual in GitLab**'
           } >> "$GITHUB_STEP_SUMMARY"
 
