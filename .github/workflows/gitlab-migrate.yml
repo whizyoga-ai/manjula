@@ -4,7 +4,7 @@ name: Manjula GitLab migrate (GEEKOM primary)
 # topology via the GitLab release project, using the already-promoted logo
 # artifact. mode=report inspects the GitLab side; mode=deploy fixes runner tags,
 # allows API pipeline variables, triggers the pipeline for the release, and
-# plays deploy_geekom + deploy_gpuserver_dr. The final Cloudflare repoint off
+# plays deploy_geekom + deploy_gpuserver. The final Cloudflare repoint off
 # Pages is done by the owner. The token is only ever a request header.
 
 on:
@@ -109,6 +109,6 @@ jobs:
           V="$(jid validate_release)"; [ -n "$V" ] && { echo "validate_release #$V"; waitok "$V" validate_release || exit 1; } || echo "no validate_release job (continuing)"
           G="$(jid deploy_geekom)"; [ -n "$G" ] || { echo "::error::no deploy_geekom"; exit 1; }
           echo "play deploy_geekom #$G -> $(play "$G")"; waitok "$G" deploy_geekom || exit 1
-          D="$(jid deploy_gpuserver_dr)"; [ -n "$D" ] || { echo "::error::no deploy_gpuserver_dr"; exit 1; }
-          echo "play deploy_gpuserver_dr #$D -> $(play "$D")"; waitok "$D" deploy_gpuserver_dr || exit 1
+          D="$(jid deploy_gpuserver)"; [ -n "$D" ] || { echo "::error::no deploy_gpuserver"; exit 1; }
+          echo "play deploy_gpuserver #$D -> $(play "$D")"; waitok "$D" deploy_gpuserver || exit 1
           echo "Manjula GEEKOM + gpuserver deployed ${RELEASE_TAG}. Repoint manjulab.com off Pages to finish."
