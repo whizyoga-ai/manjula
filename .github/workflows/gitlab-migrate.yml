@@ -1,0 +1,114 @@
+name: Manjula GitLab migrate (GEEKOM primary)
+
+# Moves manjulab.com off GitHub Pages onto the GEEKOM-primary + gpuserver-DR
+# topology via the GitLab release project, using the already-promoted logo
+# artifact. mode=report inspects the GitLab side; mode=deploy fixes runner tags,
+# allows API pipeline variables, triggers the pipeline for the release, and
+# plays deploy_geekom + deploy_gpuserver_dr. The final Cloudflare repoint off
+# Pages is done by the owner. The token is only ever a request header.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: report or deploy
+        required: true
+        default: report
+      release_tag:
+        description: Immutable release tag in the GitLab registry
+        required: true
+        default: release-fff55ed
+
+permissions:
+  contents: read
+
+concurrency:
+  group: manjula-gitlab-migrate
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    name: Manjula GEEKOM via GitLab
+    runs-on: [self-hosted, Linux, X64, staging, regression, yoga-5090]
+    env:
+      GITLAB_API: https://gitlab.com/api/v4
+      PROJECT_PATH: kai-production/hosted-customers/manjula/website-release
+      GITLAB_TOKEN: ${{ secrets.GITLAB_KAI_PROD_TOKEN_BRAHMANDO }}
+      RELEASE_TAG: ${{ inputs.release_tag }}
+      MODE: ${{ inputs.mode }}
+    steps:
+      - name: Resolve project
+        id: proj
+        shell: bash
+        run: |
+          set -euo pipefail
+          ENC="${PROJECT_PATH//\//%2F}"
+          curl -sS -o /tmp/proj.json -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${ENC}"
+          PID="$(python3 -c 'import json;print(json.load(open("/tmp/proj.json"))["id"])')"
+          echo "pid=${PID}" >> "$GITHUB_OUTPUT"
+          python3 -c 'import json;d=json.load(open("/tmp/proj.json"));print("  id:",d["id"]);print("  default_branch:",d.get("default_branch"));print("  ci_pipeline_variables_minimum_override_role:",d.get("ci_pipeline_variables_minimum_override_role"))'
+          echo "branch=$(python3 -c 'import json;print(json.load(open("/tmp/proj.json")).get("default_branch") or "main")')" >> "$GITHUB_OUTPUT"
+
+      - name: Report GitLab side
+        if: inputs.mode == 'report'
+        shell: bash
+        run: |
+          set -uo pipefail
+          PID='${{ steps.proj.outputs.pid }}'; BR='${{ steps.proj.outputs.branch }}'
+          echo "=== .gitlab-ci.yml at root ==="
+          curl -sS -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/repository/files/.gitlab-ci%2Eyml/raw?ref=${BR}" 2>/dev/null | grep -nE "^[a-z_]+:|stage:|tags:|- (geekom|gpuserver|production|web|system|dr)|RELEASE_TAG|rules:|when:|CI_REGISTRY_IMAGE|PORT" | head -60 || echo "(no CI file)"
+          echo "=== runners (real tags via detail endpoint) ==="
+          curl -sS -o /tmp/pr.json -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/runners?type=project_type&per_page=100"
+          for RID in $(python3 -c 'import json;[print(r["id"]) for r in json.load(open("/tmp/pr.json"))]'); do
+            curl -sS -o /tmp/r.json -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/runners/${RID}"
+            python3 -c 'import json;r=json.load(open("/tmp/r.json"));print("  #%s desc=%r online=%s tags=%s"%(r["id"],r.get("description",""),r.get("online"),r.get("tag_list")))'
+          done
+          echo "=== is ${RELEASE_TAG} in the registry? ==="
+          curl -sS -o /tmp/repos.json -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/registry/repositories?per_page=100"
+          RID2="$(python3 -c 'import json;rs=json.load(open("/tmp/repos.json"));rs=rs if isinstance(rs,list) else [];print(rs[0]["id"] if rs else "")')"
+          if [ -n "$RID2" ]; then
+            tc="$(curl -sS -o /tmp/tag.json -w '%{http_code}' -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/registry/repositories/${RID2}/tags/${RELEASE_TAG}" || echo 000)"
+            echo "  registry repo #${RID2}, tag ${RELEASE_TAG} -> HTTP ${tc}"
+          else
+            echo "  no registry repository found"
+          fi
+
+      - name: Deploy via GitLab
+        if: inputs.mode == 'deploy'
+        shell: bash
+        run: |
+          set -uo pipefail
+          PID='${{ steps.proj.outputs.pid }}'
+          # 1) allow API pipeline variables (idempotent)
+          curl -sS -o /dev/null -X PUT -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}?ci_pipeline_variables_minimum_override_role=maintainer" || true
+          # 2) fix runner tags (tags sometimes registered into the description)
+          curl -sS -o /tmp/pr.json -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/runners?type=project_type&per_page=100"
+          for RID in $(python3 -c 'import json;[print(r["id"]) for r in json.load(open("/tmp/pr.json"))]'); do
+            curl -sS -o /tmp/r.json -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/runners/${RID}"
+            DESC="$(python3 -c 'import json;print((json.load(open("/tmp/r.json")).get("description") or "").lower())')"
+            HAVE="$(python3 -c 'import json;print(",".join(json.load(open("/tmp/r.json")).get("tag_list") or []))')"
+            WANT=""
+            case "$DESC" in *gpuserver*) WANT="gpuserver,production,web,system,dr";; *geekom*) WANT="geekom,production,web,system";; esac
+            echo "runner #${RID} desc=[${DESC}] tags=[${HAVE}] want=[${WANT}]"
+            if [ -n "$WANT" ] && [ "$HAVE" != "$WANT" ]; then
+              echo "  set tags -> $(curl -sS -o /dev/null -w '%{http_code}' -X PUT -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" --data "tag_list=${WANT}" --data 'run_untagged=false' "${GITLAB_API}/runners/${RID}")"
+            fi
+          done
+          # 3) trigger the pipeline with RELEASE_TAG
+          python3 -c 'import json,os;json.dump({"ref":"'"${{ steps.proj.outputs.branch }}"'","variables":[{"key":"RELEASE_TAG","value":os.environ["RELEASE_TAG"]}]},open("/tmp/req.json","w"))'
+          code="$(curl -sS -o /tmp/pipe.json -w '%{http_code}' -X POST -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" -H 'Content-Type: application/json' --data @/tmp/req.json "${GITLAB_API}/projects/${PID}/pipeline" || echo 000)"
+          echo "POST pipeline -> ${code}"; [ "$code" = 201 ] || { cat /tmp/pipe.json; exit 1; }
+          PIPE="$(python3 -c 'import json;print(json.load(open("/tmp/pipe.json"))["id"])')"
+          echo "pipeline #${PIPE}: $(python3 -c 'import json;print(json.load(open("/tmp/pipe.json")).get("web_url",""))')"
+          # 4) run validate -> geekom -> gpuserver_dr
+          jid() { curl -sS -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/pipelines/${PIPE}/jobs?per_page=100" | python3 -c 'import json,sys;n=sys.argv[1];m=[j for j in json.load(sys.stdin) if j["name"]==n];print(m[0]["id"] if m else "")' "$1"; }
+          jst() { curl -sS -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/jobs/$1" | python3 -c 'import json,sys;print(json.load(sys.stdin)["status"])'; }
+          waitok() { for i in $(seq 1 90); do st="$(jst "$1")"; echo "  $2: ${st}"; case "$st" in success) return 0;; failed|canceled) echo "::error::$2 ${st}"; curl -sS -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/jobs/$1/trace" | tail -30; return 1;; esac; sleep 5; done; echo "::error::$2 timed out"; return 1; }
+          play() { curl -sS -o /dev/null -w '%{http_code}' -X POST -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/jobs/$1/play"; }
+          echo "jobs:"; curl -sS -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API}/projects/${PID}/pipelines/${PIPE}/jobs" | python3 -c 'import json,sys;[print("  %s: %s"%(j["name"],j["status"])) for j in json.load(sys.stdin)]'
+          V="$(jid validate_release)"; [ -n "$V" ] && { echo "validate_release #$V"; waitok "$V" validate_release || exit 1; } || echo "no validate_release job (continuing)"
+          G="$(jid deploy_geekom)"; [ -n "$G" ] || { echo "::error::no deploy_geekom"; exit 1; }
+          echo "play deploy_geekom #$G -> $(play "$G")"; waitok "$G" deploy_geekom || exit 1
+          D="$(jid deploy_gpuserver_dr)"; [ -n "$D" ] || { echo "::error::no deploy_gpuserver_dr"; exit 1; }
+          echo "play deploy_gpuserver_dr #$D -> $(play "$D")"; waitok "$D" deploy_gpuserver_dr || exit 1
+          echo "Manjula GEEKOM + gpuserver deployed ${RELEASE_TAG}. Repoint manjulab.com off Pages to finish."
