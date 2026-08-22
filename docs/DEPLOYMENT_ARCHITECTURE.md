@@ -52,6 +52,15 @@ Nobody retypes a release value. **The handoff opens the pipeline; it does not
 deploy.** GEEKOM and gpuserver remain manual jobs inside GitLab, which is the
 intended production-approval gate.
 
+The handoff has two modes and reports which one it used. It prefers the
+variables above. If the release project forbids setting pipeline variables over
+the API — the `ci_pipeline_variables_minimum_override_role` setting, which
+recent GitLab defaults to no-one-allowed regardless of the credential's role —
+it opens a plain pipeline instead and GitLab resolves the release from
+`approved-latest`, which the same run has just verified points at the approved
+manifest. The artifact is identical either way. **It never falls back to a
+rebuild.**
+
 The credential is only ever an HTTP header inside the runner. It is never
 echoed, never written to disk and never passed to anything but `curl`.
 

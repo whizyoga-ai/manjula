@@ -206,7 +206,7 @@ jobs:
 
           # Diagnostics only - an access level, not a credential.
           ACCESS="$(python3 -c 'import json;d=(json.load(open("/tmp/gl_project.json")).get("permissions") or {});lv=[(d.get(k) or {}).get("access_level") for k in ("project_access","group_access")];print(max([x for x in lv if x] or [0]))')"
-          echo "Effective access level for the release credential: ${ACCESS} (30 = Developer, 40 = Maintainer)."
+          echo "Effective access level for the release credential: ${ACCESS} (30 = Developer, 40 = Maintainer, 50 = Owner)."
 
           post_pipeline() {
             curl -sS -o /tmp/gl_pipeline.json -w '%{http_code}' -X POST \
@@ -225,9 +225,9 @@ jobs:
           # the approved manifest - still carries the release. Prefer the
           # explicit digest, fall back to the pointer, never to a rebuild.
           if [ "$code" != "201" ] && grep -q 'Insufficient permissions to set pipeline variables' /tmp/gl_pipeline.json 2>/dev/null; then
-            echo "::warning::The release credential (access level ${ACCESS}) may open pipelines but not set pipeline variables; GitLab requires Maintainer (40) for that. Falling back to a plain pipeline, where GitLab resolves the release from approved-latest. Raise the credential to Maintainer to hand off the explicit digest instead."
+            echo "::warning::GitLab refused pipeline variables even though this credential is access level ${ACCESS}, so this is not a role problem. It is the project setting 'minimum role to set pipeline variables' (ci_pipeline_variables_minimum_override_role), which recent GitLab versions default to no-one-allowed. Falling back to a plain pipeline; GitLab resolves the release from approved-latest, which this run has already verified points at the approved manifest. To hand off the explicit digest instead, allow owner/maintainer to set pipeline variables on the release project."
             python3 -c 'import json,os;json.dump({"ref":os.environ["DEFAULT_BRANCH"]},open("/tmp/gl_pipeline_plain.json","w"))'
-            HANDOFF_MODE="approved-latest pointer (credential lacks variable permission)"
+            HANDOFF_MODE="approved-latest pointer (project forbids pipeline variables)"
             code="$(post_pipeline /tmp/gl_pipeline_plain.json)"
           fi
 
