@@ -4,13 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       source_tag:
-        description: GHCR staging tag that already passed regression/UAT
+        description: Exact GHCR staging tag that passed regression/UAT (must be sha-xxxxxxx)
         required: true
-        default: sha-472b72f
-      release_tag:
-        description: GitLab production release tag
-        required: true
-        default: release-2026-08-21
 
 permissions:
   contents: read
@@ -26,6 +21,24 @@ jobs:
     runs-on: [self-hosted, Linux, X64, staging, regression, yoga-5090]
 
     steps:
+      - name: Validate and resolve immutable release
+        id: vars
+        shell: bash
+        env:
+          SOURCE_TAG: ${{ inputs.source_tag }}
+        run: |
+          set -euo pipefail
+          if ! [[ "$SOURCE_TAG" =~ ^sha-[0-9a-f]{7,40}$ ]]; then
+            echo "::error::source_tag must be an immutable sha-* staging tag, for example sha-20c753e"
+            exit 1
+          fi
+          SOURCE_SHA="${SOURCE_TAG#sha-}"
+          RELEASE_TAG="release-${SOURCE_SHA}"
+          echo "source_tag=${SOURCE_TAG}" >> "$GITHUB_OUTPUT"
+          echo "source_sha=${SOURCE_SHA}" >> "$GITHUB_OUTPUT"
+          echo "release_tag=${RELEASE_TAG}" >> "$GITHUB_OUTPUT"
+          echo "Resolved immutable release: ${RELEASE_TAG}"
+
       - name: Login to GHCR
         shell: bash
         run: |
@@ -42,7 +55,7 @@ jobs:
         id: source
         shell: bash
         env:
-          SOURCE_TAG: ${{ inputs.source_tag }}
+          SOURCE_TAG: ${{ steps.vars.outputs.source_tag }}
         run: |
           set -euo pipefail
           SOURCE="${GHCR_IMAGE}:${SOURCE_TAG}"
@@ -50,29 +63,52 @@ jobs:
           SOURCE_ID="$(docker image inspect "$SOURCE" --format '{{.Id}}')"
           SOURCE_REPODIGEST="$(docker image inspect "$SOURCE" --format '{{index .RepoDigests 0}}')"
           SOURCE_MANIFEST_DIGEST="${SOURCE_REPODIGEST##*@}"
+          test -n "$SOURCE_ID"
+          test -n "$SOURCE_MANIFEST_DIGEST"
           echo "source=${SOURCE}" >> "$GITHUB_OUTPUT"
           echo "source_id=${SOURCE_ID}" >> "$GITHUB_OUTPUT"
           echo "source_manifest_digest=${SOURCE_MANIFEST_DIGEST}" >> "$GITHUB_OUTPUT"
+
+      - name: Refuse overwrite of immutable release tag
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ steps.vars.outputs.release_tag }}
+        run: |
+          set -euo pipefail
+          DEST="${GITLAB_IMAGE}:${RELEASE_TAG}"
+          if docker manifest inspect "$DEST" >/dev/null 2>&1; then
+            echo "::error::Immutable release tag already exists: ${DEST}"
+            exit 1
+          fi
 
       - name: Promote without rebuilding
         id: promote
         shell: bash
         env:
-          SOURCE_TAG: ${{ inputs.source_tag }}
-          RELEASE_TAG: ${{ inputs.release_tag }}
+          SOURCE_TAG: ${{ steps.vars.outputs.source_tag }}
+          RELEASE_TAG: ${{ steps.vars.outputs.release_tag }}
         run: |
           set -euo pipefail
           SOURCE="${GHCR_IMAGE}:${SOURCE_TAG}"
           DEST="${GITLAB_IMAGE}:${RELEASE_TAG}"
+          APPROVED="${GITLAB_IMAGE}:approved-latest"
+
           docker tag "$SOURCE" "$DEST"
           docker push "$DEST"
+
+          docker tag "$SOURCE" "$APPROVED"
+          docker push "$APPROVED"
+
           docker pull "$DEST"
           DEST_ID="$(docker image inspect "$DEST" --format '{{.Id}}')"
           DEST_REPODIGEST="$(docker image inspect "$DEST" --format '{{index .RepoDigests 0}}')"
           DEST_MANIFEST_DIGEST="${DEST_REPODIGEST##*@}"
+
           echo "dest=${DEST}" >> "$GITHUB_OUTPUT"
+          echo "approved=${APPROVED}" >> "$GITHUB_OUTPUT"
           echo "dest_id=${DEST_ID}" >> "$GITHUB_OUTPUT"
           echo "dest_manifest_digest=${DEST_MANIFEST_DIGEST}" >> "$GITHUB_OUTPUT"
+          echo "immutable_ref=${GITLAB_IMAGE}@${DEST_MANIFEST_DIGEST}" >> "$GITHUB_OUTPUT"
 
       - name: Verify artifact identity
         shell: bash
@@ -82,14 +118,17 @@ jobs:
           test '${{ steps.source.outputs.source_manifest_digest }}' = '${{ steps.promote.outputs.dest_manifest_digest }}'
           echo 'Verified: GitLab image is byte-identical to the tested GHCR linux/amd64 image manifest.'
 
-      - name: Publish immutable release metadata
+      - name: Publish release metadata
         shell: bash
         run: |
           {
             echo '## Manjula production promotion'
             echo ''
             echo '- Source: `${{ steps.source.outputs.source }}`'
+            echo '- Immutable release tag: `${{ steps.vars.outputs.release_tag }}`'
             echo '- Destination: `${{ steps.promote.outputs.dest }}`'
+            echo '- Convenience alias: `${{ steps.promote.outputs.approved }}`'
+            echo '- Immutable deploy ref: `${{ steps.promote.outputs.immutable_ref }}`'
             echo '- Image ID: `${{ steps.promote.outputs.dest_id }}`'
             echo '- Manifest digest: `${{ steps.promote.outputs.dest_manifest_digest }}`'
             echo '- Promotion mode: **no rebuild**'
