@@ -24,6 +24,7 @@ If your planned change conflicts with the architecture document, stop and explai
 - Tested image is pushed to GHCR as `sha-<short-sha>`.
 - Human approval precedes production promotion.
 - GitHub promotion pushes the exact tested artifact to GitLab without rebuilding.
+- Promotion then opens a GitLab pipeline over the API using the existing Actions secret, carrying the release tag, digest, immutable ref and source SHA as `MANJULA_*` variables. It hands off; it does not deploy.
 - GitLab project: `KAI-Production / Hosted Customers / Manjula / website-release`.
 - Promotion creates immutable `release-<short-sha>` plus moving pointer `approved-latest`.
 - Primary production: GEEKOM Docker + Caddy + Cloudflare tunnel.
@@ -38,7 +39,6 @@ If your planned change conflicts with the architecture document, stop and explai
 Do not state or assume these are already live:
 
 - digest-pinned `@sha256:` production deployment;
-- machine-readable promotion/release handoff metadata consumed automatically by GitLab;
 - automatic post-deploy public origin checks as a release gate;
 - automatic Worker failover regression on every release;
 - guaranteed Windows-side unattended startup of YOGA-5090 WSL after reboot;

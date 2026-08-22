@@ -6,7 +6,7 @@ The authoritative deployment description is `docs/DEPLOYMENT_ARCHITECTURE.md`. T
 
 ## Implemented architecture now
 
-GitHub `whizyoga-ai/manjula` is the source repo. YOGA-5090 is the self-hosted staging/regression machine and serves `staging.manjulab.com` for human UAT. Regression uses port 18081 and persistent UAT uses 18080. After approval, GitHub promotes the exact tested image to GitLab `KAI-Production / Hosted Customers / Manjula / website-release` without rebuilding it. Promotion creates immutable `release-<short-sha>` plus moving pointer `approved-latest`.
+GitHub `whizyoga-ai/manjula` is the source repo. YOGA-5090 is the self-hosted staging/regression machine and serves `staging.manjulab.com` for human UAT. Regression uses port 18081 and persistent UAT uses 18080. After approval, GitHub promotes the exact tested image to GitLab `KAI-Production / Hosted Customers / Manjula / website-release` without rebuilding it. Promotion creates immutable `release-<short-sha>` plus moving pointer `approved-latest`, and then opens a GitLab pipeline over the API with the release identity in `MANJULA_*` variables. That handoff does not deploy: GEEKOM and gpuserver stay manual jobs in GitLab.
 
 GEEKOM is primary production: candidate test on localhost:18083 -> production Docker container localhost:18082 -> Caddy localhost:8080 -> Cloudflare tunnel -> `geekom-web-origin.kai247.com`.
 
@@ -19,7 +19,6 @@ Production deployment remains manual and uses dedicated GitLab system runners. B
 Do not describe these as current behavior unless the architecture docs are later updated to say they are implemented:
 
 - deployment pinned directly to GitLab registry `@sha256:<digest>`;
-- automatic machine-readable release handoff metadata from promotion into GitLab deploy;
 - automatic public-origin health checks as part of each deployment gate;
 - automatic Worker failover regression on every release;
 - guaranteed Windows-side auto-start of the YOGA-5090 WSL staging environment after reboot;

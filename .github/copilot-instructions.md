@@ -10,7 +10,7 @@ Read `docs/DEPLOYMENT_ARCHITECTURE.md`, `AGENTS.md`, and `CLAUDE.md` before prop
 - UAT URL: `https://staging.manjulab.com`.
 - Build once; promote exact tested artifact after human approval.
 - GitLab release project: `KAI-Production / Hosted Customers / Manjula / website-release`.
-- Promotion creates immutable `release-<short-sha>` and moving pointer `approved-latest`.
+- Promotion creates immutable `release-<short-sha>` and moving pointer `approved-latest`, then opens a GitLab pipeline over the API with `MANJULA_*` release variables. The handoff does not deploy.
 - GEEKOM primary: candidate `18083`, production `18082`, Caddy `8080`, Cloudflare origin `geekom-web-origin.kai247.com`.
 - gpuserver DR: K3s namespace `brahmando`, deployment `manjulab-web`, container `web`, origin `india-web-origin.kai247.com`.
 - Both gpuserver readiness and liveness probes use `/healthz`.
@@ -19,7 +19,6 @@ Read `docs/DEPLOYMENT_ARCHITECTURE.md`, `AGENTS.md`, and `CLAUDE.md` before prop
 ## Planned, not yet implemented
 
 - direct `@sha256:` digest-pinned deployment;
-- automatic machine-readable release handoff;
 - automated public-origin deployment gates;
 - automated Worker failover regression every release;
 - guaranteed Windows-side WSL auto-start;

@@ -28,6 +28,32 @@ The following is live and working today.
 - Promotion creates an immutable `release-<short-sha>` tag.
 - Promotion also updates the moving pointer `approved-latest`.
 - The workflow verifies artifact identity between GHCR and GitLab and refuses to silently overwrite an existing immutable release tag.
+- Re-running promotion for a release whose manifest is already identical is treated as already-promoted rather than as an overwrite, so the handoff below stays reachable. A tag that exists with a *different* digest is still a hard failure.
+
+### Release handoff to GitLab
+
+Promotion does not stop at pushing the image. Using the GitHub Actions secret
+`GITLAB_KAI_PROD_TOKEN_BRAHMANDO`, the workflow calls the GitLab API and opens
+a pipeline in the release project carrying the release identity as variables:
+
+```text
+MANJULA_RELEASE_TAG        release-<short-sha>
+MANJULA_RELEASE_DIGEST     sha256:<manifest digest>
+MANJULA_RELEASE_IMAGE      <registry>/website-release:release-<short-sha>
+MANJULA_IMMUTABLE_REF      <registry>/website-release@sha256:<digest>
+MANJULA_SOURCE_SHA         the GitHub commit that was tested
+MANJULA_SOURCE_REPO        whizyoga-ai/manjula
+MANJULA_APPROVED_BY        the actor who ran the promotion
+MANJULA_UAT_URL            https://staging.manjulab.com
+MANJULA_PROMOTION_RUN      the GitHub Actions run that promoted it
+```
+
+Nobody retypes a release value. **The handoff opens the pipeline; it does not
+deploy.** GEEKOM and gpuserver remain manual jobs inside GitLab, which is the
+intended production-approval gate.
+
+The credential is only ever an HTTP header inside the runner. It is never
+echoed, never written to disk and never passed to anything but `curl`.
 
 ### Production release registry
 
@@ -138,6 +164,9 @@ NO REBUILD
         |
         v
 GitLab Container Registry
+   + handoff pipeline carrying the release identity
+        |
+   MANUAL PRODUCTION APPROVAL (in GitLab)
         |
         +-------------------------------+
         |                               |
@@ -212,14 +241,7 @@ instead of relying on a mutable tag at deployment time.
 
 Goal: the exact manifest digest becomes the runtime identity on both production hosts.
 
-### B. Automated release handoff metadata
-
-Planned:
-
-- promotion emits machine-readable release metadata containing source Git SHA, GHCR source, GitLab immutable tag, GitLab digest, promotion time and approval identity;
-- GitLab deployment consumes that metadata rather than manually editing a release value.
-
-### C. Automated post-deploy public checks
+### B. Automated post-deploy public checks
 
 Planned:
 
@@ -229,7 +251,7 @@ Planned:
 
 These checks should fail deployment reporting without creating a rebuild.
 
-### D. Automated failover regression
+### C. Automated failover regression
 
 The Worker/origin mechanism exists, but automated production failover regression is not yet part of every release pipeline.
 
@@ -243,11 +265,11 @@ Planned controlled test:
 
 This must be implemented carefully so CI does not create unnecessary customer-visible outages.
 
-### E. Windows/WSL unattended startup hardening
+### D. Windows/WSL unattended startup hardening
 
 The YOGA-5090 GitHub runner is a systemd daemon inside WSL. Future hardening may make Windows start the required WSL instance automatically after host reboot/login so staging is fully unattended.
 
-### F. Release retention and rollback catalog
+### E. Release retention and rollback catalog
 
 Planned:
 
@@ -255,11 +277,11 @@ Planned:
 - record which digest was deployed to each production target;
 - provide an explicit operator rollback action to a selected prior immutable release.
 
-### G. GitLab repository release record
+### F. GitLab repository release record
 
 The GitLab project currently serves primarily as the production release/registry control point. A future enhancement may store a concise release manifest/source snapshot per promotion for auditability, without turning GitLab into a second independent build source.
 
-### H. Logo rollout
+### G. Logo rollout
 
 The new logo exists at:
 

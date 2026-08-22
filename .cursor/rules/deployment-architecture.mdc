@@ -27,13 +27,13 @@ Before modifying Docker, CI/CD, Kubernetes, Cloudflare, runners, health checks, 
 - Both gpuserver probes must use `/healthz`.
 - Production jobs are manual and dedicated-runner only.
 - No rebuild occurs after UAT approval.
+- Promotion opens a GitLab pipeline over the API with `MANJULA_*` release variables; it hands off and never deploys.
 
 ## Roadmap, not current behavior
 
 Do not assume these exist yet:
 
 - digest-pinned `@sha256:` runtime deployment;
-- automatic machine-readable promotion-to-deploy handoff;
 - automatic public-origin health gates;
 - automatic Worker failover regression on every release;
 - guaranteed Windows-side WSL auto-start;
