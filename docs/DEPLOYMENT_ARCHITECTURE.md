@@ -1,119 +1,35 @@
 # Manjula deployment architecture
 
 Last revised: 2026-08-21/22
+Status: **implemented and operational**, with hardening items tracked below.
 
 This document is the authoritative deployment model for this repository. AI coding tools and human contributors must read it before changing build, release, hosting, health checks, Cloudflare routing, or CI/CD.
 
-## Principles
+## 1. What is implemented now
 
-1. GitHub `whizyoga-ai/manjula` is the source repository.
-2. Build once. Never rebuild the application during promotion or production deployment.
-3. YOGA-5090 is staging and regression only.
-4. A human approves staging before production promotion.
-5. GitLab `KAI-Production / Hosted Customers / Manjula / website-release` is the production release registry/project.
-6. GEEKOM is the US primary web production host.
-7. `gpuserver` in India is the DR web production host.
-8. Both production hosts consume the same approved artifact.
-9. Production services must expose `/healthz` and return exactly `ok` with HTTP 200.
-10. Cloudflare tunnels publish origins; the Cloudflare Worker selects between origins. Do not introduce paid Cloudflare Load Balancing unless explicitly requested.
+The following is live and working today.
 
-## Current flow
+### Source, staging, and UAT
 
-```text
-Developer / GitHub main
-        |
-        v
-GitHub Actions
-self-hosted YOGA-5090 runner
-(labels: self-hosted, Linux, X64, staging, regression, yoga-5090)
-        |
-        +--> build Docker image once
-        +--> automated regression on localhost:18081
-        +--> push exact tested image to GHCR
-        |
-        v
-YOGA-5090 persistent UAT container
-localhost:18080
-        |
-Cloudflare tunnel: laptop-staging
-        |
-https://staging.manjulab.com
-        |
-     HUMAN APPROVAL
-        |
-        v
-GitHub promotion workflow
-NO REBUILD
-        |
-        +--> immutable GitLab tag: release-<source-short-sha>
-        +--> moving approved pointer: approved-latest
-        |
-        v
-GitLab Container Registry
-registry.gitlab.com/kai-production/hosted-customers/manjula/website-release
-        |
-        +--------------------------+
-        |                          |
-        v                          v
-GEEKOM primary                 gpuserver India DR
-Docker                         K3s namespace brahmando
-manjula-production             deployment manjulab-web
-localhost:18082                container name web
-        |                          |
-Caddy localhost:8080              existing K3s service/ingress
-        |                          |
-Cloudflare tunnel                 Cloudflare tunnel
-        |                          |
-geekom-web-origin.kai247.com   india-web-origin.kai247.com
-        +-------------+------------+
-                      |
-                      v
-              Cloudflare Worker
-              website routing / failover
-```
+- GitHub `whizyoga-ai/manjula` is the source repository.
+- YOGA-5090 is the dedicated self-hosted GitHub Actions staging/regression runner.
+- The runner is installed as a systemd service inside Ubuntu/WSL.
+- Automated regression uses `127.0.0.1:18081`.
+- Persistent staging/UAT uses `127.0.0.1:18080`.
+- `https://staging.manjulab.com` is published through the `laptop-staging` Cloudflare tunnel.
+- A build must pass regression before its image is published to GHCR.
+- Human visual/UAT approval is a separate production gate.
 
-## Staging
+### Artifact promotion
 
-### YOGA-5090
+- The application is built **once** on YOGA-5090.
+- The exact tested image is pushed to GHCR as `sha-<short-sha>` and `staging-latest`.
+- `.github/workflows/promote-gitlab.yml` promotes the exact tested GHCR artifact to GitLab **without rebuilding**.
+- Promotion creates an immutable `release-<short-sha>` tag.
+- Promotion also updates the moving pointer `approved-latest`.
+- The workflow verifies artifact identity between GHCR and GitLab and refuses to silently overwrite an existing immutable release tag.
 
-- Ubuntu WSL staging runner is installed as a systemd service.
-- GitHub Actions runner is intended to be persistent while the WSL instance is running.
-- Regression port: `127.0.0.1:18081`.
-- Persistent UAT port: `127.0.0.1:18080`.
-- Never bind regression to `18080`; that port belongs to the persistent staging site.
-- Public staging URL: `https://staging.manjulab.com` via the `laptop-staging` Cloudflare tunnel.
-- A successful build is not production approval. Human/UAT approval is a separate gate.
-
-## GitHub workflows
-
-### Staging workflow
-
-`.github/workflows/staging-image.yml`
-
-Responsibilities:
-
-- Checkout source.
-- Build the exact Docker image locally on YOGA-5090.
-- Run regression on port 18081.
-- Verify `/healthz` and important pages.
-- Push the exact tested image to GHCR as `sha-<short-sha>` and `staging-latest`.
-- No GitHub-hosted runner should be required; jobs are pinned to the self-hosted staging runner.
-
-### Promotion workflow
-
-`.github/workflows/promote-gitlab.yml`
-
-Responsibilities:
-
-- Input is a GHCR staging tag that has passed regression and UAT, e.g. `sha-ca51542`.
-- Pull the tested image.
-- Push it to GitLab without rebuilding.
-- Create immutable `release-<short-sha>`.
-- Update `approved-latest` to the same approved artifact.
-- Verify source/destination artifact identity.
-- Refuse to silently overwrite an immutable `release-*` tag.
-
-## GitLab production release project
+### Production release registry
 
 GitLab hierarchy:
 
@@ -124,48 +40,28 @@ KAI-Production
         └── website-release
 ```
 
-Container registry:
+Registry:
 
 ```text
 registry.gitlab.com/kai-production/hosted-customers/manjula/website-release
 ```
 
-Production CI is deliberately manual. A promotion to GitLab does not automatically deploy production.
+Production deployment remains manual.
 
-## GEEKOM primary
+### GEEKOM primary production
 
-GitLab system runner:
+- GitLab Runner: `geekom-prod-web-system`.
+- Runner mode: system daemon, shell executor.
+- Runner tags: `geekom, production, web, system`.
+- Runner can control local Docker.
+- Production container: `manjula-production`.
+- Production container port: `127.0.0.1:18082 -> 80`.
+- Candidate validation port: `127.0.0.1:18083 -> 80`.
+- Caddy listens on `127.0.0.1:8080` and reverse-proxies to `127.0.0.1:18082`.
+- Cloudflare origin hostname: `geekom-web-origin.kai247.com`.
+- The deployment job performs candidate health validation before replacing production and attempts rollback to the previous image if the new production container fails health checks.
 
-```text
-geekom-prod-web-system
-```
-
-Tags:
-
-```text
-geekom, production, web, system
-```
-
-Runner requirements:
-
-- system-mode GitLab Runner daemon
-- shell executor
-- `gitlab-runner` user is in the Docker group
-- project-locked, protected runner
-
-Runtime topology:
-
-```text
-GitLab approved image
- -> candidate container localhost:18083
- -> health check
- -> manjula-production localhost:18082
- -> Caddy localhost:8080
- -> Cloudflare Tunnel
- -> geekom-web-origin.kai247.com
-```
-
-Caddy configuration intent:
+Caddy intent:
 
 ```caddy
 :8080 {
@@ -174,73 +70,237 @@ Caddy configuration intent:
 }
 ```
 
-Production deployment should test a candidate before replacing `manjula-production` and should attempt rollback to the previous image when cutover health fails.
+### gpuserver India DR
 
-## gpuserver India DR
-
-GitLab system runner:
-
-```text
-gpuserver-prod-web-system
-```
-
-Tags:
-
-```text
-gpuserver, production, web, system, dr
-```
-
-Runtime:
-
-- K3s cluster on gpuserver.
-- Namespace: `brahmando`.
+- GitLab Runner: `gpuserver-prod-web-system`.
+- Runner mode: system daemon, shell executor.
+- Runner tags: `gpuserver, production, web, system, dr`.
+- K3s namespace: `brahmando`.
 - Deployment: `manjulab-web`.
 - Container: `web`.
-- Service: `manjulab-web` on port 80.
-- Production image comes from the GitLab registry.
+- Service: `manjulab-web`, port 80.
+- Cloudflare origin hostname: `india-web-origin.kai247.com`.
+- The old Apache/PHP runtime has been replaced by the same Nginx/static production artifact used by GEEKOM.
+- Old Apache command/args and old site/config volume mounts are removed from the active container specification.
+- Both readiness and liveness probes use `/healthz`.
+- Deployment normalization uses an idempotent Kubernetes strategic merge patch.
+- The production job waits for rollout, validates probes, waits through a liveness cycle, checks restart count, and reports deployment state.
 
-The deployment used to be Apache/PHP and contained old Apache command/args, host-path mounts, and `/index.php` probes. The current image is Nginx/static. Those old Apache settings must never be reintroduced.
+### Health contract
 
-Mandatory probes for `web`:
+Every production/staging image must provide:
 
 ```text
-readinessProbe: /healthz
-livenessProbe:  /healthz
+GET /healthz
+HTTP 200
+body: ok
 ```
 
-The old `/index.php` liveness probe caused an otherwise healthy Nginx container to be killed and restarted repeatedly. Treat `/healthz` as a non-negotiable invariant.
+This is a hard invariant. The previous `/index.php` liveness probe caused Kubernetes to repeatedly kill a healthy Nginx container and must never return.
 
-Use Kubernetes strategic merge patch for repeatable normalization of the `web` container. Do not use JSON Patch `remove` operations for fields that may already be absent; those are not idempotent and previously caused production CI failures.
+### Cloudflare
 
-## Cloudflare routing
-
-Known web origins:
+Known origins:
 
 ```text
 geekom-web-origin.kai247.com
 india-web-origin.kai247.com
 ```
 
-The Cloudflare Worker handles website origin selection/failover. The desired cost model is to use the existing Workers Paid Plan and avoid paid Cloudflare Load Balancing.
+Cloudflare tunnels publish the origins. A Cloudflare Worker handles website origin selection/failover. The architecture intentionally avoids paid Cloudflare Load Balancing.
 
-For ATOM-hosted application services, DR can be a manual switch. This document is specifically the Manjula website hosting pipeline.
+## 2. Current end-to-end flow
 
-## Health and release invariants
+```text
+Developer / GitHub main
+        |
+        v
+GitHub Actions on YOGA-5090
+        |
+        +--> build Docker image ONCE
+        +--> regression on localhost:18081
+        +--> publish exact tested image to GHCR
+        |
+        v
+Persistent UAT container localhost:18080
+        |
+        v
+staging.manjulab.com
+        |
+     HUMAN APPROVAL
+        |
+        v
+GitHub promotion workflow
+NO REBUILD
+        |
+        +--> release-<short-sha>     immutable
+        +--> approved-latest         moving approved pointer
+        |
+        v
+GitLab Container Registry
+        |
+        +-------------------------------+
+        |                               |
+        v                               v
+GEEKOM primary                     gpuserver India DR
+Docker                             K3s / brahmando
+candidate :18083                   deployment manjulab-web
+production :18082                  container web
+Caddy :8080                        service/ingress
+        |                               |
+geekom-web-origin                  india-web-origin
+        +---------------+---------------+
+                        |
+                        v
+                Cloudflare Worker
+```
 
-Any AI/model changing CI/CD must preserve all of these:
+## 3. Production CI behavior implemented now
 
-- `/healthz` exists in the image and returns `ok`.
-- Staging regression does not take over port 18080.
-- Production is never rebuilt after UAT approval.
-- GEEKOM and gpuserver deploy the same approved artifact.
-- gpuserver liveness and readiness both use `/healthz`.
-- Production jobs are manual and tied to dedicated self-hosted/system runners.
-- Do not send production jobs to shared/hosted runners.
-- Do not publish registry credentials or runner tokens.
-- Do not add `latest` as the only production identity. Keep immutable `release-<sha>` tags.
-- `approved-latest` is a pointer only; an immutable release tag/digest is the audit identity.
-- Prefer deployment by digest when extending the pipeline further.
+The GitLab production CI is designed to be repeatable and fail-safe.
 
-## When modifying the architecture
+### GEEKOM job
 
-Update this file, `AGENTS.md`, and `CLAUDE.md` in the same change. If an AI assistant discovers a mismatch between live infrastructure and this document, it must stop and surface the mismatch rather than silently inventing a new topology.
+The job must:
+
+1. verify Docker, curl, registry variables and Docker daemon access;
+2. authenticate to GitLab Registry;
+3. pull the approved release without rebuilding;
+4. start `manjula-candidate` on port 18083;
+5. require `/healthz == ok` before touching production;
+6. remember the previously running production image;
+7. replace `manjula-production` only after candidate validation;
+8. verify the new production container on 18082;
+9. verify the Caddy path on 8080;
+10. attempt rollback to the prior image if cutover health fails;
+11. clean up candidate containers and registry sessions.
+
+A `resource_group` prevents concurrent GEEKOM production deployments.
+
+### gpuserver job
+
+The job must:
+
+1. verify kubectl, Docker, KUBECONFIG and cluster access;
+2. verify the release image exists before changing K3s;
+3. capture the currently deployed image for rollback;
+4. create/update the GitLab registry pull secret idempotently;
+5. normalize the `web` container with a **strategic merge patch**;
+6. ensure old Apache/PHP command, args, and mounts are absent;
+7. force readiness and liveness to `/healthz`;
+8. set the approved release image;
+9. wait for rollout completion;
+10. restore the previous image if rollout fails;
+11. wait through a liveness cycle and verify restart count remains zero;
+12. report the final image and probe state.
+
+A `resource_group` prevents concurrent gpuserver production deployments.
+
+## 4. Things that are NOT implemented yet / roadmap
+
+These are planned hardening or automation steps. AI agents must not describe them as already live.
+
+### A. Digest-pinned production deployment — NEXT
+
+Current production CI may consume the approved pointer/tag. The next hardening step is to resolve the approved artifact to its immutable registry digest and deploy:
+
+```text
+registry.gitlab.com/.../website-release@sha256:<digest>
+```
+
+instead of relying on a mutable tag at deployment time.
+
+Goal: the exact manifest digest becomes the runtime identity on both production hosts.
+
+### B. Automated release handoff metadata
+
+Planned:
+
+- promotion emits machine-readable release metadata containing source Git SHA, GHCR source, GitLab immutable tag, GitLab digest, promotion time and approval identity;
+- GitLab deployment consumes that metadata rather than manually editing a release value.
+
+### C. Automated post-deploy public checks
+
+Planned:
+
+- verify `geekom-web-origin.kai247.com/healthz` after GEEKOM deploy;
+- verify `india-web-origin.kai247.com/healthz` after gpuserver deploy;
+- optionally test the public website route after both are healthy.
+
+These checks should fail deployment reporting without creating a rebuild.
+
+### D. Automated failover regression
+
+The Worker/origin mechanism exists, but automated production failover regression is not yet part of every release pipeline.
+
+Planned controlled test:
+
+1. verify normal routing to GEEKOM;
+2. make primary health unavailable in a controlled way;
+3. verify Worker routes to India DR;
+4. restore GEEKOM;
+5. verify primary routing returns.
+
+This must be implemented carefully so CI does not create unnecessary customer-visible outages.
+
+### E. Windows/WSL unattended startup hardening
+
+The YOGA-5090 GitHub runner is a systemd daemon inside WSL. Future hardening may make Windows start the required WSL instance automatically after host reboot/login so staging is fully unattended.
+
+### F. Release retention and rollback catalog
+
+Planned:
+
+- retain a defined number of immutable `release-*` artifacts;
+- record which digest was deployed to each production target;
+- provide an explicit operator rollback action to a selected prior immutable release.
+
+### G. GitLab repository release record
+
+The GitLab project currently serves primarily as the production release/registry control point. A future enhancement may store a concise release manifest/source snapshot per promotion for auditability, without turning GitLab into a second independent build source.
+
+### H. Logo rollout
+
+The new logo exists at:
+
+```text
+assets/img/manjula-logo-brahmexa.webp
+```
+
+The site-wide logo rollout is **not yet production-approved**. It must first be implemented in GitHub, pass YOGA-5090 regression, and be visually approved at `staging.manjulab.com`. Only then may the exact tested artifact be promoted and deployed to GEEKOM and gpuserver.
+
+## 5. Architecture principles
+
+1. GitHub is the source of truth for application source.
+2. Build once; promote the tested artifact.
+3. Staging and production are separate gates.
+4. Production deployment is manual until explicitly changed.
+5. GEEKOM is primary; gpuserver is DR.
+6. Both production targets consume the same approved artifact.
+7. `/healthz` is mandatory everywhere.
+8. Do not send production jobs to hosted/shared runners.
+9. Do not expose credentials or runner tokens.
+10. Do not introduce paid Cloudflare Load Balancing unless explicitly requested.
+11. Use idempotent deployment operations.
+12. Prefer immutable digests as the final runtime identity.
+
+## 6. AI-agent rules
+
+Any AI coding model working in this repository must distinguish between:
+
+- **implemented now** — sections 1–3 above;
+- **planned/future** — section 4 above.
+
+Do not silently implement roadmap items while doing unrelated application work.
+
+Before modifying CI/CD, Docker, Kubernetes, Cloudflare, health checks, ports, runner labels, registry behavior, or production topology, read this file completely.
+
+If live infrastructure appears inconsistent with this document, stop and report the mismatch instead of inventing a new architecture.
+
+Any material architecture change must update, in the same change:
+
+- `docs/DEPLOYMENT_ARCHITECTURE.md`
+- `AGENTS.md`
+- `CLAUDE.md`
+- `.cursor/rules/deployment-architecture.mdc` when present
+- `.github/copilot-instructions.md` when present
