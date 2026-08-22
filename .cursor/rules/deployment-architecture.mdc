@@ -1,0 +1,54 @@
+---
+description: Manjula deployment architecture and release safety rules
+alwaysApply: true
+---
+
+# Manjula deployment rules for Cursor
+
+Before modifying Docker, CI/CD, Kubernetes, Cloudflare, runners, health checks, ports, release tags, or production topology, read:
+
+- `docs/DEPLOYMENT_ARCHITECTURE.md`
+- `AGENTS.md`
+- `CLAUDE.md`
+- `.github/workflows/staging-image.yml`
+- `.github/workflows/promote-gitlab.yml`
+
+## Implemented now
+
+- GitHub is source of truth.
+- YOGA-5090 is staging/regression.
+- Regression port 18081; persistent UAT port 18080.
+- UAT URL: `https://staging.manjulab.com`.
+- Build once on YOGA-5090, then promote exact tested artifact.
+- GitLab production release project: `KAI-Production / Hosted Customers / Manjula / website-release`.
+- Immutable promotion tag: `release-<short-sha>`; moving pointer: `approved-latest`.
+- GEEKOM primary: candidate 18083, production 18082, Caddy 8080, Cloudflare origin `geekom-web-origin.kai247.com`.
+- gpuserver DR: K3s namespace `brahmando`, deployment `manjulab-web`, container `web`, origin `india-web-origin.kai247.com`.
+- Both gpuserver probes must use `/healthz`.
+- Production jobs are manual and dedicated-runner only.
+- No rebuild occurs after UAT approval.
+
+## Roadmap, not current behavior
+
+Do not assume these exist yet:
+
+- digest-pinned `@sha256:` runtime deployment;
+- automatic machine-readable promotion-to-deploy handoff;
+- automatic public-origin health gates;
+- automatic Worker failover regression on every release;
+- guaranteed Windows-side WSL auto-start;
+- formal release retention/rollback catalog;
+- production rollout of the new logo.
+
+## Never do
+
+- never rebuild on GitLab/GEEKOM/gpuserver after UAT;
+- never reuse port 18080 for regression;
+- never restore `/index.php` probes;
+- never reintroduce old Apache/PHP command/args/mounts;
+- never use non-idempotent JSON Patch remove operations for optional old fields;
+- never route production to shared/hosted runners;
+- never expose secrets or runner tokens;
+- never introduce paid Cloudflare Load Balancing unless explicitly requested.
+
+If live infrastructure conflicts with the documented architecture, stop and surface the discrepancy instead of inventing a topology.
