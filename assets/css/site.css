@@ -144,6 +144,11 @@ html[data-lang="en"] .brand__mark { font-family: var(--display); font-variation-
 .brand__sub {
   font-family: var(--hand); font-size: 1.15rem; color: var(--marigold-2);
   letter-spacing: .02em;
+  /* Two words that must stay two words. Left to wrap, the tagline folds into
+     a column as soon as the row is tight, and the whole header grows with it
+     — in English at 1265px that was an 81px header before this line and a
+     111px one once the brand card joined the row. Both are 60px now. */
+  white-space: nowrap;
 }
 
 /* The name as artwork. Cut from Noto Serif Bengali at 300px and trimmed to
@@ -155,6 +160,50 @@ html[data-lang="en"] .brand__mark { font-family: var(--display); font-variation-
 .wordmark--hero { height: clamp(3.4rem, 11vw, 6.6rem); margin-bottom: .1rem; }
 .foot__brand { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
 .foot__brand .wordmark { height: 1.25rem; }
+
+/* ==========================================================================
+   THE BRAND CARD
+
+   The new artwork is a printed thing — cream stock, navy type, a gold rule,
+   the shop's own line about food that comforts. This site already knows what
+   to do with a printed thing: it pins it to the chalkboard. So the card is
+   framed rather than floated, and the frame is drawn from --chalk-rgb, the
+   header's own foreground. That token inverts with the theme, so the border
+   is light on the dark board and dark on the two cream boards, and the card
+   never reads as a white rectangle punched out of the page.
+
+   One class, two sizes. The header wants a mark; the home page wants the
+   whole card, big enough to read the line under the name. Nothing is cropped
+   at either size: the approved artwork carries its own words and they stay
+   inside it.
+   ========================================================================== */
+
+.brandcard {
+  border-radius: 6px;
+  background: var(--paper);
+  border: 1px solid rgba(var(--chalk-rgb), .22);
+  box-shadow: 0 2px 10px -4px rgba(0, 0, 0, .55);
+}
+
+/* Header: a mark, not a document. 38px is chosen against .top__in — its 60px
+   floor less 1.4rem of padding leaves 37.6px — so every page gained a logo
+   without gaining a taller header. Width is stated beside height so the row
+   cannot reflow between markup and decode. */
+.brandcard--top {
+  height: 38px; width: 57px;   /* 3:2, the artwork's own ratio */
+  align-self: center; flex: none;
+}
+
+/* Home: the whole card, as the hero's letterhead. It sits above the eyebrow
+   and displaces nothing — the editorial order underneath (the name, the
+   tagline, the lede) is exactly as it was. */
+.brandcard--hero {
+  display: block;
+  width: min(360px, 64vw); height: auto;
+  aspect-ratio: 3 / 2;
+  margin: 0 0 1.5rem;
+}
+
 
 .top nav { display: flex; gap: .2rem; }
 .top nav a {
@@ -1191,8 +1240,64 @@ html[data-lang="bn"] .chapter h2 { line-height: 1.6; }
 
 /* Below this the brand tagline and the theme dots start fighting for room. */
 @media (max-width: 460px) {
-  .brand__sub { display: none; }
   .theme { gap: .2rem; }
+  .brandcard--hero { width: min(300px, 72vw); margin-bottom: 1.2rem; }
+}
+
+/* ---- what the brand row gives up, and in what order ----
+
+   Measured at 360px: the row carries মঞ্জুলা, the nav toggle, two language
+   buttons and four theme dots, and flex leaves the brand about 55px. The
+   wordmark alone needs 49. Dropping the card in there pushed মঞ্জুলা 33px
+   into the nav toggle.
+
+   So the tagline stands down first — the card already carries the shop's own
+   line — and below 480px the card itself stands down rather than the name.
+   That is the whole argument: মঞ্জুলা is the shop's name on a Bengali-first
+   site and the artwork has no Bengali in it, so the name is the thing that
+   cannot be the one to go. The home page still shows the full card in the
+   hero at every width. */
+@media (max-width: 1320px) {
+  /* Measured, not guessed: with the desktop nav up, the Bengali labels are
+     the wider set, and at 1265px the tagline ran 12px into the nav. Every
+     extra pixel of viewport goes to the brand, so the row only truly clears
+     around 1277px — 1320 leaves room for font-loading variance. Below that
+     the tagline stands down. It is not lost: it is in the title, the footer
+     and the home hero. */
+  .brand__sub { display: none; }
+}
+@media (max-width: 620px) {
+  .brandcard--top { height: 34px; width: 51px; }
+}
+@media (max-width: 479px) {
+  .brandcard--top { display: none; }
+}
+
+/* The desktop nav arrives at 881px (site.css and nav.js agree on that number,
+   so it is not a thing to retune for a logo). Right above it the row is at
+   its tightest: the full nav is in, the viewport is not yet wide, and the
+   Bengali labels are the wider set — measured at 885px, the mark pushed
+   মঞ্জুলা 33px into the nav. So the mark stands down across that band, the
+   same bargain already struck below 480px. */
+/* The desktop nav arrives at 881px (site.css and nav.js agree on that number,
+   so it is not a thing to retune for a logo) and from there to about 1140px
+   the row is over-subscribed — it already was before this logo existed. At
+   1009px English stood at a 111px header with 137px of the page hanging off
+   the right; Bengali at 885px stood at 119px with মঞ্জুলা squeezed to 42px.
+
+   Two things give. The brand stops shrinking, because once the tagline is
+   hidden flex was handing it nothing at all and the name vanished outright.
+   And the nav gives back a little air either side of eight links — every link
+   still there, still one row. Both languages now come out ahead of where they
+   started: 63px and 60px headers, Bengali clearing entirely. */
+@media (min-width: 881px) and (max-width: 1140px) {
+  .brand { flex: none; }
+  .top nav a { padding-left: .35rem; padding-right: .35rem; }
+}
+
+/* The tightest slice of that range cannot take the mark as well. */
+@media (min-width: 881px) and (max-width: 960px) {
+  .brandcard--top { display: none; }
 }
 
 /* The email button on the bulk sheet sits on paper, not on the dark hero, so

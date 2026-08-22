@@ -34,10 +34,15 @@
 <meta property="og:title" content="মঞ্জুলা বাইট অ্যান্ড ব্রু — Manjula Bite &amp; Brew, Uttarpara">
 <meta property="og:description" content="মোমো, স্টু পাউরুটি, ম্যাগি আর চা। উত্তরপাড়া গার্লস হাই স্কুলের কাছে। রোজ ৯টা — ৯টা।">
 <meta property="og:url" content="https://manjulab.com/">
-<meta property="og:image" content="https://manjulab.com/assets/img/slate.jpg">
+<meta property="og:image" content="https://manjulab.com/assets/img/manjula-logo-brahmexa.webp">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:width" content="900">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Manjula Bite &amp; Brew — Powered by Brahmexa">
 <meta property="og:locale" content="bn_IN">
 <meta property="og:locale:alternate" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://manjulab.com/assets/img/manjula-logo-brahmexa.webp">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/brahmexa-logo.png">
@@ -102,6 +107,11 @@ try { var t = localStorage.getItem('manjula-theme');
 <header class="top">
   <div class="wrap top__in">
     <a class="brand" href="#top">
+      <!-- The brand card as a header mark. alt is empty on purpose: the name
+           is spelled out beside it, and two names inside one link make the
+           link announce itself twice. -->
+      <img class="brandcard brandcard--top" src="assets/img/manjula-logo-brahmexa.webp"
+           alt="" width="900" height="600" decoding="async">
       <!-- The Bengali name is set as artwork, not as text. Web fonts disagree
            about the ঞ্জ conjunct in মঞ্জুলা and several break it outright, so
            the one word the shop cannot afford to have rendered wrongly is
@@ -138,6 +148,13 @@ try { var t = localStorage.getItem('manjula-theme');
 <section class="hero">
   <div class="wrap hero__grid">
     <div>
+      <!-- The whole card, as the page's letterhead. The artwork carries the
+           name, the line about food that comforts and the Brahmexa credit;
+           it is used whole and never cropped. Everything below is unchanged. -->
+      <img class="brandcard brandcard--hero" src="assets/img/manjula-logo-brahmexa.webp"
+           alt="Manjula Bite &amp; Brew — Powered by Brahmexa"
+           width="900" height="600" fetchpriority="high">
+
       <p class="eyebrow">
         <span class="dot" aria-hidden="true"></span>
         <span class="bn-i">উত্তরপাড়া · ব্যানার্জি পাড়া স্ট্রিট</span>
